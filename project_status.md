@@ -1,0 +1,60 @@
+# PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
+
+> **Phiên bản hiện tại:** v5.9 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Cập nhật lần cuối:** 2026-11-16  
+> **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
+
+---
+
+## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Kiến trúc cốt lõi & Lưu trữ:**
+  - Single-file HTML (`Vanilla JS + CSS + SVG`), lưu dữ liệu qua `localStorage` (`msns_main_v1`) và `IndexedDB` (`msns_bgm` cho file nhạc MP3/WAV cá nhân).
+  - **Đồng Bộ Vân Đạo (`cloudSyncService` · Real-time Cloud Sync BYOK):** Lưu cấu hình độc lập tại `localStorage` (`msns_cloud_cfg`), hỗ trợ **Firebase Realtime Database** (`PUT`/`GET` + `EventSource` SSE real-time) và **Custom REST / Supabase** (Polling khi tab active + đồng bộ tức thì đa tab qua `storage` event). Có Debounce Push `1.5s`, tự động lược ảnh Base64 nếu gói tin `> 500KB`, phát hiện xung đột lớn (`cldConflictModal`) và công cụ giả lập xung đột trong `vAdmin`.
+  - Hàm `migrate()` tự động lọc bỏ ID thiên phú/vật phẩm rác (`TD[t.id]`, `ID[i.id]`), giới hạn `s.realm` an toàn và có `try/catch` khi khởi động để chống trắng màn hình.
+  - Bộ điều phối click kiểm tra an toàn `if(A[a]) A[a](t.dataset.x)`.
+- **Hệ thống Nhân vật & Tu luyện (`vChar`, `vCul`, `vTal`, `vTec`):**
+  - 14 cảnh giới đầy đủ từ Phàm Giới đến Tiên Giới: *Luyện Khí → Độ Kiếp → Chân Tiên → Kim Tiên → Thái Ất → Đại La → Hỗn Nguyên* (mỗi cảnh giới 9 tầng).
+  - **Cơ chế Bảo Hiểm Đột Phá (`s.pity`) & Cân bằng Độ Kiếp:** Mỗi lần đột phá cảnh giới lớn thất bại tự động tích lũy `+5%` tỷ lệ thành công cho lần sau (tối đa `+30%`, reset về 0 khi đột phá thành công); điều chỉnh độ khó Thiên kiếp (`160 * 2.1^t`) và giảm tổn thất tu vi khi thất bại (`20%–30%`).
+  - **Bế quan liên tục thông minh (`cultivationService.auto`):** Tự động đột phá các tầng nhỏ (`1 → 9`) trong lúc bế quan và chỉ dừng lại khi chạm cửa đột phá cảnh giới lớn hoặc thọ nguyên còn dưới 5 năm.
+  - 43 Thiên phú (7 phẩm chất từ Bạch sắc đến Thất thải), nâng cấp Lv1–Lv5 (chi phí hàm mũ), hiệu ứng đặc biệt tăng theo cấp độ.
+  - 19 Công pháp + **Diễn Hóa Công Pháp** (kết hợp 2 công pháp Viên mãn thành bộ mới giữ nguyên hiệu ứng chiến đấu đặc biệt và có thể đột phá lên Thất thải).
+  - Cơ chế **Đan Độc (`s.toxin`)** tích tụ khi dùng đan dược và giảm dần khi Bế quan hoặc uống Tịnh Tâm Đan / Tẩy Tủy Đan.
+- **Hệ thống Kho Đồ & Quản Lý Trang Bị Thông Minh (`vInv`, `bulkSell`, `shopService`):**
+  - Bộ lọc kép trong Kho đồ: lọc đồng thời theo **Phẩm chất** (`Bạch sắc → Thất thải`) và **Loại vật phẩm** (`Vũ khí, Pháp bảo, Giáp, Phụ kiện, Đan dược, Vật phẩm đặc biệt, Nguyên liệu`).
+  - **Khóa vật phẩm (`i.lk` · nút 🔒/🔓):** Bảo vệ trang bị quan trọng khỏi thao tác bán lẻ và bán hàng loạt.
+  - **Bán trang bị hàng loạt (`bulkSell`):** Các nút bán nhanh đồ `≤ Bạch sắc`, `≤ Lục sắc`, `≤ Lam sắc` (tự động bỏ qua đồ đã khóa, đang trang bị, Cực phẩm và Bản Mệnh Pháp Bảo).
+- **Hệ thống Bách Nghệ & Trang bị (`vCraft`):**
+  - 3 nghề phụ (Nhất Giai → Cửu Giai): **Luyện Đan Sư** (tỷ lệ nổ ra Đan Văn Cực Phẩm x2 hiệu quả), **Luyện Khí Sư** (tỷ lệ Thần Binh Xuất Thế, nâng phẩm chất 4 bậc), **Trận Pháp Sư** (7 đại trận động phủ).
+  - **Bản Mệnh Pháp Bảo:** Ôn dưỡng `+1` đến `+10` và tính năng **Chuyển Di Bản Mệnh** (giữ lại 70% cấp độ khi đổi vũ khí/pháp bảo).
+- **Kim Thủ Chỉ — Mô Phỏng Nhân Sinh (`vKt`, `thienCoAI`, `rewardIntegrationService`):**
+  - Lối chơi tự do theo từng năm tuổi với 4 hành động chủ động (*Bế Quan, Nhập Thế Lịch Luyện, Du Ngoạn Hồng Trần, Thăm Dò Bí Cảnh*), Dấu ấn nhân quả (`m.flags`), Chuỗi sự kiện 3 hồi (`CH`), 8 NPC định mệnh (`NP`), Kiếp Nạn Định Mệnh động và Chọn Di Sản sau khi chết.
+  - **Động Cơ Rẽ Nhánh Nhân Quả Động — Thiên Cơ AI (`thienCoAI`):** Hỗ trợ BYOK (`Google Gemini` & `OpenAI-compatible`), lưu cấu hình và API Key độc lập tại `localStorage` (`msns_ai_cfg`), tách hoàn toàn khỏi `enc(s)` khi Xuất save. Tự động chuyển về **Chế độ Cổ Điển (Offline Fallback)** nếu không có key, mất mạng hoặc API lỗi 3 lần liên tiếp.
+  - **Context State & Hành động tự do:** Gửi trạng thái đời mô phỏng (tuổi, cảnh giới, thiên phú, thiện/ác, thể trạng, `m.flags`, `m.bond`, 5 sự kiện gần nhất + `m.aiSummary`) để sinh biến cố văn phong SangTacViet với 2–3 lựa chọn đối lập kèm ô nhập **Hành động tự do**; có JSON parser tự sửa lỗi markdown/dấu phẩy/cắt cụt, clamp chống lạm phát chỉ số và nén trí nhớ nhân quả sau mỗi 3 lượt.
+  - Phần thưởng mô phỏng tự động nhân theo cảnh giới thực tế của bản thể (`1.75^realm`).
+- **Chiến đấu, Càn Quét Tùy Chỉnh & Phường Thị (`vAdv`, `vShop`):**
+  - **14 ải Lịch Luyện & Chiến Trường Chiến Thuật (`btlModal`, `adventureService`):** Phủ trọn 14 cảnh giới với tranh minh họa riêng (`BOSS_ART`), thanh **Linh Lực (MP)**, **3 Tâm Pháp Giao Chiến (`STANCES`)**, **Tuyệt Kỹ Chủ Động (`skillOf`)** theo công pháp trang bị (*Phá Giáp, Phong Ấn/Choáng ngắt tụ lực, Trảm Sát, Thiêu Đốt, Hút Máu, Hộ Thể Kim Quang*), dùng Linh Đan khẩn cấp và Rút Lui.
+  - **Yêu Thú Biến Dị (`MUTS`):** 4 biến thể (*Huyết Sát, Thiết Giáp, Cuồng Lôi, Độc Chướng*) với nội tại đặc biệt và phần thưởng gấp đôi nguyên liệu.
+  - **Cơ chế Giảm Dần Lợi Tức Lịch Luyện (`s.farm`):** Đánh quái liên tục trong chu kỳ 10 năm tuổi sẽ giảm dần lượng linh thạch & tu vi rơi ra (`0.92^n`, tối thiểu `30%`).
+  - **Càn quét nâng cao (`adventureService.sweep`):** Cho phép chọn số năm càn quét (`10 / 25 / 50 / 100 năm`) và tùy chọn **Dừng khi rơi đồ hiếm (`ui.swr`)**.
+- **Tái cân bằng đường cong chỉ số & Bách Nghệ thực chiến (`characterStatsService`, `foeOf`, `adventureService`, `cultivationService`):**
+  - Nhân chỉ số chiến đấu (`luc`, `thu`, `toc`, `maxHp`, `maxMp`) theo `realmMul = 2.1^realm * (1 + layer * 0.1)`, quy đổi chỉ số cộng phẳng từ Trang bị/Công pháp/Thiên phú theo `1.6^realm`.
+  - Cập nhật đường cong quái `foeOf(i)` (`L = round(18 * 2.15^i)`) và **Uy Áp Cảnh Giới** (`-22%` sát thương gây ra, `+25%` sát thương nhận vào mỗi cảnh giới chênh lệch; giảm trừ bởi Ngũ hành tương khắc `50%`, Bản Mệnh Pháp Bảo `+2.5%/cấp` tối đa `25%`, và Trận Bàn).
+  - **Bách Nghệ hỗ trợ thực chiến:** Luyện Khí (`ql=2` +15%, `ql=3` +30% Xuyên Giáp); Luyện Đan (3 đan thực chiến `d14` Bạo Nguyên Đan, `d15` Kim Cang Hộ Tâm Đan, `d16` Bách Thảo Giải Độc Đan; phẩm chất Cực phẩm `ex` dùng không tốn lượt); Trận Pháp (2 Trận Bàn tiêu hao `b1` Ngũ Hành Nghịch Chuyển Bàn & `b2` Tứ Tượng Tỏa Linh Bàn chế tạo trong `vCraft` và kích hoạt trong `btlModal`).
+  - Đồng bộ ngưỡng Độ Kiếp (`160 * 2.1^t`) và ngưỡng Phi Thăng (`thu >= 150.000` ở Độ Kiếp).
+- **Endgame, Giao diện Discord & Admin Balance Lab (`vAdmin`):**
+  - **Phi Thăng Tiên Giới** & **Binh Giải Chuyển Thế (New Game+)**.
+  - Tùy biến Profile Card, 5 bộ Theme + Nitro Custom Color, đổi ảnh Avatar/Banner/Wallpaper (tự nén Canvas JPEG 0.8), trình phát nhạc ngũ cung Web Audio API.
+  - **Admin Panel + Balance Lab (`runLab`):** Mở khóa ẩn bằng `/thiendao` hoặc `Alt + Shift + ~` (SHA-256 trên RAM), tích hợp công cụ giả lập cân bằng trên bản sao.
+
+---
+
+## 2. ĐANG THỰC HIỆN (IN PROGRESS)
+- Kiểm thử cân bằng đường cong tăng trưởng từ Luyện Khí đến Hỗn Nguyên thông qua **Balance Lab** trong bảng Admin.
+
+---
+
+## 3. KẾ HOẠCH TIẾP THEO (TODO / BACKLOG)
+- [ ] **Hệ thống Tông Môn & Khai Tông Lập Phái (Bản thể ngoài đời thực):** Gia nhập 4 đại thế lực làm nhiệm vụ cống hiến (giai đoạn đầu) và tự lập sơn môn thu nhận đệ tử, nâng cấp Linh Mạch (từ Nguyên Anh trở lên).
+- [ ] **Đấu Giá Hội Vạn Bảo Lâu:** Sự kiện định kỳ mỗi 10 năm tuổi tại tab Phường Thị, cạnh tranh trả giá với NPC đại năng và sự kiện bị chặn đường cướp bảo.
+- [ ] **Linh Thú & Đạo Lữ thực chiến:** Thu phục linh thú tiến hóa bằng Yêu Đan, kết giao Đạo Lữ để mở khóa Song Tu và hỗ trợ vượt Thiên Kiếp.
+- [ ] **Tối ưu thao tác nhanh (QoL):** Thêm nút "Rèn nhanh / Luyện đan ×5" trong tab Bách Nghệ.
