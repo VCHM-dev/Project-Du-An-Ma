@@ -1,12 +1,17 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.20 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.21 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Trùng Tu Mỹ Thuật Thủy Mặc Quỷ Cốc Bát Hoang (`v5.21` · `avatar`, `petArt`, `partnerArt`, `archBanner`, `bossBanner`):**
+  - Thiết kế lại toàn bộ minh họa SVG theo phong cách **Thủy Mặc Sơn Thủy (Ink-Wash)** lấy cảm hứng từ *Quỷ Cốc Bát Hoang*: sơn phong ẩn hiện trong sương mù, tùng cổ bên vách đá, vòng hào quang cảnh giới và viền kim mực.
+  - **Avatar Tu Sĩ (`avatar`):** Kiếm tu đứng trên đỉnh núi với nón đấu lạp (Nam) hoặc trâm ngọc (Nữ), dải lụa bay, kiếm sau lưng và hào quang linh khí theo cảnh giới.
+  - **Linh Thú & Đạo Lữ (`petArt`, `partnerArt`):** Chân dung thủy mặc riêng cho từng Linh Thú (có vòng tiến hóa) và từng Đạo Lữ.
+  - **Kiến Trúc & Yêu Thú (`archBanner`, `bossBanner`):** Banner sơn thủy cho *Sơn Môn Tự Lập, Đại Tông Môn, Vạn Bảo Lâu* và lớp phủ thủy mặc đồng bộ cho 14 Boss ải Lịch Luyện.
 - **Linh Thú Tiến Hóa & Đạo Lữ Song Tu Thực Chiến (`v5.20` · `compService`, `vComp`, `adventureService`, `cultivationService`):**
   - **Linh Thú Thực Chiến (`PETS`, `PET_STAGES`):** Thu phục 4 Linh Thú (*Huyền Giác Tê, Xích Diễm Kỳ Lân, Thanh Loan Thần Điểu, Bạch Hổ Sát Thần*), tiến hóa 7 bậc bằng **Yêu Đan (`m4/m5/m6`)**, cộng chỉ số và trực tiếp trợ chiến mỗi hiệp trong Chiến Trường Lịch Luyện.
   - **Đạo Lữ & Song Tu (`PARTNERS`):** Tặng lễ vật tăng Hảo cảm để kết thành Đạo Lữ, mở khóa **Song Tu** (nhận `×2.2~2.6` Tu vi, giải Đan độc/tăng chỉ số) và tự động **Hộ Pháp vượt Thiên Kiếp** (`+8% ~ +12%` gốc).

@@ -88,6 +88,13 @@ img.av{object-fit:cover}.pe input[type=file]{padding:3px}
 .bimg .bbg{position:absolute;inset:auto 0 0;height:42px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--pn) 92%,#000));pointer-events:none}
 .bimg .blc,.bimg .bel,.bimg .bwn{position:absolute;font-size:11px;padding:2px 7px;border-radius:10px;background:#050814cc;border:1px solid #ffffff26;color:#f3ecd8;backdrop-filter:blur(4px);pointer-events:none}
 .bimg .blc{left:6px;bottom:6px}.bimg .bel{right:6px;bottom:6px;font-weight:bold}.bimg .bwn{right:6px;top:6px;border-color:#2dd4bf88;color:#2dd4bf}
+.comp-hd{display:flex;gap:10px;align-items:center;margin-bottom:6px}
+.ink-art{width:64px;height:64px;flex:none;border-radius:8px;border:1px solid color-mix(in srgb,var(--rc,var(--gold)) 65%,var(--ln));background:#0a0d12;box-shadow:inset 0 0 12px #000c,0 2px 8px #0006;overflow:hidden}
+.ink-art svg,.arch-bn svg{width:100%;height:100%;display:block}
+.arch-bn{position:relative;height:86px;margin:-12px -12px 10px;border-radius:9px 9px 0 0;overflow:hidden;border-bottom:1px solid color-mix(in srgb,var(--gold) 45%,var(--ln));background:#090c10}
+.arch-bn .abg{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,color-mix(in srgb,var(--pn) 92%,#000));pointer-events:none}
+.arch-bn .att{position:absolute;left:12px;bottom:8px;right:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:8px}
+.arch-bn h3{margin:0;text-shadow:0 2px 6px #000}
 .dn-c .bimg{height:98px;margin:-5px -7px 6px}
 @media(prefers-reduced-motion:reduce){.aiw i,.card:hover .bimg svg{animation:none;transform:none}}
 .gd-ov{position:fixed;inset:0;z-index:50;background:transparent}
@@ -99,7 +106,7 @@ img.av{object-fit:cover}.pe input[type=file]{padding:3px}
 .gd-hl .gi{font-size:20px;line-height:1.2;flex:none}
 </style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div>
 <script>
-const APP_VERSION='5.20';
+const APP_VERSION='5.21';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -115,6 +122,13 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.21',date:'2026-11-16',title:'Mỹ Thuật Thủy Mặc Phong Cách Quỷ Cốc Bát Hoang',
+      highlights:[
+        {icon:'🖌',title:'Avatar Nhân Vật & Chân Dung Linh Thú / Đạo Lữ Thủy Mặc',desc:'Thiết kế lại toàn bộ Avatar nhân vật (mũ đấu lạp, kiếm sau lưng, núi non mây khói), cùng chân dung SVG Thủy Mặc riêng cho 4 Linh Thú và 4 Đạo Lữ.',tab:'char'},
+        {icon:'🏔',title:'Nâng Cấp Tranh Quái & Kiến Trúc Tông Môn / Vạn Bảo Lâu',desc:'Bổ sung lớp phủ sơn thủy mây mù cho 14 Boss Lịch Luyện và tranh kiến trúc tiên sơn cho Tông Môn, Sơn Môn Tự Lập và Vạn Bảo Lâu.',tab:'sect'}
+      ]
+    },
     {
       version:'5.20',date:'2026-11-16',title:'Linh Thú Tiến Hóa & Đạo Lữ Song Tu Thực Chiến',
       highlights:[
@@ -1924,7 +1938,56 @@ function brkModal(){
 /* ===== GIAO DIỆN CÁC TAB ===== */
 const btn=(a,x,t,d)=>`<button data-a="${a}" data-x="${x}"${d?' disabled':''}>${t}</button>`;
 const card=(r,h,b,bt='')=>`<div class="card r${r}" style="--rc:${RC[r]}"><div class="ct"><b>${h}</b><span class="tag">${RN[r]}</span></div><div class="mu">${b}</div><div class="bt">${bt}</div></div>`;
-const avatar=x=>(s&&s.uiCfg&&s.uiCfg.av)?`<img class="av" src="${esc(s.uiCfg.av)}" width="150" height="150" alt="Avatar">`:`<svg class="av" width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="Avatar"><defs><radialGradient id="g"><stop offset="0" style="stop-color:var(--vio)"/><stop offset="1" style="stop-color:var(--in)"/></radialGradient></defs><circle cx="75" cy="75" r="72" fill="url(#g)" style="stroke:var(--gold)" stroke-width="2"/><circle cx="75" cy="58" r="20" style="fill:var(--iv)"/><path d="M30 140c0-40 20-58 45-58s45 18 45 58z" style="fill:var(--jade)" opacity=".85"/><path d="M45 40q30-30 60 0" style="stroke:var(--gold)" fill="none" stroke-width="3"/></svg>`;
+const avatar=x=>{
+  if(s&&s.uiCfg&&s.uiCfg.av)return`<img class="av" src="${esc(s.uiCfg.av)}" width="150" height="150" alt="Avatar">`;
+  const fem=x&&x.gender==='Nữ',rlm=(x&&x.realm)||0,rc=RC[Math.min(6,Math.floor(rlm/2))]||'#e5c158';
+  return`<svg class="av" width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="Avatar Thủy Mặc">
+  <defs>
+    <radialGradient id="ink_av_bg" cx="50%" cy="38%" r="65%"><stop offset="0" stop-color="#374151"/><stop offset=".6" stop-color="#141923"/><stop offset="1" stop-color="#07090e"/></radialGradient>
+    <linearGradient id="ink_robe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e293b"/><stop offset="1" stop-color="#090d14"/></linearGradient>
+  </defs>
+  <circle cx="75" cy="75" r="72" fill="url(#ink_av_bg)" stroke="${rc}" stroke-width="2.2"/>
+  <path d="M12 108L34 72L52 94L78 58L108 92L128 70L142 108Z" fill="#0f151f" opacity=".75"/>
+  <path d="M8 52Q24 44 38 56M14 44Q28 38 40 48" stroke="#0b0f17" stroke-width="4" stroke-linecap="round" fill="none" opacity=".8"/>
+  <ellipse cx="75" cy="128" rx="58" ry="18" fill="#cbd5e1" opacity=".12"/>
+  <line x1="106" y1="24" x2="46" y2="112" stroke="#cbd5e1" stroke-width="3.2" stroke-linecap="round" opacity=".85"/>
+  <line x1="99" y1="30" x2="113" y2="39" stroke="${rc}" stroke-width="3" stroke-linecap="round"/>
+  <path d="M26 146C28 106 46 90 75 90C104 90 122 106 124 146Z" fill="url(#ink_robe)" stroke="#475569" stroke-width="1.2"/>
+  <path d="M58 92L75 124L92 92" fill="none" stroke="${fem?'#f472b6':'#dc2626'}" stroke-width="3" opacity=".85"/>
+  <path d="M92 98Q114 108 126 124" stroke="${fem?'#f472b6':'#dc2626'}" stroke-width="4.5" stroke-linecap="round" fill="none" opacity=".75"/>
+  ${fem?`<path d="M56 54C56 38 94 38 94 54L98 84C88 76 62 76 52 84Z" fill="#0b0f17"/><circle cx="75" cy="60" r="14" fill="#d6d3cd"/><path d="M60 56Q75 42 90 56" fill="#0b0f17"/><line x1="56" y1="42" x2="94" y2="36" stroke="${rc}" stroke-width="2.2"/><circle cx="56" cy="42" r="2.8" fill="#38bdf8"/>`
+  :`<circle cx="75" cy="62" r="14" fill="#d6d3cd"/><path d="M61 58Q75 46 89 58L86 74Q75 78 64 74Z" fill="#0b0f17" opacity=".25"/><path d="M32 54L75 34L118 54Q75 62 32 54Z" fill="#18181b" stroke="#94a3b8" stroke-width="1.4"/><path d="M52 44Q75 37 98 44" stroke="${rc}" stroke-width="1.5" fill="none"/>`}
+  <circle cx="70" cy="62" r="1.8" fill="${rc}"/><circle cx="80" cy="62" r="1.8" fill="${rc}"/>
+  <circle cx="75" cy="75" r="67" fill="none" stroke="${rc}" stroke-width=".9" stroke-dasharray="6 5" opacity="${clamp(.25+rlm*.08,.25,.9)}"/>
+</svg>`;
+};
+function petArt(id,lv){
+  const col={huyengiac:'#f59e0b',xichdiem:'#ef4444',thanhloan:'#2dd4bf',bachtho:'#e2e8f0'}[id]||'#e5c158';
+  const bodies={
+    huyengiac:`<path d="M12 58L18 32L32 22L48 28L54 58Z" fill="#1c1917" stroke="${col}" stroke-width="1.5"/><polygon points="22,26 12,8 28,20" fill="#fbbf24"/><polygon points="36,24 44,12 42,26" fill="#94a3b8"/><circle cx="28" cy="36" r="2.6" fill="#fde047"/>`,
+    xichdiem:`<path d="M14 58Q18 28 32 20Q48 26 52 58Z" fill="#2a0a0a" stroke="${col}" stroke-width="1.5"/><path d="M22 22L16 8L28 16L36 6L42 18L50 10L46 26" fill="none" stroke="#f97316" stroke-width="2.2"/><circle cx="26" cy="34" r="2.6" fill="#fde047"/><circle cx="39" cy="34" r="2.6" fill="#fde047"/>`,
+    thanhloan:`<path d="M10 44Q24 14 48 24Q38 36 54 54Q32 48 16 58Z" fill="#062822" stroke="${col}" stroke-width="1.5"/><polygon points="20,24 10,20 18,30" fill="#fde047"/><path d="M32 18Q44 8 54 14" stroke="#5eead4" stroke-width="2" fill="none"/><circle cx="23" cy="24" r="2.2" fill="#fff"/>`,
+    bachtho:`<path d="M14 58L18 30L14 14L28 24L38 24L50 14L46 30L50 58Z" fill="#1e293b" stroke="${col}" stroke-width="1.5"/><path d="M20 34H28M36 34H44M22 44L32 48L42 44" stroke="#020617" stroke-width="2.2"/><circle cx="26" cy="32" r="2.5" fill="#38bdf8"/><circle cx="38" cy="32" r="2.5" fill="#38bdf8"/>`
+  };
+  return`<div class="ink-art"><svg viewBox="0 0 64 64"><defs><radialGradient id="pa_${id}" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="${col}44"/><stop offset="1" stop-color="#070a0f"/></radialGradient></defs><rect width="64" height="64" fill="url(#pa_${id})"/><ellipse cx="32" cy="54" rx="26" ry="8" fill="#cbd5e1" opacity=".14"/>${bodies[id]||bodies.bachtho}${lv>1?`<circle cx="32" cy="32" r="29" fill="none" stroke="${col}" stroke-width="1.2" stroke-dasharray="4 3" opacity="${clamp(.3+lv*.1,0,1)}"/>`:''}</svg></div>`;
+}
+function partnerArt(id){
+  const cfg={
+    tovien:{c:'#38bdf8',s:'#0c1e35',art:`<line x1="48" y1="10" x2="18" y2="54" stroke="#bae6fd" stroke-width="2.5"/><path d="M18 60C20 42 44 42 46 60Z" fill="#0f2942"/><circle cx="32" cy="28" r="10" fill="#e2e8f0"/><path d="M21 26C21 16 43 16 43 26L46 42L18 42Z" fill="#0b1120" opacity=".88"/><circle cx="32" cy="28" r="9" fill="#e2e8f0"/><path d="M22 24Q32 14 42 24" fill="#0b1120"/><line x1="20" y1="16" x2="44" y2="14" stroke="#38bdf8" stroke-width="1.8"/>`},
+    lamnhu:{c:'#34d399',s:'#06251d',art:`<path d="M18 60C20 42 44 42 46 60Z" fill="#064e3b"/><circle cx="22" cy="18" r="5" fill="#090d14"/><circle cx="42" cy="18" r="5" fill="#090d14"/><circle cx="32" cy="28" r="10" fill="#e2e8f0"/><path d="M22 25Q32 16 42 25" fill="#090d14"/><circle cx="48" cy="46" r="6" fill="#f59e0b" opacity=".8"/><circle cx="48" cy="38" r="3.5" fill="#fbbf24"/>`},
+    macvan:{c:'#fbbf24',s:'#1e1408',art:`<line x1="14" y1="12" x2="46" y2="54" stroke="#fde047" stroke-width="2.5"/><path d="M16 60C18 40 46 40 48 60Z" fill="#1c1917"/><rect x="28" y="10" width="8" height="7" rx="2" fill="#090d14" stroke="#fbbf24" stroke-width="1"/><circle cx="32" cy="28" r="10" fill="#d6d3cd"/><path d="M22 24Q32 15 42 24" fill="#090d14"/>`},
+    nguyetly:{c:'#c084fc',s:'#1b0d2e',art:`<path d="M46 14A14 14 0 1 0 46 38A10 10 0 1 1 46 14Z" fill="#f3e8ff" opacity=".65"/><path d="M18 60C20 42 44 42 46 60Z" fill="#2e1065"/><circle cx="32" cy="28" r="10" fill="#f1f5f9"/><path d="M21 25Q32 14 43 25" fill="#0f0720"/><path d="M12 48Q32 38 52 48" stroke="#e9d5ff" stroke-width="2" fill="none" opacity=".6"/>`}
+  }[id]||{c:'#e5c158',s:'#111827',art:''};
+  return`<div class="ink-art"><svg viewBox="0 0 64 64"><defs><radialGradient id="pt_${id}" cx="50%" cy="35%" r="65%"><stop offset="0" stop-color="${cfg.c}38"/><stop offset="1" stop-color="${cfg.s}"/></radialGradient></defs><rect width="64" height="64" fill="url(#pt_${id})"/>${cfg.art}<circle cx="28.5" cy="28" r="1.2" fill="#090d14"/><circle cx="35.5" cy="28" r="1.2" fill="#090d14"/></svg></div>`;
+}
+function archBanner(tp,title,badge=''){
+  const art={
+    sect:`<defs><linearGradient id="ab_s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e293b"/><stop offset="1" stop-color="#070a10"/></linearGradient></defs><rect width="280" height="86" fill="url(#ab_s)"/><circle cx="228" cy="24" r="14" fill="#e2e8f0" opacity=".2"/><path d="M0 86L38 40L74 68L118 28L165 62L214 32L280 86Z" fill="#0f172a"/><path d="M98 46H142L134 34H106ZM92 34H148L138 22H102ZM112 22H128L120 12Z" fill="#1e293b" stroke="#94a3b8" stroke-width="1"/><path d="M16 58Q45 48 80 62M185 52Q225 42 268 58" stroke="#cbd5e1" stroke-width="2" fill="none" opacity=".22"/><path d="M192 22L198 18L204 22M208 28L213 25L218 28" stroke="#e2e8f0" stroke-width="1.2" fill="none" opacity=".6"/>`,
+    own:`<defs><linearGradient id="ab_o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2e2b"/><stop offset="1" stop-color="#060a0d"/></linearGradient></defs><rect width="280" height="86" fill="url(#ab_o)"/><path d="M0 86L48 34L96 70L140 24L188 68L238 30L280 86Z" fill="#091514"/><path d="M112 72V42H124V72M156 72V42H168V72M104 42H176L168 30H112Z" fill="#111827" stroke="#e5c158" stroke-width="1.2"/><path d="M35 76Q140 44 245 72" stroke="#2dd4bf" stroke-width="3" fill="none" opacity=".45"/><path d="M22 68Q34 46 52 54" stroke="#060a0d" stroke-width="4" fill="none"/>`,
+    auc:`<defs><linearGradient id="ab_a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#311618"/><stop offset="1" stop-color="#08060a"/></linearGradient></defs><rect width="280" height="86" fill="url(#ab_a)"/><circle cx="140" cy="40" r="36" fill="#f59e0b" opacity=".12"/><path d="M78 76V52H202V76ZM88 52V34H192V52ZM104 34V18H176V34Z" fill="#1a0b0e" stroke="#fbbf24" stroke-width="1.2"/><path d="M70 52H210L198 44H82ZM80 34H200L188 26H92ZM98 18H182L140 6Z" fill="#2b0f14" stroke="#fde047" stroke-width="1"/><circle cx="96" cy="58" r="3" fill="#ef4444"/><circle cx="184" cy="58" r="3" fill="#ef4444"/><circle cx="110" cy="40" r="2.5" fill="#fbbf24"/><circle cx="170" cy="40" r="2.5" fill="#fbbf24"/>`
+  }[tp]||'';
+  return`<div class="arch-bn"><svg viewBox="0 0 280 86" preserveAspectRatio="xMidYMid slice">${art}</svg><div class="abg"></div><div class="att"><h3>${title}</h3>${badge}</div></div>`;
+}
 const eqName=(x,t)=>{const it=x.inv.find(i=>i.u===x.eq[t]);return it?ID[it.id]:null};
 
 function vChar(){
@@ -2044,7 +2107,8 @@ const BOSS_ART=[
 ];
 function bossBanner(i,beaten){
   const a=ADV[i],ec=ELC[a[2]]||['#e5c158','☯'];
-  return `<div class="bimg"><svg viewBox="0 0 280 122" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${esc(a[0])}">${BOSS_ART[i]||BOSS_ART[0]}</svg><div class="bbg"></div><span class="blc">📍 ${esc(a[1])}</span><span class="bel" style="color:${ec[0]};border-color:${ec[0]}66">${ec[1]} Hệ ${ELN[a[2]]}</span>${beaten?`<span class="bwn">✔ Đã trảm ×${beaten}</span>`:''}</div>`;
+  const ink=`<path d="M0 122L0 94L28 84L44 122Z" fill="#05070b" opacity=".88"/><path d="M2 86Q18 68 38 76M6 76Q22 64 34 72" stroke="#05070b" stroke-width="3" fill="none" opacity=".85"/><ellipse cx="62" cy="112" rx="54" ry="14" fill="#cbd5e1" opacity=".12"/><ellipse cx="222" cy="108" rx="64" ry="16" fill="#cbd5e1" opacity=".14"/><path d="M18 85L22 76L26 85M19 78L25 78" stroke="#05070b" stroke-width="1.6" fill="none"/><rect x="1.5" y="1.5" width="277" height="119" fill="none" stroke="#e5c158" stroke-width=".7" opacity=".32"/>`;
+  return `<div class="bimg"><svg viewBox="0 0 280 122" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${esc(a[0])}">${BOSS_ART[i]||BOSS_ART[0]}${ink}</svg><div class="bbg"></div><span class="blc">📍 ${esc(a[1])}</span><span class="bel" style="color:${ec[0]};border-color:${ec[0]}66">${ec[1]} Hệ ${ELN[a[2]]}</span>${beaten?`<span class="bwn">✔ Đã trảm ×${beaten}</span>`:''}</div>`;
 }
 
 function btlModal(){
@@ -2123,7 +2187,7 @@ function vShop(){
     </div>`;
   }
   const activeAuc=s.auc&&s.auc.lots.some(x=>!x.done);
-  out+=`<div class='pn'><div class='row' style='align-items:center'><h3>🏛 Đấu Giá Hội Vạn Bảo Lâu</h3>${activeAuc?'<span class="ok">🔥 Đang diễn ra</span>':btn('auc_open','','Mở Sớm Đấu Giá (200💎)',s.stones<200)}</div>
+  out+=`<div class='pn'>${archBanner('auc','🏛 Đấu Giá Hội Vạn Bảo Lâu',activeAuc?'<span class="ok">🔥 Đang diễn ra</span>':btn('auc_open','','Mở Sớm Đấu Giá (200💎)',s.stones<200))}
     <div class='mu'>Đấu giá định kỳ mỗi 10 năm tuổi (kỳ kế tiếp: ${aucNx>0?'sau '+aucNx+' năm':'sắp khai mạc'}). Trúng bảo vật quý có thể kích hoạt kỳ ngộ bị cướp bảo!</div>
     ${s.auc?`<div class='grid' style='margin-top:8px'>${s.auc.lots.map((o,i)=>{const d=o.k==='t'?QD[o.id]:o.k==='a'?TD[o.id]:ID[o.id],ty=o.k==='t'?'Bí tịch: '+d.ty:o.k==='a'?'Mảnh thiên phú':TL[d.t],b15=Math.max(o.cur+10,Math.round(o.cur*1.15)),b30=Math.max(o.cur+20,Math.round(o.cur*1.3));return card(d.r,d.n,`${ty}<br>${o.k==='i'?esc(d.u||fx(d.s)):fx(d.e)}<br>Giá hiện tại: <b>${o.cur.toLocaleString('vi-VN')}💎</b> (${o.done?(o.won?'<span class="ok">Bạn đã trúng!</span>':`<span class="bad">${o.npc} đã thắng</span>`):`Đang giữ giá: ${o.npc} · Lượt ${o.round}/3`})`,o.done?'':btn('auc_bid',i,`Trả +15% (${b15.toLocaleString('vi-VN')}💎)`,s.stones<b15||!!s.aucRob)+btn('auc_bid30',i,`Trả +30% (${b30.toLocaleString('vi-VN')}💎)`,s.stones<b30||!!s.aucRob)+btn('auc_pass',i,'Bỏ qua'))}).join('')}</div>`:''}
   </div>`;
@@ -2155,8 +2219,8 @@ function vSect(){
     const m7=s.inv.filter(i=>i.id==='m7').reduce((a,i)=>a+i.q,0),recCost=400*(s.realm+1);
     const discPow=os.disciples.reduce((a,d)=>a+d.lv*(d.q+1),0);
     const yrS=Math.round((os.veinLv*25+discPow*12)*Math.pow(1.45,s.realm)),yrX=Math.round((os.veinLv*8+discPow*5)*Math.pow(1.65,s.realm));
-    return`<div class="pn"><h3>🏔 Sơn Môn: ${esc(os.name)}</h3>
-      <div class="mu">${st.n} · ${st.d}</div>
+    return`<div class="pn">${archBanner('own','🏔 Sơn Môn: '+esc(os.name),`<span class="tag">${st.n}</span>`)}
+      <div class="mu">${st.d}</div>
       <div class="row"><span>Linh Mạch hiện tại</span><b>${VEIN_NAMES[os.veinLv-1]} (Cấp ${os.veinLv}/7 · +${os.veinLv*8}% Tu luyện)</b></div>
       <div class="row"><span>Sản lượng hàng năm (khi Bế quan)</span><b class="ok">+${yrS.toLocaleString('vi-VN')} linh thạch/năm · +${yrX.toLocaleString('vi-VN')} tu vi/năm</b></div>
       <div class="row"><span>Quỹ Sơn Môn tích lũy (${os.years||0}/100 năm)</span><b>${(os.vaultStones||0).toLocaleString('vi-VN')} 💎 · ${(os.vaultXp||0).toLocaleString('vi-VN')} Tu vi</b></div>
@@ -2171,7 +2235,7 @@ function vSect(){
   if(sc){
     const rk=sectService.rankOf(s.sect.total||0),nx=SECT_RANKS[rk+1],mul=SECT_RANKS[rk][2];
     const bTxt=Object.entries(sc.b).map(([k,v])=>({luc:'Lực chiến',thu:'Phòng ngự',tc:'Tốc độ tu luyện',crit:'Bạo kích',pb:'Đột phá'}[k]||k)+' +'+Math.round(v*mul*100)+'%').join(' · ');
-    out+=`<div class="pn"><h3>🏯 ${sc.n} · ${SECT_RANKS[rk][0]}</h3>
+    out+=`<div class="pn">${archBanner('sect',`🏯 ${sc.n}`,`<span class="tag">${SECT_RANKS[rk][0]}</span>`)}
       <div class="mu">${sc.tag} · ${sc.d}</div>
       <div class="row"><span>Điểm Cống Hiến khả dụng</span><b class="ok">${s.sect.contrib.toLocaleString('vi-VN')} điểm</b></div>
       <div class="row"><span>Tổng Cống Hiến (Thăng cấp)</span><b>${s.sect.total.toLocaleString('vi-VN')}${nx?' / '+nx[1]+' ('+nx[0]+')':' (Tối đa)'}</b></div>
@@ -2181,10 +2245,10 @@ function vSect(){
     </div>
     <div class="pn"><h3>🏛 Bảo Khố Tông Môn</h3><div class="grid">${SECT_SHOP.map((o,i)=>{const d=ID[o.id];return card(d.r,`${d.n} ×${o.q}`,`${esc(d.u||fx(d.s))}<br>Giá: <b>${o.c} Cống hiến</b>`,btn('sect_buy',i,'Đổi bảo vật',s.sect.contrib<o.c))}).join('')}</div></div>`;
   }else{
-    out+=`<div class="pn"><h3>🏯 Gia Nhập Đại Thế Lực</h3><div class="mu">Chọn 1 trong 4 đại tông môn để nhận gia trì chiến đấu/tu luyện, làm nhiệm vụ tích lũy Cống hiến và đổi đan dược, khoáng thạch quý.</div>
-    <div class="grid">${SECTS.map(i=>card(2,i.n,`<span style="color:${i.col}">${i.tag}</span><br>${esc(i.d)}`,btn('sect_join',i.id,'Bái Nhập'))).join('')}</div></div>`;
+    out+=`<div class="pn">${archBanner('sect','🏯 Gia Nhập Đại Thế Lực')}<div class="mu">Chọn 1 trong 4 đại tông môn để nhận gia trì chiến đấu/tu luyện, làm nhiệm vụ tích lũy Cống hiến và đổi đan dược, khoáng thạch quý.</div>
+    <div class="grid" style="margin-top:8px">${SECTS.map(i=>card(2,i.n,`<span style="color:${i.col}">${i.tag}</span><br>${esc(i.d)}`,btn('sect_join',i.id,'Bái Nhập'))).join('')}</div></div>`;
   }
-  out+=`<div class="pn"><h3>🏔 Khai Tông Lập Phái (Mở khóa từ Nguyên Anh)</h3>
+  out+=`<div class="pn">${archBanner('own','🏔 Khai Tông Lập Phái','<span class="tag">Từ Nguyên Anh</span>')}
     <div class="mu">Đạt cảnh giới <b>Nguyên Anh</b> trở lên và chuẩn bị <b>5,000 linh thạch</b> để tự lập Sơn Môn, xây dựng Linh Mạch và chiêu mộ đệ tử cống hiến mỗi năm (sẽ rời tông môn cũ nếu đang gia nhập).</div>
     ${s.realm>=3?`<div class="bt" style="margin-top:8px"><input id="sect_nm" placeholder="Tên Sơn Môn (vd: ${esc(s.name)} Tiên Tông)" style="min-width:200px"><select id="sect_st">${SECT_STYLES.map((st,i)=>`<option value="${i}">${st.n} (${st.d})</option>`).join('')}</select>${btn('sect_found','','Khai Sơn Lập Phái (5,000💎)',s.stones<5000)}</div>`:`<div class="bad" style="margin-top:6px">Chưa đạt Nguyên Anh (hiện tại: ${REALMS[s.realm]})</div>`}
   </div>`;
@@ -2195,15 +2259,15 @@ function vComp(){
   const tc=compService.tameCost(),m4=mq(s,'m4');
   const petCards=PETS.map(p=>{
     const lv=(s.pets&&s.pets[p.id])||0,on=s.pet===p.id;
-    if(!lv)return card(1,`${p.ico} ${p.n}`,`Hệ ${ELN[p.el]}<br>${esc(p.d)}<br>Thu phục: ${tc.stones}💎 + ${tc.m4} Yêu Đan Nhị Giai (${m4}/${tc.m4})`,btn('pet_tame',p.id,'Thu Phục',s.stones<tc.stones||m4<tc.m4));
+    if(!lv)return card(1,p.n,`<div class="comp-hd">${petArt(p.id,0)}<div>Hệ ${ELN[p.el]}<br>${esc(p.d)}</div></div>Thu phục: ${tc.stones}💎 + ${tc.m4} Yêu Đan Nhị Giai (${m4}/${tc.m4})`,btn('pet_tame',p.id,'Thu Phục',s.stones<tc.stones||m4<tc.m4));
     const ec=lv<7?compService.evolveCost(lv):null,hasM=ec?mq(s,ec.mat):0;
     const bTxt=Object.entries(p.b).map(([k,v])=>({luc:'Lực chiến',thu:'Phòng ngự',toc:'Tốc độ',tc:'Tu luyện',crit:'Bạo kích'}[k]||k)+' +'+Math.round((v+(p.per[k]||0)*(lv-1))*100)+'%').join(' · ');
-    return card(Math.min(6,lv),`${p.ico} ${p.n} [${PET_STAGES[lv-1]}]${on?' · <span class="ok">Đang xuất chiến</span>':''}`,`${bTxt}<br>${esc(p.d)}${ec?`<br>Tiến hóa: ${ec.stones.toLocaleString('vi-VN')}💎 + ${ec.q} ${ID[ec.mat].n} (${hasM}/${ec.q})`:'<br><span class="ok">✨ Đạt Đỉnh Thần Thú</span>'}`,btn('pet_eq',p.id,on?'Thu hồi':'Xuất chiến')+(ec?btn('pet_ev',p.id,'Tiến Hóa',s.stones<ec.stones||hasM<ec.q):''));
+    return card(Math.min(6,lv),`${p.n} [${PET_STAGES[lv-1]}]`, `<div class="comp-hd">${petArt(p.id,lv)}<div>${on?'<span class="ok">⚔ Đang xuất chiến</span><br>':''}<b>${bTxt}</b><br>${esc(p.d)}</div></div>${ec?`Tiến hóa: ${ec.stones.toLocaleString('vi-VN')}💎 + ${ec.q} ${ID[ec.mat].n} (${hasM}/${ec.q})`:'<span class="ok">✨ Đạt Đỉnh Thần Thú</span>'}`,btn('pet_eq',p.id,on?'Thu hồi':'Xuất chiến')+(ec?btn('pet_ev',p.id,'Tiến Hóa',s.stones<ec.stones||hasM<ec.q):''));
   }).join('');
   const gCost=150*(s.realm+1),curPt=s.partner&&PARTNERS.find(p=>p.id===s.partner),cd=s.dualAge?Math.max(0,s.dualAge+3-s.age):0;
   const ptCards=PARTNERS.map(pt=>{
     const aff=(s.pAff&&s.pAff[pt.id])||0,isP=s.partner===pt.id,tb=Math.round(pt.trib*(1+Math.floor(Math.max(0,aff-100)/100)*.2)*100);
-    return card(isP?5:aff>=100?3:1,`${pt.ico} ${pt.n} · ${pt.ti}${isP?' · <span class="ok">Đạo Lữ</span>':''}`,`${esc(pt.d)}<br>Hảo cảm: <b>${aff}</b> · Hộ pháp Thiên Kiếp: <b class="ok">+${tb}%</b>`,btn('pt_gift',pt.id,`Tặng Lễ (${gCost.toLocaleString('vi-VN')}💎)`,s.stones<gCost)+(!isP&&aff>=100?btn('pt_bond',pt.id,'Kết Thành Đạo Lữ'):''));
+    return card(isP?5:aff>=100?3:1,`${pt.n}${isP?' · Đạo Lữ':''}`,`<div class="comp-hd">${partnerArt(pt.id)}<div><span style="color:var(--gold)">${pt.ti}</span><br>${esc(pt.d)}</div></div>Hảo cảm: <b>${aff}</b> · Hộ pháp Thiên Kiếp: <b class="ok">+${tb}%</b>`,btn('pt_gift',pt.id,`Tặng Lễ (${gCost.toLocaleString('vi-VN')}💎)`,s.stones<gCost)+(!isP&&aff>=100?btn('pt_bond',pt.id,'Kết Thành Đạo Lữ'):''));
   }).join('');
   return`<div class="pn"><h3>🐉 Linh Thú Thực Chiến</h3><div class="mu">Thu phục Linh Thú và dùng <b>Yêu Đan</b> (nhặt từ Lịch Luyện) để tiến hóa tối đa 7 bậc. Linh Thú xuất chiến sẽ cộng chỉ số và trực tiếp ra đòn/hộ thuẫn/trị liệu mỗi hiệp trong Chiến Trường!</div><div class="grid" style="margin-top:8px">${petCards}</div></div>
   <div class="pn"><div class="row" style="align-items:center"><h3>💞 Đạo Lữ Song Tu &amp; Hộ Pháp Độ Kiếp</h3>${curPt?btn('pt_dual','',cd?`Song Tu (chờ ${cd} năm)`:`💞 Song Tu cùng ${curPt.n} (+1 tuổi)`,cd>0||s.age>=cultivationService.life(s)):''}</div>
