@@ -64,6 +64,11 @@
   - Tùy biến Profile Card, 5 bộ Theme + Nitro Custom Color, đổi ảnh Avatar/Banner/Wallpaper (tự nén Canvas JPEG 0.8), trình phát nhạc ngũ cung Web Audio API.
   - **Admin Panel + Balance Lab (`runLab`):** Mở khóa ẩn bằng `/thiendao` hoặc `Alt + Shift + ~` (SHA-256 trên RAM), tích hợp công cụ giả lập cân bằng trên bản sao.
 
+- **Tái thiết kế Chỉ Số, Độ Khó & Kim Thủ Chỉ "Bàn Tay Vàng" (`characterStatsService`, `cultivationService`, `foeOf`, `calcSup`, `rewardIntegrationService`, `vChar`, `vKt`):**
+  - **Phân tách 6 thuộc tính gốc & Soft Cap:** `Thể` (HP/Thủ), `Linh` (Lực/Tốc/MP), `Ngộ` (Xuyên giáp), `Thần` (ST Bạo kích), `Tâm` (Thủ/Đột phá), `Vận` (Bạo kích/Né tránh); nâng `flatMul` từ `1.6^realm` lên `1.85^realm`; áp dụng Soft Cap cho `crit`, `pen`, `dodge`, `critDmg` và tích hợp `dodge`/`critDmg` vào `adventureService.step`.
+  - **Cân bằng độ khó Bản thể:** Quái `foeOf` tăng `+25%–30%` (`22 * 2.18^i`), `k = 8 + rank*1.5`, `realmMul = 2.05^realm`, tốc độ bế quan ngoài đời `0.9×`, `pity` tối đa `20%` và không cộng vào Thiên Kiếp (`k = 190 * 2.15^t`).
+  - **Kim Thủ Chỉ chuẩn Bàn Tay Vàng SangTacViet:** Phí mở mô phỏng `35%` chi phí đột phá (`simFee`), không tốn thọ nguyên bản thể; thêm di sản thứ 4 **`Đạo Quả Bàn Tay Vàng`** (`+gfBuff` toàn chỉ số, `+gfSup` kháng Uy Áp Cảnh Giới tới `50%`, cơ hội **Tẩy Cốt Hoán Thai** nâng Linh Căn/Đạo Thể ở hạng `S+`), cho phép chọn `2` di sản khi đạt hạng `S+` hoặc Kim Thủ Chỉ cấp `3+`; tương thích ngược qua `migrate()`.
+
 ---
 
 ## 2. ĐANG THỰC HIỆN (IN PROGRESS)
