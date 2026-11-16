@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.16 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.17 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Xử Lý Trang Bị Dư Thừa: Phân Giải & Dung Luyện 3 Đổi 1 (`salvageYield`, `salvageItem`, `bulkSalvage`, `smeltEquip`, `A.salv`, `A.bsalv`, `A.smelt`):**
+  - **Phân giải trang bị (`♻ Rã`):** Phân giải trang bị dư thừa lấy khoáng thạch tinh luyện (`Khoáng Thạch`, `Tinh Thiết`, `Ngũ Sắc Thần Kim`) theo phẩm chất, đồng thời hoàn trả `60%` nguyên liệu tinh luyện nếu trang bị đã cường hóa (`★+X`). Hỗ trợ **Rã hàng loạt** (`≤ Bạch sắc`, `≤ Lục sắc`, `≤ Lam sắc`) trong `vInv`, tự động bỏ qua đồ đang mặc, đã khóa (`🔒`), Cực phẩm và Bản Mệnh Pháp Bảo.
+  - **Dung luyện 3 đổi 1 (`🔥 Dung luyện`):** Nấu 3 trang bị cùng phẩm chất (`Bạch sắc → Hồng sắc`) chưa mặc & chưa khóa + linh thạch để đúc ngẫu nhiên 1 trang bị bậc kế tiếp (`15%` cơ hội nổ phẩm chất Cực phẩm) trong tab Bách Nghệ → Luyện Khí (`vCraft`).
+  - Đã cập nhật `APP_VERSION = '5.17'` và `GUIDE_DATA` (`onboardingSteps`, `patchNotes`, `codexTopics`).
 - **Tinh Luyện Trang Bị (`+1 → +10`, `rfCost`, `eqMul`, `vCraft`, `vInv`, `A.rf` / `A.rf5`):**
   - Cho phép tinh luyện mọi loại trang bị (Vũ khí, Pháp bảo, Giáp, Phụ kiện) trong tab Bách Nghệ → Luyện Khí (`+10%` chỉ số mỗi cấp, tối đa `+100%` ở `★+10`, nhân cộng hưởng với Phẩm chất & Bản Mệnh Pháp Bảo).
   - Hỗ trợ nút **Tinh luyện ×5**, hiển thị `★+X` trên Kho đồ & danh sách chọn, thất bại không vỡ/tụt cấp và vẫn nhận kinh nghiệm Luyện Khí Sư.
