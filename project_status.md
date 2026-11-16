@@ -1,16 +1,20 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.11 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.12 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
-- **Kiến trúc cốt lõi & Lưu trữ:**
-  - Single-file HTML (`Vanilla JS + CSS + SVG`), lưu dữ liệu qua `localStorage` (`msns_main_v1`) và `IndexedDB` (`msns_bgm` cho file nhạc MP3/WAV cá nhân).
-  - **Đồng Bộ Vân Đạo (`cloudSyncService` · Real-time Cloud Sync BYOK):** Lưu cấu hình độc lập tại `localStorage` (`msns_cloud_cfg`), hỗ trợ **Firebase Realtime Database** (`PUT`/`GET` + `EventSource` SSE real-time) và **Custom REST / Supabase** (Polling khi tab active + đồng bộ tức thì đa tab qua `storage` event). Có Debounce Push `1.5s`, tự động lược ảnh Base64 nếu gói tin `> 500KB`, phát hiện xung đột lớn (`cldConflictModal`) và công cụ giả lập xung đột trong `vAdmin`.
-  - Hàm `migrate()` tự động lọc bỏ ID thiên phú/vật phẩm rác (`TD[t.id]`, `ID[i.id]`), giới hạn `s.realm` an toàn và có `try/catch` khi khởi động để chống trắng màn hình.
+- **Kiến trúc cốt lõi & Lưu trữ (`saveService` · Offline-First, Adapter-Ready):**
+  - Single-file HTML (`Vanilla JS + CSS + SVG`), lưu dữ liệu hiện tại qua `localStorage` (`msns_main_v1`), lưu tối đa 15 mốc sao lưu qua `IndexedDB` (`msns_saves_v1`, fallback `msns_slots_fb`) và nhạc cá nhân qua `IndexedDB` (`msns_bgm`).
+  - **Thay thế hoàn toàn Đồng Bộ Vân Đạo & Xuất/Nhập Base64 rườm rà bằng Hệ thống Lưu 1 Chạm (`💾 Lưu` + `📂 Kho Save`):**
+    - Bấm **`💾 Lưu`** để chụp ngay mốc lưu vào `IndexedDB` (và tự động ghi đè file `.msns` nếu đã liên kết qua `File System Access API`).
+    - **`📂 Kho Save` (`savePanel`)**: Tải/nạp file `.msns` (`.json`/`.txt`), tạo **Link Chuyển Máy (`#s=...`)** nén `gzip` qua `CompressionStream`, tùy chọn file gọn (lược ảnh Base64), quản lý danh sách mốc lưu trong trình duyệt, và mục nhập mã Base64/JSON cũ thu gọn.
+    - **Modal Xem Trước (`svPreviewModal`):** So sánh nhân vật hiện tại và bản save sắp nạp trước khi ghi đè.
+    - **Chuẩn bị sẵn cho Online tương lai:** Bổ sung `s.saveId` và `s.rev` trong `characterService.create()` & `migrate()`, tách `saveService` theo mô hình Adapter.
+  - Hàm `migrate()` tự động lọc bỏ ID thiên phú/vật phẩm rác (`TD[t.id]`, `ID[i.id]`), giới hạn `s.realm` an toàn; khối `try/catch` khi khởi động tự động sao lưu raw JSON vào `msns_main_backup` trước khi reset để chống mất dữ liệu.
   - Bộ điều phối click kiểm tra an toàn `if(A[a]) A[a](t.dataset.x)`.
 - **Hệ thống Nhân vật & Tu luyện (`vChar`, `vCul`, `vTal`, `vTec`):**
   - 14 cảnh giới đầy đủ từ Phàm Giới đến Tiên Giới: *Luyện Khí → Độ Kiếp → Chân Tiên → Kim Tiên → Thái Ất → Đại La → Hỗn Nguyên* (mỗi cảnh giới 9 tầng).

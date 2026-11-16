@@ -145,9 +145,9 @@ const PR=[20,50,120,300,800,2000,6000];
 /* ===== TIỆN ÍCH ===== */
 const $=i=>document.getElementById(i),clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),pick=a=>a[Math.random()*a.length|0],uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let s=null,ui={tab:'char',f:-1,sort:'r',cf:'all',rs:false,msg:'',adm:false,admAuth:false,admMsg:''};
+let s=null,ui={tab:'char',f:-1,sort:'r',cf:'all',rs:false,msg:'',adm:false,admAuth:false,admMsg:'',sv:false,svSlim:true,svSlots:[],svPreview:null,svLegacy:false};
 const say=t=>{ui.msg=t;ui.mc=(ui.mc||0)+1};
-const KEY='msns_main_v1',store={load(){try{const j=localStorage.getItem(KEY);return j?JSON.parse(j):null}catch(e){return null}},save(x,keepTs){try{if(x&&!keepTs)x.updatedAt=Date.now();localStorage.setItem(KEY,JSON.stringify(x));if(x&&!keepTs&&typeof cloudSyncService!=='undefined')cloudSyncService.schedulePush(x)}catch(e){toast('Bộ nhớ trình duyệt đã đầy, chưa lưu được. Hãy dùng ảnh nhỏ hơn hoặc xóa bớt ảnh tùy chỉnh.','wn')}},clear(){try{localStorage.removeItem(KEY)}catch(e){}}};
+const KEY='msns_main_v1',store={load(){try{const j=localStorage.getItem(KEY);return j?JSON.parse(j):null}catch(e){return null}},save(x,keepTs){try{if(x&&!keepTs){x.updatedAt=Date.now();x.rev=(x.rev||0)+1}localStorage.setItem(KEY,JSON.stringify(x))}catch(e){toast('Bộ nhớ trình duyệt đã đầy, chưa lưu được. Hãy dùng ảnh nhỏ hơn hoặc xóa bớt ảnh tùy chỉnh.','wn')}},clear(){try{localStorage.removeItem(KEY)}catch(e){}}};
 const addm=(o,m,f=1)=>{for(const k in m)o[k]=(o[k]||0)+m[k]*f};
 const fx=(e,f=1)=>Object.entries(e).map(([k,v])=>{const val=v*f;return`${SN[k]} ${val>0?'+':''}${k==='tc'?Math.round(val*100)+'%':Math.round(val*10)/10}`}).join(', ');
 const log=t=>{s.log.unshift(t);s.log=s.log.slice(0,30);say(t)};
@@ -182,7 +182,7 @@ let advOn=0;
 
 /* ===== SERVICES HỢP NHẤT ===== */
 const characterService={
-  create(n,g,root){const now=Date.now();return{v:1,created:now,updatedAt:now,name:n||'Vô Danh',gender:g,age:16,body:0,root,realm:0,layer:0,xp:0,total:0,lifeB:0,stones:100,van:0,nq:0,ng:0,tm:false,pb:0,kt:1,ach:{},best:-1,tal:[],eq:{},tech:{q1:{m:0,eq:true}},sim:null,hist:[],claimed:{},log:[],toxin:0,crafts:{dan:{lv:0,xp:0},khi:{lv:0,xp:0},tran:{lv:0,xp:0}},bmWeapon:null,activeArray:null,arrays:{},px:{ngo:0,tam:0,the:0,linh:0},advWins:{},reborn:0,ascended:0,profile:Object.assign({},UP),theme:Object.assign({},UT,thG),uiCfg:Object.assign({},UC),inv:[{u:uid(),id:'w1',q:1},{u:uid(),id:'a1',q:1},{u:uid(),id:'d1',q:3},{u:uid(),id:'d3',q:1}]}},
+  create(n,g,root){const now=Date.now();return{v:1,saveId:uid(),rev:1,created:now,updatedAt:now,name:n||'Vô Danh',gender:g,age:16,body:0,root,realm:0,layer:0,xp:0,total:0,lifeB:0,stones:100,van:0,nq:0,ng:0,tm:false,pb:0,kt:1,ach:{},best:-1,tal:[],eq:{},tech:{q1:{m:0,eq:true}},sim:null,hist:[],claimed:{},log:[],toxin:0,crafts:{dan:{lv:0,xp:0},khi:{lv:0,xp:0},tran:{lv:0,xp:0}},bmWeapon:null,activeArray:null,arrays:{},px:{ngo:0,tam:0,the:0,linh:0},advWins:{},reborn:0,ascended:0,profile:Object.assign({},UP),theme:Object.assign({},UT,thG),uiCfg:Object.assign({},UC),inv:[{u:uid(),id:'w1',q:1},{u:uid(),id:'a1',q:1},{u:uid(),id:'d1',q:3},{u:uid(),id:'d3',q:1}]}},
   title:x=>TITLES[x.best+1<0?0:x.best+1]||TITLES[0],
   identity:x=>IDN[x.realm]||IDN[IDN.length-1]
 };
@@ -1047,6 +1047,8 @@ function migrate(){
   if(s.sim&&s.sim.phase==='done'){s.sim.phase='legacy';s.sim.lg=[]}
   if(s.sim){const m=s.sim;m.aiSummary=typeof m.aiSummary==='string'?m.aiSummary:'';m.aiMk=m.aiMk||0;m.aiTurn=m.aiTurn||0;m.aiN=m.aiN||0;m.aiFail=m.aiFail||0;m.aiLt=m.aiLt||0;m.aiLast=m.aiLast||null;if(m.sub==='aiwait'){m.sub='act';m.cur=null}if(m.cur&&m.cur.ai&&!(Array.isArray(m.cur.o)&&m.cur.o.length>=2)){m.sub='act';m.cur=null}}
   s.hist.forEach(h=>{if(h&&typeof h.ai!=='number')h.ai=0});
+  s.saveId=s.saveId||uid();
+  s.rev=typeof s.rev==='number'?s.rev:1;
   s.updatedAt=typeof s.updatedAt==='number'?s.updatedAt:(s.created||Date.now());
   delete s.aiCfg;delete s.apiKey;delete s.cloudCfg;
   if(!s.shop)shopService.gen(s);
@@ -1060,145 +1062,231 @@ function migrate(){
   s.realm=clamp(s.realm,0,REALMS.length-1);
 }
 
-const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o))));
-function ioPanel(){if(!ui.io||!s)return'';const ex=ui.io==='ex';return `<div class='pn'><h3>${ex?'Mã save (Base64)':'Dán mã save để nhập'}</h3><textarea id='sv' rows='5' style='width:100%;background:var(--in);color:var(--iv)'${ex?' readonly':''}>${ex?enc(s):''}</textarea><div class='bt'>${ex?btn('cp','','Sao chép'):btn('ioimp','','Nhập (ghi đè save hiện tại)')}${btn('ioc','','Đóng')}</div></div>`}
-function importSave(){try{const o=JSON.parse(decodeURIComponent(escape(atob($('sv').value.trim()))));if(!o||typeof o.realm!=='number'||!Array.isArray(o.tal))throw 0;s=o;migrate();s.updatedAt=Date.now();ui.io=0;say('Đã nhập save')}catch(e){say('Mã save không hợp lệ')}}
-function copySave(){try{$('sv').select();navigator.clipboard.writeText($('sv').value);say('Đã sao chép mã save')}catch(e){say('Hãy chọn và copy thủ công')}}
-
-/* ===== ĐỒNG BỘ VÂN ĐẠO (REAL-TIME CLOUD SYNC) ===== */
-/* Cấu hình lưu độc lập tại localStorage 'msns_cloud_cfg' — tuyệt đối không nằm trong object s */
-const CLDK='msns_cloud_cfg',CLDDF={on:false,prov:'firebase',url:'',key:'',room:'',slim:true};
-const cloudSyncService={
-  cfg:(()=>{try{return Object.assign({},CLDDF,JSON.parse(localStorage.getItem(CLDK)||'{}'))}catch(e){return Object.assign({},CLDDF)}})(),
-  st:'off',msg:'',tm:0,ptm:0,es:null,lastTs:0,
-  saveCfg(){try{localStorage.setItem(CLDK,JSON.stringify(this.cfg))}catch(e){}},
-  set(k,v){const c=this.cfg;if(k==='prov')c.prov=v==='custom'?'custom':'firebase';else if(k==='url')c.url=String(v||'').trim().slice(0,240);else if(k==='key')c.key=String(v||'').trim().slice(0,300);else if(k==='room')c.room=String(v||'').trim().replace(/[^a-zA-Z0-9_-]/g,'').slice(0,64);this.saveCfg();this.reconnect()},
-  ready(){const c=this.cfg;return!!(c.on&&c.url&&c.room&&navigator.onLine!==false)},
-  badge(){if(!this.ready())return'☁ Offline';if(ui.cldCf)return'⚠ Xung đột!';return{idle:'☁ Đã đồng bộ',pushing:'☁ Đang đẩy...',pulling:'☁ Đang tải...',err:'☁ Lỗi kết nối'}[this.st]||'☁ Vân Đạo'},
-  ep(){
-    const c=this.cfg,b=c.url.replace(/\/+$/,''),rm=encodeURIComponent(c.room);
-    if(c.prov==='firebase'){const p=/\.json$/i.test(b)?b:`${b}/msns_rooms/${rm}.json`;return c.key?`${p}${p.includes('?')?'&':'?'}auth=${encodeURIComponent(c.key)}`:p}
-    return /\/msns_rooms\//.test(b)?b:`${b}/${rm}`;
+/* ===== HỆ THỐNG LƯU TRỮ THỐNG NHẤT (SAVE SERVICE · ADAPTER-READY) ===== */
+const SV_DB='msns_saves_v1',SV_ST='slots',SV_FALLBACK='msns_slots_fb';
+const b64uEnc=bytes=>{let b='';for(let i=0;i<bytes.length;i++)b+=String.fromCharCode(bytes[i]);return btoa(b).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')};
+const b64uDec=str=>{const p=str.replace(/-/g,'+').replace(/_/g,'/')+'==='.slice((str.length+3)%4);const b=atob(p),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u};
+const saveService={
+  adapter:'local',
+  fileHandle:null,
+  fileName:'',
+  _db(){return new Promise((res,rej)=>{if(typeof indexedDB==='undefined')return rej(0);const q=indexedDB.open(SV_DB,1);q.onupgradeneeded=()=>{if(!q.result.objectStoreNames.contains(SV_ST))q.result.createObjectStore(SV_ST,{keyPath:'id'})};q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)})},
+  pack(x,slim=false){
+    const c=JSON.parse(JSON.stringify(x));
+    delete c.aiCfg;delete c.apiKey;delete c.cloudCfg;
+    if(slim&&c.uiCfg){c.uiCfg.av='';c.uiCfg.bn='';c.uiCfg.wp=''}
+    return{format:'msns_v2',saveId:c.saveId||uid(),rev:c.rev||1,updatedAt:c.updatedAt||Date.now(),data:c};
   },
-  hdr(){const c=this.cfg,h={'Content-Type':'application/json'};if(c.prov==='custom'&&c.key){h.Authorization=/^Bearer\s+/i.test(c.key)?c.key:'Bearer '+c.key;h.apikey=c.key}return h},
-  pack(x){
-    if(!x)return'{}';
-    const c=Object.assign({},x);delete c.aiCfg;delete c.apiKey;delete c.cloudCfg;
-    let j=JSON.stringify(c);
-    if((this.cfg.slim||j.length>512000)&&c.uiCfg&&(c.uiCfg.av||c.uiCfg.bn||c.uiCfg.wp)){
-      const u=Object.assign({},c.uiCfg);
-      if(j.length>512000){u.av='';u.bn='';u.wp='';u._stripped=1;c.uiCfg=u;j=JSON.stringify(c)}
-    }
-    return j;
-  },
-  sizeKB(x){return Math.round(this.pack(x).length/102.4)/10},
-  schedulePush(x){
-    if(!this.ready()||!x)return;
-    clearTimeout(this.tm);this.st='pushing';
-    const sy=$('sys');if(sy){const b=sy.querySelector('[data-a="cld"]');if(b)b.textContent=this.badge()}
-    this.tm=setTimeout(()=>this.push(x,false),1500);
-  },
-  async push(x,manual){
-    if(!x)return;if(!this.ready()){if(manual)say('Hãy bật Vân Đạo và nhập đủ Endpoint URL + Mã phòng');return}
-    clearTimeout(this.tm);this.st='pushing';if(manual)render();
-    try{
-      x.updatedAt=x.updatedAt||Date.now();
-      const body=this.pack(x),r=await fetch(this.ep(),{method:'PUT',headers:this.hdr(),body});
-      if(!r.ok)throw new Error('HTTP '+r.status);
-      this.st='idle';this.lastTs=x.updatedAt;this.msg='✅ Đã đẩy lên Vân Đạo lúc '+new Date(x.updatedAt).toLocaleTimeString('vi-VN')+' ('+Math.round(body.length/1024)+' KB)';
-      if(manual)toast('☁ Đã đẩy dữ liệu nhân vật lên Vân Đạo');
-    }catch(e){
-      this.st='err';this.msg='❌ Lỗi đẩy dữ liệu: '+(e.message||e);
-      if(manual)toast('Không đẩy được lên Vân Đạo: '+(e.message||e),'wn');
-    }
-    render();
-  },
-  async pull(manual){
-    if(!this.ready()){if(manual)say('Hãy bật Vân Đạo và nhập đủ Endpoint URL + Mã phòng');return}
-    this.st='pulling';if(manual)render();
-    try{
-      const r=await fetch(this.ep(),{method:'GET',headers:this.hdr()});
-      if(!r.ok)throw new Error('HTTP '+r.status);
-      const d=await r.json();
-      const rem=Array.isArray(d)?(d[0]&&(d[0].payload||d[0])):d&&(d.payload||d);
-      if(!rem||typeof rem.realm!=='number'){
-        this.st='idle';this.msg='ℹ Phòng Vân Đạo chưa có dữ liệu — đang đẩy bản lưu hiện tại lên...';
-        if(s)await this.push(s,false);
-        return render();
+  unpack(raw){
+    let o=raw;
+    if(typeof raw==='string'){
+      const t=raw.trim();
+      if(t.startsWith('{'))o=JSON.parse(t);
+      else{
+        try{o=JSON.parse(new TextDecoder().decode(b64uDec(t)))}
+        catch(e){o=JSON.parse(decodeURIComponent(escape(atob(t))))}
       }
-      this.applyRemote(rem,manual);
+    }
+    const d=(o&&o.format==='msns_v2'&&o.data)?o.data:o;
+    if(!d||typeof d.realm!=='number'||!Array.isArray(d.tal))throw new Error('Dữ liệu save không hợp lệ');
+    return d;
+  },
+  async listSlots(){
+    try{
+      const db=await this._db();
+      return await new Promise((res,rej)=>{
+        const tx=db.transaction(SV_ST,'readonly').objectStore(SV_ST).getAll();
+        tx.onsuccess=()=>res((tx.result||[]).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0)));
+        tx.onerror=()=>rej(tx.error);
+      });
     }catch(e){
-      this.st='err';this.msg='❌ Lỗi tải dữ liệu: '+(e.message||e);
-      if(manual)toast('Không tải được từ Vân Đạo: '+(e.message||e),'wn');
-      render();
+      try{return JSON.parse(localStorage.getItem(SV_FALLBACK)||'[]').sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0))}catch(er){return[]}
     }
   },
-  isConflict(loc,rem){
-    if(!loc||!rem)return false;
-    const rDiff=Math.abs((rem.realm||0)-(loc.realm||0)),aDiff=Math.abs((rem.age||16)-(loc.age||16)),tDiff=Math.abs((rem.updatedAt||0)-(loc.updatedAt||0));
-    return (rDiff>=1||(aDiff>=25&&tDiff>60000))&&((loc.updatedAt||0)>this.lastTs&&this.lastTs>0||rem.realm<loc.realm);
-  },
-  applyRemote(rem,manual){
-    if(!rem||typeof rem.realm!=='number'||!Array.isArray(rem.tal))return;
-    const rTs=rem.updatedAt||rem.created||0,lTs=s?(s.updatedAt||s.created||0):0;
-    this.st='idle';
-    if(!s){this.acceptRemote(rem);return}
-    if(!manual&&rTs<=lTs){this.msg='✔ Dữ liệu bản địa đã là mới nhất ('+new Date(lTs).toLocaleTimeString('vi-VN')+')';return render()}
-    if(JSON.stringify(rem)===JSON.stringify(s)){this.lastTs=rTs;this.msg='✔ Đã đồng bộ ('+new Date(rTs).toLocaleTimeString('vi-VN')+')';return render()}
-    if(this.isConflict(s,rem)){
-      ui.cldCf=rem;this.msg='⚠ Phát hiện xung đột tiến độ giữa 2 thiết bị!';
-      return render();
+  async putSlot(slot){
+    try{
+      const db=await this._db();
+      await new Promise((res,rej)=>{
+        const tx=db.transaction(SV_ST,'readwrite');
+        tx.objectStore(SV_ST).put(slot);
+        tx.oncomplete=res;tx.onerror=()=>rej(tx.error);
+      });
+      const all=await this.listSlots();
+      if(all.length>15){
+        const db2=await this._db();
+        const tx2=db2.transaction(SV_ST,'readwrite');
+        all.slice(15).forEach(old=>tx2.objectStore(SV_ST).delete(old.id));
+      }
+    }catch(e){
+      const all=await this.listSlots();
+      const next=[slot,...all.filter(x=>x.id!==slot.id)].slice(0,5);
+      try{localStorage.setItem(SV_FALLBACK,JSON.stringify(next))}catch(er){}
     }
-    this.acceptRemote(rem);
   },
-  acceptRemote(rem){
-    const oldUi=s&&s.uiCfg;
-    s=rem;
-    if(oldUi&&s.uiCfg&&s.uiCfg._stripped){s.uiCfg.av=s.uiCfg.av||oldUi.av;s.uiCfg.bn=s.uiCfg.bn||oldUi.bn;s.uiCfg.wp=s.uiCfg.wp||oldUi.wp;delete s.uiCfg._stripped}
-    migrate();
-    this.lastTs=s.updatedAt||Date.now();
-    store.save(s,true);
-    this.msg='☁ Đã đồng bộ từ Vân Đạo lúc '+new Date(this.lastTs).toLocaleTimeString('vi-VN');
-    toast('☁ Đã đồng bộ tiến độ mới nhất từ Vân Đạo');
+  async deleteSlot(id){
+    try{
+      const db=await this._db();
+      await new Promise((res,rej)=>{const tx=db.transaction(SV_ST,'readwrite');tx.objectStore(SV_ST).delete(id);tx.oncomplete=res;tx.onerror=()=>rej(tx.error)});
+    }catch(e){
+      const next=(await this.listSlots()).filter(x=>x.id!==id);
+      try{localStorage.setItem(SV_FALLBACK,JSON.stringify(next))}catch(er){}
+    }
+    ui.svSlots=await this.listSlots();
+    toast('Đã xóa mốc lưu');
     render();
   },
-  reconnect(){
-    if(this.es){try{this.es.close()}catch(e){}this.es=null}
-    clearInterval(this.ptm);this.ptm=0;
-    if(!this.ready()){this.st='off';return}
-    this.st='idle';
-    if(this.cfg.prov==='firebase'&&typeof EventSource!=='undefined'){
+  async quickSave(x,note='Lưu nhanh'){
+    if(!x)return;
+    x.saveId=x.saveId||uid();
+    x.updatedAt=Date.now();
+    x.rev=(x.rev||0)+1;
+    store.save(x,true);
+    const slot={id:'sv_'+Date.now()+'_'+uid().slice(-4),saveId:x.saveId,name:x.name||'Vô Danh',realm:x.realm||0,layer:x.layer||0,age:x.age||16,stones:x.stones||0,rev:x.rev,updatedAt:x.updatedAt,note,data:this.pack(x,false).data};
+    await this.putSlot(slot);
+    if(this.fileHandle){
       try{
-        const es=this.es=new EventSource(this.ep());
-        es.addEventListener('put',e=>{try{const p=JSON.parse(e.data);if(p&&p.data&&typeof p.data.realm==='number')this.applyRemote(p.data,false)}catch(er){}});
-        es.onerror=()=>{try{es.close()}catch(e){}this.es=null};
-      }catch(e){}
+        const w=await this.fileHandle.createWritable();
+        await w.write(JSON.stringify(this.pack(x,ui.svSlim),null,1));
+        await w.close();
+        toast(`💾 Đã lưu mốc & cập nhật file ${this.fileName}`);
+      }catch(e){
+        this.fileHandle=null;this.fileName='';
+        toast(`💾 Đã lưu mốc: ${slot.name} (${REALMS[slot.realm]} Tầng ${slot.layer+1})`);
+      }
+    }else{
+      toast(`💾 Đã lưu mốc: ${slot.name} (${REALMS[slot.realm]} Tầng ${slot.layer+1})`);
     }
-    this.ptm=setInterval(()=>{if(this.ready()&&(typeof document.visibilityState==='undefined'||document.visibilityState==='visible')&&!ui.cldCf&&this.st!=='pushing')this.pull(false)},15000);
+    if(ui.sv)ui.svSlots=await this.listSlots();
+    render();
   },
-  ping(){
-    if(!this.cfg.url||!this.cfg.room)return say('Hãy nhập Endpoint URL và Mã phòng trước');
-    this.cfg.on=true;this.saveCfg();this.reconnect();this.pull(true);
+  async loadSlot(id){
+    const slots=await this.listSlots();
+    const found=slots.find(x=>x.id===id);
+    if(!found)return toast('Không tìm thấy mốc lưu','wn');
+    ui.svPreview={data:found.data,src:'Kho trình duyệt ('+(found.note||'Mốc lưu')+')'};
+    render();
+  },
+  exportFile(x){
+    if(!x)return;
+    const pkg=this.pack(x,ui.svSlim);
+    const blob=new Blob([JSON.stringify(pkg,null,1)],{type:'application/json'});
+    const a=document.createElement('a');
+    const safeNm=(x.name||'VoDanh').replace(/[^a-zA-Z0-9_\u00C0-\u024F\u1E00-\u1EFF-]/g,'_').slice(0,20);
+    a.href=URL.createObjectURL(blob);
+    a.download=`MSNS_${safeNm}_${REALMS[x.realm]||''}.msns`;
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+    toast('⬇ Đã tải file sao lưu .msns');
+  },
+  async linkFile(x){
+    if(!window.showSaveFilePicker)return toast('Trình duyệt này chưa hỗ trợ ghi đè file trực tiếp, hãy dùng nút Tải file .msns','wn');
+    try{
+      const safeNm=(x.name||'VoDanh').replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,20);
+      const h=await window.showSaveFilePicker({suggestedName:`MSNS_${safeNm}.msns`,types:[{description:'Mô Phỏng Nhân Sinh Save',accept:{'application/json':['.msns','.json']}}]});
+      this.fileHandle=h;this.fileName=h.name||'save.msns';
+      const w=await h.createWritable();
+      await w.write(JSON.stringify(this.pack(x,ui.svSlim),null,1));
+      await w.close();
+      toast('🔗 Đã liên kết file: '+this.fileName+'. Từ nay bấm 💾 Lưu sẽ tự ghi đè file này!');
+      render();
+    }catch(e){if(e&&e.name!=='AbortError')toast('Không thể liên kết file','wn')}
+  },
+  importFile(file){
+    if(!file)return;
+    const r=new FileReader();
+    r.onload=()=>{
+      try{
+        const d=this.unpack(String(r.result||''));
+        ui.svPreview={data:d,src:'File: '+file.name};
+        render();
+      }catch(e){toast('❌ File save không hợp lệ hoặc bị hỏng','wn')}
+    };
+    r.readAsText(file);
+  },
+  importText(txt){
+    try{
+      const d=this.unpack(txt);
+      ui.svPreview={data:d,src:'Mã văn bản / JSON'};
+      render();
+    }catch(e){toast('❌ Mã save không hợp lệ','wn')}
+  },
+  async createShareLink(x){
+    if(!x)return;
+    try{
+      const json=JSON.stringify(this.pack(x,true));
+      let token='';
+      if(typeof CompressionStream!=='undefined'){
+        const cs=new CompressionStream('gzip');
+        const w=cs.writable.getWriter();
+        w.write(new TextEncoder().encode(json));w.close();
+        const buf=new Uint8Array(await new Response(cs.readable).arrayBuffer());
+        token='gz.'+b64uEnc(buf);
+      }else{
+        token='u8.'+b64uEnc(new TextEncoder().encode(json));
+      }
+      const url=location.origin+location.pathname+'#s='+token;
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(url);
+        toast(`🔗 Đã chép Link Chuyển Máy (${Math.round(url.length/102.4)/10} KB). Mở link trên máy khác để nạp!`);
+      }else{
+        ui.svShareUrl=url;render();
+      }
+    }catch(e){toast('Không tạo được link chuyển máy','wn')}
+  },
+  async checkHashImport(){
+    try{
+      const h=location.hash||'';
+      if(!h.startsWith('#s='))return;
+      const token=h.slice(3);
+      let json='';
+      if(token.startsWith('gz.')&&typeof DecompressionStream!=='undefined'){
+        const ds=new DecompressionStream('gzip');
+        const w=ds.writable.getWriter();
+        w.write(b64uDec(token.slice(3)));w.close();
+        json=new TextDecoder().decode(await new Response(ds.readable).arrayBuffer());
+      }else if(token.startsWith('u8.')){
+        json=new TextDecoder().decode(b64uDec(token.slice(3)));
+      }else return;
+      const d=this.unpack(json);
+      ui.svPreview={data:d,src:'Link Chuyển Máy (#s=...)'};
+      history.replaceState(null,'',location.pathname+location.search);
+      render();
+    }catch(e){toast('Link chuyển máy không hợp lệ hoặc trình duyệt không hỗ trợ giải nén','wn')}
+  },
+  applyImport(d){
+    const oldUi=s&&s.uiCfg;
+    s=d;
+    if(oldUi&&s.uiCfg&&!s.uiCfg.av&&oldUi.av)s.uiCfg.av=oldUi.av;
+    migrate();
+    s.updatedAt=Date.now();
+    store.save(s,true);
+    ui.svPreview=null;ui.sv=false;
+    toast('✅ Đã nạp dữ liệu nhân vật thành công!');
+    render();
   }
 };
 
-function cloudPanel(){
-  if(!ui.cld||!s)return'';
-  const c=cloudSyncService.cfg,rd=cloudSyncService.ready();
-  return `<div class="pn aicfg"><div class="row" style="align-items:center;flex-wrap:wrap;gap:6px"><h3>☁ Đồng Bộ Vân Đạo (Real-time Cloud Sync · BYOK)</h3>${btn('cldc','','Đóng')}</div>
-<div class="mu">Thông tin kết nối lưu riêng tại <b>msns_cloud_cfg</b>, tách biệt hoàn toàn khỏi dữ liệu nhân vật (không lộ khi Xuất save). Hỗ trợ đồng bộ tức thì đa tab và tự động đẩy sau 1.5s khi có thay đổi.</div>
-<div class="bt"><button class="chip ${c.on?'on':''}" data-a="cldon" data-x="1">☁ Bật Vân Đạo</button><button class="chip ${c.on?'':'on'}" data-a="cldon" data-x="0">📴 Tắt (Offline-First)</button><button class="chip ${c.slim?'on':''}" data-a="cldsl">${c.slim?'☑ Tự lược ảnh nặng >500KB':'☐ Gửi kèm toàn bộ ảnh'}</button></div>
-<div class="bt"><label>Phương thức kết nối<select data-chg="cld_prov"><option value="firebase"${c.prov==='firebase'?' selected':''}>Firebase Realtime Database (REST + SSE Real-time)</option><option value="custom"${c.prov==='custom'?' selected':''}>Custom REST / Supabase Endpoint (PUT/GET + Polling)</option></select></label><label>Mã Phòng / Đạo Hiệu Định Danh<input data-chg="cld_room" value="${esc(c.room)}" placeholder="vd: daohuu_tieu_viem_99" autocomplete="off"></label></div>
-<div class="bt"><label>Endpoint / Database URL<input data-chg="cld_url" value="${esc(c.url)}" placeholder="${c.prov==='firebase'?'https://ten-project-default-rtdb.asia-southeast1.firebasedatabase.app':'https://your-api.example.com/saves'}" autocomplete="off"></label><label>Secret / Bearer Key (tùy chọn)<input type="password" data-chg="cld_key" value="${esc(c.key)}" placeholder="Database Secret hoặc Bearer / API Key" autocomplete="off" spellcheck="false"></label></div>
-<div class="bt">${btn('cldrm','','🎲 Tạo mã phòng ngẫu nhiên')}${btn('cldp','','🔌 Thử kết nối')}${btn('cldup','','⬆ Đẩy lên ngay (Force Push)',!rd)}${btn('clddn','','⬇ Tải về ngay (Force Pull)',!rd)}</div>
-<div class="mu">Trạng thái: <b>${cloudSyncService.badge()}</b> · Bản lưu hiện tại: <b>${new Date(s.updatedAt||Date.now()).toLocaleTimeString('vi-VN')}</b> · Kích thước gói: <b>${cloudSyncService.sizeKB(s)} KB</b>${cloudSyncService.msg?' · '+esc(cloudSyncService.msg):''}</div></div>`;
+function savePanel(){
+  if(!ui.sv||!s)return'';
+  const slots=ui.svSlots||[];
+  const canLink=typeof window!=='undefined'&&'showSaveFilePicker'in window;
+  return `<div class="pn aicfg"><div class="row" style="align-items:center;flex-wrap:wrap;gap:6px"><h3>📂 Kho Lưu Trữ & Chuyển Máy (Offline-First)</h3>${btn('sv_close','','Đóng')}</div>
+<div class="mu">Bấm <b>💾 Lưu</b> ở thanh trên để lưu nhanh 1 chạm vào trình duyệt. Dữ liệu chuẩn hóa sẵn sàng cho chế độ Online sau này.</div>
+<div class="bt">${btn('qsave','','💾 Lưu mốc ngay')}${btn('sv_dl','','⬇ Tải file .msns')}<label class="chip" style="cursor:pointer;display:inline-flex;align-items:center;gap:4px">📂 Nạp file .msns<input type="file" accept=".msns,.json,.txt" data-chg="sv_file" style="display:none"></label>${btn('sv_share','','🔗 Tạo Link chuyển máy')}<button class="chip ${ui.svSlim?'on':''}" data-a="sv_slim">${ui.svSlim?'☑ File gọn (bỏ ảnh)':'☐ Kèm ảnh'}</button></div>
+${canLink?`<div class="bt">${saveService.fileHandle?`<span class="ok">🔗 Đang liên kết: <b>${esc(saveService.fileName)}</b></span>${btn('sv_link_clr','','Ngắt liên kết')}`:btn('sv_link','','🔗 Liên kết file trên máy (1-click ghi đè)')}</div>`:''}
+${ui.svShareUrl?`<div class="bt"><input readonly value="${esc(ui.svShareUrl)}" style="flex:1;min-width:200px" onclick="this.select()"></div>`:''}
+<div style="margin-top:10px"><b>📜 Các mốc đã lưu trong trình duyệt (${slots.length}/15)</b></div>
+${slots.length?`<div style="display:grid;gap:6px;margin-top:6px;max-height:220px;overflow-y:auto">${slots.map(x=>`<div class="card" style="--rc:var(--jade);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><div><b>${esc(x.name)}</b> · ${REALMS[x.realm||0]} Tầng ${(x.layer||0)+1} <span class="mu">(${x.age} tuổi · 💎 ${(x.stones||0).toLocaleString('vi-VN')})</span><div class="mu">${esc(x.note||'Mốc lưu')} · ${new Date(x.updatedAt||0).toLocaleString('vi-VN')}</div></div><div class="bt" style="margin-top:0">${btn('sv_load',x.id,'Nạp')}${btn('sv_del',x.id,'Xóa')}</div></div>`).join('')}</div>`:'<div class="mu" style="margin-top:4px">Chưa có mốc nào. Bấm <b>💾 Lưu</b> để tạo mốc đầu tiên.</div>'}
+<div class="bt" style="margin-top:8px">${btn('sv_leg','',ui.svLegacy?'▾ Ẩn nhập mã văn bản cũ':'▸ Nhập từ mã Base64 / JSON cũ')}</div>
+${ui.svLegacy?`<div style="margin-top:6px"><textarea id="sv_txt" rows="3" placeholder="Dán mã save Base64 hoặc JSON vào đây..." style="width:100%;background:var(--in);color:var(--iv)"></textarea><div class="bt">${btn('sv_imp_txt','','Kiểm tra & Nạp')}</div></div>`:''}</div>`;
 }
-function cldConflictModal(){
-  const r=ui.cldCf;if(!r||!s)return'';
-  return `<div class="modal-bg"><div class="modal-box" style="width:min(440px,100%)"><h3 style="margin:0 0 8px;color:var(--gold)">⚠ Phát Hiện Xung Đột Thần Thức (Cloud Conflict)</h3><div class="mu" style="margin-bottom:8px">Phát hiện dữ liệu trên Vân Đạo và thiết bị hiện tại có chênh lệch lớn. Đạo hữu muốn giữ bản nào?</div>
-<div class="card r2" style="--rc:var(--jade);margin-bottom:8px"><b>💻 Bản Hiện Tại (Local)</b><div class="mu">${esc(s.name)} · ${REALMS[s.realm]} Tầng ${s.layer+1} · ${s.age} tuổi · 💎 ${(s.stones||0).toLocaleString('vi-VN')}<br>Cập nhật: ${new Date(s.updatedAt||0).toLocaleString('vi-VN')}</div></div>
-<div class="card r4" style="--rc:var(--gold);margin-bottom:10px"><b>☁ Bản Vân Đạo (Remote)</b><div class="mu">${esc(r.name)} · ${REALMS[r.realm||0]} Tầng ${(r.layer||0)+1} · ${r.age||16} tuổi · 💎 ${(r.stones||0).toLocaleString('vi-VN')}<br>Cập nhật: ${new Date(r.updatedAt||0).toLocaleString('vi-VN')}</div></div>
-<div class="bt">${btn('clduse','rem','☁ Dùng bản Vân Đạo')}${btn('clduse','loc','💻 Giữ bản Hiện Tại & Đẩy lên')}</div></div></div>`;
+function svPreviewModal(){
+  const p=ui.svPreview;if(!p||!p.data)return'';
+  const r=p.data;
+  return `<div class="modal-bg"><div class="modal-box" style="width:min(440px,100%)"><h3 style="margin:0 0 8px;color:var(--gold)">📂 Xác Nhận Nạp Dữ Liệu</h3><div class="mu" style="margin-bottom:8px">Nguồn: <b>${esc(p.src||'Không rõ')}</b></div>
+${s?`<div class="card" style="--rc:var(--mu);margin-bottom:8px"><b>💻 Nhân vật hiện tại</b><div class="mu">${esc(s.name)} · ${REALMS[s.realm]} Tầng ${s.layer+1} · ${s.age} tuổi · 💎 ${(s.stones||0).toLocaleString('vi-VN')}</div></div>`:''}
+<div class="card r4" style="--rc:var(--jade);margin-bottom:10px"><b>✨ Bản Save Sắp Nạp</b><div class="mu">${esc(r.name||'Vô Danh')} · ${REALMS[r.realm||0]} Tầng ${(r.layer||0)+1} · ${r.age||16} tuổi · 💎 ${(r.stones||0).toLocaleString('vi-VN')}<br>Cập nhật: ${new Date(r.updatedAt||r.created||Date.now()).toLocaleString('vi-VN')}</div></div>
+<div class="bt">${btn('sv_confirm','','✅ Xác nhận nạp (Ghi đè)')}${btn('sv_cancel','','Hủy')}</div></div></div>`;
 }
 function brkModal(){
   const b=ui.brkInfo;if(!b)return'';
@@ -1564,7 +1652,7 @@ async function verifyAdminPwd(){
 function admAuthHTML(){
   if(ui.btl)return btlModal();
   if(ui.brkInfo)return brkModal();
-  if(ui.cldCf)return cldConflictModal();
+  if(ui.svPreview)return svPreviewModal();
   if(!ui.admAuth)return'';
   return `<div class="modal-bg" onclick="if(event.target===this){ui.admAuth=false;ui.admMsg='';render()}"><div class="modal-box"><h3 style="margin:0 0 8px;color:var(--gold)">☯ Thiên Đạo Chi Ấn · Nhập Mật Khẩu Đạo Chủ</h3><div class="mu" style="margin-bottom:8px">Chỉ đạo chủ mới có thể cảm ứng bản nguyên thiên đạo.</div><input id="adm-pwd" type="password" placeholder="Nhập mật khẩu đạo chủ..." style="width:100%" onkeydown="if(event.key==='Enter')verifyAdminPwd()">${ui.admMsg?`<div class="bad" style="margin-top:6px;font-size:13px">${esc(ui.admMsg)}</div>`:''}<div class="bt" style="margin-top:10px">${btn('adm_ok','','Xác nhận')}${btn('adm_cls','','Đóng')}</div></div></div>`;
 }
@@ -1579,7 +1667,7 @@ function vAdmin(){
   p3=`<div class='pn'><h3>3. Triệu hồi vật phẩm, thiên phú &amp; công pháp</h3><div class='bt'>${admSel('item',ITEMS.map(i=>[i.id,i.n+' ['+RN[i.r]+' · '+TL[i.t]+']']),ui.ad.item)}<input type='number' min='1' max='99' value='${esc(ui.ad.qty)}' data-chg='ad_qty' style='width:70px'>${q('ad_item','','Thêm vào kho')}</div><div class='bt'>${admSel('tal',TAL.map(i=>[i.id,i.n+' ['+RN[i.r]+']']),ui.ad.tal)}${q('ad_tal','','Nhận Thiên Phú')}${q('ad_slots','','Mở khóa +10 ô thiên phú (đã thêm '+(s.admSlots||0)+')')}</div><div class='bt'>${admSel('tech',TECH.map(i=>[i.id,i.n+' ['+RN[i.r]+']']),ui.ad.tech)}${q('ad_tech','','Học &amp; Max Thành Thạo (Viên mãn)')}</div></div>`,
   p4=`<div class='pn'><h3>4. Bách Nghệ &amp; nguyên liệu</h3><div class='bt'>${['dan','khi','tran'].map(k=>btn('ad_cr',k,'Max '+CN[k]+' (Cửu Giai)')).join('')}${['dan','khi','tran'].map(k=>btn('ad_cr1',k,'+1 giai '+CN[k])).join('')}${btn('ad_tox','','Xóa đan độc')}${btn('ad_mats','','+20 mọi nguyên liệu')}</div><div class='bt'>${admSel('mat',ITEMS.filter(i=>i.t==='material').map(i=>[i.id,i.n]),ui.ad.mat||'m1')}${btn('ad_mat','','Thêm nguyên liệu (số lượng ở mục 3)')}</div></div>`,
   p5=`<div class='pn'><h3>5. Can thiệp mô phỏng &amp; Save Editor</h3><div class='mu'>${run?'Đang chạy mô phỏng, tuổi '+m.age+'.':'Chỉ dùng được khi đang trong giai đoạn Hành trình của mô phỏng (tab Kim Thủ Chỉ).'}</div><div class='bt'>${btn('ad_sss','','Hoàn thành ngay với hạng SSS',!run)}${btn('ad_pts','','+1000 Điểm mô phỏng',!run)}</div><textarea id='ad-json' rows='10' style='width:100%;background:var(--in);color:var(--iv);font:12px monospace;margin-top:8px'>${esc(JSON.stringify(s,null,1))}</textarea><div class='bt'>${q('ad_cp','','Copy JSON')}${q('ad_json','','Ghi đè dữ liệu từ JSON')}</div></div>`;
-  return `<div class='pn'><div class='row' style='align-items:center'><h3>⚙ Bảng điều khiển Admin (Phiên tạm thời)</h3>${btn('adm_lock','','🔒 Ẩn & Khóa Quyền Admin')}</div><div class='mu'>Quyền Admin chỉ tồn tại trên RAM, tự động thu hồi khi tải lại trang (F5).</div></div>`+p1+p2+p3+p4+p5+labUI()+`<div class='pn'><h3>7. Thiên Cơ AI (kiểm thử nhanh)</h3><div class='mu'>Trạng thái: ${thienCoAI.ready()?'<span class="ok">sẵn sàng</span> · '+esc(thienCoAI.cfg.prov)+' · '+esc(thienCoAI.model()):'chưa cấu hình (Chế độ Cổ Điển)'}${run?' · đời hiện tại: '+(m.aiN||0)+' biến cố AI, lỗi liên tiếp '+(m.aiFail||0)+'/3, lượt nén trí nhớ kế tiếp sau '+(3-((m.aiTurn||0)%3))+' lượt':''}. API Key không bao giờ xuất hiện trong Save Editor JSON ở mục 5.</div><div class='bt'>${btn('aiping','','Ping API',ui.aiBusy||!thienCoAI.ready())}${btn('ad_aiev','','Ép sinh biến cố AI ngay',!run||m.sub!=='act'||ui.aiBusy||!thienCoAI.ready())}${btn('ad_aifail','','Reset bộ đếm lỗi AI',!run)}${btn('ad_aimem','','Xóa trí nhớ Thiên Cơ',!run)}</div>${ui.aiPing?`<div class='mu'>${esc(ui.aiPing)}</div>`:''}${run&&m.aiSummary?`<div class='mu'>🧠 ${esc(m.aiSummary)}</div>`:''}</div>`+`<div class='pn'><h3>8. Đồng Bộ Vân Đạo (kiểm thử trạng thái Sync)</h3><div class='mu'>Trạng thái: <b>${cloudSyncService.badge()}</b> · updatedAt: <b>${s.updatedAt||0}</b> (${new Date(s.updatedAt||Date.now()).toLocaleString('vi-VN')}) · Kích thước gói JSON: <b>${cloudSyncService.sizeKB(s)} KB</b> · Phòng: <b>${esc(cloudSyncService.cfg.room||'(chưa đặt)')}</b></div><div class='bt'>${btn('cld','','Mở bảng Vân Đạo')}${btn('ad_cldcf','','⚡ Giả lập xung đột Vân Đạo')}${btn('cldup','','Force Push',!cloudSyncService.ready())}${btn('clddn','','Force Pull',!cloudSyncService.ready())}</div></div>`;
+  return `<div class='pn'><div class='row' style='align-items:center'><h3>⚙ Bảng điều khiển Admin (Phiên tạm thời)</h3>${btn('adm_lock','','🔒 Ẩn & Khóa Quyền Admin')}</div><div class='mu'>Quyền Admin chỉ tồn tại trên RAM, tự động thu hồi khi tải lại trang (F5).</div></div>`+p1+p2+p3+p4+p5+labUI()+`<div class='pn'><h3>7. Thiên Cơ AI (kiểm thử nhanh)</h3><div class='mu'>Trạng thái: ${thienCoAI.ready()?'<span class="ok">sẵn sàng</span> · '+esc(thienCoAI.cfg.prov)+' · '+esc(thienCoAI.model()):'chưa cấu hình (Chế độ Cổ Điển)'}${run?' · đời hiện tại: '+(m.aiN||0)+' biến cố AI, lỗi liên tiếp '+(m.aiFail||0)+'/3, lượt nén trí nhớ kế tiếp sau '+(3-((m.aiTurn||0)%3))+' lượt':''}. API Key không bao giờ xuất hiện trong Save Editor JSON ở mục 5.</div><div class='bt'>${btn('aiping','','Ping API',ui.aiBusy||!thienCoAI.ready())}${btn('ad_aiev','','Ép sinh biến cố AI ngay',!run||m.sub!=='act'||ui.aiBusy||!thienCoAI.ready())}${btn('ad_aifail','','Reset bộ đếm lỗi AI',!run)}${btn('ad_aimem','','Xóa trí nhớ Thiên Cơ',!run)}</div>${ui.aiPing?`<div class='mu'>${esc(ui.aiPing)}</div>`:''}${run&&m.aiSummary?`<div class='mu'>🧠 ${esc(m.aiSummary)}</div>`:''}</div>`;
 }
 
 /* ===== BALANCE LAB (giả lập trên bản sao) ===== */
@@ -1624,9 +1712,9 @@ function render(){
   document.body.classList.toggle('no-nav',!s);
   if(!s){nv.innerHTML='';if(sy)sy.innerHTML='';$('sb').innerHTML='';$('bgm').innerHTML='';bgStop();$('ap').className=$('apo').className='';$('app').innerHTML=vCreate();return}
   nv.innerHTML=TABS.filter(t=>t[0]!=='admin'||ui.adm).map(t=>`<button class="${ui.tab===t[0]?'on':''}" data-a="tab" data-x="${t[0]}">${t[1]}</button>`).join('');
-  if(sy)sy.innerHTML=`<button data-a="cld" class="${ui.cld?'on':''}">${cloudSyncService.badge()}</button><button data-a="ui" class="${ui.ap?'on':''}" aria-haspopup="dialog">🎨 Giao diện</button><button data-a="exp">Xuất save</button><button data-a="imp">Nhập save</button><button data-a="reset">${ui.rs?'Bấm lần nữa để xóa hết':'Làm mới dữ liệu'}</button>`;
+  if(sy)sy.innerHTML=`<button data-a="qsave" title="Lưu nhanh 1 chạm vào Kho Save">💾 Lưu</button><button data-a="sv_open" class="${ui.sv?'on':''}">📂 Kho Save</button><button data-a="ui" class="${ui.ap?'on':''}" aria-haspopup="dialog">🎨 Giao diện</button><button data-a="reset">${ui.rs?'Bấm lần nữa để xóa hết':'Làm mới dữ liệu'}</button>`;
   $('sb').innerHTML=sbar();$('bgm').innerHTML=bgmHTML();syncVol();
-  $('app').innerHTML=cloudPanel()+ioPanel()+(TABS.find(t=>t[0]===ui.tab&&(t[0]!=='admin'||ui.adm))||TABS[0])[2]();
+  $('app').innerHTML=savePanel()+(TABS.find(t=>t[0]===ui.tab&&(t[0]!=='admin'||ui.adm))||TABS[0])[2]();
   $('ap').innerHTML=apHTML();$('ap').className=$('apo').className=ui.ap?'open':'';
   const mb1=document.querySelector('#adm-auth .modal-box');if(mb1&&ms0)mb1.scrollTop=ms0;
   if(typeof window!=='undefined'&&typeof window.scrollTo==='function'&&ui._tab===ui.tab)window.scrollTo(0,sy0);
@@ -1679,16 +1767,20 @@ const A={
   btla:x=>adventureService.act(s,x),
   ad_mut:()=>{ui.forceMut=1;say('Trận Lịch Luyện kế tiếp chắc chắn chạm trán Yêu Thú Biến Dị!')},
   buy:x=>shopService.buy(s,+x),sell:x=>shopService.sell(s,x),shopr:()=>shopService.paid(s),
-  exp:()=>ui.io='ex',imp:()=>ui.io='im',ioc:()=>ui.io=0,cp:()=>copySave(),ioimp:()=>importSave(),
-  cld:()=>{ui.cld=!ui.cld},cldc:()=>{ui.cld=false},
-  cldon:x=>{cloudSyncService.cfg.on=x==='1';cloudSyncService.saveCfg();cloudSyncService.reconnect();say(x==='1'?'Đã bật Đồng Bộ Vân Đạo':'Đã chuyển Vân Đạo sang Offline-First')},
-  cldsl:()=>{cloudSyncService.cfg.slim=!cloudSyncService.cfg.slim;cloudSyncService.saveCfg()},
-  cldrm:()=>{cloudSyncService.set('room','daohuu_'+uid());say('Đã tạo mã phòng: '+cloudSyncService.cfg.room)},
-  cldp:()=>cloudSyncService.ping(),
-  cldup:()=>cloudSyncService.push(s,true),
-  clddn:()=>cloudSyncService.pull(true),
-  clduse:x=>{const r=ui.cldCf;ui.cldCf=null;if(!r)return;if(x==='rem')cloudSyncService.acceptRemote(r);else{s.updatedAt=Date.now();store.save(s);cloudSyncService.push(s,true);say('Đã giữ bản lưu hiện tại và đẩy lên Vân Đạo')}},
-  ad_cldcf:()=>{const fake=JSON.parse(JSON.stringify(s));fake.realm=Math.min(REALMS.length-1,(s.realm||0)+1);fake.age=(s.age||16)+42;fake.stones=(s.stones||0)+8888;fake.updatedAt=Date.now()+60000;ui.cldCf=fake;say('Đã mở modal giả lập xung đột Vân Đạo')},
+  qsave:()=>{saveService.quickSave(s)},
+  sv_open:async()=>{ui.sv=!ui.sv;ui.svShareUrl='';if(ui.sv){ui.svSlots=await saveService.listSlots();render()}},
+  sv_close:()=>{ui.sv=false;ui.svShareUrl=''},
+  sv_slim:()=>{ui.svSlim=!ui.svSlim},
+  sv_dl:()=>saveService.exportFile(s),
+  sv_link:()=>saveService.linkFile(s),
+  sv_link_clr:()=>{saveService.fileHandle=null;saveService.fileName='';say('Đã ngắt liên kết file đồng bộ')},
+  sv_share:()=>saveService.createShareLink(s),
+  sv_load:x=>saveService.loadSlot(x),
+  sv_del:x=>saveService.deleteSlot(x),
+  sv_leg:()=>{ui.svLegacy=!ui.svLegacy},
+  sv_imp_txt:()=>{const el=$('sv_txt');if(!el||!el.value.trim())return say('Hãy dán mã save hoặc JSON');saveService.importText(el.value.trim())},
+  sv_confirm:()=>{if(ui.svPreview&&ui.svPreview.data)saveService.applyImport(ui.svPreview.data)},
+  sv_cancel:()=>{ui.svPreview=null},
   cl:k=>{if(s.crafts[k].lv)return;if(s.stones<200)return say('Cần 200 linh thạch');s.stones-=200;s.crafts[k].lv=1;say('Đã học '+CN[k]+', đạt Nhất Giai')},
   dc:(i,n=1)=>{const r=DR[+i],c=s.crafts.dan;let ok=0,fl=0,exN=0;for(let k=0;k<n;k++){if(!can('dan',r[2],r[1],r[3])){if(k===0)return say('Chưa đủ cấp nghề, nguyên liệu hoặc linh thạch');break}takeM(s,r[2]);s.stones-=r[3];if(Math.random()<cch(s,'dan',r[4],r[1])){const ex=Math.random()<.04+.01*c.lv+.06*talMul(s,'t43');inventoryService.add(s,r[0],1,ex);ok++;if(ex)exN++;cxp(s,'dan',15+10*r[1])}else{fl++;cxp(s,'dan',5+3*r[1])}}const nm=ID[r[0]].n;say(n===1?(ok?(exN?'Đan Văn hiện ra! Luyện được Cực phẩm '+nm:'Luyện thành '+nm):'Nổ lò! Mất toàn bộ nguyên liệu khi luyện '+nm):`Luyện ${nm}: thành công ${ok}${exN?' ('+exN+' Cực phẩm)':''}, thất bại ${fl}`)},
   dc5:i=>A.dc(i,5),
@@ -1725,7 +1817,7 @@ const A={
 };
 
 /* ===== SỰ KIỆN TOÀN CỤC ===== */
-const NO_TS={tab:1,flt:1,cflt:1,ui:1,uic:1,exp:1,imp:1,ioc:1,cp:1,aiopen:1,cld:1,cldc:1,cldp:1,cldup:1,clddn:1,adm_cls:1};
+const NO_TS={tab:1,flt:1,cflt:1,ui:1,uic:1,aiopen:1,qsave:1,sv_open:1,sv_close:1,sv_slim:1,sv_dl:1,sv_link:1,sv_link_clr:1,sv_share:1,sv_load:1,sv_del:1,sv_leg:1,sv_imp_txt:1,sv_confirm:1,sv_cancel:1,adm_cls:1};
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-a]');if(!t||t.disabled)return;
   const a=t.dataset.a;if(a==='adm_ok'){verifyAdminPwd();return}
@@ -1746,16 +1838,15 @@ document.addEventListener('change',e=>{
   if(k==='pstatus'&&s){s.profile.status=e.target.value.trim().slice(0,60);store.save(s);render();return}
   if(k==='rb_tal'){ui.rbTal=e.target.value;return}
   if(k&&k.slice(0,3)==='ai_'){const n=k.slice(3),v=e.target.value;if(n==='in'){ui.aiIn=aiS(v,160);return}thienCoAI.set(n,v);ui.aiPing='';render();return}
-  if(k&&k.slice(0,4)==='cld_'){cloudSyncService.set(k.slice(4),e.target.value);render();return}
   if(k&&k.slice(0,3)==='cr_'){ui.cr[k.slice(3)]=e.target.value;render();return}
   if(k&&k.slice(0,3)==='ad_'&&s){const n=k.slice(3),v=e.target.value;if(['realm','layer','body','root'].includes(n)){s[n]=n==='layer'?+v-1:+v;store.save(s);render()}else ui.ad[n]=v;return}
+  if(k==='sv_file'&&f){saveService.importFile(f);e.target.value='';return}
   if(s&&k&&f){if(k.slice(0,4)==='img_')imgFile(k.slice(4),f);else if(k==='aud')audFile(f);e.target.value=''}
 });
 
 document.addEventListener('input',e=>{
   const k=e.target.dataset.chg;if(!k)return;
   if(k.slice(0,3)==='ai_'){const n=k.slice(3),v=e.target.value;if(n==='in'){ui.aiIn=aiS(v,160);return}if(n==='model'||n==='url'||n==='key')thienCoAI.set(n,v);return}
-  if(k.slice(0,4)==='cld_'){cloudSyncService.set(k.slice(4),e.target.value);return}
   if(!s)return;
   if(k==='th_bg'||k==='th_ac'){setT(k==='th_bg'?'bg':'ac',e.target.value);applyTheme();store.save(s);return}
   const v=+e.target.value,u=s.uiCfg;
@@ -1769,9 +1860,11 @@ document.addEventListener('input',e=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&e.target&&e.target.id==='ai_in'){e.preventDefault();const b=document.querySelector('[data-a="aiact"]');if(b&&!b.disabled)b.click();return}
   if(e.key==='Escape'){
+    if(ui.svPreview){ui.svPreview=null;render();return}
     if(ui.btl&&ui.btl.done){ui.btl=null;render();return}
     if(ui.admAuth){ui.admAuth=false;ui.admMsg='';render();return}
     if(ui.ap){ui.ap=0;render();return}
+    if(ui.sv){ui.sv=false;render();return}
   }
   if(e.altKey&&e.shiftKey&&(e.code==='Backquote'||e.key==='~'||e.key==='`')){
     e.preventDefault();openAdminPrompt();
@@ -1786,15 +1879,16 @@ try{
   s=store.load();
   migrate();
   render();
-  if(cloudSyncService.ready()){cloudSyncService.reconnect();cloudSyncService.pull(false)}
 }catch(err){
+  try{const raw=localStorage.getItem(KEY);if(raw)localStorage.setItem('msns_main_backup',raw)}catch(e){}
   store.clear();
   s=null;
   render();
+  toast('Phát hiện lỗi đọc save cũ (đã sao lưu dự phòng vào msns_main_backup)','wn');
 }
+saveService.checkHashImport();
 if(typeof window.addEventListener==='function'){
-  window.addEventListener('storage',e=>{if(e.key===KEY&&e.newValue){try{const rem=JSON.parse(e.newValue);if(rem&&(!s||(rem.updatedAt||0)>(s.updatedAt||0)))cloudSyncService.applyRemote(rem,false)}catch(er){}}});
-  window.addEventListener('focus',()=>{if(cloudSyncService.ready()&&!ui.cldCf)cloudSyncService.pull(false)});
+  window.addEventListener('storage',e=>{if(e.key===KEY&&e.newValue){try{const rem=JSON.parse(e.newValue);if(rem&&(!s||(rem.updatedAt||0)>(s.updatedAt||0))){s=rem;migrate();render()}}catch(er){}}});
 }
 if(s&&s.uiCfg.cn)idb('get',0,(b,er)=>{if(!b&&!er&&s){s.uiCfg.cn='';if(s.uiCfg.trk===3)s.uiCfg.trk=0;store.save(s);render()}});
 </script></body></html>
