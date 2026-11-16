@@ -1,6 +1,6 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.14 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.15 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 

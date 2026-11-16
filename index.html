@@ -99,7 +99,7 @@ img.av{object-fit:cover}.pe input[type=file]{padding:3px}
 .gd-hl .gi{font-size:20px;line-height:1.2;flex:none}
 </style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div>
 <script>
-const APP_VERSION='5.14';
+const APP_VERSION='5.15';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -113,6 +113,12 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'9. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.15',date:'2026-11-16',title:'Tối Ưu Phông Chữ Giao Diện (Sans Mặc Định)',
+      highlights:[
+        {icon:'🎨',title:'Đặt Font Hiện Đại (Sans) Làm Mặc Định',desc:'Gỡ bỏ tùy chọn Serif cổ điển và đặt font Sans làm mặc định giúp chữ hiển thị sắc nét, dễ đọc hơn trên cả PC lẫn điện thoại.',selector:'[data-a="ui"]'}
+      ]
+    },
     {
       version:'5.14',date:'2026-11-16',title:'Tái Cân Bằng Chỉ Số, Độ Khó & Kim Thủ Chỉ "Bàn Tay Vàng"',
       highlights:[
