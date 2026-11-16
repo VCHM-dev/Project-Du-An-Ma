@@ -34,3 +34,4 @@ Sau khi hoàn thành bất kỳ yêu cầu sửa đổi hoặc thêm tính năng
 - **Đã hoàn thành:** Liệt kê các tính năng/lỗi vừa xử lý.
 - **File/Hàm đã sửa:** Ghi rõ tên service hoặc hàm vừa thay đổi (cập nhật `project_structure.md` nếu có thêm service/tab mới).
 - **Bước tiếp theo gợi ý:** Đề xuất 1–2 hướng phát triển hợp lý tiếp theo.
+- **Tự động cập nhật GitHub & GitHub Pages:** Sau khi hoàn tất chỉnh sửa và kiểm thử bất kỳ file nào trong thư mục dự án, AI **BẮT BUỘC** đồng bộ `Mô Phỏng Nhân Sinhtest_2.html` → `index.html`, `git add -A`, `git commit` với thông điệp rõ ràng, và `git push origin main` lên `https://github.com/VCHM-dev/Project-Du-An-Ma.git`.
