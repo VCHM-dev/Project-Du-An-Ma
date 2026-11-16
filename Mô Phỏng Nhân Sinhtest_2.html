@@ -529,19 +529,28 @@ const adventureService={
     if(b.fh<=0||b.hp<=0||b.r>=25){b.done=1;b.win=b.fh<=0&&b.hp>0}
     return b;
   },
-  autoPick(b){
-    if(b.hp<b.maxHp*.35&&b.guardCd<=0&&b.mp>=Math.round(b.maxMp*.2))return'guard';
+  autoPick(b,x){
+    const inv=x?x.inv:(s?s.inv:[]),has=id=>inv.some(k=>k.id===id&&k.q>0);
+    if(b.r<3){
+      if(b.diff>0&&!b.counter&&!b.tb1&&has('b1'))return'tb_b1';
+      if(b.mut&&!b.tb2&&has('b2'))return'tb_b2';
+    }
+    if(b.pPoison>0&&b.pills>0&&b.poisonImmTurns<=0&&has('d16'))return'pill_d16';
+    if(b.hp<b.maxHp*.35&&b.pills>0&&['d1','d3','d12'].some(has))return'pill';
+    if(b.hp<b.maxHp*.4&&b.guardCd<=0&&b.mp>=Math.round(b.maxMp*.2))return'guard';
     if(b.fCharge){
-      const st=b.skills.find(s=>s.k==='stun'&&!b.cd[s.id]&&b.mp>=Math.round(b.maxMp*s.mpCost));
+      const st=b.skills.find(sk=>sk.k==='stun'&&!b.cd[sk.id]&&b.mp>=Math.round(b.maxMp*sk.mpCost));
       if(st)return'sk_'+st.id;
       if(b.guardCd<=0&&b.mp>=Math.round(b.maxMp*.2))return'guard';
+      if(b.pills>0&&b.sh<=0&&has('d15'))return'pill_d15';
     }
-    for(const s of b.skills)if(!b.cd[s.id]&&b.mp>=Math.round(b.maxMp*s.mpCost))return'sk_'+s.id;
+    if(b.diff>0&&b.rageTurns<=0&&b.pills>0&&has('d14'))return'pill_d14';
+    for(const sk of b.skills)if(!b.cd[sk.id]&&b.mp>=Math.round(b.maxMp*sk.mpCost))return'sk_'+sk.id;
     return'atk';
   },
   simBattle(x,i,logs){
     const b=this.initBattle(x,i,false);
-    while(!b.done)this.step(x,b,this.autoPick(b));
+    while(!b.done)this.step(x,b,this.autoPick(b,x));
     if(logs)logs.push(...b.logs.slice(1));
     this.lastB=b;
     return b.win;
@@ -569,7 +578,7 @@ const adventureService={
       if(Math.random()<(b.mut?.75:.4)){const d=pick(ITEMS.filter(k=>k.t!=='material'&&k.r<=Math.min(6,i)));inventoryService.add(x,d.id);t+=', rơi '+d.n;drops.push(d.n)}
       const u=TECH.filter(k=>!x.tech[k.id]&&k.r<=i+1);
       if(u.length&&Math.random()<(b.mut?.32:.15)){const d=pick(u);techniqueService.learn(x,d.id);t+=', nhặt bí tịch '+d.n;drops.push('Bí tịch '+d.n)}
-      const mtTier=Math.round(i*.7),pl=ITEMS.filter(k=>k.t==='material'&&k.r<=Math.min(5,mtTier)&&k.r>=Math.max(0,mtTier-2)),g=[];
+      const mtTier=Math.min(5,Math.round(i*.7)),pl=ITEMS.filter(k=>k.t==='material'&&k.r<=mtTier&&k.r>=Math.max(0,mtTier-2)),g=[];
       const cnt=(1+(Math.random()<.5?1:0))*(b.mut?2:1);
       for(let k=0;k<cnt;k++)g.push(pick(pl).id);
       const ex=(re,id)=>{const q=pl.filter(k=>re.test(k.id));if(hasT(x,id)&&q.length&&Math.random()<clamp(.25*talMul(x,id),.25,.85))g.push(pick(q).id)};
@@ -603,7 +612,7 @@ const adventureService={
     const b=ui.btl;if(!b)return;
     if(cmd==='close'){if(b.done)ui.btl=null;return}
     if(cmd==='flee'){if(!b.done){b.done=1;b.fled=1;this.resolve(x,b,false);ui.btl=null}return}
-    if(cmd==='auto'){while(!b.done)this.step(x,b,this.autoPick(b));this.resolve(x,b,false);return}
+    if(cmd==='auto'){while(!b.done)this.step(x,b,this.autoPick(b,x));this.resolve(x,b,false);return}
     if(!b.done){
       this.step(x,b,cmd);
       if(b.done)this.resolve(x,b,false);
@@ -1389,9 +1398,9 @@ function vCraft(){
   const bm=s.bmWeapon,bi=bm&&s.inv.find(i=>i.u===bm.u),cf=ui.cf||'all';
   const tabs=[['all','Tất cả'],['dan','Luyện Đan'],['khi','Luyện Khí'],['tran','Trận Pháp'],['bm','Bản Mệnh']];
   let out=`<div class="pn"><h3>Bách Nghệ · Linh thạch: ${s.stones.toLocaleString('vi-VN')}</h3><div class="mu">Nguyên liệu nhặt được khi Lịch Luyện, mua ở Phường Thị hoặc kiếm trong mô phỏng. Đan độc hiện tại: ${s.toxin}/100.</div><div class="bt">${tabs.map(t=>`<button class="chip ${cf===t[0]?'on':''}" data-a="cflt" data-x="${t[0]}">${t[1]}</button>`).join('')}</div></div>`;
-  if(cf==='all'||cf==='dan')out+=P('dan','Luyện đan từ Linh Thảo và Yêu Đan. Tỷ lệ thành công phụ thuộc cấp nghề, Ngộ Tính, Thần Hồn và thiên phú; có cơ hội ra Đan Văn (cực phẩm, hiệu quả gấp đôi).',`<div class="grid">${DR.map((r,i)=>{const d=ID[r[0]];return card(d.r,d.n,`${esc(d.u)}<br>Nguyên liệu: ${mt(r[2])}<br>${r[3]} linh thạch · cần ${GN[r[1]]} · thành công ${Math.round(cch(s,'dan',r[4],r[1])*100)}%`,btn('dc',i,'Luyện chế',!can('dan',r[2],r[1],r[3])))}).join('')}</div>`);
-  if(cf==='all'||cf==='khi')out+=P('khi','Rèn đúc trang bị từ Khoáng Thạch và Tinh Thiết, hoặc nâng phẩm chất: Phàm khí → Linh khí → Pháp bảo → Thông Thiên Linh Bảo (mỗi bậc +25% chỉ số).',`<div class="grid">${KR.map((r,i)=>{const d=ID[r[0]];return card(d.r,d.n,`${fx(d.s)}<br>Nguyên liệu: ${mt(r[2])}<br>${r[3]} linh thạch · cần ${GN[r[1]]} · thành công ${Math.round(cch(s,'khi',r[4],r[1])*100)}%`,btn('kc',i,'Rèn đúc',!can('khi',r[2],r[1],r[3])))}).join('')}</div><div class="pn"><h3>Nâng phẩm chất trang bị</h3><div class="bt">${all.length?sel('kq',all):'<span class="mu">Chưa có trang bị phù hợp</span>'}${btn('kq','','Nâng phẩm',!all.length)}</div>${(()=>{const it=all.find(i=>i.u===ui.cr.kq);if(!it)return'';const U=QU[it.ql||0];return`<div class="mu">Lên ${QL[(it.ql||0)+1]}: ${mt(U[1])} · ${U[2]} linh thạch · cần ${GN[U[0]]} · thành công ${Math.round(cch(s,'khi',U[3],U[0])*100)}%</div>`})()}</div>`);
-  if(cf==='all'||cf==='tran')out+=P('tran','Dùng linh thạch và trận kỳ bố trí trận pháp động phủ, hoặc khắc chế Trận Bàn tiêu hao mang vào Chiến Trường thực chiến.',`<div class="grid">${AR.map(a=>{const on=s.activeArray===a[0],built=s.arrays[a[0]],sc=Math.round(a[4]*(hasT(s,'t35')?.7:1));return card(on?4:1,a[1],`${a[5]}${hasT(s,'t35')?' (+20% nhờ Trận Đạo Tông Sư)':''}<br>${built?'<span class="ok">Đã bố trí</span>':'Nguyên liệu: '+mt(a[3])+' · '+sc+' linh thạch · cần '+GN[a[2]]}${on?'<br><span class="ok">Đang kích hoạt</span>':''}`,built?btn('aa',on?'':a[0],on?'Tắt trận':'Kích hoạt'):btn('ab',a[0],'Bố trí',!can('tran',a[3],a[2],sc)))}).join('')}</div><div class="pn"><h3>Chế Tạo Trận Bàn Thực Chiến</h3><div class="grid">${TR.map((r,i)=>{const d=ID[r[0]];return card(d.r,d.n,`${esc(d.u)}<br>Nguyên liệu: ${mt(r[2])}<br>${r[3]} linh thạch · cần ${GN[r[1]]} · thành công ${Math.round(cch(s,'tran',r[4],r[1])*100)}%`,btn('tc',i,'Khắc trận',!can('tran',r[2],r[1],r[3])))}).join('')}</div></div>`);
+  if(cf==='all'||cf==='dan')out+=P('dan','Luyện đan từ Linh Thảo và Yêu Đan. Tỷ lệ thành công phụ thuộc cấp nghề, Ngộ Tính, Thần Hồn và thiên phú; có cơ hội ra Đan Văn (cực phẩm, hiệu quả gấp đôi).',`<div class="grid">${DR.map((r,i)=>{const d=ID[r[0]],dis=!can('dan',r[2],r[1],r[3]);return card(d.r,d.n,`${esc(d.u)}<br>Nguyên liệu: ${mt(r[2])}<br>${r[3]} linh thạch · cần ${GN[r[1]]} · thành công ${Math.round(cch(s,'dan',r[4],r[1])*100)}%`,btn('dc',i,'Luyện chế',dis)+btn('dc5',i,'×5',dis))}).join('')}</div>`);
+  if(cf==='all'||cf==='khi')out+=P('khi','Rèn đúc trang bị từ Khoáng Thạch và Tinh Thiết, hoặc nâng phẩm chất: Phàm khí → Linh khí → Pháp bảo → Thông Thiên Linh Bảo (mỗi bậc +25% chỉ số).',`<div class="grid">${KR.map((r,i)=>{const d=ID[r[0]],dis=!can('khi',r[2],r[1],r[3]);return card(d.r,d.n,`${fx(d.s)}<br>Nguyên liệu: ${mt(r[2])}<br>${r[3]} linh thạch · cần ${GN[r[1]]} · thành công ${Math.round(cch(s,'khi',r[4],r[1])*100)}%`,btn('kc',i,'Rèn đúc',dis)+btn('kc5',i,'×5',dis))}).join('')}</div><div class="pn"><h3>Nâng phẩm chất trang bị</h3><div class="bt">${all.length?sel('kq',all):'<span class="mu">Chưa có trang bị phù hợp</span>'}${btn('kq','','Nâng phẩm',!all.length)}</div>${(()=>{const it=all.find(i=>i.u===ui.cr.kq);if(!it)return'';const U=QU[it.ql||0];return`<div class="mu">Lên ${QL[(it.ql||0)+1]}: ${mt(U[1])} · ${U[2]} linh thạch · cần ${GN[U[0]]} · thành công ${Math.round(cch(s,'khi',U[3],U[0])*100)}%</div>`})()}</div>`);
+  if(cf==='all'||cf==='tran')out+=P('tran','Dùng linh thạch và trận kỳ bố trí trận pháp động phủ, hoặc khắc chế Trận Bàn tiêu hao mang vào Chiến Trường thực chiến.',`<div class="grid">${AR.map(a=>{const on=s.activeArray===a[0],built=s.arrays[a[0]],sc=Math.round(a[4]*(hasT(s,'t35')?.7:1));return card(on?4:1,a[1],`${a[5]}${hasT(s,'t35')?' (+20% nhờ Trận Đạo Tông Sư)':''}<br>${built?'<span class="ok">Đã bố trí</span>':'Nguyên liệu: '+mt(a[3])+' · '+sc+' linh thạch · cần '+GN[a[2]]}${on?'<br><span class="ok">Đang kích hoạt</span>':''}`,built?btn('aa',on?'':a[0],on?'Tắt trận':'Kích hoạt'):btn('ab',a[0],'Bố trí',!can('tran',a[3],a[2],sc)))}).join('')}</div><div class="pn"><h3>Chế Tạo Trận Bàn Thực Chiến</h3><div class="grid">${TR.map((r,i)=>{const d=ID[r[0]],dis=!can('tran',r[2],r[1],r[3]);return card(d.r,d.n,`${esc(d.u)}<br>Nguyên liệu: ${mt(r[2])}<br>${r[3]} linh thạch · cần ${GN[r[1]]} · thành công ${Math.round(cch(s,'tran',r[4],r[1])*100)}%`,btn('tc',i,'Khắc trận',dis)+btn('tc5',i,'×5',dis))}).join('')}</div></div>`);
   if(cf==='all'||cf==='bm')out+=`<div class="pn"><h3>Tế Luyện Bản Mệnh Pháp Bảo</h3><div class="mu">Chọn 1 Vũ khí hoặc Pháp bảo làm bản mệnh rồi Ôn Dưỡng (+1 đến +10). Chỉ số tăng theo cảnh giới chủ nhân. Đổi bản mệnh sẽ mất cấp Ôn Dưỡng.</div>${bi?`<div class="row"><span>Bản mệnh hiện tại</span><b>${ID[bi.id].n} +${bm.lv}</b></div>`:''}<div class="bt">${eqs.length?sel('bm',eqs):'<span class="mu">Chưa có Vũ khí hoặc Pháp bảo</span>'}${btn('bms','','Chọn làm Bản Mệnh',!eqs.length)}${bm&&bm.lv>0?btn('bmt','','Chuyển Di Bản Mệnh (giữ 70% cấp · '+(50*bm.lv*(s.realm+1))+' linh thạch)'):''}${btn('bmo','','Ôn Dưỡng'+(bm&&bm.lv<10?' ('+80*(bm.lv+1)*(s.realm+1)+' linh thạch, '+30*(bm.lv+1)*(s.realm+1)+' tu vi)':''),!bm||bm.lv>=10)}</div></div>`;
   return out;
 }
@@ -1554,13 +1563,40 @@ function vAdmin(){
 }
 
 /* ===== BALANCE LAB (giả lập trên bản sao) ===== */
-function runLab(){const bak=s,um=ui.msg,rows=[];s=JSON.parse(JSON.stringify(bak));s.log=[];let t0=s.age,f=0,it=0,farm=0,stop='Hoàn tất';try{while(it++<6000&&s.realm<REALMS.length-1){if(s.age>=cultivationService.life(s)){stop='Hết thọ nguyên ở '+REALMS[s.realm];break}const c=cultivationService.check(s);if(c.every(k=>k[0])){const r0=s.realm;cultivationService.go(s);farm=0;if(s.realm>r0){rows.push([REALMS[s.realm],s.age-t0,f,s.stones]);t0=s.age;f=0}else if(s.layer===8)f++}else if(s.xp<cultivationService.need(s))cultivationService.train(s);else{if(++farm>300){stop='Kẹt ở '+REALMS[s.realm]+' tầng 9, thiếu: '+c.filter(k=>!k[0]).map(k=>k[1]).join('; ');break}adventureService.fight(s,Math.min(s.realm,ADV.length-1),true)}}if(it>=6000)stop='Dừng sau 6000 bước'}catch(e){stop='Lỗi giả lập: '+e.message}finally{s=bak;ui.msg=um}ui.lab={rows,stop}}
+function runLab(){
+  const bak=s,um=ui.msg,rows=[];s=JSON.parse(JSON.stringify(bak));s.log=[];
+  const prep=()=>{
+    EQT.forEach(t=>{
+      const cands=s.inv.filter(i=>ID[i.id].t===t).sort((a,b)=>(ID[b.id].r*10+(b.ql||0))-(ID[a.id].r*10+(a.ql||0)));
+      if(cands[0]&&s.eq[t]!==cands[0].u)s.eq[t]=cands[0].u;
+    });
+    const useIf=(id,cond)=>{if(!cond)return;const it=s.inv.find(i=>i.id===id&&i.q>0);if(it)inventoryService.use(s,it.u,1)};
+    useIf('d3',s.tm);useIf('d11',s.toxin>=70);
+    useIf('d13',s.age>cultivationService.life(s)*.85);useIf('d6',s.age>cultivationService.life(s)*.85);
+    if(s.xp<cultivationService.need(s)&&s.toxin<60){useIf('d12',true);useIf('d1',true)}
+  };
+  let t0=s.age,f=0,it=0,farm=0,stop='Hoàn tất';
+  try{
+    while(it++<6000&&s.realm<REALMS.length-1){
+      if(s.age>=cultivationService.life(s)){stop='Hết thọ nguyên ở '+REALMS[s.realm];break}
+      prep();
+      const c=cultivationService.check(s);
+      if(c.every(k=>k[0])){const r0=s.realm;cultivationService.go(s);farm=0;if(s.realm>r0){rows.push([REALMS[s.realm],s.age-t0,f,s.stones]);t0=s.age;f=0}else if(s.layer===8)f++}
+      else if(s.xp<cultivationService.need(s))cultivationService.train(s);
+      else{if(++farm>300){stop='Kẹt ở '+REALMS[s.realm]+' tầng 9, thiếu: '+c.filter(k=>!k[0]).map(k=>k[1]).join('; ');break}adventureService.fight(s,Math.min(s.realm,ADV.length-1),true)}
+    }
+    if(it>=6000)stop='Dừng sau 6000 bước';
+  }catch(e){stop='Lỗi giả lập: '+e.message}finally{s=bak;ui.msg=um}
+  ui.lab={rows,stop};
+}
 function labUI(){const L=ui.lab;return `<div class='pn'><h3>6. Balance Lab (giả lập trên bản sao, không đổi save)</h3><div class='mu'>Bot tự bế quan, đột phá và Lịch Luyện (càn quét ải cùng cấp) khi thiếu điều kiện, xuất phát từ trạng thái hiện tại. Cột Năm là số năm tuổi tốn để đạt cảnh giới đó, Thất bại là số lần đột phá lớn hỏng.</div><div class='bt'>${btn('lab_run','','Chạy giả lập')}${L?btn('lab_clr','','Xóa kết quả'):''}</div>${L?`<div style='overflow-x:auto'><table style='width:100%;font-size:13px;text-align:left'><tr><th>Đạt cảnh giới</th><th>Năm</th><th>Thất bại</th><th>Linh thạch</th></tr>${L.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3].toLocaleString('vi-VN')}</td></tr>`).join('')}</table></div><div class='mu'>Kết thúc: ${esc(L.stop)}</div>`:''}</div>`}
 function bulkSell(maxR){const eqU=Object.values(s.eq);let n=0,g=0;s.inv=s.inv.filter(i=>{const d=ID[i.id];if(!EQT.includes(d.t)||d.r>maxR||i.lk||i.ex||eqU.includes(i.u)||(s.bmWeapon&&s.bmWeapon.u===i.u))return true;g+=Math.floor(PR[d.r]*.4)*(i.q||1);n++;return false});s.stones+=g;say(n?`Đã bán ${n} món trang bị, nhận ${g.toLocaleString('vi-VN')} linh thạch`:'Không có món nào đủ điều kiện bán hàng loạt')}
 /* ===== ĐIỀU HƯỚNG & RENDER ===== */
 const TABS=[['char','Nhân vật',vChar],['tal','Thiên phú',vTal],['cul','Tu luyện',vCul],['inv','Kho đồ',vInv],['tec','Công pháp',vTec],['craft','Bách Nghệ',vCraft],['kt','Kim Thủ Chỉ',vKt],['adv','Lịch Luyện',vAdv],['shop','Phường Thị',vShop],['admin','⚙ Admin',vAdmin]];
 
 function render(){
+  const sy0=typeof window!=='undefined'?window.scrollY||0:0;
+  const mb0=document.querySelector('#adm-auth .modal-box'),ms0=mb0?mb0.scrollTop:0;
   applyTheme();applyWp();
   const pt=$('ptc');if(pt&&!pt.children.length)pt.innerHTML=Array.from({length:20},(_,i)=>`<i style="--x:${(i*5.1+2)%98}%;--s:${2+(i%3)*1.5}px;--d:${11+(i%7)*2.5}s;--dl:${-(i*1.3)%14}s;--dx:${((i%5)-2)*18}px"></i>`).join('');
   const nv=$('nav'),sy=$('sys'),au=$('adm-auth');
@@ -1572,6 +1608,9 @@ function render(){
   $('sb').innerHTML=sbar();$('bgm').innerHTML=bgmHTML();syncVol();
   $('app').innerHTML=cloudPanel()+ioPanel()+(TABS.find(t=>t[0]===ui.tab&&(t[0]!=='admin'||ui.adm))||TABS[0])[2]();
   $('ap').innerHTML=apHTML();$('ap').className=$('apo').className=ui.ap?'open':'';
+  const mb1=document.querySelector('#adm-auth .modal-box');if(mb1&&ms0)mb1.scrollTop=ms0;
+  if(typeof window!=='undefined'&&typeof window.scrollTo==='function'&&ui._tab===ui.tab)window.scrollTo(0,sy0);
+  ui._tab=ui.tab;
   toastMsg();
 }
 
@@ -1631,12 +1670,15 @@ const A={
   clduse:x=>{const r=ui.cldCf;ui.cldCf=null;if(!r)return;if(x==='rem')cloudSyncService.acceptRemote(r);else{s.updatedAt=Date.now();store.save(s);cloudSyncService.push(s,true);say('Đã giữ bản lưu hiện tại và đẩy lên Vân Đạo')}},
   ad_cldcf:()=>{const fake=JSON.parse(JSON.stringify(s));fake.realm=Math.min(REALMS.length-1,(s.realm||0)+1);fake.age=(s.age||16)+42;fake.stones=(s.stones||0)+8888;fake.updatedAt=Date.now()+60000;ui.cldCf=fake;say('Đã mở modal giả lập xung đột Vân Đạo')},
   cl:k=>{if(s.crafts[k].lv)return;if(s.stones<200)return say('Cần 200 linh thạch');s.stones-=200;s.crafts[k].lv=1;say('Đã học '+CN[k]+', đạt Nhất Giai')},
-  dc:i=>{const r=DR[+i],c=s.crafts.dan;if(!can('dan',r[2],r[1],r[3]))return say('Chưa đủ cấp nghề, nguyên liệu hoặc linh thạch');takeM(s,r[2]);s.stones-=r[3];const d=ID[r[0]];if(Math.random()<cch(s,'dan',r[4],r[1])){const ex=Math.random()<.04+.01*c.lv+.06*talMul(s,'t43');inventoryService.add(s,r[0],1,ex);say(ex?'Đan Văn hiện ra! Luyện được Cực phẩm '+d.n:'Luyện thành '+d.n);cxp(s,'dan',15+10*r[1])}else{say('Nổ lò! Mất toàn bộ nguyên liệu khi luyện '+d.n);cxp(s,'dan',5+3*r[1])}},
-  kc:i=>{const r=KR[+i],c=s.crafts.khi;if(!can('khi',r[2],r[1],r[3]))return say('Chưa đủ cấp nghề, nguyên liệu hoặc linh thạch');takeM(s,r[2]);s.stones-=r[3];const d=ID[r[0]];if(Math.random()<cch(s,'khi',r[4],r[1])){inventoryService.add(s,r[0],1);const it=s.inv[s.inv.length-1],p=Math.random();let ql=0;if(p<.03+.008*c.lv+.04*talMul(s,'t37'))ql=2;else if(p<.12+.015*c.lv+.08*talMul(s,'t37'))ql=1;if(ql){it.ql=ql;say('Thần binh xuất thế! Rèn được '+d.n+' ['+QL[ql]+']')}else say('Rèn thành '+d.n);cxp(s,'khi',15+10*r[1])}else{say('Rèn thất bại, nguyên liệu vỡ nát');cxp(s,'khi',5+3*r[1])}},
+  dc:(i,n=1)=>{const r=DR[+i],c=s.crafts.dan;let ok=0,fl=0,exN=0;for(let k=0;k<n;k++){if(!can('dan',r[2],r[1],r[3])){if(k===0)return say('Chưa đủ cấp nghề, nguyên liệu hoặc linh thạch');break}takeM(s,r[2]);s.stones-=r[3];if(Math.random()<cch(s,'dan',r[4],r[1])){const ex=Math.random()<.04+.01*c.lv+.06*talMul(s,'t43');inventoryService.add(s,r[0],1,ex);ok++;if(ex)exN++;cxp(s,'dan',15+10*r[1])}else{fl++;cxp(s,'dan',5+3*r[1])}}const nm=ID[r[0]].n;say(n===1?(ok?(exN?'Đan Văn hiện ra! Luyện được Cực phẩm '+nm:'Luyện thành '+nm):'Nổ lò! Mất toàn bộ nguyên liệu khi luyện '+nm):`Luyện ${nm}: thành công ${ok}${exN?' ('+exN+' Cực phẩm)':''}, thất bại ${fl}`)},
+  dc5:i=>A.dc(i,5),
+  kc:(i,n=1)=>{const r=KR[+i],c=s.crafts.khi;let ok=0,fl=0,qlMax=0;for(let k=0;k<n;k++){if(!can('khi',r[2],r[1],r[3])){if(k===0)return say('Chưa đủ cấp nghề, nguyên liệu hoặc linh thạch');break}takeM(s,r[2]);s.stones-=r[3];if(Math.random()<cch(s,'khi',r[4],r[1])){inventoryService.add(s,r[0],1);const it=s.inv[s.inv.length-1],p=Math.random();let ql=0;if(p<.03+.008*c.lv+.04*talMul(s,'t37'))ql=2;else if(p<.12+.015*c.lv+.08*talMul(s,'t37'))ql=1;if(ql){it.ql=ql;qlMax=Math.max(qlMax,ql)}ok++;cxp(s,'khi',15+10*r[1])}else{fl++;cxp(s,'khi',5+3*r[1])}}const nm=ID[r[0]].n;say(n===1?(ok?(qlMax?'Thần binh xuất thế! Rèn được '+nm+' ['+QL[qlMax]+']':'Rèn thành '+nm):'Rèn thất bại, nguyên liệu vỡ nát'):`Rèn ${nm}: thành công ${ok}, thất bại ${fl}`)},
+  kc5:i=>A.kc(i,5),
   kq:()=>{const it=s.inv.find(i=>i.u===ui.cr.kq);if(!it||(it.ql||0)>=3)return;const q=it.ql||0,U=QU[q];if(!can('khi',U[1],U[0],U[2]))return say('Chưa đủ cấp nghề, nguyên liệu hoặc linh thạch');takeM(s,U[1]);s.stones-=U[2];if(Math.random()<cch(s,'khi',U[3],U[0])){it.ql=q+1;say(ID[it.id].n+' thăng lên '+QL[it.ql]);cxp(s,'khi',30+20*q)}else{say('Nâng phẩm thất bại, trang bị vẫn an toàn');cxp(s,'khi',8)}},
   ab:id=>{const a=AR.find(a=>a[0]===id),sc=Math.round(a[4]*(hasT(s,'t35')?.7:1));if(s.arrays[id]||!can('tran',a[3],a[2],sc))return say('Chưa đủ điều kiện bố trận');takeM(s,a[3]);s.stones-=sc;s.arrays[id]=1;if(!s.activeArray)s.activeArray=id;say('Đã bố trí '+a[1]);cxp(s,'tran',25+15*a[2])},
   aa:id=>{if(id&&!s.arrays[id])return;s.activeArray=id||null;say(id?'Đã kích hoạt '+AR.find(a=>a[0]===id)[1]:'Đã tắt trận pháp')},
-  tc:i=>{const r=TR[+i];if(!can('tran',r[2],r[1],r[3]))return say('Chưa đủ cấp nghề, nguyên liệu hoặc linh thạch');takeM(s,r[2]);s.stones-=r[3];const d=ID[r[0]];if(Math.random()<cch(s,'tran',r[4],r[1])){inventoryService.add(s,r[0],1);say('Chế tạo thành công '+d.n);cxp(s,'tran',20+10*r[1])}else{say('Khắc trận thất bại, nguyên liệu vỡ nát');cxp(s,'tran',6+3*r[1])}},
+  tc:(i,n=1)=>{const r=TR[+i];let ok=0,fl=0;for(let k=0;k<n;k++){if(!can('tran',r[2],r[1],r[3])){if(k===0)return say('Chưa đủ cấp nghề, nguyên liệu hoặc linh thạch');break}takeM(s,r[2]);s.stones-=r[3];if(Math.random()<cch(s,'tran',r[4],r[1])){inventoryService.add(s,r[0],1);ok++;cxp(s,'tran',20+10*r[1])}else{fl++;cxp(s,'tran',6+3*r[1])}}const nm=ID[r[0]].n;say(n===1?(ok?'Chế tạo thành công '+nm:'Khắc trận thất bại, nguyên liệu vỡ nát'):`Khắc ${nm}: thành công ${ok}, thất bại ${fl}`)},
+  tc5:i=>A.tc(i,5),
   bms:()=>{const it=s.inv.find(i=>i.u===ui.cr.bm);if(!it||(s.bmWeapon&&s.bmWeapon.u===it.u))return;s.bmWeapon={u:it.u,lv:0};say(ID[it.id].n+' trở thành Bản Mệnh Pháp Bảo (cấp 0)')},
   bmt:()=>{const b=s.bmWeapon,it=s.inv.find(i=>i.u===ui.cr.bm);if(!b||b.lv<=0)return say('Bản mệnh hiện tại chưa có cấp Ôn Dưỡng để chuyển di');if(!it||b.u===it.u)return say('Hãy chọn một Vũ khí hoặc Pháp bảo khác trong danh sách');const sc=50*b.lv*(s.realm+1);if(s.stones<sc)return say('Cần '+sc+' linh thạch để Chuyển Di Bản Mệnh');const nlv=Math.floor(b.lv*.7);s.stones-=sc;s.bmWeapon={u:it.u,lv:nlv};say('Chuyển Di Bản Mệnh sang '+ID[it.id].n+' thành công (giữ lại cấp +'+nlv+')')},
   bmo:()=>{const b=s.bmWeapon;if(!b||b.lv>=10)return;const sc=80*(b.lv+1)*(s.realm+1),xp=30*(b.lv+1)*(s.realm+1);if(s.stones<sc||s.xp<xp)return say('Cần '+sc+' linh thạch và '+xp+' tu vi');s.stones-=sc;s.xp-=xp;b.lv++;say('Ôn Dưỡng thành công: Bản Mệnh +'+b.lv)},

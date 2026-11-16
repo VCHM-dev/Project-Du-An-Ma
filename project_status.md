@@ -1,6 +1,6 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.9 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.10 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
@@ -41,6 +41,11 @@
   - Cập nhật đường cong quái `foeOf(i)` (`L = round(18 * 2.15^i)`) và **Uy Áp Cảnh Giới** (`-22%` sát thương gây ra, `+25%` sát thương nhận vào mỗi cảnh giới chênh lệch; giảm trừ bởi Ngũ hành tương khắc `50%`, Bản Mệnh Pháp Bảo `+2.5%/cấp` tối đa `25%`, và Trận Bàn).
   - **Bách Nghệ hỗ trợ thực chiến:** Luyện Khí (`ql=2` +15%, `ql=3` +30% Xuyên Giáp); Luyện Đan (3 đan thực chiến `d14` Bạo Nguyên Đan, `d15` Kim Cang Hộ Tâm Đan, `d16` Bách Thảo Giải Độc Đan; phẩm chất Cực phẩm `ex` dùng không tốn lượt); Trận Pháp (2 Trận Bàn tiêu hao `b1` Ngũ Hành Nghịch Chuyển Bàn & `b2` Tứ Tượng Tỏa Linh Bàn chế tạo trong `vCraft` và kích hoạt trong `btlModal`).
   - Đồng bộ ngưỡng Độ Kiếp (`160 * 2.1^t`) và ngưỡng Phi Thăng (`thu >= 150.000` ở Độ Kiếp).
+- **Tối ưu chiến đấu tự động, Bách Nghệ & Hiệu năng UI (`autoPick`, `vCraft`, `render`, `runLab`, `resolve`):**
+  - Nâng cấp `adventureService.autoPick(b, x)` tự động ưu tiên kích hoạt Trận Bàn (`b1`, `b2`), giải độc (`d16`), uống đan hồi phục (`d1/d3/d12`), bật `Kim Cang Hộ Tâm Đan` (`d15`) khi boss tụ lực và `Bạo Nguyên Đan` (`d14`) khi vượt cấp.
+  - Thêm nút chế tạo nhanh **×5** (`dc5`, `kc5`, `tc5`) trong `vCraft` cho cả 3 nghề (Luyện Đan, Luyện Khí, Khắc Trận Bàn).
+  - Bảo toàn vị trí cuộn trang (`window.scrollY` và `.modal-box` `scrollTop`) khi `render()` cập nhật giao diện trên cùng một tab.
+  - Nâng cấp bot `runLab()` tự trang bị đồ mạnh hơn và dùng đan hợp lý, đồng thời sửa lỗi rớt nguyên liệu ở ải cấp cao (`i >= 9`, `mtTier = Math.min(5, ...)`), giúp `runLab()` giả lập thông suốt từ **Luyện Khí → Hỗn Nguyên (13/13 đại cảnh giới)**.
 - **Endgame, Giao diện Discord & Admin Balance Lab (`vAdmin`):**
   - **Phi Thăng Tiên Giới** & **Binh Giải Chuyển Thế (New Game+)**.
   - Tùy biến Profile Card, 5 bộ Theme + Nitro Custom Color, đổi ảnh Avatar/Banner/Wallpaper (tự nén Canvas JPEG 0.8), trình phát nhạc ngũ cung Web Audio API.
