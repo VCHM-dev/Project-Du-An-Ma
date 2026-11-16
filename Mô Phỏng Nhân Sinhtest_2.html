@@ -90,8 +90,64 @@ img.av{object-fit:cover}.pe input[type=file]{padding:3px}
 .bimg .blc{left:6px;bottom:6px}.bimg .bel{right:6px;bottom:6px;font-weight:bold}.bimg .bwn{right:6px;top:6px;border-color:#2dd4bf88;color:#2dd4bf}
 .dn-c .bimg{height:98px;margin:-5px -7px 6px}
 @media(prefers-reduced-motion:reduce){.aiw i,.card:hover .bimg svg{animation:none;transform:none}}
-</style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div>
+.gd-ov{position:fixed;inset:0;z-index:50;background:transparent}
+.gd-spot{position:fixed;z-index:51;border:2px solid var(--gold);border-radius:8px;box-shadow:0 0 0 9999px rgba(2,4,10,.78),0 0 18px color-mix(in srgb,var(--gold) 65%,transparent);pointer-events:none;transition:top .22s ease,left .22s ease,width .22s ease,height .22s ease}
+.gd-tip{position:fixed;z-index:52;width:min(370px,calc(100vw - 24px));background:var(--pn);border:1px solid var(--gold);border-radius:10px;padding:14px;box-shadow:0 12px 32px #000c}
+.gd-tip h4{margin:0 0 6px;color:var(--gold);font-size:calc(var(--fs)*1.04)}
+.gd-bar{height:5px;border-radius:4px;background:var(--in);overflow:hidden;margin:8px 0}.gd-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--jade),var(--gold));transition:width .25s ease}
+.gd-hl{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border:1px solid var(--ln);border-left:3px solid var(--jade);border-radius:8px;background:var(--in);margin-bottom:8px}
+.gd-hl .gi{font-size:20px;line-height:1.2;flex:none}
+</style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div>
 <script>
+const APP_VERSION='5.13';
+const GUIDE_DATA={
+  onboardingSteps:[
+    {tab:'char',selector:'.st',title:'1. Nhân Vật & 6 Chỉ Số Thực Chiến',desc:'Đây là bảng căn cơ của đạo hữu: gồm 6 thuộc tính gốc (Thể chất, Linh căn, Ngộ tính, Thần hồn, Tâm cảnh, Khí vận) và 6 chỉ số thực chiến (Sinh mệnh, Linh lực, Sức mạnh, Phòng ngự, Tốc độ, Bạo kích). Mỗi cảnh giới mới đều nhân hệ số sức mạnh lên vượt bậc.'},
+    {tab:'cul',selector:'[data-a="train"]',title:'2. Tu Luyện, Bế Quan Tự Động & Đột Phá',desc:'Bấm Bế quan để tích lũy tu vi hoặc dùng Bế quan liên tục để tự động đột phá các tầng nhỏ (1→9). Khi chạm cửa đại cảnh giới, Bảo hiểm đột phá (+5% mỗi lần thất bại, tối đa +30%) giúp bạn không bị kẹt mãi; nhớ chú ý thanh Đan Độc!'},
+    {tab:'tal',selector:'#app .pn',title:'3. Thiên Phú & Nâng Cấp',desc:'Thiên phú có 7 phẩm chất (Bạch sắc → Thất thải) và có thể nâng cấp từ Lv1 đến Lv5. Hãy kích hoạt tối ưu các thiên phú phù hợp với lối chơi Bế quan, Luyện đan hoặc Chiến đấu.'},
+    {tab:'tec',selector:'#app .pn',title:'4. Công Pháp & Diễn Hóa Công Pháp',desc:'Trang bị tối đa 3 công pháp để tăng chỉ số và mở khóa Tuyệt kỹ chiến đấu. Khi luyện 2 công pháp đạt Viên mãn, bạn có thể Diễn Hóa hợp nhất thành bộ công pháp mới giữ nguyên hiệu ứng đặc biệt!'},
+    {tab:'kt',selector:'[data-a="sim"]',title:'5. Kim Thủ Chỉ — Mô Phỏng Nhân Sinh & Thiên Cơ AI',desc:'Mở ra một kiếp mô phỏng theo từng năm tuổi với 4 hành động chủ động, Dấu ấn nhân quả và 8 NPC định mệnh. Bạn có thể bật Thiên Cơ AI (BYOK Gemini/OpenAI) để AI tự dẫn truyện theo hành động tự do hoặc chơi Cổ Điển offline.'},
+    {tab:'adv',selector:'[data-a="adv"]',title:'6. Lịch Luyện, Chiến Trường & Càn Quét',desc:'Chiến đấu theo lượt với 3 Tâm pháp giao chiến, Tuyệt kỹ chủ động và cơ chế Uy áp cảnh giới. Khi đủ mạnh, dùng Càn quét (10/25/50/100 năm) kèm tùy chọn dừng khi rơi đồ hiếm để farm nguyên liệu.'},
+    {tab:'craft',selector:'#app .pn',title:'7. Bách Nghệ (Luyện Đan, Luyện Khí, Trận Pháp)',desc:'Chế tạo đan dược thực chiến (Bạo Nguyên Đan, Kim Cang Hộ Tâm Đan), rèn Thần binh, khắc Trận Bàn và ôn dưỡng Bản Mệnh Pháp Bảo (+1 đến +10). Có nút chế tạo nhanh ×5 cho cả 3 nghề.'},
+    {tab:'inv',selector:'#app .pn',title:'8. Kho Đồ, Khóa Bảo Vệ & Phường Thị',desc:'Lọc vật phẩm theo phẩm chất và loại. Nhớ bấm khóa 🔒 các trang bị quý để tránh bị bán nhầm khi dùng nút Bán hàng loạt! Sau đó sang tab Phường Thị để mua bán tài nguyên.'},
+    {selector:'[data-a="qsave"]',title:'9. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
+  ],
+  patchNotes:[
+    {
+      version:'5.13',date:'2026-11-16',title:'Hệ Thống Hướng Dẫn Tân Thủ & Cẩm Nang Tra Cứu',
+      highlights:[
+        {icon:'🚀',title:'Tour Hướng Dẫn Tân Thủ Tương Tác',desc:'Tự động dẫn dắt người chơi mới qua từng tab cốt lõi bằng spotlight trực quan.',tab:'char'},
+        {icon:'✨',title:'Tự Động Báo Tính Năng Mới (What\'s New)',desc:'Tự động tổng hợp điểm mới mỗi khi game lên phiên bản mới, kèm mini-tour chỉ thẳng vào tính năng mới.',selector:'[data-a="gd_open"]'},
+        {icon:'📖',title:'Cẩm Nang Tra Cứu Cơ Chế',desc:'Mở lại bất cứ lúc nào từ thanh tiêu đề để tra cứu Đột phá, Ngũ hành, Đan độc và Lưu trữ.',selector:'[data-a="gd_open"]'}
+      ],
+      tourSteps:[
+        {selector:'[data-a="gd_open"]',title:'Nút Cẩm Nang Mới',desc:'Bấm vào đây bất kỳ lúc nào để chạy lại Tour Tân Thủ, tra cứu cơ chế ẩn hoặc xem lịch sử cập nhật.'},
+        {selector:'[data-a="qsave"]',title:'Lưu Nhanh 1 Chạm',desc:'Chụp ngay 1 mốc lưu vào Kho Save trình duyệt (IndexedDB) chỉ với 1 cú bấm.'},
+        {selector:'[data-a="sv_open"]',title:'Kho Save & Link Chuyển Máy',desc:'Xuất/nhập file .msns và tạo Link Chuyển Máy (#s=...) gọn nhẹ không cần server.'}
+      ]
+    },
+    {
+      version:'5.12',date:'2026-11-16',title:'Hệ Thống Lưu 1 Chạm & Kho Save Thống Nhất',
+      highlights:[
+        {icon:'💾',title:'Thay thế Vân Đạo & Base64 rườm rà',desc:'Gom toàn bộ sao lưu vào 2 nút 💾 Lưu và 📂 Kho Save, hỗ trợ file .msns, IndexedDB và Link Chuyển Máy.',selector:'[data-a="sv_open"]'},
+        {icon:'🛡',title:'Xem Trước & Chống Mất Save',desc:'Hiển thị so sánh nhân vật trước khi ghi đè và tự sao lưu dự phòng nếu gặp lỗi khởi động.',selector:'[data-a="sv_open"]'}
+      ]
+    },
+    {
+      version:'5.11',date:'2026-11-16',title:'Nâng Cấp Đột Phá Cảnh Giới & Bảng 6 Chỉ Số',
+      highlights:[
+        {icon:'⚔',title:'Bảng 6 Chỉ Số Thực Chiến',desc:'Hiển thị đầy đủ Sinh mệnh, Linh lực, Sức mạnh, Phòng ngự, Tốc độ, Bạo kích kèm Hệ số cảnh giới.',tab:'char'},
+        {icon:'⚡',title:'Tẩy Kinh Phạt Tủy & Tổng Kết Đột Phá',desc:'Đột phá đại cảnh giới tự động xóa Tâm Ma, giảm Đan Độc, +2 Khí vận và hiện popup so sánh Trước → Sau.',tab:'cul'}
+      ]
+    }
+  ],
+  codexTopics:[
+    {icon:'⚡',title:'Đột Phá, Bảo Hiểm (Pity) & Thiên Kiếp',body:'Mỗi lần đột phá đại cảnh giới thất bại sẽ tích lũy +5% tỷ lệ thành công cho lần sau (tối đa +30%, reset khi thành công). Đạt Độ Kiếp cần Phòng ngự ≥ 150.000 để đủ điều kiện Phi Thăng Tiên Giới. Khi đột phá đại cảnh giới thành công sẽ kích hoạt Tẩy Kinh Phạt Tủy (xóa Tâm Ma, giảm Đan Độc, +2 Khí vận).'},
+    {icon:'☯',title:'Uy Áp Cảnh Giới & Ngũ Hành Tương Khắc',body:'Khi đánh quái vượt cảnh giới sẽ chịu Uy áp (-22% sát thương gây ra, +25% sát thương nhận vào mỗi bậc chênh lệch). Bạn có thể giảm Uy áp bằng Ngũ hành tương khắc (50%), Bản Mệnh Pháp Bảo (+2.5%/cấp, tối đa 25%) và Trận Bàn thực chiến.'},
+    {icon:'⚗',title:'Đan Độc, Tâm Ma & Bản Mệnh Pháp Bảo',body:'Uống nhiều đan dược làm tăng Đan Độc, làm giảm hiệu quả tu luyện. Hãy Bế quan hoặc dùng Tịnh Tâm Đan / Tẩy Tủy Đan để thanh lọc. Vũ khí/Pháp bảo có thể nhận làm Bản Mệnh, ôn dưỡng +1 đến +10 và Chuyển Di sang trang bị mới (giữ 70% cấp độ).'},
+    {icon:'🔮',title:'Mẹo Dùng Thiên Cơ AI & Lưu Trữ An Toàn',body:'API Key của Thiên Cơ AI lưu riêng ở trình duyệt (msns_ai_cfg), hoàn toàn không nằm trong file save .msns hay Link Chuyển Máy. Nếu API lỗi 3 lần liên tiếp, game tự chuyển về Chế độ Cổ Điển (Offline) để không gián đoạn cuộc chơi.'}
+  ]
+};
 /* ===== DỮ LIỆU TĨNH ===== */
 const RN=['Bạch sắc','Lục sắc','Lam sắc','Tử sắc','Kim sắc','Hồng sắc','Thất thải'],RC=['#e5e5e5','#4ade80','#38bdf8','#a78bfa','#fbbf24','#f43f5e','#f0abfc'];
 const REALMS=['Luyện Khí','Trúc Cơ','Kim Đan','Nguyên Anh','Hóa Thần','Luyện Hư','Hợp Thể','Đại Thừa','Độ Kiếp','Chân Tiên','Kim Tiên','Thái Ất','Đại La','Hỗn Nguyên'],LIFE=[100,200,500,1000,2000,4000,8000,16000,32000,100000,300000,1000000,5000000,99999999];
@@ -145,7 +201,7 @@ const PR=[20,50,120,300,800,2000,6000];
 /* ===== TIỆN ÍCH ===== */
 const $=i=>document.getElementById(i),clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),pick=a=>a[Math.random()*a.length|0],uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let s=null,ui={tab:'char',f:-1,sort:'r',cf:'all',rs:false,msg:'',adm:false,admAuth:false,admMsg:'',sv:false,svSlim:true,svSlots:[],svPreview:null,svLegacy:false};
+let s=null,ui={tab:'char',f:-1,sort:'r',cf:'all',rs:false,msg:'',adm:false,admAuth:false,admMsg:'',sv:false,svSlim:true,svSlots:[],svPreview:null,svLegacy:false,gdModal:null,gdTab:'tour',gdTour:null};
 const say=t=>{ui.msg=t;ui.mc=(ui.mc||0)+1};
 const KEY='msns_main_v1',store={load(){try{const j=localStorage.getItem(KEY);return j?JSON.parse(j):null}catch(e){return null}},save(x,keepTs){try{if(x&&!keepTs){x.updatedAt=Date.now();x.rev=(x.rev||0)+1}localStorage.setItem(KEY,JSON.stringify(x))}catch(e){toast('Bộ nhớ trình duyệt đã đầy, chưa lưu được. Hãy dùng ảnh nhỏ hơn hoặc xóa bớt ảnh tùy chỉnh.','wn')}},clear(){try{localStorage.removeItem(KEY)}catch(e){}}};
 const addm=(o,m,f=1)=>{for(const k in m)o[k]=(o[k]||0)+m[k]*f};
@@ -1288,6 +1344,139 @@ ${s?`<div class="card" style="--rc:var(--mu);margin-bottom:8px"><b>💻 Nhân v�
 <div class="card r4" style="--rc:var(--jade);margin-bottom:10px"><b>✨ Bản Save Sắp Nạp</b><div class="mu">${esc(r.name||'Vô Danh')} · ${REALMS[r.realm||0]} Tầng ${(r.layer||0)+1} · ${r.age||16} tuổi · 💎 ${(r.stones||0).toLocaleString('vi-VN')}<br>Cập nhật: ${new Date(r.updatedAt||r.created||Date.now()).toLocaleString('vi-VN')}</div></div>
 <div class="bt">${btn('sv_confirm','','✅ Xác nhận nạp (Ghi đè)')}${btn('sv_cancel','','Hủy')}</div></div></div>`;
 }
+
+/* ===== HỆ THỐNG HƯỚNG DẪN TÂN THỦ & WHAT'S NEW (GUIDE SERVICE) ===== */
+const GD_KEY='msns_guide_v1';
+const guideService={
+  load(){try{return Object.assign({onboarded:false,seenVersion:''},JSON.parse(localStorage.getItem(GD_KEY)||'{}'))}catch(e){return{onboarded:false,seenVersion:''}}},
+  save(st){try{localStorage.setItem(GD_KEY,JSON.stringify(st))}catch(e){}},
+  checkAuto(){
+    if(!s)return;
+    const st=this.load();
+    if(!st.onboarded){ui.gdModal='welcome';return}
+    if(st.seenVersion!==APP_VERSION){ui.gdModal='whatsnew';return}
+  },
+  missedNotes(){
+    const st=this.load(),notes=GUIDE_DATA.patchNotes||[];
+    if(!st.seenVersion)return notes.slice(0,1);
+    const idx=notes.findIndex(p=>p.version===st.seenVersion);
+    return idx<=0?(idx===0?[]:notes):notes.slice(0,idx);
+  },
+  finishOnboard(){
+    const st=this.load();
+    st.onboarded=true;st.seenVersion=APP_VERSION;
+    this.save(st);
+    ui.gdModal=null;ui.gdTour=null;
+  },
+  dismissModal(){
+    if(ui.gdModal==='welcome'||ui.gdModal==='whatsnew'){
+      const st=this.load();
+      st.onboarded=true;st.seenVersion=APP_VERSION;
+      this.save(st);
+    }
+    ui.gdModal=null;
+  },
+  startTour(steps,mode){
+    if(!steps||!steps.length)return;
+    ui.gdModal=null;ui.sv=false;ui.ap=0;
+    ui.gdTour={steps,idx:0,mode:mode||'onboard'};
+    this.syncStep(true);
+  },
+  step(delta){
+    const t=ui.gdTour;if(!t)return;
+    const nx=t.idx+delta;
+    if(nx<0)return;
+    if(nx>=t.steps.length){this.endTour();return}
+    t.idx=nx;
+    this.syncStep(false);
+  },
+  syncStep(skipRender){
+    const t=ui.gdTour;if(!t)return;
+    const cur=t.steps[t.idx];
+    if(cur&&cur.tab&&ui.tab!==cur.tab)ui.tab=cur.tab;
+    if(!skipRender)render();
+  },
+  endTour(){
+    const t=ui.gdTour;
+    if(t&&(t.mode==='onboard'||t.mode==='whatsnew')){
+      const st=this.load();
+      st.onboarded=true;st.seenVersion=APP_VERSION;
+      this.save(st);
+    }
+    ui.gdTour=null;
+    toast('✨ Hoàn thành hướng dẫn! Chúc đạo hữu tu hành thuận lợi.');
+  },
+  positionTour(){
+    const t=ui.gdTour;if(!t)return;
+    const cur=t.steps[t.idx],spot=$('gd-spot'),tip=$('gd-tip');
+    if(!cur||!tip)return;
+    const el=cur.selector?document.querySelector(cur.selector):null;
+    const vw=window.innerWidth,vh=window.innerHeight;
+    if(el){
+      const r0=el.getBoundingClientRect();
+      if(r0.top<60||r0.bottom>vh-40)el.scrollIntoView({behavior:'smooth',block:'center'});
+      const r=el.getBoundingClientRect(),pad=6;
+      if(spot){
+        spot.style.display='block';
+        spot.style.top=Math.max(4,r.top-pad)+'px';
+        spot.style.left=Math.max(4,r.left-pad)+'px';
+        spot.style.width=Math.min(vw-8,r.width+pad*2)+'px';
+        spot.style.height=Math.min(vh-8,r.height+pad*2)+'px';
+      }
+      const tw=tip.offsetWidth||340,th=tip.offsetHeight||190;
+      let top=r.bottom+14;
+      if(top+th>vh-12)top=Math.max(12,r.top-th-14);
+      if(top+th>vh-12)top=Math.max(12,(vh-th)/2);
+      let left=Math.max(12,Math.min(vw-tw-12,r.left+(r.width-tw)/2));
+      tip.style.top=top+'px';tip.style.left=left+'px';tip.style.transform='none';
+    }else{
+      if(spot)spot.style.display='none';
+      tip.style.top='50%';tip.style.left='50%';tip.style.transform='translate(-50%,-50%)';
+    }
+  },
+  renderTour(){
+    const t=ui.gdTour;if(!t)return'';
+    const cur=t.steps[t.idx],n=t.steps.length,pct=Math.round(((t.idx+1)/n)*100);
+    return `<div class="gd-ov"></div><div id="gd-spot" class="gd-spot" style="display:none"></div><div id="gd-tip" class="gd-tip" role="dialog" aria-label="Hướng dẫn tương tác">
+      <div class="row" style="align-items:center"><span class="mu">Bước ${t.idx+1} / ${n}</span><button data-a="gd_tour_end" style="padding:2px 8px;font-size:12px">Bỏ qua</button></div>
+      <div class="gd-bar"><i style="width:${pct}%"></i></div>
+      <h4>${esc(cur.title)}</h4>
+      <div style="font-size:calc(var(--fs)*.93);line-height:1.55;margin-bottom:12px">${esc(cur.desc)}</div>
+      <div class="bt" style="justify-content:space-between;margin-top:0">${btn('gd_prev','','← Quay lại',t.idx===0)}${btn('gd_next','',t.idx===n-1?'✅ Hoàn thành':'Tiếp theo →')}</div>
+    </div>`;
+  },
+  renderLayer(){
+    if(ui.gdTour)return this.renderTour();
+    if(!ui.gdModal||!s)return'';
+    if(ui.gdModal==='welcome'){
+      return `<div class="modal-bg"><div class="modal-box" style="width:min(440px,100%)"><h3 style="margin:0 0 8px;color:var(--gold)">☯ Chào Mừng Đạo Hữu Nhập Đạo!</h3>
+        <div class="ainr" style="margin-bottom:10px">Đây là lần đầu bạn bước vào <b>Mô Phỏng Nhân Sinh (v${APP_VERSION})</b>. Bạn có muốn dạo một vòng 9 bước ngắn để nắm vững Tu luyện, Kim Thủ Chỉ, Bách Nghệ và Lưu Save 1 chạm không?</div>
+        <div class="bt">${btn('gd_start_onboard','','🚀 Bắt đầu hướng dẫn (Tour)')}${btn('gd_skip_onboard','','Đã biết chơi, bỏ qua')}</div></div></div>`;
+    }
+    if(ui.gdModal==='whatsnew'){
+      const missed=this.missedNotes();
+      const curNote=GUIDE_DATA.patchNotes[0];
+      const hasTour=curNote&&curNote.tourSteps&&curNote.tourSteps.length;
+      return `<div class="modal-bg"><div class="modal-box" style="width:min(520px,100%);max-height:86vh;overflow-y:auto"><div class="row" style="align-items:center"><h3 style="margin:0;color:var(--gold)">✨ Có Gì Mới Ở Phiên Bản v${APP_VERSION}</h3>${btn('gd_close','','Đóng')}</div>
+        <div class="mu" style="margin:6px 0 10px">Game vừa được nâng cấp từ lần truy cập trước của bạn!</div>
+        ${missed.map(p=>`<div style="margin-bottom:12px"><div style="font-weight:bold;color:var(--jade);margin-bottom:6px">v${esc(p.version)} · ${esc(p.title)} <span class="mu">(${esc(p.date)})</span></div>${p.highlights.map(h=>`<div class="gd-hl"><div class="gi">${h.icon||'✨'}</div><div style="flex:1"><b>${esc(h.title)}</b><div class="mu">${esc(h.desc)}</div>${h.tab?`<div class="bt">${btn('gd_jump',h.tab,'Đi tới mục này')}</div>`:''}</div></div>`).join('')}</div>`).join('')}
+        <div class="bt">${hasTour?btn('gd_start_wn','','🎯 Hướng dẫn trực tiếp tính năng mới'):''}${btn('gd_close','','Đã hiểu, tiếp tục tu hành')}</div></div></div>`;
+    }
+    if(ui.gdModal==='codex'){
+      const tab=ui.gdTab||'tour';
+      const body=tab==='tour'
+        ?`<div class="ainr" style="margin-bottom:10px">Chạy lại tour spotlight tương tác qua 9 khu vực cốt lõi hoặc xem nhanh tính năng mới của phiên bản <b>v${APP_VERSION}</b>.</div>
+          <div class="bt">${btn('gd_start_onboard','','🚀 Chạy lại Tour Tân Thủ (9 bước)')}${GUIDE_DATA.patchNotes[0]&&GUIDE_DATA.patchNotes[0].tourSteps?btn('gd_start_wn','','🎯 Tour Tính Năng Mới v'+APP_VERSION):''}</div>`
+        :tab==='codex'
+        ?GUIDE_DATA.codexTopics.map(c=>`<div class="gd-hl"><div class="gi">${c.icon}</div><div><b>${esc(c.title)}</b><div class="mu" style="margin-top:2px;line-height:1.5">${esc(c.body)}</div></div></div>`).join('')
+        :GUIDE_DATA.patchNotes.map(p=>`<div class="pn" style="margin-bottom:8px"><div class="row"><b>v${esc(p.version)} · ${esc(p.title)}</b><span class="mu">${esc(p.date)}</span></div>${p.highlights.map(h=>`<div class="mu" style="margin-top:4px">${h.icon||'•'} <b>${esc(h.title)}:</b> ${esc(h.desc)}</div>`).join('')}</div>`).join('');
+      return `<div class="modal-bg" onclick="if(event.target===this){ui.gdModal=null;render()}"><div class="modal-box" style="width:min(560px,100%);max-height:86vh;overflow-y:auto"><div class="row" style="align-items:center;margin-bottom:8px"><h3 style="margin:0;color:var(--gold)">📖 Cẩm Nang Đạo Hữu (v${APP_VERSION})</h3>${btn('gd_close','','Đóng')}</div>
+        <div class="bt" style="margin-bottom:10px"><button class="chip ${tab==='tour'?'on':''}" data-a="gd_tab" data-x="tour">🚀 Tour Tân Thủ</button><button class="chip ${tab==='codex'?'on':''}" data-a="gd_tab" data-x="codex">📜 Tra Cứu Cơ Chế</button><button class="chip ${tab==='notes'?'on':''}" data-a="gd_tab" data-x="notes">✨ Lịch Sử Cập Nhật</button></div>
+        ${body}</div></div>`;
+    }
+    return'';
+  }
+};
 function brkModal(){
   const b=ui.brkInfo;if(!b)return'';
   const row=(lb,x0,x1,suf='')=>`<div class="row"><span>${lb}</span><span>${x0.toLocaleString('vi-VN')}${suf} → <b class="ok">${x1.toLocaleString('vi-VN')}${suf}</b></span></div>`;
@@ -1707,15 +1896,16 @@ function render(){
   const mb0=document.querySelector('#adm-auth .modal-box'),ms0=mb0?mb0.scrollTop:0;
   applyTheme();applyWp();
   const pt=$('ptc');if(pt&&!pt.children.length)pt.innerHTML=Array.from({length:20},(_,i)=>`<i style="--x:${(i*5.1+2)%98}%;--s:${2+(i%3)*1.5}px;--d:${11+(i%7)*2.5}s;--dl:${-(i*1.3)%14}s;--dx:${((i%5)-2)*18}px"></i>`).join('');
-  const nv=$('nav'),sy=$('sys'),au=$('adm-auth');
+  const nv=$('nav'),sy=$('sys'),au=$('adm-auth'),gl=$('guide-layer');
   if(au)au.innerHTML=admAuthHTML();
   document.body.classList.toggle('no-nav',!s);
-  if(!s){nv.innerHTML='';if(sy)sy.innerHTML='';$('sb').innerHTML='';$('bgm').innerHTML='';bgStop();$('ap').className=$('apo').className='';$('app').innerHTML=vCreate();return}
+  if(!s){nv.innerHTML='';if(sy)sy.innerHTML='';$('sb').innerHTML='';$('bgm').innerHTML='';bgStop();$('ap').className=$('apo').className='';if(gl)gl.innerHTML='';$('app').innerHTML=vCreate();return}
   nv.innerHTML=TABS.filter(t=>t[0]!=='admin'||ui.adm).map(t=>`<button class="${ui.tab===t[0]?'on':''}" data-a="tab" data-x="${t[0]}">${t[1]}</button>`).join('');
-  if(sy)sy.innerHTML=`<button data-a="qsave" title="Lưu nhanh 1 chạm vào Kho Save">💾 Lưu</button><button data-a="sv_open" class="${ui.sv?'on':''}">📂 Kho Save</button><button data-a="ui" class="${ui.ap?'on':''}" aria-haspopup="dialog">🎨 Giao diện</button><button data-a="reset">${ui.rs?'Bấm lần nữa để xóa hết':'Làm mới dữ liệu'}</button>`;
+  if(sy)sy.innerHTML=`<button data-a="qsave" title="Lưu nhanh 1 chạm vào Kho Save">💾 Lưu</button><button data-a="sv_open" class="${ui.sv?'on':''}">📂 Kho Save</button><button data-a="gd_open" class="${ui.gdModal==='codex'?'on':''}" title="Cẩm nang tân thủ & Cập nhật">📖 Cẩm Nang</button><button data-a="ui" class="${ui.ap?'on':''}" aria-haspopup="dialog">🎨 Giao diện</button><button data-a="reset">${ui.rs?'Bấm lần nữa để xóa hết':'Làm mới dữ liệu'}</button>`;
   $('sb').innerHTML=sbar();$('bgm').innerHTML=bgmHTML();syncVol();
   $('app').innerHTML=savePanel()+(TABS.find(t=>t[0]===ui.tab&&(t[0]!=='admin'||ui.adm))||TABS[0])[2]();
   $('ap').innerHTML=apHTML();$('ap').className=$('apo').className=ui.ap?'open':'';
+  if(gl){gl.innerHTML=guideService.renderLayer();if(ui.gdTour&&typeof requestAnimationFrame==='function')requestAnimationFrame(()=>guideService.positionTour())}
   const mb1=document.querySelector('#adm-auth .modal-box');if(mb1&&ms0)mb1.scrollTop=ms0;
   if(typeof window!=='undefined'&&typeof window.scrollTo==='function'&&ui._tab===ui.tab)window.scrollTo(0,sy0);
   ui._tab=ui.tab;
@@ -1725,7 +1915,17 @@ function render(){
 /* ===== BẢNG LỆNH HÀNH ĐỘNG ===== */
 const A={
   tab:x=>{ui.tab=x;ui.msg=''},flt:x=>ui.f=+x,cflt:x=>ui.cf=x,
-  create:()=>{s=characterService.create($('nm').value.trim().slice(0,24),$('gd').value,+$('rt').value);migrate()},
+  create:()=>{s=characterService.create($('nm').value.trim().slice(0,24),$('gd').value,+$('rt').value);migrate();guideService.checkAuto()},
+  gd_open:()=>{ui.gdModal=ui.gdModal==='codex'?null:'codex';ui.gdTab='tour'},
+  gd_tab:x=>{ui.gdTab=x},
+  gd_close:()=>{guideService.dismissModal()},
+  gd_start_onboard:()=>{guideService.startTour(GUIDE_DATA.onboardingSteps,'onboard')},
+  gd_skip_onboard:()=>{guideService.finishOnboard()},
+  gd_start_wn:()=>{const p=GUIDE_DATA.patchNotes[0];if(p&&p.tourSteps&&p.tourSteps.length)guideService.startTour(p.tourSteps,'whatsnew');else guideService.dismissModal()},
+  gd_next:()=>{guideService.step(1)},
+  gd_prev:()=>{guideService.step(-1)},
+  gd_tour_end:()=>{guideService.endTour()},
+  gd_jump:x=>{guideService.dismissModal();ui.tab=x},
   reset:()=>{if(!ui.rs){ui.rs=true;return}store.clear();s=null;ui.rs=false;ui.adm=false},
   tgl:x=>talentInventoryService.toggle(s,x),tup:x=>talentInventoryService.up(s,x),
   train:()=>cultivationService.train(s),auto:()=>cultivationService.auto(s),brk:()=>cultivationService.go(s),brk_cls:()=>{ui.brkInfo=null},
@@ -1817,7 +2017,7 @@ const A={
 };
 
 /* ===== SỰ KIỆN TOÀN CỤC ===== */
-const NO_TS={tab:1,flt:1,cflt:1,ui:1,uic:1,aiopen:1,qsave:1,sv_open:1,sv_close:1,sv_slim:1,sv_dl:1,sv_link:1,sv_link_clr:1,sv_share:1,sv_load:1,sv_del:1,sv_leg:1,sv_imp_txt:1,sv_confirm:1,sv_cancel:1,adm_cls:1};
+const NO_TS={tab:1,flt:1,cflt:1,ui:1,uic:1,aiopen:1,qsave:1,sv_open:1,sv_close:1,sv_slim:1,sv_dl:1,sv_link:1,sv_link_clr:1,sv_share:1,sv_load:1,sv_del:1,sv_leg:1,sv_imp_txt:1,sv_confirm:1,sv_cancel:1,gd_open:1,gd_tab:1,gd_close:1,gd_start_onboard:1,gd_skip_onboard:1,gd_start_wn:1,gd_next:1,gd_prev:1,gd_tour_end:1,gd_jump:1,adm_cls:1};
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-a]');if(!t||t.disabled)return;
   const a=t.dataset.a;if(a==='adm_ok'){verifyAdminPwd();return}
@@ -1860,6 +2060,8 @@ document.addEventListener('input',e=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&e.target&&e.target.id==='ai_in'){e.preventDefault();const b=document.querySelector('[data-a="aiact"]');if(b&&!b.disabled)b.click();return}
   if(e.key==='Escape'){
+    if(ui.gdTour){guideService.endTour();render();return}
+    if(ui.gdModal){guideService.dismissModal();render();return}
     if(ui.svPreview){ui.svPreview=null;render();return}
     if(ui.btl&&ui.btl.done){ui.btl=null;render();return}
     if(ui.admAuth){ui.admAuth=false;ui.admMsg='';render();return}
@@ -1878,6 +2080,7 @@ $('ts').addEventListener('click',e=>{const b=e.target.closest('.x');if(b)b.paren
 try{
   s=store.load();
   migrate();
+  guideService.checkAuto();
   render();
 }catch(err){
   try{const raw=localStorage.getItem(KEY);if(raw)localStorage.setItem('msns_main_backup',raw)}catch(e){}
@@ -1889,6 +2092,7 @@ try{
 saveService.checkHashImport();
 if(typeof window.addEventListener==='function'){
   window.addEventListener('storage',e=>{if(e.key===KEY&&e.newValue){try{const rem=JSON.parse(e.newValue);if(rem&&(!s||(rem.updatedAt||0)>(s.updatedAt||0))){s=rem;migrate();render()}}catch(er){}}});
+  window.addEventListener('resize',()=>{if(ui.gdTour)guideService.positionTour()});
 }
 if(s&&s.uiCfg.cn)idb('get',0,(b,er)=>{if(!b&&!er&&s){s.uiCfg.cn='';if(s.uiCfg.trk===3)s.uiCfg.trk=0;store.save(s);render()}});
 </script></body></html>

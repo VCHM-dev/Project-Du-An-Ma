@@ -1,12 +1,17 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.12 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.13 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Hệ thống Hướng Dẫn Tân Thủ, Auto What's New & Cẩm Nang (`guideService`, `APP_VERSION`, `GUIDE_DATA`):**
+  - Lưu trạng thái độc lập tại `localStorage` (`msns_guide_v1` gồm `{ onboarded, seenVersion }`), không phình object `s` và không bị reset khi Binh Giải Chuyển Thế.
+  - **Tour Tân Thủ Tương Tác (Interactive Spotlight):** 9 bước tự động chuyển tab, cuộn mượt tới mục tiêu, khoanh sáng vùng chọn và đặt hộp thoại giải thích thông minh (tự fallback giữa màn hình nếu không thấy selector).
+  - **Auto What's New:** Tự động bật modal giới thiệu tính năng mới khi người chơi cũ cập nhật phiên bản (`seenVersion !== APP_VERSION`), gom cả các bản bị bỏ lỡ nếu nhảy cóc nhiều phiên bản và hỗ trợ chạy mini-tour tính năng mới.
+  - **Nút `📖 Cẩm Nang` trên Header:** Mở modal 3 tab con (*Tour Tân Thủ*, *Tra Cứu Cơ Chế*, *Lịch Sử Cập Nhật*).
 - **Kiến trúc cốt lõi & Lưu trữ (`saveService` · Offline-First, Adapter-Ready):**
   - Single-file HTML (`Vanilla JS + CSS + SVG`), lưu dữ liệu hiện tại qua `localStorage` (`msns_main_v1`), lưu tối đa 15 mốc sao lưu qua `IndexedDB` (`msns_saves_v1`, fallback `msns_slots_fb`) và nhạc cá nhân qua `IndexedDB` (`msns_bgm`).
   - **Thay thế hoàn toàn Đồng Bộ Vân Đạo & Xuất/Nhập Base64 rườm rà bằng Hệ thống Lưu 1 Chạm (`💾 Lưu` + `📂 Kho Save`):**

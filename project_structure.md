@@ -15,7 +15,7 @@ Khi cần chỉnh sửa tính năng nào, AI hãy tìm đúng khu vực comment 
 | Khu vực / Biến chính | Chức năng & Vị trí cần sửa |
 | :--- | :--- |
 | `<style>` | Toàn bộ CSS, biến màu `:root`, hiệu ứng thẻ `.r4/.r5/.r6`, layout `.g3`, toast, modal. |
-| `/* ===== DỮ LIỆU TĨNH ===== */` | Mảng hằng số: `REALMS` (14 cảnh giới), `LIFE`, `BODIES`, `ROOTS`, `TAL` (43 thiên phú), `ITEMS` (vũ khí/giáp/đan thường & thực chiến `d14–d16`/trận bàn `b1–b2`/nguyên liệu), `TECH` (19 công pháp), `TD/ID/QD`. |
+| `/* ===== DỮ LIỆU TĨNH ===== */` | `APP_VERSION`, `GUIDE_DATA` (`onboardingSteps`, `patchNotes`, `codexTopics`) và mảng hằng số: `REALMS` (14 cảnh giới), `LIFE`, `BODIES`, `ROOTS`, `TAL` (43 thiên phú), `ITEMS`, `TECH` (19 công pháp), `TD/ID/QD`. |
 | `/* ===== TIỆN ÍCH ===== */` | `store` (`localStorage` key `msns_main_v1`), `say()`, `fx()`, `log()`, `hasT()`, `talMul()`, `eqMul()`. |
 | `/* ===== DỮ LIỆU BÁCH NGHỆ... ===== */` | Công thức chế tạo: `DR` (Luyện đan), `KR` (Luyện khí), `QU` (Nâng phẩm), `AR` (7 Trận pháp), `TR` (2 Trận Bàn thực chiến), `PT` (Đan độc), `PE` (Hiệu ứng dùng đan). |
 | `/* ===== SERVICES HỢP NHẤT ===== */` | Logic nghiệp vụ lõi: `characterService`, `techniqueService`, `inventoryService`, `equipmentService`, `talentInventoryService`, `characterStatsService` (`realmMul = 2.1^realm`), `cultivationService` (có `pity`, `auto` tự lên tầng), `destinyService`. |
@@ -25,6 +25,7 @@ Khi cần chỉnh sửa tính năng nào, AI hãy tìm đúng khu vực comment 
 | `/* ===== THIÊN CƠ AI (LLM BYOK...) ===== */` | `thienCoAI` (lưu `localStorage` riêng `'msns_ai_cfg'`, gọi Gemini / OpenAI-compatible, `parse` auto-repair JSON, `ctx` đóng gói Context State, nén trí nhớ `m.aiSummary` mỗi 3 lượt). |
 | `/* ===== THÀNH TỰU, SAO LƯU & MIGRATE ===== */` | `ACH`, `achievementService`, `migrate()` (lọc dữ liệu rác, khởi tạo `s.saveId`, `s.rev`, `s.updatedAt` & nâng cấp save cũ). |
 | `/* ===== HỆ THỐNG LƯU TRỮ THỐNG NHẤT (SAVE SERVICE) ===== */` | `saveService` (Adapter-ready: `IndexedDB` `msns_saves_v1`, 1-click `quickSave`, xuất/nhập file `.msns`, `showSaveFilePicker`, link chuyển máy `#s=` nén `gzip`), `savePanel()`, `svPreviewModal()`. |
+| `/* ===== HỆ THỐNG HƯỚNG DẪN TÂN THỦ & WHAT'S NEW (GUIDE SERVICE) ===== */` | `guideService` (lưu `msns_guide_v1`, `checkAuto()`, spotlight tour `positionTour()`, `renderLayer()` cho Welcome / What's New / Cẩm Nang 3 tab). |
 | `/* ===== GIAO DIỆN CÁC TAB ===== */` | Các hàm render giao diện: `vChar`, `vTal`, `vCul`, `vInv` (lọc kép phẩm chất + loại, khóa đồ, bán hàng loạt), `vTec`, `vKt`, `aiPanel`, `runUI`, `legacyUI`, `btlModal` (chiến trường trực quan), `vAdv` (`BOSS_ART`), `vShop`, `vCraft`, `vCreate`. |
 | `/* ===== TÙY BIẾN GIAO DIỆN & NHẠC NỀN ===== */` | `applyTheme()`, `profileCard()`, `apHTML()`, `imgFile()` (nén ảnh Canvas), `idb()` (IndexedDB), bộ tổng hợp âm thanh Web Audio `BG`. |
 | `/* ===== BẢO MẬT ADMIN PANEL ===== */` | `ADMIN_HASH`, `sha256Fallback()`, `openAdminPrompt()`, `verifyAdminPwd()`, `vAdmin()`. |
