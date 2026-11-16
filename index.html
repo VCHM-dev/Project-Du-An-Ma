@@ -99,31 +99,38 @@ img.av{object-fit:cover}.pe input[type=file]{padding:3px}
 .gd-hl .gi{font-size:20px;line-height:1.2;flex:none}
 </style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div>
 <script>
-const APP_VERSION='5.13';
+const APP_VERSION='5.14';
 const GUIDE_DATA={
   onboardingSteps:[
-    {tab:'char',selector:'.st',title:'1. Nhân Vật & 6 Chỉ Số Thực Chiến',desc:'Đây là bảng căn cơ của đạo hữu: gồm 6 thuộc tính gốc (Thể chất, Linh căn, Ngộ tính, Thần hồn, Tâm cảnh, Khí vận) và 6 chỉ số thực chiến (Sinh mệnh, Linh lực, Sức mạnh, Phòng ngự, Tốc độ, Bạo kích). Mỗi cảnh giới mới đều nhân hệ số sức mạnh lên vượt bậc.'},
-    {tab:'cul',selector:'[data-a="train"]',title:'2. Tu Luyện, Bế Quan Tự Động & Đột Phá',desc:'Bấm Bế quan để tích lũy tu vi hoặc dùng Bế quan liên tục để tự động đột phá các tầng nhỏ (1→9). Khi chạm cửa đại cảnh giới, Bảo hiểm đột phá (+5% mỗi lần thất bại, tối đa +30%) giúp bạn không bị kẹt mãi; nhớ chú ý thanh Đan Độc!'},
+    {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
+    {tab:'cul',selector:'[data-a="train"]',title:'2. Tu Luyện, Bế Quan & Thiên Kiếp',desc:'Bấm Bế quan hoặc Bế quan liên tục để tự đột phá tầng nhỏ (1→9). Bảo hiểm đột phá (+4%/lần, tối đa +20%) chỉ hỗ trợ đột phá cảnh giới; riêng Thiên Kiếp phải dựa vào Phòng ngự, Trận Pháp và Đan hộ thân!'},
     {tab:'tal',selector:'#app .pn',title:'3. Thiên Phú & Nâng Cấp',desc:'Thiên phú có 7 phẩm chất (Bạch sắc → Thất thải) và có thể nâng cấp từ Lv1 đến Lv5. Hãy kích hoạt tối ưu các thiên phú phù hợp với lối chơi Bế quan, Luyện đan hoặc Chiến đấu.'},
     {tab:'tec',selector:'#app .pn',title:'4. Công Pháp & Diễn Hóa Công Pháp',desc:'Trang bị tối đa 3 công pháp để tăng chỉ số và mở khóa Tuyệt kỹ chiến đấu. Khi luyện 2 công pháp đạt Viên mãn, bạn có thể Diễn Hóa hợp nhất thành bộ công pháp mới giữ nguyên hiệu ứng đặc biệt!'},
-    {tab:'kt',selector:'[data-a="sim"]',title:'5. Kim Thủ Chỉ — Mô Phỏng Nhân Sinh & Thiên Cơ AI',desc:'Mở ra một kiếp mô phỏng theo từng năm tuổi với 4 hành động chủ động, Dấu ấn nhân quả và 8 NPC định mệnh. Bạn có thể bật Thiên Cơ AI (BYOK Gemini/OpenAI) để AI tự dẫn truyện theo hành động tự do hoặc chơi Cổ Điển offline.'},
-    {tab:'adv',selector:'[data-a="adv"]',title:'6. Lịch Luyện, Chiến Trường & Càn Quét',desc:'Chiến đấu theo lượt với 3 Tâm pháp giao chiến, Tuyệt kỹ chủ động và cơ chế Uy áp cảnh giới. Khi đủ mạnh, dùng Càn quét (10/25/50/100 năm) kèm tùy chọn dừng khi rơi đồ hiếm để farm nguyên liệu.'},
+    {tab:'kt',selector:'[data-a="sim"]',title:'5. Kim Thủ Chỉ — Bàn Tay Vàng Nghịch Thiên',desc:'Không tiêu hao thọ nguyên Bản thể! Kết thúc kiếp mô phỏng (đạt hạng S+ được chọn 2 di sản) để Truyền Thừa Tu Vi, tích lũy Đạo Quả (+% toàn chỉ số, -% Uy Áp Cảnh Giới) và Tẩy Cốt nâng Linh Căn/Đạo Thể.'},
+    {tab:'adv',selector:'[data-a="adv"]',title:'6. Lịch Luyện, Chiến Trường & Càn Quét',desc:'Chiến đấu theo lượt với 3 Tâm pháp giao chiến, Tuyệt kỹ chủ động, Né tránh, ST Bạo kích và Uy áp cảnh giới. Khi đủ mạnh, dùng Càn quét (10/25/50/100 năm) kèm tùy chọn dừng khi rơi đồ hiếm để farm nguyên liệu.'},
     {tab:'craft',selector:'#app .pn',title:'7. Bách Nghệ (Luyện Đan, Luyện Khí, Trận Pháp)',desc:'Chế tạo đan dược thực chiến (Bạo Nguyên Đan, Kim Cang Hộ Tâm Đan), rèn Thần binh, khắc Trận Bàn và ôn dưỡng Bản Mệnh Pháp Bảo (+1 đến +10). Có nút chế tạo nhanh ×5 cho cả 3 nghề.'},
     {tab:'inv',selector:'#app .pn',title:'8. Kho Đồ, Khóa Bảo Vệ & Phường Thị',desc:'Lọc vật phẩm theo phẩm chất và loại. Nhớ bấm khóa 🔒 các trang bị quý để tránh bị bán nhầm khi dùng nút Bán hàng loạt! Sau đó sang tab Phường Thị để mua bán tài nguyên.'},
     {selector:'[data-a="qsave"]',title:'9. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
     {
+      version:'5.14',date:'2026-11-16',title:'Tái Cân Bằng Chỉ Số, Độ Khó & Kim Thủ Chỉ "Bàn Tay Vàng"',
+      highlights:[
+        {icon:'⚔',title:'Phân Tách 6 Thuộc Tính & Soft Cap',desc:'Mỗi thuộc tính gốc đều có vai trò chiến đấu riêng; thêm Né tránh & ST Bạo kích với công thức Soft Cap; nâng hệ số Trang bị/Công pháp (1.85^realm).',tab:'char'},
+        {icon:'🔥',title:'Thế Giới Khắc Nghiệt Hơn',desc:'Quái Lịch Luyện mạnh hơn +25–30%, bảo hiểm đột phá tối đa +20% và không còn gánh Thiên Kiếp.',tab:'cul'},
+        {icon:'✨',title:'Kim Thủ Chỉ Chuẩn Bàn Tay Vàng',desc:'Mô phỏng không tốn thọ nguyên; thêm di sản Đạo Quả Bàn Tay Vàng (+% toàn chỉ số, Kháng Uy Áp tới 50%, Tẩy Cốt nâng Linh Căn/Đạo Thể) và cho chọn 2 di sản từ hạng S+.',tab:'kt'}
+      ],
+      tourSteps:[
+        {tab:'char',selector:'.st',title:'Bảng Chỉ Số Mới',desc:'Xem ngay 2 chỉ số chiến đấu mới (Né tránh & ST Bạo kích) và dòng tổng kết Đạo Quả Bàn Tay Vàng ở bên dưới.'},
+        {tab:'kt',selector:'[data-a="sim"]',title:'Kim Thủ Chỉ Bàn Tay Vàng',desc:'Phí mở mô phỏng tính theo 35% phí đột phá, không mất thọ nguyên Bản thể. Hãy cày hạng S+ để chọn 2 di sản và Tẩy Cốt Hoán Thai!'}
+      ]
+    },
+    {
       version:'5.13',date:'2026-11-16',title:'Hệ Thống Hướng Dẫn Tân Thủ & Cẩm Nang Tra Cứu',
       highlights:[
         {icon:'🚀',title:'Tour Hướng Dẫn Tân Thủ Tương Tác',desc:'Tự động dẫn dắt người chơi mới qua từng tab cốt lõi bằng spotlight trực quan.',tab:'char'},
         {icon:'✨',title:'Tự Động Báo Tính Năng Mới (What\'s New)',desc:'Tự động tổng hợp điểm mới mỗi khi game lên phiên bản mới, kèm mini-tour chỉ thẳng vào tính năng mới.',selector:'[data-a="gd_open"]'},
         {icon:'📖',title:'Cẩm Nang Tra Cứu Cơ Chế',desc:'Mở lại bất cứ lúc nào từ thanh tiêu đề để tra cứu Đột phá, Ngũ hành, Đan độc và Lưu trữ.',selector:'[data-a="gd_open"]'}
-      ],
-      tourSteps:[
-        {selector:'[data-a="gd_open"]',title:'Nút Cẩm Nang Mới',desc:'Bấm vào đây bất kỳ lúc nào để chạy lại Tour Tân Thủ, tra cứu cơ chế ẩn hoặc xem lịch sử cập nhật.'},
-        {selector:'[data-a="qsave"]',title:'Lưu Nhanh 1 Chạm',desc:'Chụp ngay 1 mốc lưu vào Kho Save trình duyệt (IndexedDB) chỉ với 1 cú bấm.'},
-        {selector:'[data-a="sv_open"]',title:'Kho Save & Link Chuyển Máy',desc:'Xuất/nhập file .msns và tạo Link Chuyển Máy (#s=...) gọn nhẹ không cần server.'}
       ]
     },
     {
@@ -142,8 +149,10 @@ const GUIDE_DATA={
     }
   ],
   codexTopics:[
-    {icon:'⚡',title:'Đột Phá, Bảo Hiểm (Pity) & Thiên Kiếp',body:'Mỗi lần đột phá đại cảnh giới thất bại sẽ tích lũy +5% tỷ lệ thành công cho lần sau (tối đa +30%, reset khi thành công). Đạt Độ Kiếp cần Phòng ngự ≥ 150.000 để đủ điều kiện Phi Thăng Tiên Giới. Khi đột phá đại cảnh giới thành công sẽ kích hoạt Tẩy Kinh Phạt Tủy (xóa Tâm Ma, giảm Đan Độc, +2 Khí vận).'},
-    {icon:'☯',title:'Uy Áp Cảnh Giới & Ngũ Hành Tương Khắc',body:'Khi đánh quái vượt cảnh giới sẽ chịu Uy áp (-22% sát thương gây ra, +25% sát thương nhận vào mỗi bậc chênh lệch). Bạn có thể giảm Uy áp bằng Ngũ hành tương khắc (50%), Bản Mệnh Pháp Bảo (+2.5%/cấp, tối đa 25%) và Trận Bàn thực chiến.'},
+    {icon:'✨',title:'Kim Thủ Chỉ — Bàn Tay Vàng & Đạo Quả',body:'Mô phỏng trong Kim Thủ Chỉ không làm Bản thể già đi (tốn 35% phí đột phá bằng linh thạch). Chọn di sản «Đạo Quả Bàn Tay Vàng» để cộng dồn vĩnh viễn +% toàn chỉ số, mở khóa Kháng Uy Áp (tối đa 50%) và cơ hội Tẩy Cốt nâng Linh Căn / Đạo Thể khi đạt hạng S trở lên (hạng S+ được chọn 2 di sản).'},
+    {icon:'⚔',title:'Vai Trò 6 Thuộc Tính Gốc & Soft Cap',body:'Thể chất (HP/Thủ) · Linh căn (Lực/Tốc/MP) · Ngộ tính (Lực/Xuyên giáp) · Thần hồn (Tốc/MP/ST Bạo kích) · Tâm cảnh (Thủ/Đột phá) · Khí vận (Bạo kích/Né tránh). Các chỉ số % dùng đường cong Soft Cap nên luôn có giá trị khi đầu tư cao.'},
+    {icon:'⚡',title:'Đột Phá, Bảo Hiểm (Pity) & Thiên Kiếp',body:'Mỗi lần đột phá thất bại tích lũy +4% tỷ lệ thành công (tối đa +20%, reset khi thành công). Riêng Thiên Kiếp không tính bảo hiểm Pity mà dựa hoàn toàn vào Phòng ngự, Trận Pháp và Đan hộ thân. Đạt Độ Kiếp cần Phòng ngự ≥ 150.000 để Phi Thăng Tiên Giới.'},
+    {icon:'☯',title:'Uy Áp Cảnh Giới & Ngũ Hành Tương Khắc',body:'Khi đánh quái vượt cảnh giới sẽ chịu Uy áp (-22% sát thương gây ra, +25% sát thương nhận vào mỗi bậc). Giảm Uy áp bằng Ngũ hành tương khắc (50%), Bản Mệnh Pháp Bảo (+2.5%/cấp, tối đa 25%), Trận Bàn và Đạo Quả Kháng Uy Áp (tối đa 50%).'},
     {icon:'⚗',title:'Đan Độc, Tâm Ma & Bản Mệnh Pháp Bảo',body:'Uống nhiều đan dược làm tăng Đan Độc, làm giảm hiệu quả tu luyện. Hãy Bế quan hoặc dùng Tịnh Tâm Đan / Tẩy Tủy Đan để thanh lọc. Vũ khí/Pháp bảo có thể nhận làm Bản Mệnh, ôn dưỡng +1 đến +10 và Chuyển Di sang trang bị mới (giữ 70% cấp độ).'},
     {icon:'🔮',title:'Mẹo Dùng Thiên Cơ AI & Lưu Trữ An Toàn',body:'API Key của Thiên Cơ AI lưu riêng ở trình duyệt (msns_ai_cfg), hoàn toàn không nằm trong file save .msns hay Link Chuyển Máy. Nếu API lỗi 3 lần liên tiếp, game tự chuyển về Chế độ Cổ Điển (Offline) để không gián đoạn cuộc chơi.'}
   ]
