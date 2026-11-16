@@ -1,12 +1,21 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.17 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.20 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Linh Thú Tiến Hóa & Đạo Lữ Song Tu Thực Chiến (`v5.20` · `compService`, `vComp`, `adventureService`, `cultivationService`):**
+  - **Linh Thú Thực Chiến (`PETS`, `PET_STAGES`):** Thu phục 4 Linh Thú (*Huyền Giác Tê, Xích Diễm Kỳ Lân, Thanh Loan Thần Điểu, Bạch Hổ Sát Thần*), tiến hóa 7 bậc bằng **Yêu Đan (`m4/m5/m6`)**, cộng chỉ số và trực tiếp trợ chiến mỗi hiệp trong Chiến Trường Lịch Luyện.
+  - **Đạo Lữ & Song Tu (`PARTNERS`):** Tặng lễ vật tăng Hảo cảm để kết thành Đạo Lữ, mở khóa **Song Tu** (nhận `×2.2~2.6` Tu vi, giải Đan độc/tăng chỉ số) và tự động **Hộ Pháp vượt Thiên Kiếp** (`+8% ~ +12%` gốc).
+- **Đấu Giá Hội Vạn Bảo Lâu & Sự Kiện Cướp Bảo (`v5.19` · `shopService`, `vShop`):**
+  - Định kỳ mỗi **10 năm tuổi** tại tab Phường Thị (hoặc mở sớm với 200 linh thạch), đấu giá 3 bảo vật hiếm với các NPC đại năng (`AUC_NPCS`).
+  - Trúng đấu giá bảo vật quý có cơ hội kích hoạt sự kiện **Phục Kích Chặn Đường Cướp Bảo** với 3 lựa chọn (*Nghênh Chiến, Bỏ Chạy theo Thân Pháp, Nộp Lộ Phí*).
+- **Hệ Thống Tông Môn & Khai Tông Lập Phái (`v5.18` · `sectService`, `vSect`):**
+  - **Gia nhập 4 Đại Thế Lực:** *Thanh Vân Kiếm Tông, Đan Đỉnh Các, Huyền Âm Ma Tông, Vạn Pháp Thư Viện* với 5 cấp bậc (`SECT_RANKS`), nhiệm vụ Cống hiến và Bảo Khố Tông Môn (`SECT_SHOP`).
+  - **Khai Tông Lập Phái (từ Nguyên Anh):** Tự lập Sơn Môn, nâng cấp **Linh Mạch (Cấp 1–7)** tăng tốc độ tu luyện (`+8%/cấp`), chiêu mộ & bồi dưỡng Đệ tử tự động sản sinh Linh thạch và Tu vi mỗi năm khi Bế quan.
 - **Xử Lý Trang Bị Dư Thừa: Phân Giải & Dung Luyện 3 Đổi 1 (`salvageYield`, `salvageItem`, `bulkSalvage`, `smeltEquip`, `A.salv`, `A.bsalv`, `A.smelt`):**
   - **Phân giải trang bị (`♻ Rã`):** Phân giải trang bị dư thừa lấy khoáng thạch tinh luyện (`Khoáng Thạch`, `Tinh Thiết`, `Ngũ Sắc Thần Kim`) theo phẩm chất, đồng thời hoàn trả `60%` nguyên liệu tinh luyện nếu trang bị đã cường hóa (`★+X`). Hỗ trợ **Rã hàng loạt** (`≤ Bạch sắc`, `≤ Lục sắc`, `≤ Lam sắc`) trong `vInv`, tự động bỏ qua đồ đang mặc, đã khóa (`🔒`), Cực phẩm và Bản Mệnh Pháp Bảo.
   - **Dung luyện 3 đổi 1 (`🔥 Dung luyện`):** Nấu 3 trang bị cùng phẩm chất (`Bạch sắc → Hồng sắc`) chưa mặc & chưa khóa + linh thạch để đúc ngẫu nhiên 1 trang bị bậc kế tiếp (`15%` cơ hội nổ phẩm chất Cực phẩm) trong tab Bách Nghệ → Luyện Khí (`vCraft`).
@@ -85,7 +94,7 @@
 ---
 
 ## 3. KẾ HOẠCH TIẾP THEO (TODO / BACKLOG)
-- [ ] **Hệ thống Tông Môn & Khai Tông Lập Phái (Bản thể ngoài đời thực):** Gia nhập 4 đại thế lực làm nhiệm vụ cống hiến (giai đoạn đầu) và tự lập sơn môn thu nhận đệ tử, nâng cấp Linh Mạch (từ Nguyên Anh trở lên).
-- [ ] **Đấu Giá Hội Vạn Bảo Lâu:** Sự kiện định kỳ mỗi 10 năm tuổi tại tab Phường Thị, cạnh tranh trả giá với NPC đại năng và sự kiện bị chặn đường cướp bảo.
-- [ ] **Linh Thú & Đạo Lữ thực chiến:** Thu phục linh thú tiến hóa bằng Yêu Đan, kết giao Đạo Lữ để mở khóa Song Tu và hỗ trợ vượt Thiên Kiếp.
-- [ ] **Tối ưu thao tác nhanh (QoL):** Thêm nút "Rèn nhanh / Luyện đan ×5" trong tab Bách Nghệ.
+- [x] **Hệ thống Tông Môn & Khai Tông Lập Phái (Bản thể ngoài đời thực):** Gia nhập 4 đại thế lực làm nhiệm vụ cống hiến (giai đoạn đầu) và tự lập sơn môn thu nhận đệ tử, nâng cấp Linh Mạch (từ Nguyên Anh trở lên). *(v5.18)*
+- [x] **Đấu Giá Hội Vạn Bảo Lâu:** Sự kiện định kỳ mỗi 10 năm tuổi tại tab Phường Thị, cạnh tranh trả giá với NPC đại năng và sự kiện bị chặn đường cướp bảo. *(v5.19)*
+- [x] **Linh Thú & Đạo Lữ thực chiến:** Thu phục linh thú tiến hóa bằng Yêu Đan, kết giao Đạo Lữ để mở khóa Song Tu và hỗ trợ vượt Thiên Kiếp. *(v5.20)*
+- [x] **Tối ưu thao tác nhanh (QoL):** Thêm nút "Rèn nhanh / Luyện đan ×5" trong tab Bách Nghệ.
