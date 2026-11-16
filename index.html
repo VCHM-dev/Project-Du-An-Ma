@@ -259,14 +259,14 @@ const talentInventoryService={
 
 const characterStatsService={
   compute(x){
-    const b=BODIES[x.body],r=ROOTS[x.root],k=10+x.realm*12+x.layer,m={};
+    const b=BODIES[x.body],r=ROOTS[x.root],rank=x.realm*9+x.layer,k=10+rank*2,m={};
     talentInventoryService.active(x).forEach(t=>addm(m,TD[t.id].e,(1+.25*(t.lv-1))*(1+.08*x.body)));
     const eqItems=[];
     for(const t in x.eq){const it=x.inv.find(i=>i.u===x.eq[t]);if(it){eqItems.push(it);addm(m,ID[it.id].s,eqMul(x,it))}}
     const eqTechs=[];
     for(const id in x.tech)if(x.tech[id]&&x.tech[id].eq&&QD[id]){eqTechs.push(id);addm(m,QD[id].e,techniqueService.power(x,id))}
     if(x.tm)m.tam=(m.tam||0)-8;
-    const ab=2*Object.keys(x.ach||{}).length+10*(x.reborn||0),base={the:k+b.a+ab+((x.px||{}).the||0),linh:k+Math.round(r.c*4)+ab+((x.px||{}).linh||0),ngo:k+ab+((x.px||{}).ngo||0),than:k+ab,tam:k+ab+((x.px||{}).tam||0),van:10+x.van+ab+(x.activeArray==='van'?Math.round(15*av(x)):0)},a={},bonus={};
+    const ab=2*Object.keys(x.ach||{}).length+10*(x.reborn||0),base={the:k+b.a+ab+((x.px||{}).the||0),linh:k+Math.round(r.c*4)+ab+((x.px||{}).linh||0),ngo:k+ab+((x.px||{}).ngo||0),than:k+ab,tam:k+ab+((x.px||{}).tam||0),van:k+x.van+ab+(x.activeArray==='van'?Math.round(15*av(x)):0)},a={},bonus={};
     ATTR.forEach(n=>{a[n]=Math.round(base[n]+(m[n]||0));bonus[n]=a[n]-base[n]});
     const flatMul=Math.pow(1.6,x.realm),realmMul=Math.pow(2.1,x.realm)*(1+x.layer*.1);
     let luc=Math.round((a.the*2.5+a.ngo*.5+(m.luc||0)*flatMul)*realmMul);
@@ -335,7 +335,7 @@ const cultivationService={
     const after=characterStatsService.compute(x),lifeAfter=this.life(x);
     if(!ui._inLab&&typeof s!=='undefined'&&x===s)ui.brkInfo={r0,r1:t,before,after,lifeBefore,lifeAfter};
     if(t===9){x.ascended=(x.ascended||0)+1;log('⚡✨ Vượt qua Cửu Trọng Phi Thăng Kiếp, phá toái hư không, phi thăng Tiên Giới thành tựu Chân Tiên!')}
-    else log(`Đột phá cảnh giới thành công: ${REALMS[t]}${t>=2?' (đã vượt thiên kiếp)':''} · Tẩy kinh phạt tủy (+4 thuộc tính gốc, +2 Khí vận, thanh lọc đan độc)!`);
+    else log(`Đột phá cảnh giới thành công: ${REALMS[t]}${t>=2?' (đã vượt thiên kiếp)':''} · Tẩy kinh phạt tủy (+2 thuộc tính gốc, +2 Khí vận, thanh lọc đan độc)!`);
   }
 };
 
@@ -1203,7 +1203,7 @@ function cldConflictModal(){
 function brkModal(){
   const b=ui.brkInfo;if(!b)return'';
   const row=(lb,x0,x1,suf='')=>`<div class="row"><span>${lb}</span><span>${x0.toLocaleString('vi-VN')}${suf} → <b class="ok">${x1.toLocaleString('vi-VN')}${suf}</b></span></div>`;
-  const perks=['+4 toàn bộ thuộc tính gốc (Thể/Linh/Ngộ/Thần/Tâm)', '+2 Khí vận & thanh lọc Tâm Ma, Đan Độc'];
+  const perks=['+2 toàn bộ thuộc tính gốc (cấp số cộng theo bậc tu vi)', '+2 Khí vận & thanh lọc Tâm Ma, Đan Độc'];
   if(b.r1===3||b.r1===6)perks.push('✨ Mở khóa thêm +1 ô Thiên Phú kích hoạt');
   if(b.r1===8)perks.push('♻ Mở khóa tính năng Binh Giải Chuyển Thế (New Game+)');
   if(b.r1===9)perks.push('⚡✨ Phi Thăng Tiên Giới thành công!');
@@ -1234,7 +1234,7 @@ function vTal(){
 
 function vCul(){
   const c=cultivationService.check(s),major=s.layer===8;
-  const pv=(major&&s.realm<REALMS.length-1)?(()=>{const st0=characterStatsService.compute(s),nx=Object.assign({},s,{realm:s.realm+1,layer:0,tm:false,van:(s.van||0)+2}),st1=characterStatsService.compute(nx),lf0=cultivationService.life(s),lf1=cultivationService.life(nx);const row=(lb,a,b)=>`<div class="row"><span>${lb}</span><span>${a.toLocaleString('vi-VN')} → <b class="ok">${b.toLocaleString('vi-VN')}</b></span></div>`;return `<div class="ainr" style="border-left-color:var(--gold);margin-top:8px"><b>✨ Dự báo lột xác khi lên ${REALMS[s.realm+1]}:</b>${row('Sinh mệnh',st0.maxHp,st1.maxHp)}${row('Linh lực',st0.maxMp,st1.maxMp)}${row('Sức mạnh',st0.luc,st1.luc)}${row('Phòng ngự',st0.thu,st1.thu)}${row('Tốc độ',st0.toc,st1.toc)}${row('Thọ nguyên tối đa',lf0,lf1)}<div class="mu" style="margin-top:4px">• Hệ số cảnh giới: ×${st0.realmMul.toFixed(1)} → <b class="ok">×${st1.realmMul.toFixed(1)}</b> · +4 toàn bộ thuộc tính gốc · +2 Khí vận · Thanh lọc Tâm Ma &amp; Đan Độc</div></div>`})():'';
+  const pv=(major&&s.realm<REALMS.length-1)?(()=>{const st0=characterStatsService.compute(s),nx=Object.assign({},s,{realm:s.realm+1,layer:0,tm:false,van:(s.van||0)+2}),st1=characterStatsService.compute(nx),lf0=cultivationService.life(s),lf1=cultivationService.life(nx);const row=(lb,a,b)=>`<div class="row"><span>${lb}</span><span>${a.toLocaleString('vi-VN')} → <b class="ok">${b.toLocaleString('vi-VN')}</b></span></div>`;return `<div class="ainr" style="border-left-color:var(--gold);margin-top:8px"><b>✨ Dự báo lột xác khi lên ${REALMS[s.realm+1]}:</b>${row('Sinh mệnh',st0.maxHp,st1.maxHp)}${row('Linh lực',st0.maxMp,st1.maxMp)}${row('Sức mạnh',st0.luc,st1.luc)}${row('Phòng ngự',st0.thu,st1.thu)}${row('Tốc độ',st0.toc,st1.toc)}${row('Thọ nguyên tối đa',lf0,lf1)}<div class="mu" style="margin-top:4px">• Hệ số cảnh giới: ×${st0.realmMul.toFixed(1)} → <b class="ok">×${st1.realmMul.toFixed(1)}</b> · +2 toàn bộ 6 thuộc tính gốc · +2 Khí vận · Thanh lọc Tâm Ma &amp; Đan Độc</div></div>`})():'';
   return `<div class="pn"><div class="row"><span>Đan độc</span><b class="${s.toxin>40?'bad':''}">${s.toxin}/100</b></div><div class="bar${s.toxin>40?' warn':''}"><i style="width:${s.toxin}%"></i></div><div class="mu">Đan độc giảm tốc độ bế quan (tối đa -40%) và tỷ lệ đột phá. Mỗi năm bế quan giảm 1; Tịnh Tâm Đan giảm 15, Tẩy Tủy Đan giảm 60.</div></div>`
   +`<div class="pn"><h3>${REALMS[s.realm]} · Tầng ${s.layer+1}</h3><div class="bar"><i style="width:${clamp(s.xp/cultivationService.need(s)*100,0,100)}%"></i></div><div class="mu">Tu vi dư sau đột phá được giữ lại. Hết tầng 9 mới đột phá được cảnh giới lớn.</div><div class='mu ${s.age>cultivationService.life(s)*.8?'warn':''}'>Thọ nguyên ${s.age}/${cultivationService.life(s)}${s.age>cultivationService.life(s)*.8?' · SẮP CẠN':''}</div><div class='bar ${s.age>cultivationService.life(s)*.8?'warn':''}'><i style='width:${clamp(s.age/cultivationService.life(s)*100,0,100)}%'></i></div><div class="bt">${btn('train','','Bế quan (+1 tuổi)')}${btn('auto','','Bế quan liên tục')}${btn('brk','',major?'Đột phá cảnh giới':'Đột phá tầng')}</div></div><div class="pn"><h3>Điều kiện đột phá</h3>${c.map(x=>`<div class="${x[0]?'ok':'bad'}">${x[0]?'✔':'✘'} ${x[1]}</div>`).join('')}${major&&s.realm<REALMS.length-1?`<div class="mu">Tỷ lệ thành công: ${Math.round(cultivationService.chance(s)*100)}%${s.pb?' (đã có Phá Cảnh Đan)':''}. ${s.realm===8?'Đột phá Độ Kiếp Tầng 9 sẽ kích hoạt Phi Thăng Tiên Giới!':s.realm>=1?'Đột phá cảnh giới lớn phải vượt thiên kiếp (dựa vào phòng ngự).':''}</div>`:''}${pv}${s.tm?'<div class="bad">Tâm ma: Tâm cảnh -8 và chặn đột phá cảnh giới. Dùng Tịnh Tâm Đan trong Kho đồ.</div>':''}</div>`
   +(s.realm>=8?`<div class="pn"><h3>✨ Tiên Lộ &amp; Luân Hồi Chuyển Thế (Kiếp thứ ${(s.reborn||0)+1})</h3><div class="mu">Đạt tới Độ Kiếp viên mãn, ngươi có thể tiếp tục xung kích cảnh giới Tiên Giới (Chân Tiên → Hỗn Nguyên) hoặc thực hiện <b>Binh Giải Chuyển Thế</b>: quay về tuổi 16 Luyện Khí với +15 Tiên Thiên Khí Vận vĩnh viễn, +10 toàn bộ thuộc tính gốc vĩnh viễn, giữ nguyên Bản Mệnh Pháp Bảo và 1 Thiên Phú bản mệnh đã chọn.</div>${s.tal.length?`<div class="bt"><label>Thiên phú mang theo kiếp sau: <select data-chg="rb_tal">${s.tal.map(t=>`<option value="${t.u}"${ui.rbTal===t.u?' selected':''}>${TD[t.id].n} Lv${t.lv}</option>`).join('')}</select></label></div>`:''}<div class="bt">${btn('reborn','','♻ Binh Giải Chuyển Thế (New Game+)')}</div></div>`:'')
