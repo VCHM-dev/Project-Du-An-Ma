@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.15 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.16 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Tinh Luyện Trang Bị (`+1 → +10`, `rfCost`, `eqMul`, `vCraft`, `vInv`, `A.rf` / `A.rf5`):**
+  - Cho phép tinh luyện mọi loại trang bị (Vũ khí, Pháp bảo, Giáp, Phụ kiện) trong tab Bách Nghệ → Luyện Khí (`+10%` chỉ số mỗi cấp, tối đa `+100%` ở `★+10`, nhân cộng hưởng với Phẩm chất & Bản Mệnh Pháp Bảo).
+  - Hỗ trợ nút **Tinh luyện ×5**, hiển thị `★+X` trên Kho đồ & danh sách chọn, thất bại không vỡ/tụt cấp và vẫn nhận kinh nghiệm Luyện Khí Sư.
+  - Đã cập nhật `APP_VERSION = '5.16'` và `GUIDE_DATA` (`patchNotes`, `codexTopics`, `onboardingSteps`).
 - **Hệ thống Hướng Dẫn Tân Thủ, Auto What's New & Cẩm Nang (`guideService`, `APP_VERSION`, `GUIDE_DATA`):**
   - Lưu trạng thái độc lập tại `localStorage` (`msns_guide_v1` gồm `{ onboarded, seenVersion }`), không phình object `s` và không bị reset khi Binh Giải Chuyển Thế.
   - **Tour Tân Thủ Tương Tác (Interactive Spotlight):** 9 bước tự động chuyển tab, cuộn mượt tới mục tiêu, khoanh sáng vùng chọn và đặt hộp thoại giải thích thông minh (tự fallback giữa màn hình nếu không thấy selector).

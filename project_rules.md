@@ -19,6 +19,7 @@
    - Mọi tính năng bán hàng loạt hoặc tiêu hao trang bị tự động phải tôn trọng cờ khóa `i.lk`, trạng thái đang trang bị `s.eq`, phẩm chất Cực phẩm `i.ex` và `s.bmWeapon`.
    - Giữ nguyên công cụ `Balance Lab` trong tab Admin để kiểm thử cân bằng.
 6. **Xuất code đầy đủ:** Khi xuất file HTML cập nhật, luôn xuất toàn bộ mã nguồn hoàn chỉnh từ `<!DOCTYPE html>` đến `</html>`, tuyệt đối không viết tắt kiểu `// ... giữ nguyên phần còn lại ...`.
+7. **Cập nhật Cẩm nang mỗi phiên bản:** Từ nay trở đi, cứ mỗi khi có bản cập nhật mới thì **BẮT BUỘC** tăng `APP_VERSION` và cập nhật `GUIDE_DATA` (`patchNotes`, `codexTopics`, `onboardingSteps` nếu liên quan) để người chơi tự động nhận thông báo What's New và tra cứu trong `📖 Cẩm Nang`.
 
 ---
 

@@ -17,7 +17,7 @@ Khi cần chỉnh sửa tính năng nào, AI hãy tìm đúng khu vực comment 
 | `<style>` | Toàn bộ CSS, biến màu `:root`, hiệu ứng thẻ `.r4/.r5/.r6`, layout `.g3`, toast, modal. |
 | `/* ===== DỮ LIỆU TĨNH ===== */` | `APP_VERSION`, `GUIDE_DATA` (`onboardingSteps`, `patchNotes`, `codexTopics`) và mảng hằng số: `REALMS` (14 cảnh giới), `LIFE`, `BODIES`, `ROOTS`, `TAL` (43 thiên phú), `ITEMS`, `TECH` (19 công pháp), `TD/ID/QD`. |
 | `/* ===== TIỆN ÍCH ===== */` | `store` (`localStorage` key `msns_main_v1`), `say()`, `fx()`, `log()`, `hasT()`, `talMul()`, `eqMul()`. |
-| `/* ===== DỮ LIỆU BÁCH NGHỆ... ===== */` | Công thức chế tạo: `DR` (Luyện đan), `KR` (Luyện khí), `QU` (Nâng phẩm), `AR` (7 Trận pháp), `TR` (2 Trận Bàn thực chiến), `PT` (Đan độc), `PE` (Hiệu ứng dùng đan). |
+| `/* ===== DỮ LIỆU BÁCH NGHỆ... ===== */` | Công thức chế tạo: `DR` (Luyện đan), `KR` (Luyện khí), `QU` (Nâng phẩm), `rfCost` (Tinh luyện trang bị `+1 → +10`), `AR` (7 Trận pháp), `TR` (2 Trận Bàn thực chiến), `PT` (Đan độc), `PE` (Hiệu ứng dùng đan). |
 | `/* ===== SERVICES HỢP NHẤT ===== */` | Logic nghiệp vụ lõi: `characterService`, `techniqueService`, `inventoryService`, `equipmentService`, `talentInventoryService`, `characterStatsService` (`realmMul = 2.1^realm`), `cultivationService` (có `pity`, `auto` tự lên tầng), `destinyService`. |
 | `/* ===== LỊCH LUYỆN & CHIẾN ĐẤU... ===== */` | `ADV` (14 ải), `STANCES` (3 Tâm pháp giao chiến), `MUTS` (4 hệ Yêu Thú Biến Dị), `skillOf()`, `foeOf()`, `calcSup()` (Uy Áp Cảnh Giới), `adventureService` (`initBattle`, `step`, `autoPick`, `simBattle`, `resolve`, `fight`, `act`, `sweep`). |
 | `/* ===== PHƯỜNG THỊ ===== */` | `shopService`: sinh gian hàng 5 năm/lần, mua/bán vật phẩm (có kiểm tra khóa `it.lk`). |
