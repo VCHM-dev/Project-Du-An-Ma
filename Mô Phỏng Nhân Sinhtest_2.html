@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Mô Phỏng Nhân Sinh – Nhân Vật Chính</title>
 <style>
-:root{color-scheme:dark;--bg:#050914;--pn:#0b1630;--ln:#23416e;--gold:#e5c158;--jade:#38bdf8;--vio:#8b5cf6;--iv:#eef4ff;--mu:#8fa8cc;--glow:#102a56;--okc:#2dd4bf;--ff:Georgia,"Noto Serif",serif;--fs:15px;--bt:color-mix(in srgb,var(--pn) 84%,var(--iv));--bt2:color-mix(in srgb,var(--jade) 28%,var(--pn));--in:color-mix(in srgb,var(--bg) 72%,var(--pn));--cd:color-mix(in srgb,var(--bg) 42%,var(--pn));--hd:color-mix(in srgb,var(--bg) 88%,transparent);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{color-scheme:dark;--bg:#050914;--pn:#0b1630;--ln:#23416e;--gold:#e5c158;--jade:#38bdf8;--vio:#8b5cf6;--iv:#eef4ff;--mu:#8fa8cc;--glow:#102a56;--okc:#2dd4bf;--ff:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--fs:15px;--bt:color-mix(in srgb,var(--pn) 84%,var(--iv));--bt2:color-mix(in srgb,var(--jade) 28%,var(--pn));--in:color-mix(in srgb,var(--bg) 72%,var(--pn));--cd:color-mix(in srgb,var(--bg) 42%,var(--pn));--hd:color-mix(in srgb,var(--bg) 88%,transparent);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,var(--glow),var(--bg) 68%) fixed;color:var(--iv);font:var(--fs)/1.5 var(--ff);min-height:100vh}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
@@ -1139,6 +1139,8 @@ function migrate(){
   if(!s.shop)shopService.gen(s);
   s.profile=Object.assign({},UP,s.profile||{});
   s.theme=Object.assign({},UT,s.theme||thG);
+  if(s.theme.font>=2)s.theme.font=1;
+  if(!FFS[s.theme.font])s.theme.font=0;
   s.uiCfg=Object.assign({},UC,s.uiCfg||{});
   if(!UB[s.profile.banner])s.profile.banner=0;
   if(!UD[s.profile.decor]||!UD[s.profile.decor].ok(s))s.profile.decor=0;
@@ -1733,7 +1735,7 @@ function vCraft(){
 function vCreate(){return `<div class="pn" style="max-width:420px;margin:30px auto"><h3>Tạo nhân vật chính</h3><p class="mu">Linh căn khởi đầu chỉ chọn một lần, sau này chỉ đổi được bằng vật phẩm đặc biệt.</p><p><input id="nm" placeholder="Tên nhân vật" style="width:100%"></p><p><select id="gd"><option>Nam</option><option>Nữ</option></select> <select id="rt">${ROOTS.slice(0,5).map((r,i)=>`<option value="${i}">${r.n}</option>`).join('')}</select></p>${btn('create','','Bắt đầu')}</div>`}
 
 /* ===== TÙY BIẾN GIAO DIỆN & HỒ SƠ ĐẠO HỮU ===== */
-const FFS=['Georgia,"Noto Serif",serif','system-ui,-apple-system,"Segoe UI",Roboto,sans-serif','ui-monospace,SFMono-Regular,Menlo,Consolas,monospace'],FSZ=[13,15,17];
+const FFS=['system-ui,-apple-system,"Segoe UI",Roboto,sans-serif','ui-monospace,SFMono-Regular,Menlo,Consolas,monospace'],FSZ=[13,15,17];
 const UTP=[{n:'Huyền Tinh Lam Ngọc',bg:'#050914',pn:'#0b1630',ln:'#23416e',gold:'#e5c158',jade:'#38bdf8',iv:'#eef4ff',mu:'#8fa8cc',glow:'#102a56',vio:'#8b5cf6',okc:'#2dd4bf'},
 {n:'Huyền Thiên Tím Vàng',bg:'#07060c',pn:'#110d1c',ln:'#3a2f55',gold:'#d4af37',jade:'#3fd1b0',iv:'#f3ecd8',mu:'#a49cb8',glow:'#21123c',vio:'#8b5cf6'},
 {n:'Thái Cổ Mặc Ngọc',bg:'#000000',pn:'#07100e',ln:'#17423b',gold:'#c9d6df',jade:'#2dd4a7',iv:'#e8f1ee',mu:'#7f9a94',glow:'#052019',vio:'#14b8a6'},
@@ -1766,7 +1768,7 @@ function sbar(){const L=cultivationService.life(s),old=s.age>L*.8;return `<span>
 function apHTML(){const t=s.theme,cu=UTP.length-1,c=(a,x,on,l)=>`<button class="chip ${on?'on':''}" data-a="${a}" data-x="${x}" aria-pressed="${!!on}">${l}</button>`,tg=(a,on,l)=>`<div class="lb"><span>${l}</span><button class="chip ${on?'on':''}" data-a="${a}" aria-pressed="${!!on}">${on?'Bật':'Tắt'}</button></div>`;
 return `<div class="aph"><h3>🎨 Thiết lập giao diện</h3><button data-a="uic" aria-label="Đóng bảng giao diện">✕</button></div>
 <div class="pn"><h3>Chủ đề màu sắc</h3><div class="thg">${UTP.map((p,i)=>`<button class="sw ${t.preset===i?'on':''}" data-a="th" data-x="${i}" aria-pressed="${t.preset===i}"><i style="background:linear-gradient(90deg,${i===cu?t.bg:p.bg} 50%,${i===cu?t.ac:p.gold} 50%)"></i>${p.n}</button>`).join('')}</div>${t.preset===cu?`<div class="lb"><label for="cbg">Màu nền chính</label><input id="cbg" class="co" type="color" data-chg="th_bg" value="${t.bg}"></div><div class="lb"><label for="cac">Màu nhấn (Accent)</label><input id="cac" class="co" type="color" data-chg="th_ac" value="${t.ac}"></div>`:''}</div>
-<div class="pn"><h3>Chữ &amp; mật độ hiển thị</h3><div class="mu">Font chữ</div><div class="bt">${['Cổ điển (Serif)','Hiện đại (Sans)','Mã lệnh (Mono)'].map((l,i)=>c('tf',i,t.font===i,l)).join('')}</div><div class="mu" style="margin-top:6px">Cỡ chữ</div><div class="bt">${['Nhỏ 13px','Vừa 15px','Lớn 17px'].map((l,i)=>c('ts',i,t.size===i,l)).join('')}</div><div class="mu" style="margin-top:6px">Mật độ thẻ</div><div class="bt">${['Thoáng đãng (Cozy)','Thu gọn (Compact)'].map((l,i)=>c('td',i,t.dens===i,l)).join('')}</div></div>
+<div class="pn"><h3>Chữ &amp; mật độ hiển thị</h3><div class="mu">Font chữ</div><div class="bt">${['Hiện đại (Sans)','Mã lệnh (Mono)'].map((l,i)=>c('tf',i,t.font===i,l)).join('')}</div><div class="mu" style="margin-top:6px">Cỡ chữ</div><div class="bt">${['Nhỏ 13px','Vừa 15px','Lớn 17px'].map((l,i)=>c('ts',i,t.size===i,l)).join('')}</div><div class="mu" style="margin-top:6px">Mật độ thẻ</div><div class="bt">${['Thoáng đãng (Cozy)','Thu gọn (Compact)'].map((l,i)=>c('td',i,t.dens===i,l)).join('')}</div></div>
 <div class="pn"><h3>Hiệu ứng &amp; trợ năng</h3>${tg('tg',t.glow,'Phát sáng / nhấp nháy thẻ Kim sắc, Thất thải')}${tg('tb',t.blur,'Làm mờ kính (backdrop-filter)')}</div>${mediaHTML()}<div class="bt">${btn('thr','','Khôi phục mặc định')}</div>`}
 function toast(t,k){const c=$('ts');if(!c)return;k=k||'ok';const d=document.createElement('div');d.className='toast '+k;d.setAttribute('role',k==='wn'?'alert':'status');d.innerHTML='<span>'+({ok:'✔',wn:'⚠',ach:'🏆'}[k])+'</span><p></p><button class="x" aria-label="Tắt thông báo">✕</button>';d.querySelector('p').textContent=t;c.appendChild(d);while(c.children.length>4)c.firstChild.remove();setTimeout(()=>d.remove(),k==='ach'?8000:5500)}
 const UW=/^(Cần|Chưa|Chỉ |Hết |Dừng|Mã save không|JSON không|Hãy |Không |Linh căn đã|Thể chất đã|Phần thưởng đã|Kim Thủ Chỉ đã|Đã cấp|Tâm cảnh)|thất bại|Thất bại|nhiễm tâm ma|Nổ lò|thân tử|cạn kiệt/;
