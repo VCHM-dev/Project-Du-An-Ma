@@ -1,6 +1,6 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.10 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.11 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
@@ -41,6 +41,10 @@
   - Cập nhật đường cong quái `foeOf(i)` (`L = round(18 * 2.15^i)`) và **Uy Áp Cảnh Giới** (`-22%` sát thương gây ra, `+25%` sát thương nhận vào mỗi cảnh giới chênh lệch; giảm trừ bởi Ngũ hành tương khắc `50%`, Bản Mệnh Pháp Bảo `+2.5%/cấp` tối đa `25%`, và Trận Bàn).
   - **Bách Nghệ hỗ trợ thực chiến:** Luyện Khí (`ql=2` +15%, `ql=3` +30% Xuyên Giáp); Luyện Đan (3 đan thực chiến `d14` Bạo Nguyên Đan, `d15` Kim Cang Hộ Tâm Đan, `d16` Bách Thảo Giải Độc Đan; phẩm chất Cực phẩm `ex` dùng không tốn lượt); Trận Pháp (2 Trận Bàn tiêu hao `b1` Ngũ Hành Nghịch Chuyển Bàn & `b2` Tứ Tượng Tỏa Linh Bàn chế tạo trong `vCraft` và kích hoạt trong `btlModal`).
   - Đồng bộ ngưỡng Độ Kiếp (`160 * 2.1^t`) và ngưỡng Phi Thăng (`thu >= 150.000` ở Độ Kiếp).
+- **Nâng cấp Đột Phá Cảnh Giới & Bảng Thuộc Tính (`characterStatsService`, `cultivationService`, `vChar`, `vCul`, `brkModal`):**
+  - Mở rộng bảng Thuộc tính `vChar` từ 3 chỉ số lên **6 chỉ số thực chiến** (*Sinh mệnh, Linh lực, Sức mạnh, Phòng ngự, Tốc độ, Bạo kích / Xuyên giáp*) kèm **Hệ số cảnh giới (`×realmMul`)**.
+  - Chỉnh hệ số thuộc tính gốc theo cảnh giới thành `k = 10 + 12*realm + layer` để mỗi lần đột phá đại cảnh giới tăng rõ `+4` toàn bộ thuộc tính gốc (thay vì `+0` như trước).
+  - Thêm hiệu ứng **Tẩy Kinh Phạt Tủy** khi đột phá đại cảnh giới thành công (`cultivationService.go`): tự động xóa Tâm Ma, giảm mạnh Đan Độc, cộng `+2 Khí vận`, đồng thời hiển thị **Dự báo tăng tiến** trong `vCul` và **Popup Tổng Kết Đột Phá (`brkModal`)** so sánh Trước → Sau chi tiết.
 - **Tối ưu chiến đấu tự động, Bách Nghệ & Hiệu năng UI (`autoPick`, `vCraft`, `render`, `runLab`, `resolve`):**
   - Nâng cấp `adventureService.autoPick(b, x)` tự động ưu tiên kích hoạt Trận Bàn (`b1`, `b2`), giải độc (`d16`), uống đan hồi phục (`d1/d3/d12`), bật `Kim Cang Hộ Tâm Đan` (`d15`) khi boss tụ lực và `Bạo Nguyên Đan` (`d14`) khi vượt cấp.
   - Thêm nút chế tạo nhanh **×5** (`dc5`, `kc5`, `tc5`) trong `vCraft` cho cả 3 nghề (Luyện Đan, Luyện Khí, Khắc Trận Bàn).
