@@ -568,7 +568,7 @@ const cultivationService={
   go(x){
     if(!this.check(x).every(c=>c[0]))return say('Chưa đủ điều kiện đột phá');
     const n=this.need(x);
-    if(x.layer<8){x.xp-=n;x.layer++;return log(`Đột phá thành công: ${REALMS[x.realm]} tầng ${x.layer+1}`)}
+    if(x.layer<8){x.xp-=n;x.layer++;return log(`Đột phá thành công: ${realmName(x)} tầng ${x.layer+1}`)}
     x.stones-=this.cost(x);const p=this.chance(x);x.pb=0;
     if(Math.random()>p){x.pity=Math.min(.2,(x.pity||0)+.04);
       x.xp=Math.max(0,x.xp-Math.round(n*.25));
@@ -982,6 +982,10 @@ const adventureService={
       const res=usePill(act==='pill'?null:act.slice(5));
       if(res.free||(b.freeCraft>0&&!res.err)){if(!res.free)b.freeCraft--;b.logs.push(`✨ ${res.free?'Cực phẩm đan dược':'Bách Nghệ Nhập Đạo'} không tốn lượt (Hiệp ${b.r}): ${res.msg}`);return b}
       act={_pillMsg:res.err||res.msg};
+    }
+    if((act==='tb_b1'||act==='tb_b2')&&b.freeCraft>0){
+      const bid=act==='tb_b1'?'b1':'b2',it=x.inv.find(k=>k.id===bid&&k.q>0);
+      if(it){it.q--;if(it.q<=0)x.inv=x.inv.filter(k=>k!==it);b.freeCraft--;if(bid==='b1'){b.counter=1;b.tb1=1;calcSup(x,b);b.logs.push(`✨ Bách Nghệ Nhập Đạo không tốn lượt (Hiệp ${b.r}): kích hoạt Ngũ Hành Nghịch Chuyển Bàn`)}else{b.tb2=1;b.logs.push(`✨ Bách Nghệ Nhập Đạo không tốn lượt (Hiệp ${b.r}): kích hoạt Tứ Tượng Tỏa Linh Bàn`)}return b}
     }
     b.r++;
     const hit=(a,d)=>Math.max(1,Math.round((a-d*.5)*(.88+Math.random()*.24)));
@@ -2090,9 +2094,10 @@ function brkModal(){
   const row=(lb,x0,x1,suf='')=>`<div class="row"><span>${lb}</span><span>${x0.toLocaleString('vi-VN')}${suf} → <b class="ok">${x1.toLocaleString('vi-VN')}${suf}</b></span></div>`;
   const perks=['+2 toàn bộ thuộc tính gốc (cấp số cộng theo bậc tu vi)', '+2 Khí vận & thanh lọc Tâm Ma, Đan Độc'];
   if(b.r1===3||b.r1===6)perks.push('✨ Mở khóa thêm +1 ô Thiên Phú kích hoạt');
+  if(b.r1===3)perks.push('☯ Mở khóa Song Tu Đạo Lộ (Kiêm Tu Phó Đạo Lộ)');
   if(b.r1===8)perks.push('♻ Mở khóa tính năng Binh Giải Chuyển Thế (New Game+)');
   if(b.r1===9)perks.push('⚡✨ Phi Thăng Tiên Giới thành công!');
-  return `<div class="modal-bg"><div class="modal-box" style="width:min(460px,100%)"><h3 style="margin:0 0 8px;color:var(--gold)">⚡ Đột Phá Cảnh Giới Thành Công!</h3><div class="ainr" style="border-left-color:var(--jade);margin-bottom:8px"><b>${REALMS[b.r0]} → ${REALMS[b.r1]}</b><div class="mu">Tẩy kinh phạt tủy, đạo cơ đại thành!</div></div><div class="pn" style="margin-bottom:8px">${row('Sinh mệnh',b.before.maxHp,b.after.maxHp)}${row('Linh lực',b.before.maxMp,b.after.maxMp)}${row('Sức mạnh',b.before.luc,b.after.luc)}${row('Phòng ngự',b.before.thu,b.after.thu)}${row('Tốc độ',b.before.toc,b.after.toc)}${row('Thọ nguyên tối đa',b.lifeBefore,b.lifeAfter,' năm')}<div class="row"><span>Hệ số cảnh giới</span><span>×${b.before.realmMul.toFixed(1)} → <b class="ok">×${b.after.realmMul.toFixed(1)}</b></span></div></div><div class="pn" style="margin-bottom:10px">${perks.map(p=>`<div class="ok">• ${p}</div>`).join('')}</div><div class="bt">${btn('brk_cls','','Tiếp tục tu hành')}</div></div></div>`;
+  return `<div class="modal-bg"><div class="modal-box" style="width:min(460px,100%)"><h3 style="margin:0 0 8px;color:var(--gold)">⚡ Đột Phá Cảnh Giới Thành Công!</h3><div class="ainr" style="border-left-color:var(--jade);margin-bottom:8px"><b>${realmName({path:s.path,realm:b.r0})} → ${realmName({path:s.path,realm:b.r1})}</b><div class="mu">Tẩy kinh phạt tủy, đạo cơ đại thành!</div></div><div class="pn" style="margin-bottom:8px">${row('Sinh mệnh',b.before.maxHp,b.after.maxHp)}${row('Linh lực',b.before.maxMp,b.after.maxMp)}${row('Sức mạnh',b.before.luc,b.after.luc)}${row('Phòng ngự',b.before.thu,b.after.thu)}${row('Tốc độ',b.before.toc,b.after.toc)}${row('Thọ nguyên tối đa',b.lifeBefore,b.lifeAfter,' năm')}<div class="row"><span>Hệ số cảnh giới</span><span>×${b.before.realmMul.toFixed(1)} → <b class="ok">×${b.after.realmMul.toFixed(1)}</b></span></div></div><div class="pn" style="margin-bottom:10px">${perks.map(p=>`<div class="ok">• ${p}</div>`).join('')}</div><div class="bt">${btn('brk_cls','','Tiếp tục tu hành')}</div></div></div>`;
 }
 
 /* ===== GIAO DIỆN CÁC TAB ===== */
@@ -2329,12 +2334,12 @@ ${b.mut?`<div class="ainr" style="border-left-color:${b.mut.c};margin:6px 0"><b>
 ${b.fCharge?`<div class="warn" style="padding:6px 10px;border:1px solid #f87171;border-radius:6px;margin:6px 0">⚡ CẢNH BÁO: ${esc(b.fn)} đang tụ lực Đại Chiêu! Hãy dùng tuyệt kỹ Phong Ấn để ngắt chiêu hoặc bật Hộ Thể Kim Quang để đỡ!</div>`:''}
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0">
   <div class="card r2" style="--rc:var(--jade)">
-    <div class="ct"><b>☯ ${esc(s.name)}</b><span class="tag">${REALMS[s.realm]}</span></div>
+    <div class="ct"><b>☯ ${esc(s.name)}</b><span class="tag">${realmName(s)}</span></div>
     <div class="row mu"><span>HP ${Math.max(0,b.hp).toLocaleString('vi-VN')}/${b.maxHp.toLocaleString('vi-VN')}</span><span>Lực ${b.luc.toLocaleString('vi-VN')} · Thủ ${b.thu.toLocaleString('vi-VN')}</span></div>
     <div class="bar"><i style="width:${hpP}%"></i></div>
     <div class="row mu" style="margin-top:4px"><span>Linh lực ${b.mp.toLocaleString('vi-VN')}/${b.maxMp.toLocaleString('vi-VN')}</span><span>Tốc ${b.toc.toLocaleString('vi-VN')}</span></div>
     <div class="bar"><i style="width:${mpP}%;background:linear-gradient(90deg,#38bdf8,#8b5cf6)"></i></div>
-    <div class="bt">${pTags.map(t=>`<span class="chip">${t}</span>`).join('')||'<span class="mu">Trạng thái bình thường</span>'}</div>
+    <div class="bt">${(b.path==='kiem'||b.subPath==='kiem')?`<span class="chip on">⚔ Kiếm Ý ${b.swordIntent||0}/5</span>`:''}${b.freeCraft>0?`<span class="chip on">🔨 Miễn lượt ${b.freeCraft}</span>`:''}${pTags.map(t=>`<span class="chip">${t}</span>`).join('')||((b.path!=='kiem'&&b.subPath!=='kiem'&&!b.freeCraft)?'<span class="mu">Trạng thái bình thường</span>':'')}</div>
   </div>
   <div class="card r${b.mut?5:3}" style="--rc:${b.mut?b.mut.c:'var(--vio)'}">
     <div class="ct"><b>${esc(b.fn)}</b><span class="tag">Hệ ${ELN[b.f.el]}</span></div>
@@ -2469,7 +2474,7 @@ function vComp(){
     const aff=(s.pAff&&s.pAff[pt.id])||0,isP=s.partner===pt.id,tb=Math.round(pt.trib*(1+Math.floor(Math.max(0,aff-100)/100)*.2)*100);
     return card(isP?5:aff>=100?3:1,`${pt.n}${isP?' · Đạo Lữ':''}`,`<div class="comp-hd">${partnerArt(pt.id)}<div><span style="color:var(--gold)">${pt.ti}</span><br>${esc(pt.d)}</div></div>Hảo cảm: <b>${aff}</b> · Hộ pháp Thiên Kiếp: <b class="ok">+${tb}%</b>`,btn('pt_gift',pt.id,`Tặng Lễ (${gCost.toLocaleString('vi-VN')}💎)`,s.stones<gCost)+(!isP&&aff>=100?btn('pt_bond',pt.id,'Kết Thành Đạo Lữ'):''));
   }).join('');
-  return`<div class="pn"><h3>🐉 Linh Thú Thực Chiến</h3><div class="mu">Thu phục Linh Thú và dùng <b>Yêu Đan</b> (nhặt từ Lịch Luyện) để tiến hóa tối đa 7 bậc. Linh Thú xuất chiến sẽ cộng chỉ số và trực tiếp ra đòn/hộ thuẫn/trị liệu mỗi hiệp trong Chiến Trường!</div><div class="grid" style="margin-top:8px">${petCards}</div></div>
+  return`<div class="pn"><h3>🐉 Linh Thú Thực Chiến</h3><div class="mu">Thu phục Linh Thú và dùng <b>Yêu Đan</b> (nhặt từ Lịch Luyện) để tiến hóa tối đa 7 bậc. Linh Thú xuất chiến sẽ cộng chỉ số và trực tiếp ra đòn/hộ thuẫn/trị liệu mỗi hiệp trong Chiến Trường!</div>${(s.path==='yeu'||s.subPath==='yeu')?`<div class="ok" style="margin-top:4px">🐉 Huyết Mạch Yêu Tu: Buff Linh Thú +${s.path==='yeu'?50:22.5}% · Sát thương Linh Thú thực chiến +${s.path==='yeu'?60:25}%</div>`:''}<div class="grid" style="margin-top:8px">${petCards}</div></div>
   <div class="pn"><div class="row" style="align-items:center"><h3>💞 Đạo Lữ Song Tu &amp; Hộ Pháp Độ Kiếp</h3>${curPt?btn('pt_dual','',cd?`Song Tu (chờ ${cd} năm)`:`💞 Song Tu cùng ${curPt.n} (+1 tuổi)`,cd>0||s.age>=cultivationService.life(s)):''}</div>
     <div class="mu">${curPt?`Đạo Lữ hiện tại: <b>${curPt.n}</b> (Hảo cảm ${(s.pAff&&s.pAff[curPt.id])||100}) · Hộ pháp Thiên Kiếp <b class="ok">+${Math.round(compService.tribBonus(s)*100)}%</b> · Song Tu nhận ×2.2~2.6 Tu vi!`:'Tặng lễ vật đạt 100 Hảo cảm để Kết Thành Đạo Lữ, mở khóa Song Tu và được Hộ Pháp tăng tỷ lệ vượt Thiên Kiếp.'}</div>
     <div class="grid" style="margin-top:8px">${ptCards}</div>
@@ -2512,7 +2517,7 @@ return `<div class="pn pc"><div class="bn" style="background:${s.uiCfg.bn?"cente
 function qpickAv(cur){const mk=(list,off)=>`<div class="qpick">${list.map((a,i)=>`<button class="qchip ${cur===safeU(a.u)?'on':''}" data-a="qav" data-x="${off+i}"><img src="${a.u}" referrerpolicy="no-referrer" alt="" onerror="this.style.display='none'">${a.n}</button>`).join('')}</div>`;return`<div class="mu" style="margin-top:4px">Nam Tu Tiên</div>${mk(QCBH_AVATARS.nam,0)}<div class="mu" style="margin-top:4px">Nữ Tu Tiên</div>${mk(QCBH_AVATARS.nu,QCBH_AVATARS.nam.length)}`}
 function profileEdit(){const p=s.profile,c=(a,x,on,l,lk)=>`<button class="chip ${on?'on':''}" data-a="${a}" data-x="${x}"${lk?' style="opacity:.55"':''}>${l}</button>`;
 return `<div class="pe"><div class="mu">Ảnh bìa</div><div class="bt">${UB.map((b,i)=>c('pbn',i,!s.uiCfg.bn&&p.banner===i,b[0])).join('')}</div><div class="mu" style="margin-top:6px">Chân dung Pixel Art Tu Tiên</div>${qpickAv(s.uiCfg.av||(s.gender==='Nữ'?QCBH_AVATARS.nu[0].u:QCBH_AVATARS.nam[0].u))}${s.uiCfg.av?`<div class="bt">${btn('ir','av','↺ Dùng Avatar Mặc Định')}</div>`:''}<div class="mu" style="margin-top:6px">Khung viền Avatar</div><div class="bt">${UD.map(d=>c('pdc',d.id,p.decor===d.id,(d.ok(s)?'':'🔒 ')+d.n,!d.ok(s))).join('')}</div><div class="mu" style="margin-top:6px">Đạo hiệu / trạng thái</div><div class="bt">${UE.map(e=>c('pem',e,p.emo===e,e)).join('')}</div><input data-chg="pstatus" value="${esc(p.status)}" maxlength="60" placeholder="Nhập đạo hiệu (tối đa 60 ký tự)" aria-label="Đạo hiệu" style="width:100%;margin-top:6px"><div class="bt">${UQ.map((q,i)=>c('pqs',i,false,q[0]+' '+q[1])).join('')}${btn('pcl','','Xóa đạo hiệu')}</div><div class="bt">${btn('ui','','🖼 Tải ảnh / Đổi hình nền động phủ')}</div></div>`}
-function sbar(){const L=cultivationService.life(s),old=s.age>L*.8;return `<span>☯ <b>${esc(s.name)}</b> · ${REALMS[s.realm]} T${s.layer+1}</span><span>💎 <b>${s.stones.toLocaleString('vi-VN')}</b></span><span class="${old?'warn':''}">⏳ <b>${s.age}</b>/${L}</span><span class="bar${old?' warn':''}" style="width:64px;height:6px"><i style="width:${clamp(s.age/L*100,0,100)}%"></i></span>`}
+function sbar(){const L=cultivationService.life(s),old=s.age>L*.8,pt=PD[s.path||'linh']||PD.linh;return `<span>${pt.ic} <b>${esc(s.name)}</b> · ${realmName(s)} T${s.layer+1}</span><span>💎 <b>${s.stones.toLocaleString('vi-VN')}</b></span><span class="${old?'warn':''}">⏳ <b>${s.age}</b>/${L}</span><span class="bar${old?' warn':''}" style="width:64px;height:6px"><i style="width:${clamp(s.age/L*100,0,100)}%"></i></span>`}
 function apHTML(){const t=s.theme,cu=UTP.length-1,c=(a,x,on,l)=>`<button class="chip ${on?'on':''}" data-a="${a}" data-x="${x}" aria-pressed="${!!on}">${l}</button>`,tg=(a,on,l)=>`<div class="lb"><span>${l}</span><button class="chip ${on?'on':''}" data-a="${a}" aria-pressed="${!!on}">${on?'Bật':'Tắt'}</button></div>`;
 return `<div class="aph"><h3>🎨 Thiết lập giao diện</h3><button data-a="uic" aria-label="Đóng bảng giao diện">✕</button></div>
 <div class="pn"><h3>Chủ đề màu sắc</h3><div class="thg">${UTP.map((p,i)=>`<button class="sw ${t.preset===i?'on':''}" data-a="th" data-x="${i}" aria-pressed="${t.preset===i}"><i style="background:linear-gradient(90deg,${i===cu?t.bg:p.bg} 50%,${i===cu?t.ac:p.gold} 50%)"></i>${p.n}</button>`).join('')}</div>${t.preset===cu?`<div class="lb"><label for="cbg">Màu nền chính</label><input id="cbg" class="co" type="color" data-chg="th_bg" value="${t.bg}"></div><div class="lb"><label for="cac">Màu nhấn (Accent)</label><input id="cac" class="co" type="color" data-chg="th_ac" value="${t.ac}"></div>`:''}</div>
