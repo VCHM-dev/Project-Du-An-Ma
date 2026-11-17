@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.26 (`index.html`)  
+> **Phiên bản hiện tại:** v5.27 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-17  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Hệ Thống Đột Phá Đạo Lộ 3 Phẩm Chất & Nghịch Thiên Cải Mệnh (`v5.27` · `BRK_TIERS`, `PATH_BRK`, `DAO_AN`, `cultivationService`, `brkModal`, `vCul`):**
+  - **8 Nghi Thức & Kiếp Nạn Độc Bản:** Mỗi Đạo Lộ có điều kiện thuộc tính, tiêu hao tài nguyên và công thức vượt kiếp riêng (*Ngưng Đan Trúc Đài*, *Dĩ Lôi Tôi Thân*, *Trảm Tam Thi · Vấn Tâm*, *Mở Quỷ Môn · Huyết Tế*, *Trảm Kiếp Vấn Kiếm*, *Dĩ Khí Chứng Đạo*, *Huyết Mạch Phản Tổ*, *Lập Ngôn Chứng Thánh*).
+  - **3 Phẩm Chất Đạo Cơ (`Phàm Phẩm`, `Địa Phẩm`, `Thiên Phẩm`):** Cho phép chọn bậc đột phá ngay tại tab Tu Luyện để nhận `+2/+4/+6` thuộc tính bản mệnh và `+0%/+6%/+12%` Căn Cơ vĩnh viễn.
+  - **24 Đạo Ấn (Nghịch Thiên Cải Mệnh):** Khi đột phá từ Địa Phẩm trở lên, người chơi chọn 1 trong 3 Đạo Ấn đặc trưng của nhánh trong `brkModal` để nhận hiệu ứng thực chiến/tu luyện vĩnh viễn.
 - **Hệ Thống 8 Nhánh Tu Luyện (Đạo Lộ) — Pha 2 (`v5.26` · `PATHS`, `characterStatsService`, `cultivationService`, `adventureService`, `vChar`, `vCul`):**
   - **Liên Kết Thuộc Tính & Gọn Hóa Bảng Thuộc Tính:** Mỗi Đạo Lộ có **2 Thuộc Tính Bản Mệnh (★)** quyết định công thức `Sức mạnh`, `Phòng ngự`, `Tốc độ`, `Sinh mệnh` và `Linh lực`. Bảng Thuộc Tính trong `vChar` được tách gọn thành **Cốt Cách (6 thuộc tính gốc)**, **Thực Chiến (8 chỉ số)** và **Cộng Hưởng Đạo Lộ**.
   - **Nội Tại Thực Chiến & Tu Luyện Đặc Thù:** Thể Tu (phản 15% ST, kháng Uy Áp +15%, giảm 60% Đan độc, *Tôi Thể* không tốn tuổi), Hồn Tu (+20% Choáng/Ngắt tụ lực, tích *Hồn Tinh Ngộ Đạo*), Quỷ Tu (hút máu 12%, *Âm Binh* mỗi 3 hiệp, tích *Âm Khí Huyết Tế*), Kiếm Tu (tích *Kiếm Ý* cường hóa Tuyệt kỹ +75% ST), Bách Nghệ Tu (dùng Đan/Trận không tốn lượt 2 lần/trận, chế đồ nhận Tu vi), Yêu Tu (+60% ST Linh Thú, *Luyện Yêu* không tăng Đan độc), Nho Tu (hồi 4% HP & giảm 10% ST địch khi Thiện ≥ Ác).
