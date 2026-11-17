@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.21 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.22 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-16  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Tích Hợp Bộ Hình Ảnh Chính Thức Quỷ Cốc Bát Hoang (`v5.22` · `QCBH_AVATARS`, `QCBH_BG`, `BOSS_IMG`, `ARCH_IMG`, `avatar`, `bossBanner`, `archBanner`, `profileEdit`, `mediaHTML`):**
+  - **Avatar Tu Tiên (Nam / Nữ):** Bổ sung 4 chân dung Nam Tu Tiên và 5 chân dung Nữ Tu Tiên từ *Quỷ Cốc Bát Hoang* vào bộ chọn nhanh trong `profileEdit` và `mediaHTML` (`qav`), kèm `referrerpolicy="no-referrer"` và `onerror` tự lùi về SVG Thủy Mặc khi offline.
+  - **14 Boss & Yêu Thú Lịch Luyện (`BOSS_IMG`):** Gắn ảnh chính thức cho toàn bộ 14 ải (`ADV[0..13]`) trong `bossBanner()`, giữ nguyên `BOSS_ART` SVG làm lớp nền fallback khi mất mạng.
+  - **Kiến Trúc, Ảnh Bìa & Hình Nền Động Phủ (`ARCH_IMG`, `QCBH_BG`):** Cập nhật ảnh cho *Tông Môn*, *Sơn Môn Tự Lập*, *Vạn Bảo Lâu* trong `archBanner()` và 7 mẫu Ảnh bìa / Hình nền chọn nhanh (`qbn`, `qwp`).
 - **Đại Trùng Tu Mỹ Thuật Thủy Mặc Quỷ Cốc Bát Hoang (`v5.21` · `avatar`, `petArt`, `partnerArt`, `archBanner`, `bossBanner`):**
   - Thiết kế lại toàn bộ minh họa SVG theo phong cách **Thủy Mặc Sơn Thủy (Ink-Wash)** lấy cảm hứng từ *Quỷ Cốc Bát Hoang*: sơn phong ẩn hiện trong sương mù, tùng cổ bên vách đá, vòng hào quang cảnh giới và viền kim mực.
   - **Avatar Tu Sĩ (`avatar`):** Kiếm tu đứng trên đỉnh núi với nón đấu lạp (Nam) hoặc trâm ngọc (Nữ), dải lụa bay, kiếm sau lưng và hào quang linh khí theo cảnh giới.
