@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.25 (`index.html`)  
+> **Phiên bản hiện tại:** v5.26 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-17  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Hệ Thống 8 Nhánh Tu Luyện (Đạo Lộ) — Pha 2 (`v5.26` · `PATHS`, `characterStatsService`, `cultivationService`, `adventureService`, `vChar`, `vCul`):**
+  - **Liên Kết Thuộc Tính & Gọn Hóa Bảng Thuộc Tính:** Mỗi Đạo Lộ có **2 Thuộc Tính Bản Mệnh (★)** quyết định công thức `Sức mạnh`, `Phòng ngự`, `Tốc độ`, `Sinh mệnh` và `Linh lực`. Bảng Thuộc Tính trong `vChar` được tách gọn thành **Cốt Cách (6 thuộc tính gốc)**, **Thực Chiến (8 chỉ số)** và **Cộng Hưởng Đạo Lộ**.
+  - **Nội Tại Thực Chiến & Tu Luyện Đặc Thù:** Thể Tu (phản 15% ST, kháng Uy Áp +15%, giảm 60% Đan độc, *Tôi Thể* không tốn tuổi), Hồn Tu (+20% Choáng/Ngắt tụ lực, tích *Hồn Tinh Ngộ Đạo*), Quỷ Tu (hút máu 12%, *Âm Binh* mỗi 3 hiệp, tích *Âm Khí Huyết Tế*), Kiếm Tu (tích *Kiếm Ý* cường hóa Tuyệt kỹ +75% ST), Bách Nghệ Tu (dùng Đan/Trận không tốn lượt 2 lần/trận, chế đồ nhận Tu vi), Yêu Tu (+60% ST Linh Thú, *Luyện Yêu* không tăng Đan độc), Nho Tu (hồi 4% HP & giảm 10% ST địch khi Thiện ≥ Ác).
+  - **Kiêm Tu (Song Tu Đạo Lộ):** Mở khóa ở **Nguyên Anh**, cho phép chọn 1 **Phó Đạo Lộ** để hưởng 45% chỉ số và nội tại bổ trợ.
 - **Hệ Thống 8 Nhánh Tu Luyện (Đạo Lộ) — Pha 1 (`v5.25` · `PATHS`, `PD`, `realmName`, `characterService`, `characterStatsService`, `migrate`, `vCreate`, `vChar`, `vCul`, `vAdmin`):**
   - **8 Đạo Lộ Độc Đáo:** *Linh Tu, Thể Tu, Hồn Tu, Quỷ Tu, Kiếm Tu, Bách Nghệ Tu, Yêu Tu, Nho Tu* — mỗi nhánh sở hữu hệ số chỉ số thực chiến riêng (`maxHp`, `maxMp`, `luc`, `thu`, `toc`, `pen`, `crit`, `critDmg`, `dodge`, `tc`, `pb`, `sup`, `pet`), ưu nhược điểm cân bằng và **14 danh xưng cảnh giới song song**.
   - **Tích hợp Tạo Nhân Vật, Bảng Chỉ Số & Admin:** Chọn Đạo Lộ ngay tại `vCreate`, hiển thị rõ Đạo Lộ & danh xưng cảnh giới tại `vChar`/`vCul`, hỗ trợ **Kiêm Tu (Phó Đạo Lộ 45% hiệu lực)** trong `characterStatsService`, tương thích ngược save cũ qua `migrate()` và chuyển đổi thử nghiệm trong `vAdmin`.
