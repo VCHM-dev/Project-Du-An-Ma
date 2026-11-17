@@ -1,0 +1,72 @@
+{
+  "sects": [
+    {
+      "id": "thanhvan",
+      "n": "Thanh Vân Kiếm Tông",
+      "tag": "Chính Đạo · Kiếm Tu",
+      "d": "Thiên hạ đệ nhất kiếm tông, tăng Lực chiến (+12% gốc).",
+      "b": {
+        "luc": 0.12
+      },
+      "col": "#60a5fa"
+    },
+    {
+      "id": "danduoc",
+      "n": "Đan Đỉnh Các",
+      "tag": "Trung Lập · Đan Đạo",
+      "d": "Thánh địa luyện đan, tăng Tốc độ tu luyện (+15% gốc) & giảm 20% Đan độc.",
+      "b": {
+        "tc": 0.15
+      },
+      "col": "#34d399"
+    },
+    {
+      "id": "huyenam",
+      "n": "Huyền Âm Ma Tông",
+      "tag": "Ma Đạo · Huyết Sát",
+      "d": "Tu luyện tà công bá đạo, tăng Bạo kích (+12% gốc) & Hút máu khi giao chiến.",
+      "b": {
+        "crit": 0.12
+      },
+      "col": "#f472b6"
+    },
+    {
+      "id": "vanphap",
+      "n": "Vạn Pháp Thư Viện",
+      "tag": "Cổ Tông · Trận Pháp",
+      "d": "Tàng thư vạn quyển, tăng Phòng ngự (+15% gốc) & Tỷ lệ đột phá (+5% gốc).",
+      "b": {
+        "thu": 0.15,
+        "pb": 0.05
+      },
+      "col": "#fbbf24"
+    }
+  ],
+  "ranks": [
+    [
+      "Ngoại Môn Đệ Tử",
+      0,
+      1
+    ],
+    [
+      "Nội Môn Đệ Tử",
+      100,
+      1.2
+    ],
+    [
+      "Chân Truyền Đệ Tử",
+      400,
+      1.5
+    ],
+    [
+      "Trưởng Lão",
+      1200,
+      1.8
+    ],
+    [
+      "Thái Thượng Trưởng Lão",
+      3000,
+      2.2
+    ]
+  ]
+}

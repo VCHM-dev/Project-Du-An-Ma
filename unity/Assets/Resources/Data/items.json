@@ -1,0 +1,486 @@
+[
+  {
+    "id": "w1",
+    "n": "Thiết Kiếm",
+    "t": "weapon",
+    "r": 0,
+    "s": {
+      "luc": 6
+    }
+  },
+  {
+    "id": "w2",
+    "n": "Thanh Phong Kiếm",
+    "t": "weapon",
+    "r": 2,
+    "s": {
+      "luc": 25,
+      "toc": 8
+    },
+    "req": 1
+  },
+  {
+    "id": "w3",
+    "n": "Xích Diễm Đao",
+    "t": "weapon",
+    "r": 3,
+    "s": {
+      "luc": 55
+    },
+    "req": 2
+  },
+  {
+    "id": "w4",
+    "n": "Tru Tiên Kiếm",
+    "t": "weapon",
+    "r": 5,
+    "s": {
+      "luc": 180,
+      "than": 10
+    },
+    "req": 4
+  },
+  {
+    "id": "w5",
+    "n": "Thanh Trúc Phong Vân Kiếm",
+    "t": "weapon",
+    "r": 3,
+    "s": {
+      "luc": 75,
+      "toc": 18
+    },
+    "req": 2
+  },
+  {
+    "id": "w6",
+    "n": "Huyền Thiết Trọng Kiếm",
+    "t": "weapon",
+    "r": 2,
+    "s": {
+      "luc": 40
+    },
+    "req": 1
+  },
+  {
+    "id": "w7",
+    "n": "Xích Tiêu Thần Thương",
+    "t": "weapon",
+    "r": 4,
+    "s": {
+      "luc": 120,
+      "toc": 10
+    },
+    "req": 3
+  },
+  {
+    "id": "w8",
+    "n": "Hồng Mông Phá Thiên Kích",
+    "t": "weapon",
+    "r": 6,
+    "s": {
+      "luc": 320,
+      "than": 15
+    },
+    "req": 5
+  },
+  {
+    "id": "a1",
+    "n": "Vải Thô Y",
+    "t": "armor",
+    "r": 0,
+    "s": {
+      "thu": 5
+    }
+  },
+  {
+    "id": "a2",
+    "n": "Huyền Quy Giáp",
+    "t": "armor",
+    "r": 3,
+    "s": {
+      "thu": 60,
+      "the": 6
+    },
+    "req": 2
+  },
+  {
+    "id": "a3",
+    "n": "Bát Quái Tiên Y",
+    "t": "armor",
+    "r": 4,
+    "s": {
+      "thu": 110,
+      "tam": 8
+    },
+    "req": 3
+  },
+  {
+    "id": "a4",
+    "n": "Huyền Thiết Giáp",
+    "t": "armor",
+    "r": 2,
+    "s": {
+      "thu": 35,
+      "the": 4
+    },
+    "req": 1
+  },
+  {
+    "id": "a5",
+    "n": "Cửu Thiên Huyền Nữ Y",
+    "t": "armor",
+    "r": 5,
+    "s": {
+      "thu": 170,
+      "toc": 20
+    },
+    "req": 4
+  },
+  {
+    "id": "p1",
+    "n": "Hộ Thân Ngọc",
+    "t": "accessory",
+    "r": 1,
+    "s": {
+      "thu": 8
+    }
+  },
+  {
+    "id": "p2",
+    "n": "Phù Vận Bội",
+    "t": "accessory",
+    "r": 3,
+    "s": {
+      "van": 6,
+      "tam": 4
+    }
+  },
+  {
+    "id": "p3",
+    "n": "Thanh Tâm Ngọc Bội",
+    "t": "accessory",
+    "r": 2,
+    "s": {
+      "tam": 8,
+      "than": 4
+    }
+  },
+  {
+    "id": "p4",
+    "n": "Long Văn Giới",
+    "t": "accessory",
+    "r": 3,
+    "s": {
+      "luc": 18,
+      "the": 6
+    }
+  },
+  {
+    "id": "p5",
+    "n": "Thiên Cơ Linh Châu",
+    "t": "accessory",
+    "r": 4,
+    "s": {
+      "van": 12,
+      "ngo": 6
+    }
+  },
+  {
+    "id": "f1",
+    "n": "Tử Kim Chung",
+    "t": "artifact",
+    "r": 4,
+    "s": {
+      "thu": 80,
+      "than": 12
+    },
+    "req": 3
+  },
+  {
+    "id": "f2",
+    "n": "Hỗn Độn Châu",
+    "t": "artifact",
+    "r": 6,
+    "s": {
+      "tc": 0.3,
+      "linh": 20,
+      "than": 20
+    },
+    "req": 5
+  },
+  {
+    "id": "f3",
+    "n": "Phiên Thiên Ấn",
+    "t": "artifact",
+    "r": 4,
+    "s": {
+      "luc": 90,
+      "thu": 30
+    },
+    "req": 3
+  },
+  {
+    "id": "f4",
+    "n": "Hạo Thiên Kính",
+    "t": "artifact",
+    "r": 5,
+    "s": {
+      "thu": 100,
+      "than": 25,
+      "tam": 8
+    },
+    "req": 4
+  },
+  {
+    "id": "f5",
+    "n": "Cửu Long Thần Hỏa Tráo",
+    "t": "artifact",
+    "r": 5,
+    "s": {
+      "thu": 130,
+      "luc": 60
+    },
+    "req": 4
+  },
+  {
+    "id": "f6",
+    "n": "Càn Khôn Đỉnh",
+    "t": "artifact",
+    "r": 3,
+    "s": {
+      "tc": 0.15,
+      "than": 10,
+      "ngo": 4
+    },
+    "req": 2
+  },
+  {
+    "id": "f7",
+    "n": "Đại Đạo Thông Thiên Chung",
+    "t": "artifact",
+    "r": 6,
+    "s": {
+      "thu": 200,
+      "than": 35,
+      "tc": 0.25
+    },
+    "req": 6
+  },
+  {
+    "id": "d1",
+    "n": "Tụ Khí Đan",
+    "t": "pill",
+    "r": 0,
+    "u": "Cộng 15% tu vi cần thiết của tầng hiện tại"
+  },
+  {
+    "id": "d2",
+    "n": "Phá Cảnh Đan",
+    "t": "pill",
+    "r": 2,
+    "u": "+20% tỷ lệ cho lần đột phá cảnh giới kế tiếp"
+  },
+  {
+    "id": "d3",
+    "n": "Tịnh Tâm Đan",
+    "t": "pill",
+    "r": 1,
+    "u": "Xóa tâm ma, giảm 15 đan độc"
+  },
+  {
+    "id": "d4",
+    "n": "Thăng Căn Đan",
+    "t": "pill",
+    "r": 4,
+    "u": "Nâng linh căn lên một bậc (cố định, không ngẫu nhiên)"
+  },
+  {
+    "id": "d5",
+    "n": "Thể Chất Tinh Huyết",
+    "t": "pill",
+    "r": 4,
+    "u": "Nâng thể chất lên một bậc"
+  },
+  {
+    "id": "d6",
+    "n": "Thọ Nguyên Đan",
+    "t": "pill",
+    "r": 2,
+    "u": "+50 thọ nguyên"
+  },
+  {
+    "id": "s1",
+    "n": "Thiên Đạo Lệnh",
+    "t": "special",
+    "r": 5,
+    "u": "+10 khí vận, +10 nhân quả"
+  },
+  {
+    "id": "d7",
+    "n": "Trúc Cơ Đan",
+    "t": "pill",
+    "r": 1,
+    "u": "Khi đang ở Luyện Khí: +25% tỷ lệ đột phá cảnh giới kế tiếp"
+  },
+  {
+    "id": "d8",
+    "n": "Kết Kim Đan",
+    "t": "pill",
+    "r": 2,
+    "u": "Khi đang ở Trúc Cơ: +25% tỷ lệ đột phá cảnh giới kế tiếp"
+  },
+  {
+    "id": "d9",
+    "n": "Ngưng Anh Đan",
+    "t": "pill",
+    "r": 3,
+    "u": "Khi đang ở Kim Đan: +25% tỷ lệ đột phá cảnh giới kế tiếp"
+  },
+  {
+    "id": "d10",
+    "n": "Hóa Thần Đan",
+    "t": "pill",
+    "r": 4,
+    "u": "Khi đang ở Nguyên Anh: +25% tỷ lệ đột phá cảnh giới kế tiếp"
+  },
+  {
+    "id": "d11",
+    "n": "Tẩy Tủy Đan",
+    "t": "pill",
+    "r": 3,
+    "u": "Giảm 60 đan độc"
+  },
+  {
+    "id": "d12",
+    "n": "Bổ Thiên Đan",
+    "t": "pill",
+    "r": 4,
+    "u": "Cộng 30% tu vi cần thiết của tầng hiện tại"
+  },
+  {
+    "id": "d13",
+    "n": "Cửu Chuyển Hoàn Hồn Đan",
+    "t": "pill",
+    "r": 5,
+    "u": "+100 thọ nguyên, xóa tâm ma, giảm 20 đan độc"
+  },
+  {
+    "id": "d14",
+    "n": "Bạo Nguyên Đan",
+    "t": "pill",
+    "r": 1,
+    "u": "Chiến đấu: +45% Sức mạnh, +20% Bạo kích trong 3 hiệp (+10 đan độc)"
+  },
+  {
+    "id": "d15",
+    "n": "Kim Cang Hộ Tâm Đan",
+    "t": "pill",
+    "r": 2,
+    "u": "Chiến đấu: Hộ Thuẫn = 100% Phòng ngự & miễn hiệu ứng xấu 2 hiệp (+8 đan độc)"
+  },
+  {
+    "id": "d16",
+    "n": "Bách Thảo Giải Độc Đan",
+    "t": "pill",
+    "r": 0,
+    "u": "Chiến đấu: Giải trừ Trúng Độc & miễn độc 4 hiệp (+5 đan độc)"
+  },
+  {
+    "id": "b1",
+    "n": "Ngũ Hành Nghịch Chuyển Bàn",
+    "t": "scroll",
+    "r": 2,
+    "u": "Chiến đấu: Ép đổi Ngũ hành địch sang hệ bị khắc (+30% sát thương & giảm 50% Uy Áp)"
+  },
+  {
+    "id": "b2",
+    "n": "Tứ Tượng Tỏa Linh Bàn",
+    "t": "scroll",
+    "r": 4,
+    "u": "Chiến đấu: Áp chế Yêu Thú Biến Dị (giảm nửa Cuồng Nộ, Phản Chấn, Độc Chướng & làm chậm Cuồng Lôi)"
+  },
+  {
+    "id": "m1",
+    "n": "Linh Thảo",
+    "t": "material",
+    "r": 0,
+    "u": "Nguyên liệu luyện đan"
+  },
+  {
+    "id": "m2",
+    "n": "Ngưng Huyết Thảo",
+    "t": "material",
+    "r": 2,
+    "u": "Nguyên liệu luyện đan"
+  },
+  {
+    "id": "m3",
+    "n": "Thiên Niên Linh Chi",
+    "t": "material",
+    "r": 4,
+    "u": "Nguyên liệu luyện đan"
+  },
+  {
+    "id": "m4",
+    "n": "Yêu Đan Nhất Giai",
+    "t": "material",
+    "r": 1,
+    "u": "Nguyên liệu luyện đan"
+  },
+  {
+    "id": "m5",
+    "n": "Yêu Đan Tam Giai",
+    "t": "material",
+    "r": 3,
+    "u": "Nguyên liệu luyện đan, luyện khí"
+  },
+  {
+    "id": "m6",
+    "n": "Yêu Đan Lục Giai",
+    "t": "material",
+    "r": 5,
+    "u": "Nguyên liệu luyện đan, luyện khí"
+  },
+  {
+    "id": "m7",
+    "n": "Khoáng Thạch",
+    "t": "material",
+    "r": 0,
+    "u": "Nguyên liệu luyện khí"
+  },
+  {
+    "id": "m8",
+    "n": "Tinh Thiết",
+    "t": "material",
+    "r": 2,
+    "u": "Nguyên liệu luyện khí"
+  },
+  {
+    "id": "m9",
+    "n": "Ngũ Sắc Thần Kim",
+    "t": "material",
+    "r": 4,
+    "u": "Nguyên liệu luyện khí"
+  },
+  {
+    "id": "m10",
+    "n": "Trận Kỳ Phàm Phẩm",
+    "t": "material",
+    "r": 0,
+    "u": "Nguyên liệu bố trận"
+  },
+  {
+    "id": "m11",
+    "n": "Trận Kỳ Linh Phẩm",
+    "t": "material",
+    "r": 2,
+    "u": "Nguyên liệu bố trận"
+  },
+  {
+    "id": "m12",
+    "n": "Trận Kỳ Địa Sát",
+    "t": "material",
+    "r": 4,
+    "u": "Nguyên liệu bố trận"
+  }
+]

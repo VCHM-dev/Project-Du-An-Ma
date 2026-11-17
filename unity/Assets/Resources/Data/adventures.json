@@ -1,0 +1,168 @@
+{
+  "stages": [
+    {
+      "index": 0,
+      "boss": "Hắc Phong Lang",
+      "location": "Rừng Hắc Phong",
+      "element": "moc"
+    },
+    {
+      "index": 1,
+      "boss": "Thạch Giáp Quy",
+      "location": "Thạch Cốc",
+      "element": "tho"
+    },
+    {
+      "index": 2,
+      "boss": "Xích Viêm Hổ",
+      "location": "Hỏa Diệm Sơn",
+      "element": "hoa"
+    },
+    {
+      "index": 3,
+      "boss": "Huyền Băng Giao",
+      "location": "Băng Hải",
+      "element": "thuy"
+    },
+    {
+      "index": 4,
+      "boss": "Cửu U Quỷ Vương",
+      "location": "U Minh Cốc",
+      "element": "tho"
+    },
+    {
+      "index": 5,
+      "boss": "Lôi Long",
+      "location": "Lôi Vực",
+      "element": "kim"
+    },
+    {
+      "index": 6,
+      "boss": "Hư Không Thú",
+      "location": "Hư Không Giới",
+      "element": "moc"
+    },
+    {
+      "index": 7,
+      "boss": "Thái Cổ Ma Viên",
+      "location": "Cổ Chiến Trường",
+      "element": "hoa"
+    },
+    {
+      "index": 8,
+      "boss": "Thiên Kiếp Hóa Thân",
+      "location": "Kiếp Vân Đài",
+      "element": "kim"
+    },
+    {
+      "index": 9,
+      "boss": "Tiên Giới Tuần Sứ",
+      "location": "Nam Thiên Môn",
+      "element": "kim"
+    },
+    {
+      "index": 10,
+      "boss": "Thái Ất Kim Ô",
+      "location": "Phù Tang Thần Thụ",
+      "element": "hoa"
+    },
+    {
+      "index": 11,
+      "boss": "Hỗn Độn Cổ Thần",
+      "location": "Vực Ngoại Tinh Hải",
+      "element": "tho"
+    },
+    {
+      "index": 12,
+      "boss": "Đại La Chấp Pháp",
+      "location": "Đại La Thiên Cung",
+      "element": "kim"
+    },
+    {
+      "index": 13,
+      "boss": "Hỗn Nguyên Đạo Thân",
+      "location": "Hỗn Nguyên Hư Không",
+      "element": "thuy"
+    }
+  ],
+  "stances": [
+    {
+      "id": 0,
+      "n": "⚔ Cuồng Bạo Đột Kích",
+      "d": "+25% Sức mạnh, +15% Bạo kích, -20% Phòng ngự",
+      "luc": 1.25,
+      "thu": 0.8,
+      "toc": 1,
+      "crit": 0.15,
+      "regen": 0,
+      "dodge": 0,
+      "ke": 0
+    },
+    {
+      "id": 1,
+      "n": "🛡 Quy Tức Thủ Thế",
+      "d": "+30% Phòng ngự, hồi 5% HP mỗi hiệp, -15% Sức mạnh",
+      "luc": 0.85,
+      "thu": 1.3,
+      "toc": 1,
+      "crit": 0,
+      "regen": 0.05,
+      "dodge": 0,
+      "ke": 0
+    },
+    {
+      "id": 2,
+      "n": "🍃 Linh Động Du Đấu",
+      "d": "+30% Tốc độ, +10% Né tránh, +20% sát thương khắc hệ",
+      "luc": 1,
+      "thu": 1,
+      "toc": 1.3,
+      "crit": 0.05,
+      "regen": 0,
+      "dodge": 0.1,
+      "ke": 0.2
+    }
+  ],
+  "mutations": [
+    {
+      "id": "huyet",
+      "n": "Huyết Sát",
+      "c": "#f43f5e",
+      "d": "Cuồng Nộ: dưới 40% HP tăng 40% sát thương & hút máu 20%",
+      "hp": 1.25,
+      "luc": 1.2,
+      "thu": 1,
+      "toc": 1
+    },
+    {
+      "id": "thiet",
+      "n": "Thiết Giáp",
+      "c": "#fbbf24",
+      "d": "Phản Chấn: +35% Phòng ngự & phản lại 20% sát thương nhận vào",
+      "hp": 1.2,
+      "luc": 1,
+      "thu": 1.35,
+      "toc": 1
+    },
+    {
+      "id": "loi",
+      "n": "Cuồng Lôi",
+      "c": "#c084fc",
+      "d": "Tụ Lực Đại Chiêu: mỗi 3 hiệp tụ lực, hiệp sau giáng đòn 2.2× (dùng Khống Chế để ngắt hoặc Hộ Thể để đỡ)",
+      "hp": 1.2,
+      "luc": 1.2,
+      "thu": 1,
+      "toc": 1.2
+    },
+    {
+      "id": "doc",
+      "n": "Độc Chướng",
+      "c": "#4ade80",
+      "d": "Phun Độc: đòn đánh gây Trúng Độc (-5% HP/hiệp, giảm 50% hồi máu)",
+      "hp": 1.25,
+      "luc": 1.1,
+      "thu": 1.1,
+      "toc": 1
+    }
+  ]
+}
