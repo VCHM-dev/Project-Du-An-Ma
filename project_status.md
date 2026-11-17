@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.23 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Phiên bản hiện tại:** v5.24 (`Mô Phỏng Nhân Sinhtest_2.html`)  
 > **Cập nhật lần cuối:** 2026-11-17  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đồng Bộ Toàn Bộ Mỹ Thuật Pixel Art Cổ Trang Tiên Hiệp (`v5.24` · `QCBH_AVATARS`, `PET_IMG`, `BOSS_IMG`, `BOSS_ART`, `avatar`, `petArt`, `partnerArt`, `archBanner`, `profileEdit`):**
+  - **9 Avatar Nam/Nữ & 3 Linh Thú Pixel Art Nhúng Offline (`WebP Base64`):** Tạo mới và nén WebP siêu nhẹ (~180 KB tổng) nhúng trực tiếp vào file HTML (`4 Nam + 5 Nữ` Tu Tiên, *Huyền Giác Tê, Xích Diễm Kỳ Lân, Thanh Loan Thần Điểu*, và *Hắc Phong Lang* cho `BOSS_IMG[0]`), tự động chọn Avatar Pixel Art mặc định theo giới tính và không bao giờ lỗi link khi offline.
+  - **Đồng Bộ 14 Boss, Đạo Lữ, Bạch Hổ & 3 Banner Kiến Trúc (`crispEdges` Pixel Art SVG):** Gỡ bỏ toàn bộ link ảnh ngoài lệch tông (`BOSS_IMG[1..13]`, `ARCH_IMG`), thay bằng hệ thống minh họa **16-bit Pixel Art SVG (`shape-rendering="crispEdges"`)** đồng nhất cho 14 Boss Lịch Luyện, *Bạch Hổ Sát Thần*, 4 Đạo Lữ (*Tô Vãn Tình, Lâm Như Yên, Mạc Vân Tiêu, Nguyệt Ly Tiên Tử*) và 3 Banner Kiến Trúc (*Tông Môn, Sơn Môn Tự Lập, Vạn Bảo Lâu*).
 - **Chuẩn Hóa Ảnh 14 Boss Thần Thoại & Banner Kiến Trúc Toàn Chiều Rộng (`v5.23` · `BOSS_IMG`, `ARCH_IMG`, `.arch-bn`, `.bimg`):**
   - **14 Boss Lịch Luyện (`BOSS_IMG[0..13]`):** Thay thế toàn bộ ảnh Boss bị lệch chủ đề hoặc dính chữ UI/bảng chỉ số bằng tranh thủy mặc, điêu khắc và tác phẩm thần thoại thế giới từ Wikimedia Commons (*Hắc Phong Lang, Huyền Quy, Xích Hổ, Giao Long, Diêm La Vương, Lôi Long, Kraken, Ma Viên, Lôi Thần Thor, Thiên Tướng, Kim Ô Ba Chân, Xi Vưu, Quan Vũ, Tam Thanh*), giữ nguyên `BOSS_ART` SVG làm fallback `onerror`.
   - **Sửa Banner Kiến Trúc (`ARCH_IMG.own`, `ARCH_IMG.auc`, `.arch-bn`):** Thay thế banner *Khai Tông Lập Phái* và *Đấu Giá Hội Vạn Bảo Lâu* bằng ảnh phong cảnh Đạo quán & Cung điện cổ ban đêm chuẩn tỷ lệ rộng (`?width=1280`), đồng thời tăng chiều cao `.arch-bn` lên `108px` với `object-fit: cover; object-position: center` để phủ kín toàn bộ chiều rộng panel.
