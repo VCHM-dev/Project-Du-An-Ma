@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.24 (`index.html`)  
+> **Phiên bản hiện tại:** v5.25 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-17  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Hệ Thống 8 Nhánh Tu Luyện (Đạo Lộ) — Pha 1 (`v5.25` · `PATHS`, `PD`, `realmName`, `characterService`, `characterStatsService`, `migrate`, `vCreate`, `vChar`, `vCul`, `vAdmin`):**
+  - **8 Đạo Lộ Độc Đáo:** *Linh Tu, Thể Tu, Hồn Tu, Quỷ Tu, Kiếm Tu, Bách Nghệ Tu, Yêu Tu, Nho Tu* — mỗi nhánh sở hữu hệ số chỉ số thực chiến riêng (`maxHp`, `maxMp`, `luc`, `thu`, `toc`, `pen`, `crit`, `critDmg`, `dodge`, `tc`, `pb`, `sup`, `pet`), ưu nhược điểm cân bằng và **14 danh xưng cảnh giới song song**.
+  - **Tích hợp Tạo Nhân Vật, Bảng Chỉ Số & Admin:** Chọn Đạo Lộ ngay tại `vCreate`, hiển thị rõ Đạo Lộ & danh xưng cảnh giới tại `vChar`/`vCul`, hỗ trợ **Kiêm Tu (Phó Đạo Lộ 45% hiệu lực)** trong `characterStatsService`, tương thích ngược save cũ qua `migrate()` và chuyển đổi thử nghiệm trong `vAdmin`.
 - **Đồng Bộ 100% Mỹ Thuật Pixel Art Cổ Trang Tiên Hiệp (`v5.24` · `QCBH_AVATARS`, `PET_IMG`, `PARTNER_IMG`, `ARCH_IMG`, `BOSS_IMG`, `avatar`, `petArt`, `partnerArt`, `archBanner`, `bossBanner`, `profileEdit`):**
   - **34/34 Ảnh WebP Pixel Art Nhúng Offline (Không Trùng Lặp):** Toàn bộ **9 Avatar (4 Nam + 5 Nữ)**, **4 Linh Thú** (*Huyền Giác Tê, Xích Diễm Kỳ Lân, Thanh Loan Thần Điểu, Bạch Hổ Sát Thần*), **4 Đạo Lữ** (*Tô Vãn Tình, Lâm Như Yên, Mạc Vân Tiêu, Nguyệt Ly Tiên Tử*), **3 Banner Kiến Trúc** (*Tông Môn, Sơn Môn Tự Lập, Vạn Bảo Lâu*) và **14/14 Boss Lịch Luyện** đều sử dụng ảnh 16-bit Pixel Art nén WebP nhúng trực tiếp vào `index.html`, chạy offline 100%, không phụ thuộc link ngoài.
   - **Gỡ Bỏ Ảnh Bìa QCBH & Tự Động Migrate Save Cũ (`migrate`):** Xóa `QCBH_BG` và `qpickBg`, tự động làm sạch URL QCBH cũ trong `s.uiCfg` của người chơi cũ để đồng bộ về bộ Pixel Art mới.

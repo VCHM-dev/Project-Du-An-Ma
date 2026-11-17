@@ -111,7 +111,7 @@ img.av{object-fit:cover;image-rendering:pixelated}.pe input[type=file]{padding:3
 .gd-hl .gi{font-size:20px;line-height:1.2;flex:none}
 </style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div>
 <script>
-const APP_VERSION='5.24';
+const APP_VERSION='5.25';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -127,6 +127,13 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.25',date:'2026-11-17',title:'Hệ Thống 8 Nhánh Tu Luyện (Đạo Lộ) — Pha 1',
+      highlights:[
+        {icon:'🧭',title:'8 Nhánh Tu Luyện Độc Đáo (Linh, Thể, Hồn, Quỷ, Kiếm, Bách Nghệ, Yêu, Nho)',desc:'Chọn Đạo Lộ ngay khi tạo nhân vật: mỗi nhánh sở hữu hệ số chỉ số thực chiến riêng, ưu nhược điểm rõ rệt và 14 danh xưng cảnh giới song song đậm chất Tiên Hiệp.',tab:'char'},
+        {icon:'⚡',title:'Đồng Bộ Thuộc Tính & Tương Thích Save Cũ',desc:'Hiển thị Đạo Lộ và danh xưng cảnh giới tại Nhân vật & Tu luyện; tự động đồng bộ save cũ sang Linh Tu qua migrate() và hỗ trợ đổi thử nhánh trong Admin.',tab:'cul'}
+      ]
+    },
     {
       version:'5.24',date:'2026-11-17',title:'Đồng Bộ Mỹ Thuật Pixel Art Cổ Trang Tiên Hiệp (Offline 100%)',
       highlights:[
@@ -248,6 +255,7 @@ const GUIDE_DATA={
     }
   ],
   codexTopics:[
+    {icon:'🧭',title:'8 Nhánh Tu Luyện (Đạo Lộ)',body:'Gồm Linh Tu, Thể Tu, Hồn Tu, Quỷ Tu, Kiếm Tu, Bách Nghệ Tu, Yêu Tu và Nho Tu. Mỗi nhánh có hệ số chỉ số thực chiến, ưu nhược điểm và 14 danh xưng cảnh giới riêng biệt.'},
     {icon:'✨',title:'Kim Thủ Chỉ — Bàn Tay Vàng & Đạo Quả',body:'Mô phỏng trong Kim Thủ Chỉ không làm Bản thể già đi (tốn 35% phí đột phá bằng linh thạch). Chọn di sản «Đạo Quả Bàn Tay Vàng» để cộng dồn vĩnh viễn +% toàn chỉ số, mở khóa Kháng Uy Áp (tối đa 50%) và cơ hội Tẩy Cốt nâng Linh Căn / Đạo Thể khi đạt hạng S trở lên (hạng S+ được chọn 2 di sản).'},
     {icon:'⚔',title:'Vai Trò 6 Thuộc Tính Gốc & Soft Cap',body:'Thể chất (HP/Thủ) · Linh căn (Lực/Tốc/MP) · Ngộ tính (Lực/Xuyên giáp) · Thần hồn (Tốc/MP/ST Bạo kích) · Tâm cảnh (Thủ/Đột phá) · Khí vận (Bạo kích/Né tránh). Các chỉ số % dùng đường cong Soft Cap nên luôn có giá trị khi đầu tư cao.'},
     {icon:'⚡',title:'Đột Phá, Bảo Hiểm (Pity) & Thiên Kiếp',body:'Mỗi lần đột phá thất bại tích lũy +4% tỷ lệ thành công (tối đa +20%, reset khi thành công). Riêng Thiên Kiếp không tính bảo hiểm Pity mà dựa hoàn toàn vào Phòng ngự, Trận Pháp và Đan hộ thân. Đạt Độ Kiếp cần Phòng ngự ≥ 150.000 để Phi Thăng Tiên Giới.'},
@@ -262,6 +270,18 @@ const GUIDE_DATA={
 /* ===== DỮ LIỆU TĨNH ===== */
 const RN=['Bạch sắc','Lục sắc','Lam sắc','Tử sắc','Kim sắc','Hồng sắc','Thất thải'],RC=['#e5e5e5','#4ade80','#38bdf8','#a78bfa','#fbbf24','#f43f5e','#f0abfc'];
 const REALMS=['Luyện Khí','Trúc Cơ','Kim Đan','Nguyên Anh','Hóa Thần','Luyện Hư','Hợp Thể','Đại Thừa','Độ Kiếp','Chân Tiên','Kim Tiên','Thái Ất','Đại La','Hỗn Nguyên'],LIFE=[100,200,500,1000,2000,4000,8000,16000,32000,100000,300000,1000000,5000000,99999999];
+const PATHS=[
+  {id:'linh',n:'Linh Tu',ic:'🌀',tag:'Chính Thống',d:'+25% Linh lực, +15% Sức mạnh, +20% Tốc độ bế quan; -15% Sinh mệnh.',mod:{mp:.25,luc:.15,hp:-.15,tc:.2},realms:REALMS},
+  {id:'the',n:'Thể Tu',ic:'🪨',tag:'Luyện Thể',d:'+35% Sinh mệnh, +25% Phòng ngự, kháng Uy áp +15%; -30% Linh lực, -25% Bế quan.',mod:{hp:.35,thu:.25,mp:-.3,tc:-.25,sup:.15},realms:['Luyện Bì','Đoán Cốt','Hoán Huyết','Khai Tạng','Tẩy Tủy','Kim Thân','Ngọc Cốt','Bất Diệt','Bàn Cổ Thể','Thái Cổ Thân','Hỗn Độn Thể','Thánh Khu','Đạo Thể','Vô Thượng Nhục Thân']},
+  {id:'hon',n:'Hồn Tu',ic:'👁',tag:'Thần Thức',d:'+25% Xuyên giáp, +15% Bạo kích, +15% Tốc độ; -20% Sinh mệnh.',mod:{pen:25,crit:15,toc:.15,hp:-.2},realms:['Ngưng Thần','Xuất Khiếu','Du Hồn','Hồn Anh','Thần Niệm','Phân Thần','Hư Linh','Thiên Hồn','Kiếp Hồn','Tiên Hồn','Đạo Thần','Thái Sơ Hồn','Vô Cực Thần','Hỗn Nguyên Chân Linh']},
+  {id:'quy',n:'Quỷ Tu',ic:'👻',tag:'U Minh',d:'+15% Sức mạnh, +12% Né tránh, hút máu bẩm sinh; Thiên kiếp khắc nghiệt hơn.',mod:{luc:.15,dodge:12},realms:['Ngưng Âm','Quỷ Sát','Lệ Quỷ','Quỷ Tướng','Quỷ Vương','U Minh','Quỷ Hoàng','La Sát','Minh Tôn','Quỷ Tiên','U Minh Kim Tiên','Minh Đế','Cửu U Chúa','Hỗn Nguyên Minh Tổ']},
+  {id:'kiem',n:'Kiếm Tu',ic:'⚔',tag:'Sát Phạt',d:'+25% Sức mạnh, +15% Bạo kích, +25% ST Bạo kích; -20% Phòng ngự, -10% Sinh mệnh.',mod:{luc:.25,crit:15,critDmg:.25,thu:-.2,hp:-.1},realms:['Luyện Kiếm','Ngự Kiếm','Kiếm Khí','Kiếm Ý','Kiếm Tâm','Kiếm Vực','Kiếm Hồn','Kiếm Đạo','Kiếm Kiếp','Kiếm Tiên','Thần Kiếm','Thái Ất Kiếm','Vô Thượng Kiếm','Hỗn Nguyên Kiếm Tổ']},
+  {id:'nghe',n:'Bách Nghệ Tu',ic:'🔨',tag:'Dĩ Khí Chứng Đạo',d:'+20% thành công Bách Nghệ; chỉ số thuần túy -10% (mạnh nhờ Đan & Trận).',mod:{luc:-.1,thu:-.1},realms:['Nhập Môn','Tượng Sư','Tông Sư','Đại Tông Sư','Khí Đạo','Đan Đạo','Trận Đạo','Thiên Công','Tạo Hóa','Tiên Sư','Thần Tượng','Đạo Khí','Vạn Pháp Quy Tông','Hỗn Nguyên Tạo Vật']},
+  {id:'yeu',n:'Yêu Tu',ic:'🐉',tag:'Huyết Mạch',d:'+15% Sinh mệnh, +15% Tốc độ, +50% sức mạnh từ Linh Thú.',mod:{hp:.15,toc:.15,pet:.5},realms:['Khai Trí','Yêu Binh','Yêu Tướng','Yêu Đan','Hóa Hình','Đại Yêu','Yêu Vương','Yêu Hoàng','Yêu Thánh','Yêu Tiên','Thái Cổ Yêu','Vạn Thú Tôn','Yêu Đế','Hỗn Nguyên Thú Tổ']},
+  {id:'nho',n:'Nho Tu',ic:'📜',tag:'Hạo Nhiên',d:'+15% tỷ lệ Đột phá, +10% toàn chỉ số khi Thiện ≥ Ác.',mod:{pb:.15},realms:['Đồng Sinh','Tú Tài','Cử Nhân','Tiến Sĩ','Hàn Lâm','Đại Nho','Á Thánh','Văn Thánh','Hạo Nhiên','Văn Tiên','Đạo Nho','Chính Khí Tôn','Chí Thánh','Hỗn Nguyên Văn Tổ']}
+];
+const PD=Object.fromEntries(PATHS.map(p=>[p.id,p]));
+const realmName=x=>{const p=PD[x&&x.path||'linh']||PD.linh,r=clamp((x&&x.realm)||0,0,REALMS.length-1);return p.id==='linh'?REALMS[r]:p.realms[r]+' ('+REALMS[r]+')'};
 const IDN=['Tán tu','Đệ tử nội môn','Chân truyền','Trưởng lão','Tông chủ','Đại năng','Lão tổ','Chí tôn','Tiên nhân','Chân Tiên','Kim Tiên','Thái Ất Tiên Vương','Đại La Đạo Tổ','Hỗn Nguyên Chí Thánh'];
 const BODIES=[{n:'Phàm Thể',c:1,a:0},{n:'Linh Thể',c:1.3,a:3},{n:'Tiên Thể',c:1.7,a:6},{n:'Thần Thể',c:2.3,a:10},{n:'Hỗn Độn Thần Thể',c:3.2,a:16}];
 const ROOTS=[['Kim','kim',1],['Mộc','moc',1],['Thủy','thuy',1],['Hỏa','hoa',1],['Thổ','tho',1],['Song',0,1.25],['Tam',0,1.5],['Thiên',0,2.2],['Hỗn Độn',0,3.2]].map(r=>({n:r[0]+' linh căn',el:r[1],c:r[2]}));
@@ -312,7 +332,7 @@ const PR=[20,50,120,300,800,2000,6000];
 /* ===== TIỆN ÍCH ===== */
 const $=i=>document.getElementById(i),clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),pick=a=>a[Math.random()*a.length|0],uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let s=null,ui={tab:'char',f:-1,sort:'r',cf:'all',rs:false,msg:'',adm:false,admAuth:false,admMsg:'',sv:false,svSlim:true,svSlots:[],svPreview:null,svLegacy:false,gdModal:null,gdTab:'tour',gdTour:null};
+let s=null,ui={tab:'char',f:-1,sort:'r',cf:'all',rs:false,msg:'',adm:false,admAuth:false,admMsg:'',sv:false,svSlim:true,svSlots:[],svPreview:null,svLegacy:false,gdModal:null,gdTab:'tour',gdTour:null,crPath:'linh'};
 const say=t=>{ui.msg=t;ui.mc=(ui.mc||0)+1};
 const KEY='msns_main_v1',store={load(){try{const j=localStorage.getItem(KEY);return j?JSON.parse(j):null}catch(e){return null}},save(x,keepTs){try{if(x&&!keepTs){x.updatedAt=Date.now();x.rev=(x.rev||0)+1}localStorage.setItem(KEY,JSON.stringify(x))}catch(e){toast('Bộ nhớ trình duyệt đã đầy, chưa lưu được. Hãy dùng ảnh nhỏ hơn hoặc xóa bớt ảnh tùy chỉnh.','wn')}},clear(){try{localStorage.removeItem(KEY)}catch(e){}}};
 const addm=(o,m,f=1)=>{for(const k in m)o[k]=(o[k]||0)+m[k]*f};
@@ -350,7 +370,7 @@ let advOn=0;
 
 /* ===== SERVICES HỢP NHẤT ===== */
 const characterService={
-  create(n,g,root){const now=Date.now();return{v:1,saveId:uid(),rev:1,created:now,updatedAt:now,name:n||'Vô Danh',gender:g,age:16,body:0,root,realm:0,layer:0,xp:0,total:0,lifeB:0,stones:100,van:0,nq:0,ng:0,tm:false,pb:0,kt:1,ach:{},best:-1,tal:[],eq:{},tech:{q1:{m:0,eq:true}},sim:null,hist:[],claimed:{},log:[],toxin:0,crafts:{dan:{lv:0,xp:0},khi:{lv:0,xp:0},tran:{lv:0,xp:0}},bmWeapon:null,activeArray:null,arrays:{},px:{ngo:0,tam:0,the:0,linh:0,than:0},gfBuff:0,gfSup:0,gfRuns:0,advWins:{},sect:null,ownSect:null,auc:null,aucNext:26,aucRob:null,pets:{},pet:null,partner:null,pAff:{},reborn:0,ascended:0,profile:Object.assign({},UP),theme:Object.assign({},UT,thG),uiCfg:Object.assign({},UC),inv:[{u:uid(),id:'w1',q:1},{u:uid(),id:'a1',q:1},{u:uid(),id:'d1',q:3},{u:uid(),id:'d3',q:1}]}},
+  create(n,g,root,path='linh'){const now=Date.now(),pt=PD[path]?path:'linh';return{v:1,saveId:uid(),rev:1,created:now,updatedAt:now,name:n||'Vô Danh',gender:g,age:16,body:0,root,path:pt,subPath:'',pathRes:0,realm:0,layer:0,xp:0,total:0,lifeB:0,stones:100,van:0,nq:0,ng:0,tm:false,pb:0,kt:1,ach:{},best:-1,tal:[],eq:{},tech:{q1:{m:0,eq:true}},sim:null,hist:[],claimed:{},log:[],toxin:0,crafts:{dan:{lv:0,xp:0},khi:{lv:0,xp:0},tran:{lv:0,xp:0}},bmWeapon:null,activeArray:null,arrays:{},px:{ngo:0,tam:0,the:0,linh:0,than:0},gfBuff:0,gfSup:0,gfRuns:0,advWins:{},sect:null,ownSect:null,auc:null,aucNext:26,aucRob:null,pets:{},pet:null,partner:null,pAff:{},reborn:0,ascended:0,profile:Object.assign({},UP),theme:Object.assign({},UT,thG),uiCfg:Object.assign({},UC),inv:[{u:uid(),id:'w1',q:1},{u:uid(),id:'a1',q:1},{u:uid(),id:'d1',q:3},{u:uid(),id:'d3',q:1}]}},
   title:x=>TITLES[x.best+1<0?0:x.best+1]||TITLES[0],
   identity:x=>IDN[x.realm]||IDN[IDN.length-1]
 };
@@ -446,18 +466,24 @@ const characterStatsService={
     if(x.activeArray==='hon'&&advOn)luc=Math.round(luc*(1+.4*av(x)));
     const sb=typeof sectService!=='undefined'?sectService.buff(x):{};
     const cb=typeof compService!=='undefined'?compService.buff(x):{};
-    if(sb.luc||cb.luc)luc=Math.round(luc*(1+(sb.luc||0)+(cb.luc||0)));
-    if(sb.thu||cb.thu)thu=Math.round(thu*(1+(sb.thu||0)+(cb.thu||0)));
-    if(cb.toc)toc=Math.round(toc*(1+cb.toc));
-    const maxHp=Math.round((a.the*8.5+a.than*3.5+100)*realmMul*gfMul),maxMp=Math.round((a.linh*6+a.than*5+60)*realmMul*gfMul);
-    const rawPen=a.ngo*.25+eqItems.reduce((acc,it)=>acc+(it.ql===2?15:it.ql===3?30:0),0);
+    const pm={};
+    const addPathMod=(pid,f)=>{const p=PD[pid];if(!p||!p.mod)return;for(const mk in p.mod)pm[mk]=(pm[mk]||0)+p.mod[mk]*f};
+    addPathMod(x.path||'linh',1);
+    if(x.subPath&&x.subPath!==x.path)addPathMod(x.subPath,.45);
+    if((x.path==='nho'||x.subPath==='nho')&&(x.nq||0)>=(x.ng||0)){const nf=x.path==='nho'?.1:.045;['luc','thu','toc','hp','mp'].forEach(mk=>pm[mk]=(pm[mk]||0)+nf)}
+    const petMul=1+(pm.pet||0);
+    if(sb.luc||cb.luc||pm.luc)luc=Math.round(luc*(1+(sb.luc||0)+(cb.luc||0)*petMul+(pm.luc||0)));
+    if(sb.thu||cb.thu||pm.thu)thu=Math.round(thu*(1+(sb.thu||0)+(cb.thu||0)*petMul+(pm.thu||0)));
+    if(cb.toc||pm.toc)toc=Math.round(toc*(1+(cb.toc||0)*petMul+(pm.toc||0)));
+    const maxHp=Math.round((a.the*8.5+a.than*3.5+100)*realmMul*gfMul*(1+(pm.hp||0))),maxMp=Math.round((a.linh*6+a.than*5+60)*realmMul*gfMul*(1+(pm.mp||0)));
+    const rawPen=a.ngo*.25+eqItems.reduce((acc,it)=>acc+(it.ql===2?15:it.ql===3?30:0),0)+(pm.pen||0);
     const pen=.80*rawPen/(rawPen+60);
-    const rawCrit=10+a.van*.25+(eqTechs.some(id=>(QD[id].sp||[]).includes('burst'))?15:0)+((sb.crit||0)+(cb.crit||0))*100;
+    const rawCrit=10+a.van*.25+(eqTechs.some(id=>(QD[id].sp||[]).includes('burst'))?15:0)+((sb.crit||0)+(cb.crit||0)*petMul)*100+(pm.crit||0);
     const crit=.70*rawCrit/(rawCrit+55);
-    const critDmg=1.5+.80*a.than/(a.than+150);
-    const dRaw=a.van*.6+a.linh*.4;
-    const dodge=.40*dRaw/(dRaw+180);
-    return{attr:a,bonus,luc,thu,toc,maxHp,maxMp,pen,crit,critDmg,dodge,tc:(m.tc||0)+(sb.tc||0)+(cb.tc||0),pb:(sb.pb||0)+(cb.pb||0),realmMul};
+    const critDmg=1.5+.80*a.than/(a.than+150)+(pm.critDmg||0);
+    const dRaw=a.van*.6+a.linh*.4+(pm.dodge||0)*3;
+    const dodge=.40*dRaw/(dRaw+180)+(pm.dodge||0)/100;
+    return{attr:a,bonus,luc,thu,toc,maxHp,maxMp,pen,crit,critDmg:critDmg,dodge:clamp(dodge,0,.6),tc:(m.tc||0)+(sb.tc||0)+(cb.tc||0)*petMul+(pm.tc||0),pb:(sb.pb||0)+(cb.pb||0)*petMul+(pm.pb||0),sup:(pm.sup||0),realmMul};
   }
 };
 
@@ -1552,6 +1578,9 @@ let thG=(()=>{try{return Object.assign({},UT,JSON.parse(localStorage.getItem(TK)
 function migrate(){
   if(!s)return;
   if(typeof s.realm!=='number'||!Array.isArray(s.tal)||!Array.isArray(s.inv)){s=null;store.clear();return}
+  s.path=s.path&&PD[s.path]?s.path:'linh';
+  s.subPath=s.subPath&&PD[s.subPath]&&s.subPath!==s.path?s.subPath:'';
+  s.pathRes=typeof s.pathRes==='number'?s.pathRes:0;
   s.ach=s.ach||{};s.wins=s.wins||0;s.advWins=s.advWins||{};s.hist=s.hist||[];s.log=s.log||[];s.claimed=s.claimed||{};s.tal=s.tal||[];s.tech=s.tech||{};
   s.tal=s.tal.filter(t=>t&&TD[t.id]);
   s.inv=s.inv.filter(i=>i&&ID[i.id]);
@@ -2039,9 +2068,9 @@ function archBanner(tp,title,badge=''){
 const eqName=(x,t)=>{const it=x.inv.find(i=>i.u===x.eq[t]);return it?ID[it.id]:null};
 
 function vChar(){
-  const st=characterStatsService.compute(s),n=cultivationService.need(s),b=BODIES[s.body],r=ROOTS[s.root];
+  const st=characterStatsService.compute(s),n=cultivationService.need(s),b=BODIES[s.body],r=ROOTS[s.root],pt=PD[s.path||'linh']||PD.linh,spt=s.subPath&&PD[s.subPath];
   const left=profileCard();
-  const mid=`<div class="pn"><h3>Tu luyện</h3><div style="font-size:calc(var(--fs)*1.333);color:var(--jade)">${REALMS[s.realm]} · Tầng ${s.layer+1}</div><div class="bar"><i style="width:${clamp(s.xp/n*100,0,100)}%"></i></div><div class="row mu"><span>Tu vi ${s.xp.toLocaleString('vi-VN')}/${n.toLocaleString('vi-VN')} (tổng ${s.total.toLocaleString('vi-VN')})</span><span class='${s.age>cultivationService.life(s)*.8?'warn':''}'>Thọ nguyên ${s.age}/${cultivationService.life(s)}</span></div><div class="row"><span>Thể chất: ${b.n}</span><span>${r.n}</span></div>${s.tm?'<div class="bad">⚠ Đang nhiễm tâm ma</div>':''}</div>
+  const mid=`<div class="pn"><h3>Tu luyện</h3><div style="font-size:calc(var(--fs)*1.333);color:var(--jade)">${realmName(s)} · Tầng ${s.layer+1}</div><div class="bar"><i style="width:${clamp(s.xp/n*100,0,100)}%"></i></div><div class="row mu"><span>Tu vi ${s.xp.toLocaleString('vi-VN')}/${n.toLocaleString('vi-VN')} (tổng ${s.total.toLocaleString('vi-VN')})</span><span class='${s.age>cultivationService.life(s)*.8?'warn':''}'>Thọ nguyên ${s.age}/${cultivationService.life(s)}</span></div><div class="row"><span>Đạo lộ: <b style="color:var(--gold)">${pt.ic} ${pt.n}</b>${spt?` · Phụ: <b>${spt.ic} ${spt.n}</b>`:''}</span><span>${r.n}</span></div><div class="row"><span>Thể chất: ${b.n}</span><span class="mu">${esc(pt.tag)}</span></div><div class="mu" style="margin-top:3px">${esc(pt.d)}</div>${s.tm?'<div class="bad">⚠ Đang nhiễm tâm ma</div>':''}</div>
   <div class="pn"><h3>Thuộc tính</h3><div class="st">${ATTR.map(k=>`<div>${SN[k]}<b>${st.attr[k]}</b><span class="mu">${st.bonus[k]?'+'+st.bonus[k]+' thêm':'gốc'}</span></div>`).join('')}<div>Sinh mệnh<b>${st.maxHp.toLocaleString('vi-VN')}</b></div><div>Linh lực<b>${st.maxMp.toLocaleString('vi-VN')}</b></div><div>Sức mạnh<b>${st.luc.toLocaleString('vi-VN')}</b></div><div>Phòng ngự<b>${st.thu.toLocaleString('vi-VN')}</b></div><div>Tốc độ<b>${st.toc.toLocaleString('vi-VN')}</b></div><div>Bạo / Xuyên giáp<b>${Math.round(st.crit*100)}% / ${Math.round(st.pen*100)}%</b></div><div>Né / ST Bạo kích<b>${Math.round((st.dodge||0)*100)}% / ${Math.round((st.critDmg||1.5)*100)}%</b></div></div><div class="mu" style="margin-top:6px">Hệ số cảnh giới: <b>×${st.realmMul.toFixed(1)}</b> · Tốc độ tu luyện thêm: +${Math.round(st.tc*100)}%</div>${(s.gfRuns||s.gfBuff||s.gfSup)?`<div class="ok" style="margin-top:4px">✨ Đạo Quả Bàn Tay Vàng (${s.gfRuns||0} kiếp): +${Math.round((s.gfBuff||0)*100)}% toàn chỉ số · -${Math.round((s.gfSup||0)*100)}% Uy Áp Cảnh Giới</div>`:''}</div>
   <div class="pn"><h3>Khí vận &amp; Nhân quả</h3><div class="row"><span>Mệnh cách</span><span>${destinyService.dest(s)}</span></div><div class="row"><span>Khí vận / Nhân quả / Nghiệp lực</span><span>${s.van} / ${s.nq} / ${s.ng}</span></div><div class="row"><span>Tỷ lệ gặp cơ duyên</span><span>${destinyService.chance(s).toFixed(1)}%</span></div>${btn('seek','','Tầm cơ duyên (30 linh thạch)')}</div>`;
   const act=talentInventoryService.active(s),right=`<div class="pn"><h3>Thiên phú kích hoạt (${act.length}/${talentInventoryService.slots(s)})</h3>${act.map(t=>{const mul=(1+.25*(t.lv-1))*(1+.08*s.body);return card(TD[t.id].r,TD[t.id].n+' Lv'+t.lv,fx(TD[t.id].e,mul)+(TD[t.id].d?'<br>'+esc(TD[t.id].d):''))}).join('')||'<span class="mu">Chưa kích hoạt thiên phú nào</span>'}</div>
@@ -2055,10 +2084,10 @@ function vTal(){
 }
 
 function vCul(){
-  const c=cultivationService.check(s),major=s.layer===8;
-  const pv=(major&&s.realm<REALMS.length-1)?(()=>{const st0=characterStatsService.compute(s),nx=Object.assign({},s,{realm:s.realm+1,layer:0,tm:false,van:(s.van||0)+2}),st1=characterStatsService.compute(nx),lf0=cultivationService.life(s),lf1=cultivationService.life(nx);const row=(lb,a,b)=>`<div class="row"><span>${lb}</span><span>${a.toLocaleString('vi-VN')} → <b class="ok">${b.toLocaleString('vi-VN')}</b></span></div>`;return `<div class="ainr" style="border-left-color:var(--gold);margin-top:8px"><b>✨ Dự báo lột xác khi lên ${REALMS[s.realm+1]}:</b>${row('Sinh mệnh',st0.maxHp,st1.maxHp)}${row('Linh lực',st0.maxMp,st1.maxMp)}${row('Sức mạnh',st0.luc,st1.luc)}${row('Phòng ngự',st0.thu,st1.thu)}${row('Tốc độ',st0.toc,st1.toc)}${row('Thọ nguyên tối đa',lf0,lf1)}<div class="mu" style="margin-top:4px">• Hệ số cảnh giới: ×${st0.realmMul.toFixed(1)} → <b class="ok">×${st1.realmMul.toFixed(1)}</b> · +2 toàn bộ 6 thuộc tính gốc · +2 Khí vận · Thanh lọc Tâm Ma &amp; Đan Độc</div></div>`})():'';
+  const c=cultivationService.check(s),major=s.layer===8,pt=PD[s.path||'linh']||PD.linh;
+  const pv=(major&&s.realm<REALMS.length-1)?(()=>{const st0=characterStatsService.compute(s),nx=Object.assign({},s,{realm:s.realm+1,layer:0,tm:false,van:(s.van||0)+2}),st1=characterStatsService.compute(nx),lf0=cultivationService.life(s),lf1=cultivationService.life(nx);const row=(lb,a,b)=>`<div class="row"><span>${lb}</span><span>${a.toLocaleString('vi-VN')} → <b class="ok">${b.toLocaleString('vi-VN')}</b></span></div>`;return `<div class="ainr" style="border-left-color:var(--gold);margin-top:8px"><b>✨ Dự báo lột xác khi lên ${realmName(nx)}:</b>${row('Sinh mệnh',st0.maxHp,st1.maxHp)}${row('Linh lực',st0.maxMp,st1.maxMp)}${row('Sức mạnh',st0.luc,st1.luc)}${row('Phòng ngự',st0.thu,st1.thu)}${row('Tốc độ',st0.toc,st1.toc)}${row('Thọ nguyên tối đa',lf0,lf1)}<div class="mu" style="margin-top:4px">• Hệ số cảnh giới: ×${st0.realmMul.toFixed(1)} → <b class="ok">×${st1.realmMul.toFixed(1)}</b> · +2 toàn bộ 6 thuộc tính gốc · +2 Khí vận · Thanh lọc Tâm Ma &amp; Đan Độc</div></div>`})():'';
   return `<div class="pn"><div class="row"><span>Đan độc</span><b class="${s.toxin>40?'bad':''}">${s.toxin}/100</b></div><div class="bar${s.toxin>40?' warn':''}"><i style="width:${s.toxin}%"></i></div><div class="mu">Đan độc giảm tốc độ bế quan (tối đa -40%) và tỷ lệ đột phá. Mỗi năm bế quan giảm 1; Tịnh Tâm Đan giảm 15, Tẩy Tủy Đan giảm 60.</div></div>`
-  +`<div class="pn"><h3>${REALMS[s.realm]} · Tầng ${s.layer+1}</h3><div class="bar"><i style="width:${clamp(s.xp/cultivationService.need(s)*100,0,100)}%"></i></div><div class="mu">Tu vi dư sau đột phá được giữ lại. Hết tầng 9 mới đột phá được cảnh giới lớn.</div><div class='mu ${s.age>cultivationService.life(s)*.8?'warn':''}'>Thọ nguyên ${s.age}/${cultivationService.life(s)}${s.age>cultivationService.life(s)*.8?' · SẮP CẠN':''}</div><div class='bar ${s.age>cultivationService.life(s)*.8?'warn':''}'><i style='width:${clamp(s.age/cultivationService.life(s)*100,0,100)}%'></i></div><div class="bt">${btn('train','','Bế quan (+1 tuổi)')}${btn('auto','','Bế quan liên tục')}${btn('brk','',major?'Đột phá cảnh giới':'Đột phá tầng')}</div></div><div class="pn"><h3>Điều kiện đột phá</h3>${c.map(x=>`<div class="${x[0]?'ok':'bad'}">${x[0]?'✔':'✘'} ${x[1]}</div>`).join('')}${major&&s.realm<REALMS.length-1?`<div class="mu">Tỷ lệ thành công: ${Math.round(cultivationService.chance(s)*100)}%${s.pb?' (đã có Phá Cảnh Đan)':''}. ${s.realm===8?'Đột phá Độ Kiếp Tầng 9 sẽ kích hoạt Phi Thăng Tiên Giới!':s.realm>=1?'Đột phá cảnh giới lớn phải vượt thiên kiếp (dựa vào phòng ngự).':''}</div>`:''}${pv}${s.tm?'<div class="bad">Tâm ma: Tâm cảnh -8 và chặn đột phá cảnh giới. Dùng Tịnh Tâm Đan trong Kho đồ.</div>':''}</div>`
+  +`<div class="pn"><h3>${realmName(s)} · Tầng ${s.layer+1} <span class="mu" style="font-size:12px">(${pt.ic} ${pt.n})</span></h3><div class="bar"><i style="width:${clamp(s.xp/cultivationService.need(s)*100,0,100)}%"></i></div><div class="mu">Tu vi dư sau đột phá được giữ lại. Hết tầng 9 mới đột phá được cảnh giới lớn.</div><div class='mu ${s.age>cultivationService.life(s)*.8?'warn':''}'>Thọ nguyên ${s.age}/${cultivationService.life(s)}${s.age>cultivationService.life(s)*.8?' · SẮP CẠN':''}</div><div class='bar ${s.age>cultivationService.life(s)*.8?'warn':''}'><i style='width:${clamp(s.age/cultivationService.life(s)*100,0,100)}%'></i></div><div class="bt">${btn('train','','Bế quan (+1 tuổi)')}${btn('auto','','Bế quan liên tục')}${btn('brk','',major?'Đột phá cảnh giới':'Đột phá tầng')}</div></div><div class="pn"><h3>Điều kiện đột phá</h3>${c.map(x=>`<div class="${x[0]?'ok':'bad'}">${x[0]?'✔':'✘'} ${x[1]}</div>`).join('')}${major&&s.realm<REALMS.length-1?`<div class="mu">Tỷ lệ thành công: ${Math.round(cultivationService.chance(s)*100)}%${s.pb?' (đã có Phá Cảnh Đan)':''}. ${s.realm===8?'Đột phá Độ Kiếp Tầng 9 sẽ kích hoạt Phi Thăng Tiên Giới!':s.realm>=1?'Đột phá cảnh giới lớn phải vượt thiên kiếp (dựa vào phòng ngự).':''}</div>`:''}${pv}${s.tm?'<div class="bad">Tâm ma: Tâm cảnh -8 và chặn đột phá cảnh giới. Dùng Tịnh Tâm Đan trong Kho đồ.</div>':''}</div>`
   +(s.realm>=8?`<div class="pn"><h3>✨ Tiên Lộ &amp; Luân Hồi Chuyển Thế (Kiếp thứ ${(s.reborn||0)+1})</h3><div class="mu">Đạt tới Độ Kiếp viên mãn, ngươi có thể tiếp tục xung kích cảnh giới Tiên Giới (Chân Tiên → Hỗn Nguyên) hoặc thực hiện <b>Binh Giải Chuyển Thế</b>: quay về tuổi 16 Luyện Khí với +15 Tiên Thiên Khí Vận vĩnh viễn, +10 toàn bộ thuộc tính gốc vĩnh viễn, giữ nguyên Bản Mệnh Pháp Bảo và 1 Thiên Phú bản mệnh đã chọn.</div>${s.tal.length?`<div class="bt"><label>Thiên phú mang theo kiếp sau: <select data-chg="rb_tal">${s.tal.map(t=>`<option value="${t.u}"${ui.rbTal===t.u?' selected':''}>${TD[t.id].n} Lv${t.lv}</option>`).join('')}</select></label></div>`:''}<div class="bt">${btn('reborn','','♻ Binh Giải Chuyển Thế (New Game+)')}</div></div>`:'')
   +`<div class="pn"><h3>Nhật ký</h3>${s.log.map(l=>`<div class="mu">• ${esc(l)}</div>`).join('')||'<span class="mu">Chưa có</span>'}</div>`;
 }
@@ -2340,7 +2369,10 @@ function vComp(){
   </div>`;
 }
 
-function vCreate(){return `<div class="pn" style="max-width:420px;margin:30px auto"><h3>Tạo nhân vật chính</h3><p class="mu">Linh căn khởi đầu chỉ chọn một lần, sau này chỉ đổi được bằng vật phẩm đặc biệt.</p><p><input id="nm" placeholder="Tên nhân vật" style="width:100%"></p><p><select id="gd"><option>Nam</option><option>Nữ</option></select> <select id="rt">${ROOTS.slice(0,5).map((r,i)=>`<option value="${i}">${r.n}</option>`).join('')}</select></p>${btn('create','','Bắt đầu')}</div>`}
+function vCreate(){
+  const cur=PD[ui.crPath||'linh']||PD.linh;
+  return `<div class="pn" style="max-width:680px;margin:24px auto"><h3>Tạo nhân vật chính</h3><p class="mu">Linh căn khởi đầu và Đạo lộ định hình con đường tu tiên của bạn.</p><p><input id="nm" value="${esc(ui.crNm||'')}" placeholder="Tên nhân vật" style="width:100%"></p><p><select id="gd"><option${ui.crGd==='Nam'?' selected':''}>Nam</option><option${ui.crGd==='Nữ'?' selected':''}>Nữ</option></select> <select id="rt">${ROOTS.slice(0,5).map((r,i)=>`<option value="${i}"${+(ui.crRt||0)===i?' selected':''}>${r.n}</option>`).join('')}</select></p><div class="mu" style="margin:8px 0 6px">Chọn Nhánh Tu Luyện (Đạo Lộ):</div><div class="bt" style="gap:6px">${PATHS.map(p=>`<button class="chip ${cur.id===p.id?'on':''}" data-a="crp" data-x="${p.id}">${p.ic} ${p.n}</button>`).join('')}</div><div class="ainr" style="margin:8px 0;border-left-color:var(--gold)"><b>${cur.ic} ${cur.n}</b> <span class="mu">(${cur.tag})</span><div class="mu" style="margin-top:3px">${esc(cur.d)}</div><div class="mu" style="margin-top:3px">Cảnh giới: ${cur.realms.slice(0,4).join(' → ')} → ... → ${cur.realms[13]}</div></div>${btn('create','','Bắt đầu tu tiên')}</div>`;
+}
 
 /* ===== TÙY BIẾN GIAO DIỆN & HỒ SƠ ĐẠO HỮU ===== */
 const FFS=['system-ui,-apple-system,"Segoe UI",Roboto,sans-serif','ui-monospace,SFMono-Regular,Menlo,Consolas,monospace'],FSZ=[13,15,17];
@@ -2492,7 +2524,7 @@ function vAdmin(){
   const m=s.sim,run=m&&m.phase==='run',n=cultivationService.need(s);
   const q=(a,x,l)=>btn(a,x,l),
   p1=`<div class='pn'><h3>1. Buff tài nguyên &amp; trạng thái nhanh</h3><div class='mu'>Hiện có: ${s.stones.toLocaleString('vi-VN')} linh thạch · tu vi ${s.xp.toLocaleString('vi-VN')}/${n.toLocaleString('vi-VN')} · thọ nguyên ${s.age}/${cultivationService.life(s)} · khí vận gốc ${s.van} · Kim Thủ Chỉ cấp ${s.kt}</div><div class='bt'>${q('ad_ls',10000,'+10,000 Linh thạch')}${q('ad_ls',100000,'+100,000 Linh thạch')}${q('ad_xp','10000','+10,000 Tu vi')}${q('ad_xpfull','','Đầy thanh Tu vi (đủ đột phá)')}</div><div class='bt'>${q('ad_life','','+500 Thọ nguyên')}${q('ad_tm','','Xóa Tâm Ma ngay')}${q('ad_van','','+50 Khí vận')}${q('ad_kt','','Kim Thủ Chỉ Max (cấp 5)')}${q('ad_sect','','+500 Cống hiến Tông môn')}${q('ad_comp','','+100 Hảo cảm Đạo Lữ')}${q('ad_mut','',ui.forceMut?'👹 Đã bật: Trận tới 100% Biến Dị':'👹 Ép gặp Yêu Thú Biến Dị trận tới')}</div></div>`,
-  p2=`<div class='pn'><h3>2. Chỉnh cảnh giới, thể chất &amp; linh căn</h3><div class='bt'><label>Cảnh giới ${admSel('realm',REALMS.map((r,i)=>[i,r]),s.realm)}</label><label>Tầng ${admSel('layer',[...Array(9).keys()].map(i=>[i+1,'Tầng '+(i+1)]),s.layer+1)}</label><label>Thể chất ${admSel('body',BODIES.map((b,i)=>[i,b.n]),s.body)}</label><label>Linh căn ${admSel('root',ROOTS.map((r,i)=>[i,r.n]),s.root)}</label></div></div>`,
+  p2=`<div class='pn'><h3>2. Chỉnh cảnh giới, thể chất, linh căn &amp; đạo lộ</h3><div class='bt'><label>Cảnh giới ${admSel('realm',REALMS.map((r,i)=>[i,r]),s.realm)}</label><label>Tầng ${admSel('layer',[...Array(9).keys()].map(i=>[i+1,'Tầng '+(i+1)]),s.layer+1)}</label><label>Thể chất ${admSel('body',BODIES.map((b,i)=>[i,b.n]),s.body)}</label><label>Linh căn ${admSel('root',ROOTS.map((r,i)=>[i,r.n]),s.root)}</label><label>Đạo lộ ${admSel('path',PATHS.map(p=>[p.id,p.ic+' '+p.n]),s.path||'linh')}</label><label>Phó đạo lộ ${admSel('subPath',[['','(Không)']].concat(PATHS.map(p=>[p.id,p.ic+' '+p.n])),s.subPath||'')}</label></div></div>`,
   p3=`<div class='pn'><h3>3. Triệu hồi vật phẩm, thiên phú &amp; công pháp</h3><div class='bt'>${admSel('item',ITEMS.map(i=>[i.id,i.n+' ['+RN[i.r]+' · '+TL[i.t]+']']),ui.ad.item)}<input type='number' min='1' max='99' value='${esc(ui.ad.qty)}' data-chg='ad_qty' style='width:70px'>${q('ad_item','','Thêm vào kho')}</div><div class='bt'>${admSel('tal',TAL.map(i=>[i.id,i.n+' ['+RN[i.r]+']']),ui.ad.tal)}${q('ad_tal','','Nhận Thiên Phú')}${q('ad_slots','','Mở khóa +10 ô thiên phú (đã thêm '+(s.admSlots||0)+')')}</div><div class='bt'>${admSel('tech',TECH.map(i=>[i.id,i.n+' ['+RN[i.r]+']']),ui.ad.tech)}${q('ad_tech','','Học &amp; Max Thành Thạo (Viên mãn)')}</div></div>`,
   p4=`<div class='pn'><h3>4. Bách Nghệ &amp; nguyên liệu</h3><div class='bt'>${['dan','khi','tran'].map(k=>btn('ad_cr',k,'Max '+CN[k]+' (Cửu Giai)')).join('')}${['dan','khi','tran'].map(k=>btn('ad_cr1',k,'+1 giai '+CN[k])).join('')}${btn('ad_tox','','Xóa đan độc')}${btn('ad_mats','','+20 mọi nguyên liệu')}</div><div class='bt'>${admSel('mat',ITEMS.filter(i=>i.t==='material').map(i=>[i.id,i.n]),ui.ad.mat||'m1')}${btn('ad_mat','','Thêm nguyên liệu (số lượng ở mục 3)')}</div></div>`,
   p5=`<div class='pn'><h3>5. Can thiệp mô phỏng &amp; Save Editor</h3><div class='mu'>${run?'Đang chạy mô phỏng, tuổi '+m.age+'.':'Chỉ dùng được khi đang trong giai đoạn Hành trình của mô phỏng (tab Kim Thủ Chỉ).'}</div><div class='bt'>${btn('ad_sss','','Hoàn thành ngay với hạng SSS',!run)}${btn('ad_pts','','+1000 Điểm mô phỏng',!run)}</div><textarea id='ad-json' rows='10' style='width:100%;background:var(--in);color:var(--iv);font:12px monospace;margin-top:8px'>${esc(JSON.stringify(s,null,1))}</textarea><div class='bt'>${q('ad_cp','','Copy JSON')}${q('ad_json','','Ghi đè dữ liệu từ JSON')}</div></div>`;
@@ -2611,7 +2643,8 @@ function render(){
 /* ===== BẢNG LỆNH HÀNH ĐỘNG ===== */
 const A={
   tab:x=>{ui.tab=x;ui.msg=''},flt:x=>ui.f=+x,cflt:x=>ui.cf=x,
-  create:()=>{s=characterService.create($('nm').value.trim().slice(0,24),$('gd').value,+$('rt').value);migrate();guideService.checkAuto()},
+  crp:x=>{ui.crNm=$('nm')?$('nm').value:'';ui.crGd=$('gd')?$('gd').value:'Nam';ui.crRt=$('rt')?+$('rt').value:0;ui.crPath=PD[x]?x:'linh'},
+  create:()=>{s=characterService.create($('nm').value.trim().slice(0,24),$('gd').value,+$('rt').value,ui.crPath||'linh');migrate();guideService.checkAuto()},
   gd_open:()=>{ui.gdModal=ui.gdModal==='codex'?null:'codex';ui.gdTab='tour'},
   gd_tab:x=>{ui.gdTab=x},
   gd_close:()=>{guideService.dismissModal()},
@@ -2630,8 +2663,8 @@ const A={
     const keepTal=s.tal.find(t=>t.u===ui.rbTal)||s.tal[0];
     const keepBm=s.bmWeapon?s.inv.find(i=>i.u===s.bmWeapon.u):null;
     const bmLvKeep=s.bmWeapon?s.bmWeapon.lv:0;
-    const rb=(s.reborn||0)+1,vanKeep=(s.van||0)+15,achKeep=s.ach,histKeep=s.hist,bestKeep=s.best,ktKeep=s.kt,profKeep=s.profile,thKeep=s.theme,uiKeep=s.uiCfg;
-    s=characterService.create(s.name,s.gender,s.root);
+    const rb=(s.reborn||0)+1,vanKeep=(s.van||0)+15,achKeep=s.ach,histKeep=s.hist,bestKeep=s.best,ktKeep=s.kt,profKeep=s.profile,thKeep=s.theme,uiKeep=s.uiCfg,pathKeep=s.path||'linh';
+    s=characterService.create(s.name,s.gender,s.root,pathKeep);
     s.reborn=rb;s.van=vanKeep;s.ach=achKeep;s.hist=histKeep;s.best=bestKeep;s.kt=ktKeep;s.profile=profKeep;s.theme=thKeep;s.uiCfg=uiKeep;
     if(keepTal)s.tal=[Object.assign({},keepTal,{on:false,src:'Luân Hồi Kiếp Trước'})];
     if(keepBm){s.inv.push(Object.assign({},keepBm));s.bmWeapon={u:keepBm.u,lv:bmLvKeep}}
@@ -2744,7 +2777,7 @@ document.addEventListener('change',e=>{
   if(k==='rb_tal'){ui.rbTal=e.target.value;return}
   if(k&&k.slice(0,3)==='ai_'){const n=k.slice(3),v=e.target.value;if(n==='in'){ui.aiIn=aiS(v,160);return}thienCoAI.set(n,v);ui.aiPing='';render();return}
   if(k&&k.slice(0,3)==='cr_'){ui.cr[k.slice(3)]=e.target.value;render();return}
-  if(k&&k.slice(0,3)==='ad_'&&s){const n=k.slice(3),v=e.target.value;if(['realm','layer','body','root'].includes(n)){s[n]=n==='layer'?+v-1:+v;store.save(s);render()}else ui.ad[n]=v;return}
+  if(k&&k.slice(0,3)==='ad_'&&s){const n=k.slice(3),v=e.target.value;if(['realm','layer','body','root','path','subPath'].includes(n)){s[n]=n==='layer'?+v-1:(n==='path'||n==='subPath')?v:+v;if(s.subPath===s.path)s.subPath='';store.save(s);render()}else ui.ad[n]=v;return}
   if(k==='sv_file'&&f){saveService.importFile(f);e.target.value='';return}
   if(s&&k&&f){if(k.slice(0,4)==='img_')imgFile(k.slice(4),f);else if(k==='aud')audFile(f);e.target.value=''}
 });
