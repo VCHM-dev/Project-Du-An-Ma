@@ -83,7 +83,7 @@ img.av{object-fit:cover}.pe input[type=file]{padding:3px}
 .ainr{border-left:3px solid var(--gold);padding:6px 10px;margin:6px 0;line-height:1.6}.ainr.bad{border-left-color:#f87171;color:inherit}.aiin{display:flex;gap:6px;width:100%;margin-top:10px}.aiin input{flex:1;min-width:0}
 .aicfg label{display:flex;flex-direction:column;gap:3px;font-size:calc(var(--fs)*.85);flex:1;min-width:180px}.aicfg label input,.aicfg label select{width:100%}.aich{display:flex;flex-direction:column;align-items:flex-start;text-align:left;max-width:100%}
 .bimg{position:relative;height:122px;margin:-9px -9px 8px;border-radius:7px 7px 0 0;overflow:hidden;background:#050811;border-bottom:1px solid color-mix(in srgb,var(--rc) 55%,var(--ln))}
-.bimg svg,.bimg img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s ease}
+.bimg svg,.bimg img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center 25%;transition:transform .35s ease}
 .card:hover .bimg svg,.card:hover .bimg img{transform:scale(1.05)}
 .bimg .bbg{position:absolute;inset:auto 0 0;height:42px;background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--pn) 92%,#000));pointer-events:none}
 .bimg .blc,.bimg .bel,.bimg .bwn{position:absolute;font-size:11px;padding:2px 7px;border-radius:10px;background:#050814cc;border:1px solid #ffffff26;color:#f3ecd8;backdrop-filter:blur(4px);pointer-events:none}
@@ -91,8 +91,8 @@ img.av{object-fit:cover}.pe input[type=file]{padding:3px}
 .comp-hd{display:flex;gap:10px;align-items:center;margin-bottom:6px}
 .ink-art{width:64px;height:64px;flex:none;border-radius:8px;border:1px solid color-mix(in srgb,var(--rc,var(--gold)) 65%,var(--ln));background:#0a0d12;box-shadow:inset 0 0 12px #000c,0 2px 8px #0006;overflow:hidden}
 .ink-art svg,.arch-bn svg,.arch-bn img{width:100%;height:100%;display:block}
-.arch-bn{position:relative;height:86px;margin:-12px -12px 10px;border-radius:9px 9px 0 0;overflow:hidden;border-bottom:1px solid color-mix(in srgb,var(--gold) 45%,var(--ln));background:#090c10}
-.arch-bn svg,.arch-bn img{position:absolute;inset:0;object-fit:cover}
+.arch-bn{position:relative;height:108px;margin:-12px -12px 10px;border-radius:9px 9px 0 0;overflow:hidden;border-bottom:1px solid color-mix(in srgb,var(--gold) 45%,var(--ln));background:#090c10}
+.arch-bn svg,.arch-bn img{position:absolute;inset:0;object-fit:cover;object-position:center}
 .qpick{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
 .qchip{display:inline-flex;align-items:center;gap:5px;padding:3px 8px 3px 4px;border-radius:16px;font-size:calc(var(--fs)*.78);background:var(--in);border:1px solid var(--ln)}
 .qchip img{width:20px;height:20px;border-radius:50%;object-fit:cover;flex:none}
@@ -111,7 +111,7 @@ img.av{object-fit:cover}.pe input[type=file]{padding:3px}
 .gd-hl .gi{font-size:20px;line-height:1.2;flex:none}
 </style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div>
 <script>
-const APP_VERSION='5.22';
+const APP_VERSION='5.23';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -127,6 +127,13 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.23',date:'2026-11-17',title:'Chuẩn Hóa Ảnh 14 Boss Thần Thoại & Banner Kiến Trúc Toàn Chiều Rộng',
+      highlights:[
+        {icon:'🐉',title:'Ảnh 14 Boss Lịch Luyện Đúng Tên & Thần Thoại Cổ Đại',desc:'Thay thế toàn bộ ảnh Boss bị lệch hoặc dính chữ UI bằng tranh thủy mặc, điêu khắc và thần thoại thế giới (Hắc Phong Lang, Huyền Quy, Xích Hổ, Giao Long, Diêm La, Lôi Long, Kraken, Ma Viên, Lôi Thần, Kim Ô, Xi Vưu, Tam Thanh...).',tab:'adv'},
+        {icon:'🏛',title:'Sửa Banner Kiến Trúc Khai Tông & Vạn Bảo Lâu Toàn Chiều Rộng',desc:'Nâng cấp ảnh phong cảnh Đạo quán & Cung điện cổ đêm trăng chuẩn tỷ lệ rộng, tăng chiều cao banner lên 108px để không bị hẹp hay vỡ hình.',tab:'sect'}
+      ]
+    },
     {
       version:'5.22',date:'2026-11-16',title:'Bộ Hình Ảnh Chính Thức Quỷ Cốc Bát Hoang (Tale of Immortal)',
       highlights:[
@@ -1977,8 +1984,8 @@ const QCBH_BG=[
 ];
 const ARCH_IMG={
   sect:'https://static.wikia.nocookie.net/tale-of-immortal/images/c/c5/Sect_war_intro.png/revision/latest/scale-to-width-down/732?cb=20250909102733',
-  own:'https://images.steamusercontent.com/ugc/2045242733618255025/2ABFAA6F5CB5FAC512C3467D57C566DB2D116D75/?imw=1024&imh=576&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
-  auc:'https://static.wikia.nocookie.net/tale-of-immortal/images/8/8e/Tournament_final.png/revision/latest/scale-to-width-down/732?cb=20250909133039'
+  own:'https://commons.wikimedia.org/wiki/Special:FilePath/Fushou_(Fortune_and_Longevity)_Taoist_Temple_at_Tianchi_(Heavenly_Lake)_in_Fukang,_Changji,_Xinjiang.jpg?width=1280',
+  auc:'https://commons.wikimedia.org/wiki/Special:FilePath/Changdeokgung_palace_at_night.jpg?width=1280'
 };
 const avatar=x=>{
   const fem=x&&x.gender==='Nữ',rlm=(x&&x.realm)||0,rc=RC[Math.min(6,Math.floor(rlm/2))]||'#e5c158';
@@ -2149,20 +2156,20 @@ const BOSS_ART=[
   `<defs><radialGradient id="ba13" cx="50%" cy="48%" r="68%"><stop offset="0" stop-color="#0f766e"/><stop offset=".5" stop-color="#311042"/><stop offset="1" stop-color="#02040a"/></radialGradient></defs><rect width="280" height="122" fill="url(#ba13)"/><circle cx="140" cy="56" r="46" fill="none" stroke="#f0abfc" stroke-width="1.8" stroke-dasharray="6 4"/><circle cx="140" cy="56" r="34" fill="none" stroke="#2dd4bf" stroke-width="2"/><path d="M92 106Q140 84 188 106Q140 120 92 106Z" fill="#f43f5e" opacity=".75" stroke="#fde047" stroke-width="1.5"/><path d="M108 102Q140 78 172 102Z" fill="#fbbf24" opacity=".8"/><path d="M114 96L126 54H154L166 96Z" fill="#0f172a" stroke="#5eead4" stroke-width="2"/><circle cx="140" cy="36" r="12" fill="#0f172a" stroke="#fde047" stroke-width="2"/><circle cx="140" cy="36" r="4" fill="#5eead4"/><circle cx="72" cy="42" r="5" fill="#fde047"/><circle cx="208" cy="42" r="5" fill="#38bdf8"/><circle cx="86" cy="82" r="4" fill="#f0abfc"/><circle cx="194" cy="82" r="4" fill="#4ade80"/>`
 ];
 const BOSS_IMG=[
-  'https://i.17173cdn.com/0561y4/YWxqaGBf/gamebase/game-cover-horizontal/EJsVQUboCChFtzE.jpg!a-3-480x.jpg',
-  'https://i.17173cdn.com/2fhnvk/YWxqaGBf/cms3/iKNShibpfsocdyb.jpg!a-4-x240.jpg',
-  'https://media.9game.cn/gamebase/2021/3/22/226669167.jpg',
-  'https://imgs.gamersky.com/pic/2021/20210204_lkd_510_1.jpg',
-  'https://images.steamusercontent.com/ugc/1847063334821606310/2A3E9352FD3484B20AFB86C04D9F2D3F91D157A4/',
-  'https://i.17173cdn.com/2fhnvk/YWxqaGBf/cms3/VBUJqxboFEipydk.png!a-4-x240.png',
-  'https://static.wikia.nocookie.net/tale-of-immortal/images/9/91/Tale_of_Immortal-_Mythical_Gourd_Guide_%E9%AC%BC%E8%B0%B7%E5%85%AB%E8%8D%92_%E7%82%BC%E5%A6%96%E5%A3%B6%E6%94%BB%E7%95%A5/revision/latest/scale-to-width-down/340?cb=20251006104827',
-  'https://img2-tc.tapimg.com/moment/etag/Fp0f9eTt2t-HCsBzcNdLZtq5GjZs.jpg/_tap_ugc.jpg',
-  'https://static.wikia.nocookie.net/tale-of-immortal/images/c/c4/Foundation-_Heaven.png/revision/latest?cb=20220130021540',
-  'https://static.wikia.nocookie.net/tale-of-immortal/images/b/b1/Heavenly_Art_charging.png/revision/latest/scale-to-width-down/250?cb=20251009144512',
-  'https://i.17173cdn.com/2fhnvk/YWxqaGBf/cms3/LbOOPJbpavzCnxk.jpg',
-  'https://media.9game.cn/gamebase/ieu-eagle-docking-service/images/20220714/6/6/6047ad961f43759bd62592a672e5a743.jpeg',
-  'https://static.wikia.nocookie.net/tale-of-immortal/images/d/de/Sword.jpg/revision/latest/scale-to-width-down/732?cb=20250830022626',
-  'https://static.wikia.nocookie.net/tale-of-immortal/images/c/ca/Rule_Field_example.png/revision/latest?cb=20250930133023'
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Alfred_von_Wierusz-Kowalski_Der_Wolf.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Black_tortoise_sculpture.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Kuniyoshi_Utagawa%2C_Tiger.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Dragon_and_Clouds_by_Kawamura_Kiyoo.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Ten_Kings_of_Hell%2C_Yanluo_Wang_%28Enra_%C5%8C%29_by_Lu_Xinzhong.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Dragon_in_Clouds_by_Maruyama_Okyo_L.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Kraken_by_Kim_Diaz_Holm.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Usui_Matagoro_slays_a_giant_monkey_Utagawa_Kuniyoshi.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Thor%27s_Battle_Against_the_J%C3%B6tnar_%281872%29_by_M%C3%A5rten_Eskil_Winge.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Shang_Xi%2C_Guan_Yu_Captures_General_Pang_De2.JPG?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Threeleggedbird_han_dynasty.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Chi_You_Rubbing_Wu_family_shrines_Han.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Guan_Yu_Seated_%28Chinese_God_of_War%29%2C_Hokusai%2C_MET_56.121.6.jpg?width=900',
+  'https://commons.wikimedia.org/wiki/Special:FilePath/Three_Pure_Ones%2C_Daoist_deities%2C_1_of_3%2C_China%2C_Shanxi_province%2C_cave_temples_at_Haotianguan%2C_Yuan_dynasty%2C_c._1295_AD%2C_sandstone_with_traces_of_pigments_-_%C3%96stasiatiska_museet%2C_Stockholm_-_DSC09291.JPG?width=900'
 ];
 function bossBanner(i,beaten){
   const a=ADV[i],ec=ELC[a[2]]||['#e5c158','☯'];

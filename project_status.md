@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.22 (`Mô Phỏng Nhân Sinhtest_2.html`)  
-> **Cập nhật lần cuối:** 2026-11-16  
+> **Phiên bản hiện tại:** v5.23 (`Mô Phỏng Nhân Sinhtest_2.html`)  
+> **Cập nhật lần cuối:** 2026-11-17  
 > **File chạy chính:** `Mô Phỏng Nhân Sinhtest_2.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Chuẩn Hóa Ảnh 14 Boss Thần Thoại & Banner Kiến Trúc Toàn Chiều Rộng (`v5.23` · `BOSS_IMG`, `ARCH_IMG`, `.arch-bn`, `.bimg`):**
+  - **14 Boss Lịch Luyện (`BOSS_IMG[0..13]`):** Thay thế toàn bộ ảnh Boss bị lệch chủ đề hoặc dính chữ UI/bảng chỉ số bằng tranh thủy mặc, điêu khắc và tác phẩm thần thoại thế giới từ Wikimedia Commons (*Hắc Phong Lang, Huyền Quy, Xích Hổ, Giao Long, Diêm La Vương, Lôi Long, Kraken, Ma Viên, Lôi Thần Thor, Thiên Tướng, Kim Ô Ba Chân, Xi Vưu, Quan Vũ, Tam Thanh*), giữ nguyên `BOSS_ART` SVG làm fallback `onerror`.
+  - **Sửa Banner Kiến Trúc (`ARCH_IMG.own`, `ARCH_IMG.auc`, `.arch-bn`):** Thay thế banner *Khai Tông Lập Phái* và *Đấu Giá Hội Vạn Bảo Lâu* bằng ảnh phong cảnh Đạo quán & Cung điện cổ ban đêm chuẩn tỷ lệ rộng (`?width=1280`), đồng thời tăng chiều cao `.arch-bn` lên `108px` với `object-fit: cover; object-position: center` để phủ kín toàn bộ chiều rộng panel.
 - **Tích Hợp Bộ Hình Ảnh Chính Thức Quỷ Cốc Bát Hoang (`v5.22` · `QCBH_AVATARS`, `QCBH_BG`, `BOSS_IMG`, `ARCH_IMG`, `avatar`, `bossBanner`, `archBanner`, `profileEdit`, `mediaHTML`):**
   - **Avatar Tu Tiên (Nam / Nữ):** Bổ sung 4 chân dung Nam Tu Tiên và 5 chân dung Nữ Tu Tiên từ *Quỷ Cốc Bát Hoang* vào bộ chọn nhanh trong `profileEdit` và `mediaHTML` (`qav`), kèm `referrerpolicy="no-referrer"` và `onerror` tự lùi về SVG Thủy Mặc khi offline.
   - **14 Boss & Yêu Thú Lịch Luyện (`BOSS_IMG`):** Gắn ảnh chính thức cho toàn bộ 14 ải (`ADV[0..13]`) trong `bossBanner()`, giữ nguyên `BOSS_ART` SVG làm lớp nền fallback khi mất mạng.
