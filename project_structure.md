@@ -2,14 +2,14 @@
 
 ## 1. Cấu trúc thư mục & File
 Dự án tuân thủ kiến trúc **Single-File Web Application** (chạy trực tiếp không cần server/build tool):
-- `Mô Phỏng Nhân Sinhtest_2.html` — File mã nguồn duy nhất chứa toàn bộ HTML, CSS và JavaScript (phiên bản v5.9 — tích hợp Thiên Cơ AI, Đồng Bộ Vân Đạo, Chiến Trường Chiến Thuật & Bách Nghệ Thực Chiến).
+- `index.html` — File mã nguồn duy nhất chứa toàn bộ HTML, CSS và JavaScript (phiên bản `v5.24` — tích hợp Thiên Cơ AI, Kho Save 1 chạm, Cẩm Nang Tân Thủ, Tông Môn, Linh Thú & Đạo Lữ, Đấu Giá Hội và 34/34 ảnh Pixel Art WebP nhúng offline).
 - `project_status.md` — Nhật ký tiến độ (Đã làm / Đang làm / Sắp làm). Cập nhật sau mỗi lần sửa code.
 - `project_structure.md` — Bản đồ mã nguồn (file này) giúp AI định vị chính xác vị trí các hàm/dữ liệu.
 - `project_rules.md` — Bộ quy tắc kỹ thuật, tầm nhìn game và cách xử lý tình huống mập mờ.
 
 ---
 
-## 2. Bản đồ Mã Nguồn bên trong `Mô Phỏng Nhân Sinhtest_2.html`
+## 2. Bản đồ Mã Nguồn bên trong `index.html`
 Khi cần chỉnh sửa tính năng nào, AI hãy tìm đúng khu vực comment `/* ===== ... ===== */` tương ứng trong thẻ `<script>`:
 
 | Khu vực / Biến chính | Chức năng & Vị trí cần sửa |
