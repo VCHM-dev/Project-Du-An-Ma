@@ -152,7 +152,7 @@ img.av{object-fit:cover;image-rendering:pixelated}.pe input[type=file]{padding:3
 .act-strip button{padding:4px 8px;font-size:12px}
 </style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div>
 <script>
-const APP_VERSION='5.28';
+const APP_VERSION='5.29';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -168,6 +168,16 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.29',date:'2026-11-18',title:'Chiến Trường Trực Quan & 19 Hiệu Ứng Tuyệt Kỹ Độc Bản',
+      highlights:[
+        {icon:'⚔',title:'Sân Đấu Trực Quan & Nhãn Khắc Hệ / Cộng Hưởng',desc:'Nâng cấp chiến trường hiển thị trực tiếp Nhân vật, Linh Thú, Boss kèm dự báo Ý Đồ Địch và nhãn Khắc Hệ (+25%), Bị Kháng (-15%), Cộng Hưởng Ngũ Hành (+20%) ngay trên từng nút Tuyệt kỹ.',tab:'adv'},
+        {icon:'✨',title:'19 Hiệu Ứng Canvas 2D Additive Riêng Biệt (Q1–Q19)',desc:'Trình render VFX 60fps phong cách Quỷ Cốc Bát Hoang: toàn bộ 19 công pháp đều có hoạt ảnh riêng đúng theo tên gọi (Vạn Kiếm Thần Thông, Cửu Dương Thần Công, Bất Diệt Kim Thân, Lôi Đình Phá Thiên Quyết...).',tab:'adv'}
+      ],
+      tourSteps:[
+        {tab:'adv',selector:'#app .pn',title:'Chiến Trường & 19 Tuyệt Kỹ Độc Bản',desc:'Vào khiêu chiến Boss Lịch Luyện để trải nghiệm sân đấu trực quan, soi nhãn Khắc Hệ / Cộng Hưởng và chiêm ngưỡng hiệu ứng riêng của từng công pháp!'}
+      ]
+    },
     {
       version:'5.28',date:'2026-11-18',title:'Tái Cân Bằng Sức Mạnh, Khóa Đột Phá & Nguyên Liệu Địa/Thiên Phẩm',
       highlights:[
@@ -325,6 +335,7 @@ const GUIDE_DATA={
     {icon:'⚔',title:'Vai Trò 6 Thuộc Tính Gốc & Soft Cap',body:'Thể chất (HP/Thủ) · Linh căn (Lực/Tốc/MP) · Ngộ tính (Lực/Xuyên giáp) · Thần hồn (Tốc/MP/ST Bạo kích) · Tâm cảnh (Thủ/Đột phá) · Khí vận (Bạo kích/Né tránh). Các chỉ số % dùng đường cong Soft Cap nên luôn có giá trị khi đầu tư cao.'},
     {icon:'⚡',title:'Đột Phá 3 Phẩm Chất, Khóa Boss & Đạo Dẫn',body:'Mỗi lần đột phá thất bại tích +4% Pity (tối đa +20%) và dính 1 tầng Ám Thương. Muốn lên đại cảnh giới mới bắt buộc đã hạ Boss cùng tầng; Địa Phẩm cần thêm Đạo dẫn Địa Phẩm, Thiên Phẩm cần thêm Kỳ vật Thiên Phẩm (rơi từ Boss/Cơ duyên hoặc ngưng luyện 3 Địa → 1 Thiên).'},
     {icon:'☯',title:'Uy Áp Cảnh Giới (≤50%) & Cảnh Giác Chiến Đấu',body:'Đánh quái vượt cảnh giới chịu Uy áp nặng; tổng kháng Uy áp từ Khắc hệ, Bản Mệnh, Đạo Quả và Thể Tu tối đa 50%. Thắng liên tiếp tại cùng 1 ải làm quái tăng Cảnh Giác (+10%/3 trận, tối đa +50%) và reset khi nghỉ 1 năm tu luyện.'},
+    {icon:'⚔',title:'Chiến Trường Trực Quan, Khắc Hệ & 19 Tuyệt Kỹ',body:'Mỗi công pháp (19/19) có Tuyệt kỹ và hiệu ứng Canvas 2D riêng biệt. Ra chiêu khắc hệ địch tăng +25% ST; ra chiêu tương sinh với hệ vừa dùng (Kim→Thủy→Mộc→Hỏa→Thổ→Kim) kích hoạt Cộng Hưởng +20% ST. Theo dõi Ý Đồ Địch để kịp dùng Phong Ấn hoặc Hộ Thuẫn chặn Đại Chiêu.'},
     {icon:'🩸',title:'Thiên Thời Linh Khí, Giới Hạn Đan & Ám Thương',body:'Linh Khí xoay vòng theo năm (Bạc Nhược / Bình Thường / Linh Triều / Dị Biến). Mỗi tầng hấp thụ tối đa 45% tu vi từ đan dược. Ám Thương giảm Công/Thủ/Bế quan và cấm càn quét/đột phá ở tầng 3 — chữa bằng Liệu Thương Đan hoặc Tĩnh Dưỡng.'},
     {icon:'🔨',title:'Tinh Luyện, Phân Giải & Dung Luyện Trang Bị',body:'Mọi trang bị đều có thể Tinh Luyện từ +1 đến +10 (+10% chỉ số/cấp, thất bại không vỡ đồ). Trang bị dư thừa có thể Phân Giải (Rã) ra Khoáng Thạch/Tinh Thiết/Ngũ Sắc Thần Kim (hoàn lại 60% nguyên liệu nếu đã Tinh luyện), hoặc Dung Luyện 3 món cùng phẩm chất thành 1 món bậc cao hơn.'},
     {icon:'🏯',title:'Tông Môn & Khai Tông Lập Phái',body:'Từ Luyện Khí có thể gia nhập 1 trong 4 đại thế lực (Thanh Vân, Đan Đỉnh, Huyền Âm, Vạn Pháp) để nhận buff chỉ số, làm nhiệm vụ Cống hiến và đổi bảo vật. Khi đạt Nguyên Anh, bạn có thể Khai Tông Lập Phái, nâng cấp Linh Mạch (+8% tốc độ tu luyện/cấp) và chiêu mộ Đệ tử tự động sản sinh Linh thạch & Tu vi mỗi năm.'},

@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.28 (`index.html`)  
+> **Phiên bản hiện tại:** v5.29 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-18  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Chiến Trường Trực Quan, Khắc Hệ Ngũ Hành & 19 Hiệu Ứng Tuyệt Kỹ Độc Bản (`v5.29` · `BTL_VFX`, `btlModal`, `skillOf`, `adventureService.step`, `adventureService.skMatch`):**
+  - **Sân Đấu Trực Quan (`#btlStage`):** Hiển thị ảnh Nhân vật, Linh Thú, Boss kèm thanh HP/Thuẫn/MP, dự báo Ý Đồ Địch (`fIntent`), số sát thương nổi và nút kỹ năng tinh giản kèm nhãn **Khắc Hệ (+25%) / Bị Kháng (-15%) / Cộng Hưởng (+20%)**.
+  - **19 Hiệu Ứng Canvas 2D Additive (`BTL_VFX`):** Trình render 60fps (`globalCompositeOperation = 'lighter'`) phong cách *Quỷ Cốc Bát Hoang*, tách riêng hoàn toàn hiệu ứng cho từng công pháp trong 19 công pháp (`q1`–`q19`) đúng theo tên gọi.
+  - **Cập nhật Cẩm Nang (`APP_VERSION = '5.29'`, `GUIDE_DATA`):** Bổ sung `patchNotes` `v5.29` và chủ đề Chiến Trường & 19 Tuyệt Kỹ trong `codexTopics`.
 - **Tái Cân Bằng Sức Mạnh, Thọ Nguyên, Chống Spam & Khóa Đột Phá 8 Nhánh (`v5.28` · `LIFE`, `QI_STATES`, `PATH_MATS`, `characterStatsService`, `cultivationService`, `adventureService`, `destinyService`, `vCul`, `vAdv`, `sbar`):**
   - **Khóa Đột Phá & Nguyên Liệu Đặc Biệt (`PATH_MATS`):** Mọi đột phá đại cảnh giới đều yêu cầu hạ Boss Lịch Luyện cùng cảnh giới (`advWins`); **Địa Phẩm** cần & tiêu hao `1` Đạo dẫn Địa Phẩm, **Thiên Phẩm** cần & tiêu hao thêm `1` Kỳ vật Thiên Phẩm đúng nhánh (16 nguyên liệu mới, không bán ở Phường Thị; rơi hiếm từ Boss/Cơ duyên, hỗ trợ ngưng luyện `3 Địa → 1 Thiên`).
   - **Soft-Cap & Siết Uy Áp Cảnh Giới (`characterStatsService.compute`, `calcSup`):** Áp dụng hiệu suất giảm dần cho tổng buff công/thủ/tốc độ tu (`tc`) & `daoMul`; hạ trần kháng Uy Áp (`supMit`) xuống `50%`; điều chỉnh đường cong `need` và `foeOf`.

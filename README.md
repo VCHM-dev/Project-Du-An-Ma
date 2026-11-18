@@ -1,4 +1,4 @@
-# Mô Phỏng Nhân Sinh: Nhân Vật Chính (`v5.28`)
+# Mô Phỏng Nhân Sinh: Nhân Vật Chính (`v5.29`)
 
 Tựa game **Tu Tiên Mô Phỏng Nhân Sinh (Text-Based Roguelike RPG)** đậm chất tiểu thuyết convert trên *SangTacViet*, chạy thuần trên trình duyệt (client-side, offline-first 100%) không cần cài đặt hay backend.
 
@@ -8,7 +8,7 @@ Tựa game **Tu Tiên Mô Phỏng Nhân Sinh (Text-Based Roguelike RPG)** đậm
 - **14 Đại Cảnh Giới (126 bậc) & Cân Bằng Nhịp Độ:** Từ *Luyện Khí → Độ Kiếp → Chân Tiên → Hỗn Nguyên*, áp lực Thọ nguyên, Thiên Thời Linh Khí, Ám Thương Kinh Mạch, Giới hạn hấp thụ Đan dược và Binh Giải Chuyển Thế.
 - **Nhân vật & Tu luyện:** 43 Thiên phú (7 phẩm chất, Lv1–Lv5), 19 Công pháp + Diễn Hóa Công Pháp, cơ chế Đan Độc.
 - **Kim Thủ Chỉ (Mô phỏng nhân sinh):** Chơi tự do theo năm tuổi, 8 NPC định mệnh, 10 Chuỗi sự kiện 3 hồi, 4 Di sản (*Đạo Quả Bàn Tay Vàng*), tích hợp **Thiên Cơ AI (BYOK)** hỗ trợ Gemini / OpenAI-compatible kèm fallback offline.
-- **Chiến Trường Ngũ Hành:** 14 ải Lịch luyện với 3 Tâm pháp giao chiến, Tuyệt kỹ chủ động, 4 biến thể Yêu Thú Biến Dị, Cảnh Giác chiến đấu, Càn quét tùy chỉnh và Uy áp cảnh giới.
+- **Chiến Trường Ngũ Hành Trực Quan (`v5.29`):** 14 ải Lịch luyện với sân đấu đối kháng (hiển thị Nhân vật, Linh thú, Boss, Ý Đồ Địch), 3 Tâm pháp giao chiến, Tuyệt kỹ có nhãn Khắc Hệ / Cộng Hưởng Ngũ Hành, **19 hiệu ứng Canvas 2D Additive độc bản** cho từng công pháp (`q1`–`q19`), 4 biến thể Yêu Thú Biến Dị, Cảnh Giác và Uy áp cảnh giới.
 - **Bách Nghệ & Trang bị:** 3 nghề (Luyện Đan, Luyện Khí, Trận Pháp) cấp 1–9; Tinh luyện `+1 → +10`, Phân giải, Dung luyện 3 đổi 1 và Bản Mệnh Pháp Bảo.
 - **Tông Môn & Đồng Hành:** Gia nhập 4 Đại Tông Môn hoặc Khai Tông Lập Phái (Linh Mạch cấp 1–7, chiêu mộ Đệ tử); thu phục 4 Linh Thú tiến hóa trợ chiến và kết giao 4 Đạo Lữ Song Tu.
 - **Phường Thị & Đấu Giá Hội:** Giao dịch định kỳ và Đấu Giá Hội Vạn Bảo Lâu mỗi 10 năm tuổi.
