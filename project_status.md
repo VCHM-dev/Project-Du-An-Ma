@@ -1,12 +1,18 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.27 (`index.html`)  
-> **Cập nhật lần cuối:** 2026-11-17  
+> **Phiên bản hiện tại:** v5.28 (`index.html`)  
+> **Cập nhật lần cuối:** 2026-11-18  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Tái Cân Bằng Sức Mạnh, Thọ Nguyên, Chống Spam & Khóa Đột Phá 8 Nhánh (`v5.28` · `LIFE`, `QI_STATES`, `PATH_MATS`, `characterStatsService`, `cultivationService`, `adventureService`, `destinyService`, `vCul`, `vAdv`, `sbar`):**
+  - **Khóa Đột Phá & Nguyên Liệu Đặc Biệt (`PATH_MATS`):** Mọi đột phá đại cảnh giới đều yêu cầu hạ Boss Lịch Luyện cùng cảnh giới (`advWins`); **Địa Phẩm** cần & tiêu hao `1` Đạo dẫn Địa Phẩm, **Thiên Phẩm** cần & tiêu hao thêm `1` Kỳ vật Thiên Phẩm đúng nhánh (16 nguyên liệu mới, không bán ở Phường Thị; rơi hiếm từ Boss/Cơ duyên, hỗ trợ ngưng luyện `3 Địa → 1 Thiên`).
+  - **Soft-Cap & Siết Uy Áp Cảnh Giới (`characterStatsService.compute`, `calcSup`):** Áp dụng hiệu suất giảm dần cho tổng buff công/thủ/tốc độ tu (`tc`) & `daoMul`; hạ trần kháng Uy Áp (`supMit`) xuống `50%`; điều chỉnh đường cong `need` và `foeOf`.
+  - **Thọ Nguyên, Thời Gian & Giới Hạn Đan Dược:** Thu gọn `LIFE` (`90 / 160 / 300 / 550 / 1000...`); `pathTrain`, `seek`, `fight` và chế đồ bậc cao (`≥ Tứ Giai`) tốn `1` năm tuổi qua `advanceTime`; giới hạn hấp thụ Đan dược tối đa `45%` tu vi/tầng; cho phép **Binh Giải Chuyển Thế** ngay khi cạn thọ nguyên.
+  - **Ám Thương Kinh Mạch, Thiên Thời & Cảnh Giác:** Thua trận hoặc đột phá thất bại dính **Ám Thương (0–3)** giảm Công/Thủ/Bế quan và khóa càn quét/đột phá ở tầng 3 (chữa bằng *Liệu Thương Đan* `d17` hoặc *Tĩnh Dưỡng*); thế giới có chu kỳ **Linh Khí (`QI_STATES`)**; thắng liên tiếp cùng 1 ải tăng **Cảnh Giác (`advStreak`)**.
+  - **Cập nhật Cẩm Nang (`APP_VERSION = '5.28'`, `GUIDE_DATA`):** Bổ sung `patchNotes` `v5.27`/`v5.28` và cập nhật `codexTopics`.
 - **Hệ Thống Đột Phá Đạo Lộ 3 Phẩm Chất & Nghịch Thiên Cải Mệnh (`v5.27` · `BRK_TIERS`, `PATH_BRK`, `DAO_AN`, `cultivationService`, `brkModal`, `vCul`):**
   - **8 Nghi Thức & Kiếp Nạn Độc Bản:** Mỗi Đạo Lộ có điều kiện thuộc tính, tiêu hao tài nguyên và công thức vượt kiếp riêng (*Ngưng Đan Trúc Đài*, *Dĩ Lôi Tôi Thân*, *Trảm Tam Thi · Vấn Tâm*, *Mở Quỷ Môn · Huyết Tế*, *Trảm Kiếp Vấn Kiếm*, *Dĩ Khí Chứng Đạo*, *Huyết Mạch Phản Tổ*, *Lập Ngôn Chứng Thánh*).
   - **3 Phẩm Chất Đạo Cơ (`Phàm Phẩm`, `Địa Phẩm`, `Thiên Phẩm`):** Cho phép chọn bậc đột phá ngay tại tab Tu Luyện để nhận `+2/+4/+6` thuộc tính bản mệnh và `+0%/+6%/+12%` Căn Cơ vĩnh viễn.

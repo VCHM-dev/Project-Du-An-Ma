@@ -111,7 +111,7 @@ img.av{object-fit:cover;image-rendering:pixelated}.pe input[type=file]{padding:3
 .gd-hl .gi{font-size:20px;line-height:1.2;flex:none}
 </style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div>
 <script>
-const APP_VERSION='5.26';
+const APP_VERSION='5.28';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -127,6 +127,23 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.28',date:'2026-11-18',title:'Tái Cân Bằng Sức Mạnh, Khóa Đột Phá & Nguyên Liệu Địa/Thiên Phẩm',
+      highlights:[
+        {icon:'🔒',title:'Khóa Đột Phá & Đạo Dẫn Địa/Thiên Phẩm 8 Nhánh',desc:'Muốn lên đại cảnh giới mới phải hạ Boss Lịch Luyện cùng tầng. Đột phá Địa Phẩm / Thiên Phẩm cần thêm Đạo Dẫn Địa Phẩm & Kỳ Vật Thiên Phẩm rơi từ Boss/Cơ Duyên (hoặc ngưng luyện 3 Địa → 1 Thiên).',tab:'cul'},
+        {icon:'⚖',title:'Soft-Cap Chỉ Số, Siết Uy Áp (≤50%) & Giới Hạn Đan Dược',desc:'Áp hiệu suất giảm dần cho buff công/thủ/tốc độ tu; hạ trần kháng Uy Áp xuống 50%; giới hạn hấp thụ đan dược tối đa 45% tu vi/tầng.',tab:'char'},
+        {icon:'🩸',title:'Thiên Thời Linh Khí, Ám Thương, Cảnh Giác & Luân Hồi Sớm',desc:'Thu gọn đường cong Thọ nguyên; hành động lớn tốn 1 năm tuổi; thua trận/xịt đột phá dính Ám Thương (cần Liệu Thương Đan/Tĩnh dưỡng); cạn thọ nguyên có thể Binh Giải Chuyển Thế.',tab:'adv'}
+      ],
+      tourSteps:[
+        {tab:'cul',selector:'#app .pn',title:'Thiên Thời, Ám Thương & Khóa Đột Phá',desc:'Theo dõi trạng thái Linh Khí, giữ Ám Thương dưới 3 tầng, hạ Boss cùng cảnh giới và săn Đạo Dẫn Địa/Thiên Phẩm để đột phá phẩm chất cao!'}
+      ]
+    },
+    {
+      version:'5.27',date:'2026-11-17',title:'Đột Phá 3 Phẩm Chất & 24 Đạo Ấn Nghịch Thiên Cải Mệnh',
+      highlights:[
+        {icon:'🌟',title:'Phàm / Địa / Thiên Phẩm & 24 Đạo Ấn',desc:'Chọn phẩm chất đạo cơ khi đột phá đại cảnh giới để nhận thêm thuộc tính bản mệnh, +% Căn Cơ vĩnh viễn và mở khóa chọn 1 trong 3 Đạo Ấn đặc trưng của nhánh.',tab:'cul'}
+      ]
+    },
     {
       version:'5.26',date:'2026-11-17',title:'Nhánh Tu Luyện Pha 2: Liên Kết Thuộc Tính, Thực Chiến & Kiêm Tu',
       highlights:[
@@ -265,8 +282,9 @@ const GUIDE_DATA={
     {icon:'🧭',title:'8 Nhánh Tu Luyện (Đạo Lộ)',body:'Gồm Linh Tu, Thể Tu, Hồn Tu, Quỷ Tu, Kiếm Tu, Bách Nghệ Tu, Yêu Tu và Nho Tu. Mỗi nhánh có hệ số chỉ số thực chiến, ưu nhược điểm và 14 danh xưng cảnh giới riêng biệt.'},
     {icon:'✨',title:'Kim Thủ Chỉ — Bàn Tay Vàng & Đạo Quả',body:'Mô phỏng trong Kim Thủ Chỉ không làm Bản thể già đi (tốn 35% phí đột phá bằng linh thạch). Chọn di sản «Đạo Quả Bàn Tay Vàng» để cộng dồn vĩnh viễn +% toàn chỉ số, mở khóa Kháng Uy Áp (tối đa 50%) và cơ hội Tẩy Cốt nâng Linh Căn / Đạo Thể khi đạt hạng S trở lên (hạng S+ được chọn 2 di sản).'},
     {icon:'⚔',title:'Vai Trò 6 Thuộc Tính Gốc & Soft Cap',body:'Thể chất (HP/Thủ) · Linh căn (Lực/Tốc/MP) · Ngộ tính (Lực/Xuyên giáp) · Thần hồn (Tốc/MP/ST Bạo kích) · Tâm cảnh (Thủ/Đột phá) · Khí vận (Bạo kích/Né tránh). Các chỉ số % dùng đường cong Soft Cap nên luôn có giá trị khi đầu tư cao.'},
-    {icon:'⚡',title:'Đột Phá, Bảo Hiểm (Pity) & Thiên Kiếp',body:'Mỗi lần đột phá thất bại tích lũy +4% tỷ lệ thành công (tối đa +20%, reset khi thành công). Riêng Thiên Kiếp không tính bảo hiểm Pity mà dựa hoàn toàn vào Phòng ngự, Trận Pháp và Đan hộ thân. Đạt Độ Kiếp cần Phòng ngự ≥ 150.000 để Phi Thăng Tiên Giới.'},
-    {icon:'☯',title:'Uy Áp Cảnh Giới & Ngũ Hành Tương Khắc',body:'Khi đánh quái vượt cảnh giới sẽ chịu Uy áp (-22% sát thương gây ra, +25% sát thương nhận vào mỗi bậc). Giảm Uy áp bằng Ngũ hành tương khắc (50%), Bản Mệnh Pháp Bảo (+2.5%/cấp, tối đa 25%), Trận Bàn và Đạo Quả Kháng Uy Áp (tối đa 50%).'},
+    {icon:'⚡',title:'Đột Phá 3 Phẩm Chất, Khóa Boss & Đạo Dẫn',body:'Mỗi lần đột phá thất bại tích +4% Pity (tối đa +20%) và dính 1 tầng Ám Thương. Muốn lên đại cảnh giới mới bắt buộc đã hạ Boss cùng tầng; Địa Phẩm cần thêm Đạo dẫn Địa Phẩm, Thiên Phẩm cần thêm Kỳ vật Thiên Phẩm (rơi từ Boss/Cơ duyên hoặc ngưng luyện 3 Địa → 1 Thiên).'},
+    {icon:'☯',title:'Uy Áp Cảnh Giới (≤50%) & Cảnh Giác Chiến Đấu',body:'Đánh quái vượt cảnh giới chịu Uy áp nặng; tổng kháng Uy áp từ Khắc hệ, Bản Mệnh, Đạo Quả và Thể Tu tối đa 50%. Thắng liên tiếp tại cùng 1 ải làm quái tăng Cảnh Giác (+10%/3 trận, tối đa +50%) và reset khi nghỉ 1 năm tu luyện.'},
+    {icon:'🩸',title:'Thiên Thời Linh Khí, Giới Hạn Đan & Ám Thương',body:'Linh Khí xoay vòng theo năm (Bạc Nhược / Bình Thường / Linh Triều / Dị Biến). Mỗi tầng hấp thụ tối đa 45% tu vi từ đan dược. Ám Thương giảm Công/Thủ/Bế quan và cấm càn quét/đột phá ở tầng 3 — chữa bằng Liệu Thương Đan hoặc Tĩnh Dưỡng.'},
     {icon:'🔨',title:'Tinh Luyện, Phân Giải & Dung Luyện Trang Bị',body:'Mọi trang bị đều có thể Tinh Luyện từ +1 đến +10 (+10% chỉ số/cấp, thất bại không vỡ đồ). Trang bị dư thừa có thể Phân Giải (Rã) ra Khoáng Thạch/Tinh Thiết/Ngũ Sắc Thần Kim (hoàn lại 60% nguyên liệu nếu đã Tinh luyện), hoặc Dung Luyện 3 món cùng phẩm chất thành 1 món bậc cao hơn.'},
     {icon:'🏯',title:'Tông Môn & Khai Tông Lập Phái',body:'Từ Luyện Khí có thể gia nhập 1 trong 4 đại thế lực (Thanh Vân, Đan Đỉnh, Huyền Âm, Vạn Pháp) để nhận buff chỉ số, làm nhiệm vụ Cống hiến và đổi bảo vật. Khi đạt Nguyên Anh, bạn có thể Khai Tông Lập Phái, nâng cấp Linh Mạch (+8% tốc độ tu luyện/cấp) và chiêu mộ Đệ tử tự động sản sinh Linh thạch & Tu vi mỗi năm.'},
     {icon:'🏛',title:'Đấu Giá Hội Vạn Bảo Lâu',body:'Cứ mỗi 10 năm tuổi tại tab Phường Thị sẽ khai mạc Đấu Giá Hội với 3 bảo vật hiếm (trang bị có tỷ lệ Linh khí, đan dược Cực phẩm, bí tịch, thiên phú). Sau khi trúng đấu giá đồ quý có thể gặp sự kiện Bị Chặn Đường Cướp Bảo — thắng sẽ cướp ngược thêm linh thạch & tu vi!'},
