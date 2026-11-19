@@ -1,15 +1,19 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.30 (`index.html`)  
-> **Cập nhật lần cuối:** 2026-11-18  
+> **Phiên bản hiện tại:** v5.31 (`index.html`)  
+> **Cập nhật lần cuối:** 2026-11-19  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Giao Diện Thẻ Tinh Gọn, Hover Tooltip & Modal Chi Tiết (`v5.31` · `cCard`, `buildDet`, `detModalHTML`, `showHoverTip`, `vTal`, `vTec`, `vInv`, `vChar`):**
+  - **Thẻ Tinh Gọn (`.c-card`):** Gọn hóa toàn bộ danh sách **Thiên Phú**, **Công Pháp** (kèm biểu tượng Pixel Art `TECH_ART`), **Kho Đồ** và khung **Thiên phú kích hoạt** trong tab Nhân Vật: chỉ giữ Tên (kèm viền màu phẩm chất), 1 dòng trạng thái ngắn và 1 nút thao tác nhanh (`Bật/Tắt`, `Dùng/Tháo`, `Mặc/Tháo`).
+  - **Trỏ Chuột Hiện Mô Tả (`#hover-tip`):** Rê chuột vào thẻ bất kỳ sẽ bật ngay bảng tooltip bám theo con trỏ (tự kẹp trong khung màn hình) hiển thị đầy đủ chỉ số, hệ số, mô tả, điều kiện và nguồn.
+  - **Click Mở Modal Thao Tác (`#det-modal`, `det_open`/`det_cls`):** Bấm vào thẻ (hỗ trợ cả mobile/touch) mở modal chi tiết với đầy đủ nút `Nâng cấp`, `Tu luyện`, `Dùng ×5`, `Bán`, `♻ Rã`, `🔒/🔓 Khóa`, cập nhật trực tiếp và hỗ trợ đóng bằng `Esc`.
 - **19 Ảnh Minh Họa Pixel Art Công Pháp (`v5.30` · `TECH_ART`, `vTec`, `btlModal`):**
   - **Nhúng Offline 19/19 Công Pháp (`q1`–`q19`):** Chuyển đổi và nhúng trực tiếp bộ 19 ảnh Pixel Art WebP lossless (`96×96`) vào hằng số `TECH_ART` trong `index.html`.
-  - **Hiển Thị Trực Quan:** Hiển thị biểu tượng công pháp (`54×54`) trong từng thẻ ở tab **Công pháp (`vTec`)** và biểu tượng mini (`18×18`) trên các nút Tuyệt kỹ trong **Chiến Trường (`btlModal`)**.
+  - **Hiển Thị Trực Quan:** Hiển thị biểu tượng công pháp trong từng thẻ ở tab **Công pháp (`vTec`)** và biểu tượng mini (`18×18`) trên các nút Tuyệt kỹ trong **Chiến Trường (`btlModal`)**.
   - **Cập nhật Cẩm Nang (`APP_VERSION = '5.30'`, `GUIDE_DATA`):** Bổ sung `patchNotes` `v5.30`.
 - **Chiến Trường Trực Quan, Khắc Hệ Ngũ Hành & 19 Hiệu Ứng Tuyệt Kỹ Độc Bản (`v5.29` · `BTL_VFX`, `btlModal`, `skillOf`, `adventureService.step`, `adventureService.skMatch`):**
   - **Sân Đấu Trực Quan (`#btlStage`):** Hiển thị ảnh Nhân vật, Linh Thú, Boss kèm thanh HP/Thuẫn/MP, dự báo Ý Đồ Địch (`fIntent`), số sát thương nổi và nút kỹ năng tinh giản kèm nhãn **Khắc Hệ (+25%) / Bị Kháng (-15%) / Cộng Hưởng (+20%)**.
