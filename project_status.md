@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.31 (`index.html`)  
+> **Phiên bản hiện tại:** v5.32 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-19  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Nâng Cấp Diễn Hóa Công Pháp: 8 Thái Cổ Tuyệt Học, Song Hiệu Ứng, Combo VFX & Đồ Giám (`v5.32` · `FUSION_RECIPES`, `fusionService`, `skillOf`, `adventureService.step`, `BTL_VFX.sync`, `vTec`, `A.fuse`, `A.fuse_safe`):**
+  - **8 Công Thức Ẩn Danh (`FUSION_RECIPES`) & Đồ Giám (`s.fuCodex`):** Ghép đúng cặp công pháp duyên phận mở khóa 8 *Thái Cổ Tuyệt Học* (chỉ số `×1.26–×1.35`, mô tả riêng); mỗi bộ khai mở trong Đồ Giám cộng vĩnh viễn `+2%` hiệu lực toàn bộ công pháp; ghép tự do tự sinh tên tiên hiệp (`×1.15`).
+  - **Song Hiệu Ứng Thực Chiến (`k1` + `k2`), Combo VFX & Giữ Icon:** Công pháp diễn hóa kích hoạt đồng thời cả hiệu ứng chính và phụ trong chiến đấu, giữ nguyên icon Pixel Art (`TECH_ART`), bắn nối tiếp hiệu ứng Canvas 2D của cả 2 công pháp gốc (`BTL_VFX.sync`), cho phép chọn **Hệ Ngũ Hành**.
+  - **Bảng Xem Trước Trực Tiếp & An Toàn (`vTec`, `fuse_safe`):** Hiển thị trực tiếp dự báo kết quả, cảm ứng Thiên Cơ khi trúng công thức ẩn, tỷ lệ thành công, tùy chọn **Diễn Hóa Đảm Bảo 100%** và loại bỏ hình phạt trừ vĩnh viễn 2 điểm Ngộ Tính gốc.
 - **Giao Diện Thẻ Tinh Gọn, Hover Tooltip & Modal Chi Tiết (`v5.31` · `cCard`, `buildDet`, `detModalHTML`, `showHoverTip`, `vTal`, `vTec`, `vInv`, `vChar`):**
   - **Thẻ Tinh Gọn (`.c-card`):** Gọn hóa toàn bộ danh sách **Thiên Phú**, **Công Pháp** (kèm biểu tượng Pixel Art `TECH_ART`), **Kho Đồ** và khung **Thiên phú kích hoạt** trong tab Nhân Vật: chỉ giữ Tên (kèm viền màu phẩm chất), 1 dòng trạng thái ngắn và 1 nút thao tác nhanh (`Bật/Tắt`, `Dùng/Tháo`, `Mặc/Tháo`).
   - **Trỏ Chuột Hiện Mô Tả (`#hover-tip`):** Rê chuột vào thẻ bất kỳ sẽ bật ngay bảng tooltip bám theo con trỏ (tự kẹp trong khung màn hình) hiển thị đầy đủ chỉ số, hệ số, mô tả, điều kiện và nguồn.
