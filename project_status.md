@@ -1,12 +1,17 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.34 (`index.html`)  
+> **Phiên bản hiện tại:** v5.35 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-19  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Phủ Kín 100% Biểu Tượng 16-bit Pixel Art Toàn Dự Án — Đợt 1B, Đợt 2 & Đợt 3 (`v5.35` · `ITEM_ART`, `TAL_ART`, `PATH_ART`, `SECT_ART`, `DAO_ART`, `artIco`, `vCreate`, `vChar`, `vTal`, `vInv`, `vKt`, `vShop`, `vSect`, `brkModal`, `buildDet`):**
+  - **Đợt 1B — Hoàn Thiện 73/73 Vật Phẩm (`ITEM_ART`):** Bổ sung 28 biểu tượng Pixel Art WebP `96×96` còn lại (9 Đan dược `d9`–`d17`, 12 Nguyên liệu `m1`–`m12` và 7 Kỳ vật Đạo Lộ `bm_linh_*`, `bm_the_*`, `bm_hon_*`, `bm_nho_t`), đạt **73/73 (100%)** Kho Đồ & Trang Bị.
+  - **Đợt 2 — 43/43 Thiên Phú (`TAL_ART`, `talIconHtml`):** Tạo và nhúng offline trọn bộ **43/43** biểu tượng 16-bit Pixel Art cho toàn bộ Thiên Phú (`t1`–`t43`), hiển thị đồng bộ tại tab **Thiên Phú (`vTal`)**, khung **Thiên phú kích hoạt (`vChar`)**, **6 Thiên phú khởi đầu Mô Phỏng (`vKt`)**, **Phường Thị / Đấu Giá (`vShop`)** và **Tooltip/Modal chi tiết (`buildDet`)**.
+  - **Đợt 3 — 8 Đạo Lộ, 4 Tông Môn & 24 Đạo Ấn (`PATH_ART`, `SECT_ART`, `DAO_ART`):** Tạo và nhúng offline **8/8 Đạo Lộ** (`vCreate`, `vChar`, `brkModal`), **4/4 Tông Huy** (`vSect`, kèm ảnh vật phẩm Bảo Khố) và **24/24 Đạo Ấn Nghịch Thiên Cải Mệnh** (`brkModal`, `vChar`).
+  - **Tổng Cộng 213 Ảnh WebP Offline-First:** Phủ **100%** mọi thực thể trong game (`9 Avatar + 4 Linh Thú + 4 Đạo Lữ + 3 Kiến Trúc + 14 Boss + 27 Công Pháp + 73 Vật Phẩm + 43 Thiên Phú + 8 Đạo Lộ + 4 Tông Môn + 24 Đạo Ấn`), giữ nguyên 100% file đơn `index.html` (~1.65 MB).
 - **45 Biểu Tượng Pixel Art Kho Đồ & Trang Bị — Đợt 1A (`v5.34` · `ITEM_ART`, `itemIconHtml`, `vInv`, `vChar`, `buildDet`, `vShop`):**
   - **Nhúng Offline 45/73 Vật Phẩm (`ITEM_ART`, ~82.4 KB WebP `96×96`):** Phủ 100% **Trang bị** (8/8 Vũ khí `w1`–`w8`, 5/5 Giáp `a1`–`a5`, 5/5 Trang sức `p1`–`p5`, 7/7 Pháp bảo `f1`–`f7`), 100% **Trận Bàn** (`b1`, `b2`), **Thiên Đạo Lệnh** (`s1`), **8 Đan dược** (`d1`–`d8`) và **9 Kỳ vật Đạo Lộ** (`bm_quy_*`, `bm_kiem_*`, `bm_nghe_*`, `bm_yeu_*`, `bm_nho_d`).
   - **Hiển Thị Đồng Bộ Toàn Giao Diện:** Tích hợp `itemIconHtml(id, mode)` vào thẻ **Kho Đồ (`vInv`)**, **4 ô Trang Bị (`vChar`)**, **Hover Tooltip & Modal chi tiết (`buildDet`)**, và **Phường Thị / Đấu Giá Hội Vạn Bảo Lâu (`vShop`)**.
