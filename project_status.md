@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.33 (`index.html`)  
+> **Phiên bản hiện tại:** v5.34 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-19  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **45 Biểu Tượng Pixel Art Kho Đồ & Trang Bị — Đợt 1A (`v5.34` · `ITEM_ART`, `itemIconHtml`, `vInv`, `vChar`, `buildDet`, `vShop`):**
+  - **Nhúng Offline 45/73 Vật Phẩm (`ITEM_ART`, ~82.4 KB WebP `96×96`):** Phủ 100% **Trang bị** (8/8 Vũ khí `w1`–`w8`, 5/5 Giáp `a1`–`a5`, 5/5 Trang sức `p1`–`p5`, 7/7 Pháp bảo `f1`–`f7`), 100% **Trận Bàn** (`b1`, `b2`), **Thiên Đạo Lệnh** (`s1`), **8 Đan dược** (`d1`–`d8`) và **9 Kỳ vật Đạo Lộ** (`bm_quy_*`, `bm_kiem_*`, `bm_nghe_*`, `bm_yeu_*`, `bm_nho_d`).
+  - **Hiển Thị Đồng Bộ Toàn Giao Diện:** Tích hợp `itemIconHtml(id, mode)` vào thẻ **Kho Đồ (`vInv`)**, **4 ô Trang Bị (`vChar`)**, **Hover Tooltip & Modal chi tiết (`buildDet`)**, và **Phường Thị / Đấu Giá Hội Vạn Bảo Lâu (`vShop`)**.
 - **8 Icon Pixel Art & 8 Hoạt Ảnh VFX Độc Bản cho Thái Cổ Tuyệt Học · Huy Hiệu Song Hợp (`v5.33` · `TECH_ART`, `.c-ico-fuse`, `techIconHtml`, `fusionService.genName`, `BTL_VFX`, `vTec`, `buildDet`, `btlModal`):**
   - **8 Ảnh Pixel Art WebP Độc Bản (`TECH_ART['fu_*']`):** Tạo mới và nhúng offline 8 biểu tượng Pixel Art `96×96` WebP (~24 KB tổng) cho toàn bộ 8 *Thái Cổ Tuyệt Học* (`fu_amduong` .. `fu_vantien`), hiển thị đồng bộ trên thẻ Công pháp, Đồ Giám, Tooltip/Modal chi tiết và nút Tuyệt kỹ trong Chiến Trường.
   - **Huy Hiệu Song Hợp (`.c-ico-fuse`, `techIconHtml`):** Công pháp Diễn Hóa Tự Do hiển thị biểu tượng cắt chéo 2 icon gốc kèm đường sáng phân cách phát sáng theo màu Hệ Ngũ Hành và dấu `☯` (có đủ 3 cỡ: thẻ `34×34`, nút chiến đấu `18×18`, modal chi tiết `46×46`).

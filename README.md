@@ -1,4 +1,4 @@
-# Mô Phỏng Nhân Sinh: Nhân Vật Chính (`v5.33`)
+# Mô Phỏng Nhân Sinh: Nhân Vật Chính (`v5.34`)
 
 Tựa game **Tu Tiên Mô Phỏng Nhân Sinh (Text-Based Roguelike RPG)** đậm chất tiểu thuyết convert trên *SangTacViet*, chạy thuần trên trình duyệt (client-side, offline-first 100%) không cần cài đặt hay backend.
 
@@ -10,10 +10,10 @@ Tựa game **Tu Tiên Mô Phỏng Nhân Sinh (Text-Based Roguelike RPG)** đậm
 - **Giao Diện Tinh Gọn (`v5.31`):** Thẻ Thiên Phú, Công Pháp và Kho Đồ chỉ hiển thị Tên + Trạng thái ngắn + nút bật/dùng nhanh; **rê chuột** để hiện tooltip mô tả đầy đủ và **click** để mở modal nâng cấp/tu luyện/bán rã.
 - **Kim Thủ Chỉ (Mô phỏng nhân sinh):** Chơi tự do theo năm tuổi, 8 NPC định mệnh, 10 Chuỗi sự kiện 3 hồi, 4 Di sản (*Đạo Quả Bàn Tay Vàng*), tích hợp **Thiên Cơ AI (BYOK)** hỗ trợ Gemini / OpenAI-compatible kèm fallback offline.
 - **Chiến Trường Ngũ Hành Trực Quan (`v5.33`):** 14 ải Lịch luyện với sân đấu đối kháng (hiển thị Nhân vật, Linh thú, Boss, Ý Đồ Địch), 3 Tâm pháp giao chiến, Tuyệt kỹ có nhãn Khắc Hệ / Cộng Hưởng Ngũ Hành, **27 hiệu ứng Canvas 2D Additive độc bản** (`q1`–`q19` + 8 *Thái Cổ Tuyệt Học* + Combo VFX kép cho Diễn Hóa Tự Do), 4 biến thể Yêu Thú Biến Dị, Cảnh Giác và Uy áp cảnh giới.
-- **Bách Nghệ & Trang bị:** 3 nghề (Luyện Đan, Luyện Khí, Trận Pháp) cấp 1–9; Tinh luyện `+1 → +10`, Phân giải, Dung luyện 3 đổi 1 và Bản Mệnh Pháp Bảo.
+- **Bách Nghệ & Trang bị (`v5.34`):** 3 nghề (Luyện Đan, Luyện Khí, Trận Pháp) cấp 1–9; Tinh luyện `+1 → +10`, Phân giải, Dung luyện 3 đổi 1 và Bản Mệnh Pháp Bảo; **45 biểu tượng Pixel Art WebP nhúng offline (`ITEM_ART`)** phủ 100% Vũ khí, Giáp, Trang sức, Pháp bảo, Trận Bàn cùng các Đan dược & Kỳ vật Đạo Lộ.
 - **Tông Môn & Đồng Hành:** Gia nhập 4 Đại Tông Môn hoặc Khai Tông Lập Phái (Linh Mạch cấp 1–7, chiêu mộ Đệ tử); thu phục 4 Linh Thú tiến hóa trợ chiến và kết giao 4 Đạo Lữ Song Tu.
 - **Phường Thị & Đấu Giá Hội:** Giao dịch định kỳ và Đấu Giá Hội Vạn Bảo Lâu mỗi 10 năm tuổi.
-- **Mỹ thuật & Lưu trữ Offline:** 34/34 ảnh 16-bit Pixel Art WebP nhúng trực tiếp kèm SVG thủy mặc fallback; Kho Save 1 chạm (`localStorage` + `IndexedDB` + file `.msns` + link `#s=` nén `gzip`).
+- **Mỹ thuật & Lưu trữ Offline:** Hơn 100 ảnh 16-bit Pixel Art WebP nhúng trực tiếp kèm SVG thủy mặc fallback; Kho Save 1 chạm (`localStorage` + `IndexedDB` + file `.msns` + link `#s=` nén `gzip`).
 
 ## Cách chơi
 
