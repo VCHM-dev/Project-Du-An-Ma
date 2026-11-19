@@ -159,3 +159,33 @@
 - [x] **Đấu Giá Hội Vạn Bảo Lâu:** Sự kiện định kỳ mỗi 10 năm tuổi tại tab Phường Thị, cạnh tranh trả giá với NPC đại năng và sự kiện bị chặn đường cướp bảo. *(v5.19)*
 - [x] **Linh Thú & Đạo Lữ thực chiến:** Thu phục linh thú tiến hóa bằng Yêu Đan, kết giao Đạo Lữ để mở khóa Song Tu và hỗ trợ vượt Thiên Kiếp. *(v5.20)*
 - [x] **Tối ưu thao tác nhanh (QoL):** Thêm nút "Rèn nhanh / Luyện đan ×5" trong tab Bách Nghệ.
+- [ ] **Đồng bộ Mỹ thuật AI 16-bit Pixel Art (Nâng cấp 107 ảnh vẽ tự động ở `v5.35`):** Thay thế các bộ icon vẽ bằng Python Pillow (Đợt 1B, Đợt 2, Đợt 3) sang ảnh AI Pixel Art (`generate_image`) để đồng bộ 100% nét vẽ với `TECH_ART` (`v5.30`/`v5.33`) và 45 vật phẩm Đợt 1A (`v5.34`).
+
+---
+
+## 4. LƯU Ý NÂNG CẤP MỸ THUẬT (ART UPGRADE NOTES)
+
+Để dự án đồng bộ hoàn toàn 100% nét vẽ **AI 16-bit Pixel Art** (`96×96` WebP trên nền tối `#050812`), dưới đây là danh sách phân tách rõ phần **đã dùng ảnh AI** và phần **đang dùng ảnh Python 16-bit Pixel Art tạm thời ở `v5.35`** cần nâng cấp sau:
+
+### Đã đồng bộ ảnh AI Pixel Art (Không cần làm lại)
+- **Avatar, Linh Thú, Đạo Lữ, Kiến Trúc, Boss (`v5.24`):** 34/34 ảnh (`QCBH_AVATARS` 9, `PET_IMG` 4, `PARTNER_IMG` 4, `ARCH_IMG` 3, `BOSS_IMG` 14).
+- **Công Pháp & Thái Cổ Tuyệt Học (`TECH_ART` · `v5.30`, `v5.33`):** 27/27 ảnh (`q1`–`q19` + 8 `fu_*`).
+- **Vật Phẩm Đợt 1A (`ITEM_ART` · `v5.34`):** 45/73 ảnh:
+  - Trang bị (25): `w1`–`w8` (Vũ khí), `a1`–`a5` (Giáp), `p1`–`p5` (Trang sức), `f1`–`f7` (Pháp bảo).
+  - Trận bàn & Lệnh bài (3): `b1`, `b2`, `s1`.
+  - Đan dược (8): `d1`–`d8`.
+  - Kỳ vật Đạo Lộ (9): `bm_quy_d`, `bm_quy_t`, `bm_kiem_d`, `bm_kiem_t`, `bm_nghe_d`, `bm_nghe_t`, `bm_yeu_d`, `bm_yeu_t`, `bm_nho_d`.
+
+### Cần nâng cấp từ Python Pixel Art sang AI Pixel Art (107 ảnh ở `v5.35`)
+1. **Đợt 1B — `ITEM_ART` còn lại (28 ảnh):**
+   - **9 Đan dược (`d9`–`d17`):** `d9` (Tẩy Tủy Đan), `d10` (Tụ Linh Đan), `d11` (Huyền Hoàng Đan), `d12` (Cửu Chuyển Hoàn Hồn Đan), `d13` (Phá Cảnh Đan), `d14` (Bạo Nguyên Đan), `d15` (Kim Cang Hộ Tâm Đan), `d16` (Bách Thảo Giải Độc Đan), `d17` (Liệu Thương Đan).
+   - **12 Nguyên liệu (`m1`–`m12`):** `m1`–`m3` (Thảo dược bậc 1–3), `m4`–`m6` (Yêu Đan bậc 1–3), `m7`–`m9` (Khoáng thạch bậc 1–3), `m10`–`m12` (Trận kỳ/Linh ngọc).
+   - **7 Kỳ vật Đạo Lộ:** `bm_linh_d`, `bm_linh_t`, `bm_the_d`, `bm_the_t`, `bm_hon_d`, `bm_hon_t`, `bm_nho_t`.
+2. **Đợt 2 — `TAL_ART` (43 ảnh):** Toàn bộ 43 Thiên phú (`t1`–`t43`).
+3. **Đợt 3 — `PATH_ART`, `SECT_ART`, `DAO_ART` (36 ảnh):**
+   - **8 Đạo Lộ (`PATH_ART`):** `linh`, `the`, `hon`, `quy`, `kiem`, `nghe`, `yeu`, `nho`.
+   - **4 Tông Môn (`SECT_ART`):** `s1` (Thanh Vân Kiếm Tông), `s2` (Đan Đỉnh Các), `s3` (Huyền Âm Ma Tông), `s4` (Vạn Pháp Thư Viện).
+   - **24 Đạo Ấn (`DAO_ART`):** Mỗi Đạo Lộ 3 ấn (`li1..li3`, `th1..th3`, `ho1..ho3`, `qu1..qu3`, `ki1..ki3`, `ng1..ng3`, `ye1..ye3`, `nh1..nh3`).
+
+> **Gợi ý quy trình khi nâng cấp sau này:** Chỉ cần tạo sprite sheet lưới `3×3` (9 icon/ảnh, nền đen `#050812`, phong cách *16-bit dark xianxia RPG pixel art*) bằng `generate_image`, cắt ô `96×96` WebP và ghi đè trực tiếp các key tương ứng trong `ITEM_ART`, `TAL_ART`, `PATH_ART`, `SECT_ART`, `DAO_ART` trong `index.html` — không cần sửa code giao diện vì toàn bộ UI đã nối sẵn.
+
