@@ -1,12 +1,17 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.32 (`index.html`)  
+> **Phiên bản hiện tại:** v5.33 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-19  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **8 Icon Pixel Art & 8 Hoạt Ảnh VFX Độc Bản cho Thái Cổ Tuyệt Học · Huy Hiệu Song Hợp (`v5.33` · `TECH_ART`, `.c-ico-fuse`, `techIconHtml`, `fusionService.genName`, `BTL_VFX`, `vTec`, `buildDet`, `btlModal`):**
+  - **8 Ảnh Pixel Art WebP Độc Bản (`TECH_ART['fu_*']`):** Tạo mới và nhúng offline 8 biểu tượng Pixel Art `96×96` WebP (~24 KB tổng) cho toàn bộ 8 *Thái Cổ Tuyệt Học* (`fu_amduong` .. `fu_vantien`), hiển thị đồng bộ trên thẻ Công pháp, Đồ Giám, Tooltip/Modal chi tiết và nút Tuyệt kỹ trong Chiến Trường.
+  - **Huy Hiệu Song Hợp (`.c-ico-fuse`, `techIconHtml`):** Công pháp Diễn Hóa Tự Do hiển thị biểu tượng cắt chéo 2 icon gốc kèm đường sáng phân cách phát sáng theo màu Hệ Ngũ Hành và dấu `☯` (có đủ 3 cỡ: thẻ `34×34`, nút chiến đấu `18×18`, modal chi tiết `46×46`).
+  - **Sinh Danh Xưng Tiên Hiệp Chuẩn (`fusionService.genName`):** Nâng cấp ghép tên theo cấu trúc *Tiền tố Hệ Ngũ Hành + Lõi Hiệu Ứng + Hậu tố Phẩm Cấp* (`Quyết` → `Đế Điển`), chống lặp từ và đồng bộ giữa Xem Trước và kết quả.
+  - **8 Hoạt Ảnh Canvas 2D Additive Riêng Biệt (`BTL_VFX.spawn`, `BTL_VFX.sync`):** Thiết kế 8 hoạt ảnh riêng cho 8 *Thái Cổ Tuyệt Học* (kèm hào quang hộ thân trên bản thể cho *Thái Cổ Bất Diệt Đạo Thể*, *Thanh Mộc Tạo Hóa Tiên Kinh*, *Hỗn Độn Vạn Pháp Đế Kinh*), đồng thời giữ nguyên Combo VFX kép cho Diễn Hóa Tự Do.
 - **Đại Nâng Cấp Diễn Hóa Công Pháp: 8 Thái Cổ Tuyệt Học, Song Hiệu Ứng, Combo VFX & Đồ Giám (`v5.32` · `FUSION_RECIPES`, `fusionService`, `skillOf`, `adventureService.step`, `BTL_VFX.sync`, `vTec`, `A.fuse`, `A.fuse_safe`):**
   - **8 Công Thức Ẩn Danh (`FUSION_RECIPES`) & Đồ Giám (`s.fuCodex`):** Ghép đúng cặp công pháp duyên phận mở khóa 8 *Thái Cổ Tuyệt Học* (chỉ số `×1.26–×1.35`, mô tả riêng); mỗi bộ khai mở trong Đồ Giám cộng vĩnh viễn `+2%` hiệu lực toàn bộ công pháp; ghép tự do tự sinh tên tiên hiệp (`×1.15`).
   - **Song Hiệu Ứng Thực Chiến (`k1` + `k2`), Combo VFX & Giữ Icon:** Công pháp diễn hóa kích hoạt đồng thời cả hiệu ứng chính và phụ trong chiến đấu, giữ nguyên icon Pixel Art (`TECH_ART`), bắn nối tiếp hiệu ứng Canvas 2D của cả 2 công pháp gốc (`BTL_VFX.sync`), cho phép chọn **Hệ Ngũ Hành**.
