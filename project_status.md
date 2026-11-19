@@ -1,12 +1,18 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.35 (`index.html`)  
+> **Phiên bản hiện tại:** v5.36 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-19  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Chế Độ Trường Sinh Đạo (Real-Time Idle), Bức Tường Trúc Cơ → Độ Kiếp, Dược Viên & Lò Luyện Động Phủ (`v5.36` · `RT_NEED_MUL`, `GARDEN_SEEDS`, `rtService`, `cultivationService`, `pillGain`, `PE`, `vCreate`, `vCul`, `vCraft`, `sbar`, `vAdmin`):**
+  - **2 Nhịp Độ Thế Giới (`classic` vs `realtime`):** Chọn ngay tại `vCreate` (save cũ tự migrate về `classic` an toàn, `reborn` giữ nguyên chế độ, Admin hỗ trợ chuyển chế độ & tua `+1h`/`+1d`):
+    - **⚡ Tiêu Dao Nhanh (Cổ Điển):** Giữ nguyên trải nghiệm bế quan theo năm tuổi nhanh gọn.
+    - **⏳ Trường Sinh Đạo (Thời Gian Thực · Khó):** Tự động hấp thụ **Linh Khí Động Phủ** (`xpPerSec`) mỗi giây kể cả khi đóng trình duyệt (tích lũy offline tối đa 14 ngày kèm báo cáo toast khi mở lại) và live-tick mỗi 5 giây trên giao diện.
+  - **Bức Tường Trúc Cơ → Độ Kiếp (`RT_NEED_MUL`):** *Luyện Khí T1–T9* mượt mà (~15–25 phút thực), từ **Trúc Cơ (`×3.5`) → Kim Đan (`×18`) → Nguyên Anh (`×75`) → Hóa Thần (`×260`) → Độ Kiếp (`×4500`)** kéo dài dần từ hàng giờ sang nhiều ngày/tuần/tháng thực; giới hạn **Thổ Nạp Bế Quan Sâu** (`3–5 lần/ngày`) và **Đan Tu Vi** (`5–8 viên/ngày`, làm mới lúc `00:00` hoặc khi đột phá Đại Cảnh); **Bình Cảnh Trệ Khí** (`15 × cảnh giới` phút thực khi đột phá thất bại, giải nhanh bằng *Tịnh Tâm Đan* `d3` / xóa sạch bằng *Phá Cảnh Đan* `d2`); yêu cầu tổng cấp công pháp trang bị ở Đại Cảnh.
+  - **🌱 Dược Viên Động Phủ & 🔥 Lò Luyện Động Phủ (`vCraft`):** Thêm sub-tab `🌱 Dược Viên` (4 ô khởi đầu, khai khẩn tối đa 8 ô, 6 giống linh thảo *Linh Thảo Phàm → Tiên Thảo Duyên Đạo*, lớn theo thời gian thực ở `realtime` hoặc theo năm tuổi ở `classic`, hỗ trợ Thu Hoạch Tất Cả); trong `realtime`, luyện đan/luyện khí từ **Tứ Giai trở lên** tự động đưa vào **🔥 Lò Luyện Động Phủ** ôn luyện theo thời gian thực và thưởng `+10%` cơ hội xuất Cực Phẩm / Linh Khí khi Khai Lò.
 - **Phủ Kín 100% Biểu Tượng 16-bit Pixel Art Toàn Dự Án — Đợt 1B, Đợt 2 & Đợt 3 (`v5.35` · `ITEM_ART`, `TAL_ART`, `PATH_ART`, `SECT_ART`, `DAO_ART`, `artIco`, `vCreate`, `vChar`, `vTal`, `vInv`, `vKt`, `vShop`, `vSect`, `brkModal`, `buildDet`):**
   - **Đợt 1B — Hoàn Thiện 73/73 Vật Phẩm (`ITEM_ART`):** Bổ sung 28 biểu tượng Pixel Art WebP `96×96` còn lại (9 Đan dược `d9`–`d17`, 12 Nguyên liệu `m1`–`m12` và 7 Kỳ vật Đạo Lộ `bm_linh_*`, `bm_the_*`, `bm_hon_*`, `bm_nho_t`), đạt **73/73 (100%)** Kho Đồ & Trang Bị.
   - **Đợt 2 — 43/43 Thiên Phú (`TAL_ART`, `talIconHtml`):** Tạo và nhúng offline trọn bộ **43/43** biểu tượng 16-bit Pixel Art cho toàn bộ Thiên Phú (`t1`–`t43`), hiển thị đồng bộ tại tab **Thiên Phú (`vTal`)**, khung **Thiên phú kích hoạt (`vChar`)**, **6 Thiên phú khởi đầu Mô Phỏng (`vKt`)**, **Phường Thị / Đấu Giá (`vShop`)** và **Tooltip/Modal chi tiết (`buildDet`)**.
