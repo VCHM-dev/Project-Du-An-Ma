@@ -1,12 +1,20 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.38 (`index.html`)  
+> **Phiên bản hiện tại:** v5.39 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-19  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Cân Bằng Liên Kết Toàn Hệ Thống Chế Độ Trường Sinh Đạo (`v5.39` · `RT_NEED_MUL`, `rtService.actXp`, `rtService.rtAge`, `pillGain`, `cxp`, `pathTrain`, `destinyService`, `sectService`, `compService`, `adventureService`, `rewardIntegrationService`, `vCul`):**
+  - **Đường Cong Tu Vi & Linh Khí Động Phủ Đã Mô Phỏng 3 Vòng:** Chỉnh `xpPerSec` (`1.15 × 1.62^realm`) và `RT_NEED_MUL` (`[1, 14, 100, 280, 650, 1300, 2300, 3900, 6400, ...]`) cho nhịp độ chuẩn: *Luyện Khí* ~17p, *Trúc Cơ* ~3.5h, *Kim Đan* ~1.1 ngày, *Nguyên Anh* ~3.8 ngày, *Hóa Thần* ~10.5 ngày, *Luyện Hư* ~26 ngày, *Hợp Thể* ~2 tháng, *Đại Thừa* ~4.2 tháng, *Độ Kiếp* ~9.3 tháng (Active) / ~2 năm (Idle thuần).
+  - **Chống Vượt Cấp & Liên Kết Chặt Mọi Nguồn XP (Chỉ áp dụng `realtime`, giữ nguyên `classic`):**
+    - `Thổ Nạp Bế Quan Sâu` (`600s` = 10 phút linh khí) dùng chung hạn mức ngày với `pathTrain` (*Tôi Thể/Huyết Tế/Ngộ Đạo/Luyện Yêu*).
+    - `pillGain` (Đan Tu Vi) áp trần thời lượng linh khí (`30p` cho `d1`, `60p` cho `d12`, `×1.6` Cực Phẩm); `g6` Ngộ Đạo Trà Thụ áp trần `30p` linh khí.
+    - `Kim Thủ Chỉ` giới hạn `2 lượt/ngày` thực (reset 00:00 hoặc đột phá Đại Cảnh), quy đổi *Truyền Thừa Tu Vi* theo `xpPerSec` (`20p → 2h`) và trần `3h` linh khí cho phá bình cảnh tầng 9; `Song Tu` giới hạn `1 lần/ngày` (`15–20p` linh khí).
+    - `rtService.actXp` chuẩn hóa Lịch Luyện (`20s`), Bách Nghệ Tu (`15s`), Cướp Đấu Giá (`45s`), Nhiệm vụ Tông Môn (`60s`), Thu hoạch Linh Mạch (`30p`).
+  - **Bảo Vệ Thọ Nguyên Khi Farm (`rtService.rtAge`):** Đánh Lịch Luyện, Cơ Duyên và Nhiệm vụ Tông Môn trong `realtime` chỉ tăng `+1 tuổi` mỗi **5 lượt**, giúp tổng tuổi tích lũy đến hết Độ Kiếp ~`3.300 / 9.000` (vừa giữ áp lực Thọ Nguyên vừa không chết già vô lý khi săn Boss).
 - **Nâng Cấp Chiều Sâu Không Gian Tiên Hiệp, Màn Hình Tạo Nhân Vật 2 Cột & Sân Khấu Đả Tọa Động Phủ (`v5.38` · `#bg-scene`, `REALM_AURA`, `BG_SCENE_SVG`, `vCreate`, `vCul`, `A.crav`, `render`):**
   - **Không Gian Thủy Mặc 3 Tầng & Phân Tầng Độ Sâu:** Bổ sung dãy núi thủy mặc SVG 3 lớp (`#bg-scene`) + quầng sáng Thiên Địa đổi màu theo Đại Cảnh Giới (`--realm-aura`), phân tầng rõ `.pn.hero` / `.pn` / `.pn.sub`, ánh kim quét nút chính (`btnSheen`), font Serif cổ trang cho tiêu đề & `tabular-nums` cho số liệu (đồng bộ 100% với 5 bộ Theme + Nitro, `.nofx`, `.nobl`).
   - **Màn Hình Tạo Nhân Vật 2 Cột (`vCreate`, `cr-wrap`):** Tách thành Sân Khấu Đạo Thân bên trái (Avatar AI Pixel Art, vòng Bát Quái xoay, bộ chọn diện mạo khởi đầu `crav` tự lưu vào `s.uiCfg.av`, huy hiệu Đạo Lộ & thuộc tính bản mệnh) và Bảng Thiết Lập bên phải (thẻ chọn 2 Nhịp Độ Thế Giới & lưới 8 Đạo Lộ).
