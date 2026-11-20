@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.37 (`index.html`)  
+> **Phiên bản hiện tại:** v5.38 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-19  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Nâng Cấp Chiều Sâu Không Gian Tiên Hiệp, Màn Hình Tạo Nhân Vật 2 Cột & Sân Khấu Đả Tọa Động Phủ (`v5.38` · `#bg-scene`, `REALM_AURA`, `BG_SCENE_SVG`, `vCreate`, `vCul`, `A.crav`, `render`):**
+  - **Không Gian Thủy Mặc 3 Tầng & Phân Tầng Độ Sâu:** Bổ sung dãy núi thủy mặc SVG 3 lớp (`#bg-scene`) + quầng sáng Thiên Địa đổi màu theo Đại Cảnh Giới (`--realm-aura`), phân tầng rõ `.pn.hero` / `.pn` / `.pn.sub`, ánh kim quét nút chính (`btnSheen`), font Serif cổ trang cho tiêu đề & `tabular-nums` cho số liệu (đồng bộ 100% với 5 bộ Theme + Nitro, `.nofx`, `.nobl`).
+  - **Màn Hình Tạo Nhân Vật 2 Cột (`vCreate`, `cr-wrap`):** Tách thành Sân Khấu Đạo Thân bên trái (Avatar AI Pixel Art, vòng Bát Quái xoay, bộ chọn diện mạo khởi đầu `crav` tự lưu vào `s.uiCfg.av`, huy hiệu Đạo Lộ & thuộc tính bản mệnh) và Bảng Thiết Lập bên phải (thẻ chọn 2 Nhịp Độ Thế Giới & lưới 8 Đạo Lộ).
+  - **Sân Khấu Đả Tọa Động Phủ (`vCul`, `cul-stage`):** Hiển thị Avatar ngồi đài liên hoa phát sáng, Linh Thú & Bản Mệnh Pháp Bảo bay hộ pháp hai bên (`.cul-orbit`), 10 hạt linh khí bay tụ vào trung tâm (`.cul-qi-flow`), thanh Tu Vi/Thọ Nguyên cùng dải nút chính ngay dưới đài, và lưới 2 cột (`.cul-grid`) cho Nghi Thức Đột Phá / Trạng Thái / Nhật Ký.
 - **Đồng Bộ 100% Mỹ Thuật AI 16-bit Pixel Art Toàn Dự Án (`v5.37` · `ITEM_ART`, `TAL_ART`, `PATH_ART`, `SECT_ART`, `DAO_ART`):**
   - **Nâng Cấp Trọn Bộ 107/107 Biểu Tượng Tạm Thời Của `v5.35` Sang AI 16-bit Pixel Art WebP (`96×96`):**
     - **Đợt 1B (`ITEM_ART`, 28 ảnh):** 9 Đan dược tròn cổ trang (`d9`–`d17`), 12 Nguyên liệu & Trận Kỳ (`m1`–`m12`), 7 Kỳ vật Đạo Lộ (`bm_linh_*`, `bm_the_*`, `bm_hon_*`, `bm_nho_t`).

@@ -1,9 +1,10 @@
-# Mô Phỏng Nhân Sinh: Nhân Vật Chính (`v5.37`)
+# Mô Phỏng Nhân Sinh: Nhân Vật Chính (`v5.38`)
 
 Tựa game **Tu Tiên Mô Phỏng Nhân Sinh (Text-Based Roguelike RPG)** đậm chất tiểu thuyết convert trên *SangTacViet*, chạy thuần trên trình duyệt (client-side, offline-first 100%) không cần cài đặt hay backend.
 
 ## Tính năng nổi bật
 
+- **Không Gian Thủy Mặc & Sân Khấu Đả Tọa Động Phủ (`v5.38`):** Nền núi non thủy mặc 3 tầng kết hợp hào quang Thiên Địa đổi màu theo Đại Cảnh Giới (`--realm-aura`), phân tầng độ sâu thẻ 3 lớp, tiêu đề cổ phong Serif & số liệu `tabular-nums`; **Màn Hình Tạo Nhân Vật 2 Cột** xem trước trực tiếp Avatar + Bát Quái + chọn diện mạo khởi đầu; **Sân Khấu Đả Tọa Động Phủ** ở tab Tu Luyện hiển thị Avatar ngồi đài liên hoa, Linh Thú & Bản Mệnh Pháp Bảo bay hộ pháp hai bên kèm hạt linh khí tụ về trung tâm.
 - **2 Nhịp Độ Thế Giới — Trường Sinh Đạo (`v5.36`, cảm hứng *Nhất Niệm Tiêu Dao*):** Chọn giữa **⚡ Tiêu Dao Nhanh** (cổ điển, bế quan theo năm tuổi) và **⏳ Trường Sinh Đạo** (thời gian thực khó: tự động hấp thụ **Linh Khí Động Phủ** kể cả khi offline tối đa 14 ngày; *Luyện Khí* ~15–25 phút, từ *Trúc Cơ → Kim Đan → Độ Kiếp* kéo dài dần theo giờ/ngày/tháng; giới hạn **Thổ Nạp Bế Quan Sâu** & **Đan Tu Vi** theo ngày; **Bình Cảnh Trệ Khí** khi đột phá thất bại; **🌱 Dược Viên Động Phủ** trồng 6 giống linh thảo & **🔥 Lò Luyện Động Phủ** ôn luyện trang bị/đan dược bậc ≥ Tứ Giai theo thời gian thực).
 - **8 Nhánh Tu Luyện & Đột Phá 3 Phẩm Chất (`v5.37`):** *Linh, Thể, Hồn, Quỷ, Kiếm, Bách Nghệ, Yêu, Nho Tu* với 14 danh xưng riêng, nội tại thực chiến, Kiêm Tu ở Nguyên Anh, Đột Phá Phàm/Địa/Thiên Phẩm kèm **24 Đạo Ấn (Nghịch Thiên Cải Mệnh)** và nguyên liệu Đạo dẫn riêng — toàn bộ đều có huy hiệu AI 16-bit Pixel Art WebP riêng (`PATH_ART` 8/8, `DAO_ART` 24/24).
 - **14 Đại Cảnh Giới (126 bậc) & Cân Bằng Nhịp Độ:** Từ *Luyện Khí → Độ Kiếp → Chân Tiên → Hỗn Nguyên*, áp lực Thọ nguyên, Thiên Thời Linh Khí, Ám Thương Kinh Mạch, Giới hạn hấp thụ Đan dược và Binh Giải Chuyển Thế.

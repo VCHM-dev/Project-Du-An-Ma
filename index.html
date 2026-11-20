@@ -179,9 +179,71 @@ img.av{object-fit:cover;image-rendering:pixelated}.pe input[type=file]{padding:3
 .c-ico-fuse.sm i{display:none}
 .c-ico-fuse.lg{width:46px;height:46px;border-radius:8px}
 .c-ico-fuse.lg i{font-size:11px;padding:1px 3px}
-</style></head><body><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
+/* ===== V5.38: CHIỀU SÂU KHÔNG GIAN TIÊN HIỆP, SÂN KHẤU TẠO NHÂN VẬT & ĐỘNG PHỦ ĐẢ TỌA ===== */
+:root{--realm-aura:var(--jade);--ff-serif:Georgia,"Times New Roman",serif}
+#bg-scene{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+#bg-scene::before{content:"";position:absolute;left:50%;top:-18%;width:min(1100px,130vw);height:65vh;transform:translateX(-50%);background:radial-gradient(ellipse,color-mix(in srgb,var(--realm-aura) 20%,transparent) 0%,color-mix(in srgb,var(--glow) 35%,transparent) 42%,transparent 72%);filter:blur(26px);opacity:.9;transition:background .8s ease}
+#bg-scene svg{position:absolute;left:0;bottom:0;width:100%;height:min(46vh,380px);opacity:.52;display:block}
+.nofx #bg-scene::before{opacity:.35;filter:none}
+h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
+#sb,.st b,.num{font-variant-numeric:tabular-nums}
+.pn{background:linear-gradient(180deg,color-mix(in srgb,var(--pn) 88%,color-mix(in srgb,var(--jade) 6%,#fff)),color-mix(in srgb,var(--pn) 92%,var(--bg)));box-shadow:0 12px 32px #0008,inset 0 1px 0 color-mix(in srgb,var(--iv) 12%,transparent),inset 0 -1px 0 #0006}
+.pn.hero{border-color:color-mix(in srgb,var(--gold) 72%,var(--jade));box-shadow:0 16px 44px #000a,0 0 28px -10px color-mix(in srgb,var(--realm-aura) 55%,transparent),inset 0 1px 0 color-mix(in srgb,var(--gold) 32%,transparent)}
+.pn.sub{background:color-mix(in srgb,var(--bg) 68%,var(--pn));border-color:color-mix(in srgb,var(--ln) 68%,transparent);box-shadow:0 6px 18px #0005}
+.pn.sub::after{opacity:.25}
+[data-a="create"],[data-a="brk"],[data-a="train"]{position:relative;overflow:hidden}
+[data-a="create"]::after,[data-a="brk"]::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);transform:translateX(-120%);animation:btnSheen 4.2s ease-in-out infinite;pointer-events:none}
+@keyframes btnSheen{0%,62%{transform:translateX(-120%)}100%{transform:translateX(140%)}}
+.nofx [data-a="create"]::after,.nofx [data-a="brk"]::after{display:none}
+/* Split Character Creation Screen */
+.cr-wrap{max-width:1020px;margin:18px auto;display:grid;grid-template-columns:330px 1fr;gap:16px;align-items:stretch}
+@media(max-width:860px){.cr-wrap{grid-template-columns:1fr;margin:8px auto}}
+.cr-stage{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:space-between;padding:18px 16px;background:radial-gradient(circle at 50% 26%,color-mix(in srgb,var(--jade) 22%,transparent),transparent 58%),radial-gradient(circle at 50% 88%,color-mix(in srgb,var(--gold) 14%,transparent),transparent 55%),linear-gradient(180deg,color-mix(in srgb,var(--pn) 92%,#0e2248),color-mix(in srgb,var(--bg) 85%,var(--pn)))}
+.cr-av-ring{position:relative;width:154px;height:154px;margin:8px auto 10px;display:grid;place-items:center}
+.cr-av-ring::before{content:"";position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from 0deg,transparent,color-mix(in srgb,var(--gold) 65%,transparent),transparent 35%,color-mix(in srgb,var(--jade) 65%,transparent),transparent 75%);filter:blur(6px);animation:sp 14s linear infinite;opacity:.85}
+.cr-av-ring img{position:relative;z-index:2;width:128px;height:128px;border-radius:50%;object-fit:cover;image-rendering:pixelated;border:2.5px solid var(--gold);box-shadow:0 0 0 4px var(--bg),0 10px 26px #000a;background:#050812}
+.cr-av-ring .dc{left:-13px;top:-13px;z-index:3}
+.cr-av-pick{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:4px 0 10px}
+.cr-av-btn{padding:2px;border-radius:50%;width:36px;height:36px;border:1.5px solid var(--ln);background:#050812;overflow:hidden}
+.cr-av-btn img{width:100%;height:100%;border-radius:50%;object-fit:cover;image-rendering:pixelated;display:block}
+.cr-av-btn.on{border-color:var(--gold);box-shadow:0 0 10px var(--gold);transform:scale(1.08)}
+.cr-mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0 10px}
+@media(max-width:560px){.cr-mode-grid{grid-template-columns:1fr}}
+.mode-card{text-align:left;padding:10px 11px;border-radius:9px;background:color-mix(in srgb,var(--in) 86%,transparent);border:1px solid var(--ln);display:flex;flex-direction:column;gap:4px}
+.mode-card.on{border-color:var(--gold);background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 16%,var(--pn)),color-mix(in srgb,var(--jade) 14%,var(--pn)));box-shadow:0 0 16px -4px color-mix(in srgb,var(--gold) 65%,transparent)}
+.mode-card b{color:var(--iv);font-size:calc(var(--fs)*.94)}.mode-card.on b{color:var(--gold)}
+.cr-path-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:6px 0 10px}
+@media(max-width:600px){.cr-path-grid{grid-template-columns:repeat(2,1fr)}}
+.path-btn{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:8px;font-size:calc(var(--fs)*.84);background:color-mix(in srgb,var(--in) 86%,transparent);border:1px solid var(--ln);text-align:left}
+.path-btn.on{border-color:var(--gold);color:var(--gold);background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 18%,var(--pn)),color-mix(in srgb,var(--jade) 12%,var(--pn)));box-shadow:0 0 12px -3px color-mix(in srgb,var(--gold) 60%,transparent)}
+/* Cultivation Sanctuary Stage (vCul) */
+.cul-stage{position:relative;overflow:hidden;padding:16px 16px 14px;background:radial-gradient(circle at 50% 34%,color-mix(in srgb,var(--realm-aura) 22%,transparent),transparent 56%),radial-gradient(ellipse at 50% 100%,color-mix(in srgb,var(--gold) 14%,transparent),transparent 60%),linear-gradient(180deg,color-mix(in srgb,var(--pn) 92%,#0d2146),color-mix(in srgb,var(--bg) 88%,var(--pn)))}
+.cul-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;position:relative;z-index:2}
+.cul-pill-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;font-size:12px;background:rgba(5,9,20,.72);border:1px solid color-mix(in srgb,var(--ln) 80%,var(--gold));backdrop-filter:blur(4px)}
+.cul-center{position:relative;display:flex;align-items:center;justify-content:center;gap:22px;padding:10px 0 14px;z-index:2}
+.cul-orbit{display:flex;flex-direction:column;align-items:center;gap:4px;width:94px;text-align:center;animation:idleFl 3.2s ease-in-out infinite}
+.cul-orbit.r{animation-direction:reverse;animation-duration:3.6s}
+.cul-orbit .orb-box{width:54px;height:54px;border-radius:12px;border:1px solid color-mix(in srgb,var(--gold) 60%,var(--ln));background:rgba(5,9,20,.82);display:grid;place-items:center;overflow:hidden;box-shadow:0 6px 18px #0008,0 0 14px -4px color-mix(in srgb,var(--jade) 55%,transparent)}
+.cul-orbit .orb-box img,.cul-orbit .orb-box svg{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;display:block}
+.cul-core{position:relative;display:flex;flex-direction:column;align-items:center}
+.cul-av-wrap{position:relative;width:136px;height:136px;display:grid;place-items:center;animation:idleFl 3.4s ease-in-out infinite}
+.cul-av-wrap::before{content:"";position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from 0deg,transparent,color-mix(in srgb,var(--realm-aura) 65%,transparent),transparent 42%,color-mix(in srgb,var(--gold) 65%,transparent),transparent 80%);filter:blur(6px);animation:sp 11s linear infinite;opacity:.85}
+.cul-av-wrap .av{width:116px;height:116px;margin:0;position:relative;z-index:2;border:2.5px solid var(--gold);box-shadow:0 0 0 4px var(--bg),0 0 26px color-mix(in srgb,var(--realm-aura) 55%,transparent)}
+.cul-av-wrap .dc{left:-22px;top:-22px;z-index:3;transform:scale(.88)}
+.cul-ped{width:176px;height:24px;margin-top:-10px;border-radius:50%;background:radial-gradient(ellipse,color-mix(in srgb,var(--realm-aura) 42%,transparent) 0%,color-mix(in srgb,var(--gold) 18%,transparent) 48%,transparent 75%);border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);box-shadow:0 0 22px color-mix(in srgb,var(--realm-aura) 35%,transparent)}
+.cul-realm{font-size:calc(var(--fs)*1.34);font-weight:700;color:var(--gold);letter-spacing:.6px;text-shadow:0 0 16px color-mix(in srgb,var(--gold) 45%,transparent),0 2px 4px #000;margin-top:6px}
+.cul-qi-flow{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.cul-qi-flow i{position:absolute;left:var(--qx);top:var(--qy);width:4px;height:4px;border-radius:50%;background:var(--realm-aura);box-shadow:0 0 8px var(--realm-aura);opacity:0;animation:qiPull 3.2s ease-in var(--qd) infinite}
+@keyframes qiPull{0%{transform:translate(0,0) scale(.6);opacity:0}25%{opacity:.85}100%{transform:translate(var(--qtx),var(--qty)) scale(1.2);opacity:0}}
+.cul-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:12px;align-items:start}
+@media(max-width:960px){.cul-grid{grid-template-columns:1fr}.cul-orbit{display:none}}
+.cul-log{max-height:230px;overflow-y:auto;padding-right:4px}
+.nofx .cul-av-wrap,.nofx .cul-av-wrap::before,.nofx .cul-orbit,.nofx .cul-qi-flow,.nofx .cr-av-ring::before{animation:none!important}
+.nofx .cul-qi-flow{display:none}
+@media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
+</style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.37';
+const APP_VERSION='5.38';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -197,6 +259,17 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.38',date:'2026-11-19',title:'Nâng Cấp Chiều Sâu Không Gian Tiên Hiệp · Sân Khấu Đả Tọa & Tạo Nhân Vật 2 Cột',
+      highlights:[
+        {icon:'🏔',title:'Nền Thủy Mặc 3 Tầng & Hào Quang Cảnh Giới',desc:'Bổ sung dãy núi thủy mặc mờ, biển vân khí và hào quang Thiên Địa tự đổi sắc thái theo Đại Cảnh Giới (Luyện Khí → Chân Tiên), phân tầng độ sâu thẻ 3 lớp và kiểu chữ cổ trang.',tab:'cul'},
+        {icon:'🧘',title:'Sân Khấu Đả Tọa Động Phủ (Tab Tu Luyện)',desc:'Biến tab Tu Luyện thành Động Phủ sống động kiểu Nhất Niệm Tiêu Dao: Avatar đả tọa trên đài liên hoa phát sáng, Linh Thú & Bản Mệnh Pháp Bảo bay hộ pháp hai bên, hạt linh khí tụ về trung tâm.',tab:'cul'},
+        {icon:'✨',title:'Màn Hình Tạo Nhân Vật 2 Cột (Chọn Diện Mạo Trước)',desc:'Thiết kế lại màn hình Khai Mở Tiên Đồ 2 cột cân đối kiểu Quỷ Cốc Bát Hoang: xem trước Avatar, vòng Bát Quái, huy hiệu Đạo Lộ, chỉ số bản mệnh và chọn trước diện mạo nhân vật.',tab:'char'}
+      ],
+      tourSteps:[
+        {tab:'cul',selector:'.cul-stage',title:'Sân Khấu Đả Tọa Động Phủ',desc:'Avatar, Linh Thú, Bản Mệnh Pháp Bảo và luồng linh khí tụ về trung tâm ngay trên tab Tu Luyện!'}
+      ]
+    },
     {
       version:'5.37',date:'2026-11-19',title:'Đồng Bộ 100% Mỹ Thuật AI 16-bit Pixel Art Toàn Dự Án (213/213 Ảnh WebP)',
       highlights:[
@@ -3018,19 +3091,26 @@ function vCul(){
   const pv=(major&&s.realm<REALMS.length-1)?(()=>{const st0=characterStatsService.compute(s),nx=Object.assign({},s,{realm:s.realm+1,layer:0,tm:false,van:(s.van||0)+(tier===2?3:2),daoMul:(s.daoMul||0)+tr.mul,px:Object.assign({},s.px,{[pt.pri[0]]:((s.px&&s.px[pt.pri[0]])||0)+tr.priAdd})}),st1=characterStatsService.compute(nx),lf0=cultivationService.life(s),lf1=cultivationService.life(nx);const row=(lb,a,b)=>`<div class="row"><span>${lb}</span><span>${a.toLocaleString('vi-VN')} → <b class="ok">${b.toLocaleString('vi-VN')}</b></span></div>`;return `<div class="ainr" style="border-left-color:${tr.c};margin-top:8px"><b>✨ Dự báo lột xác [${tr.n}] khi lên ${realmName(nx)}:</b>${row('Sinh mệnh',st0.maxHp,st1.maxHp)}${row('Linh lực',st0.maxMp,st1.maxMp)}${row('Sức mạnh',st0.luc,st1.luc)}${row('Phòng ngự',st0.thu,st1.thu)}${row('Tốc độ',st0.toc,st1.toc)}${row('Thọ nguyên tối đa',lf0,lf1)}<div class="mu" style="margin-top:4px">• Hệ số cảnh giới: ×${st0.realmMul.toFixed(1)} → <b class="ok">×${st1.realmMul.toFixed(1)}</b> · +${tr.priAdd} ${SN[pt.pri[0]]}${tr.mul?` · +${Math.round(tr.mul*100)}% Căn Cơ`:''} · +${tier===2?3:2} Khí vận${tier>=1?' · Chọn 1 Đạo Ấn':''}</div></div>`})():'';
   const kiapCh=major&&s.realm>=1&&s.realm<REALMS.length-1?Math.round(cultivationService.kiapChance(s,s.realm+1,characterStatsService.compute(s))*100):0;
   const dead=s.age>=cultivationService.life(s);
-  const rtBox=isRT?`<div class="ainr" style="border-left-color:var(--jade);margin-bottom:8px"><div class="row"><span>⏳ <b>Linh Khí Động Phủ (Trường Sinh Đạo)</b></span><b class="ok">+${xps>=10?Math.round(xps).toLocaleString('vi-VN'):xps.toFixed(1)} tu vi/giây</b></div><div class="mu">${s.xp>=nd?'<span class="ok">✔ Thanh Tu Vi đã viên mãn, có thể đột phá!</span>':`Dự kiến đầy tầng: <b>${rtService.fmtDur(etaSec)}</b> (tự động tích lũy tối đa 14 ngày khi tắt game)`}</div><div class="row" style="margin-top:4px"><span>🌬 Thổ Nạp Bế Quan Sâu hôm nay</span><b>${brCur}/${brMax} lượt</b></div><div class="row"><span>💊 Đan Tu Vi đã dùng hôm nay</span><b>${plCur}/${plMax} viên</b></div>${cdRem>0?`<div class="bad" style="margin-top:4px">⛔ Bình Cảnh Trệ Khí: còn <b>${rtService.fmtDur(cdRem)}</b> (dùng Tịnh Tâm Đan hoặc Phá Cảnh Đan để rút ngắn/xóa)</div>`:''}<div class="mu" style="margin-top:3px">Lượt Thổ Nạp &amp; Đan Tu Vi tự làm mới lúc 00:00 mỗi ngày hoặc ngay khi đột phá Đại Cảnh Giới.</div></div>`:'';
-  return `<div class="pn"><div class="row"><span>Thiên Thời · Linh Khí</span><b style="color:${qi.c}">${qi.n}</b></div><div class="mu">${qi.d}</div><div class="row" style="margin-top:6px"><span>Đan độc</span><b class="${s.toxin>40?'bad':''}">${s.toxin}/100</b></div><div class="bar${s.toxin>40?' warn':''}"><i style="width:${s.toxin}%"></i></div><div class="mu">Đan độc giảm tốc độ bế quan, hiệu quả hấp thụ đan &amp; tỷ lệ đột phá${isRT?' (tự tiêu tan theo thời gian thực)':''}.</div>`
-  +((s.wounds||0)>0?`<div class="row" style="margin-top:6px"><span class="bad">🩸 Ám Thương Kinh Mạch</span><b class="bad">${s.wounds}/3 tầng</b></div><div class="mu">Mỗi tầng giảm 8% Công/Thủ &amp; 10% Bế quan; đạt 3/3 cấm đột phá &amp; càn quét.</div><div class="bt">${btn('heal_wound','',`💊 Tĩnh Dưỡng Chữa Thương (+1 tuổi · ${40*(s.realm+1)} LT)`)}</div>`:'')+`</div>`
-  +`<div class="pn"><h3>${realmName(s)} · Tầng ${s.layer+1} <span class="mu" style="font-size:12px">(${pt.ic} ${pt.n})</span></h3>${rtBox}<div class="bar"><i style="width:${clamp(s.xp/nd*100,0,100)}%"></i></div><div class="mu">Tu vi: <b>${s.xp.toLocaleString('vi-VN')}</b> / ${nd.toLocaleString('vi-VN')} · Hấp thụ đan tầng này: ${(s.pillXp||0).toLocaleString('vi-VN')}/${Math.round(nd*.45).toLocaleString('vi-VN')} (tối đa 45%).</div><div class='mu ${s.age>cultivationService.life(s)*.8?'warn':''}'>Thọ nguyên ${s.age}/${cultivationService.life(s)}${s.age>cultivationService.life(s)*.8?' · SẮP CẠN':''}</div><div class='bar ${s.age>cultivationService.life(s)*.8?'warn':''}'><i style='width:${clamp(s.age/cultivationService.life(s)*100,0,100)}%'></i></div><div class="bt">${isRT?btn('train','',`🌬 Thổ Nạp Bế Quan Sâu (${brCur}/${brMax})`,brCur>=brMax):btn('train','','Bế quan (+1 tuổi)')+btn('auto','','Bế quan liên tục')}${ptLbl?btn('ptrain','',ptLbl):''}${btn('brk','',major?`${pb.ritual} (${tr.n})`:'Đột phá tầng')}</div></div>`
-  +(s.realm>=3?`<div class="pn"><h3>☯ Song Tu Đạo Lộ (Kiêm Tu · Nguyên Anh)</h3><div class="mu">Chọn 1 Phó Đạo Lộ để hưởng 45% chỉ số &amp; nội tại thực chiến bổ trợ cho ${pt.ic} ${pt.n}.</div><div class="bt"><label>Phó Đạo Lộ: <select data-chg="sub_path"><option value="">(Chưa chọn)</option>${PATHS.filter(p=>p.id!==pt.id).map(p=>`<option value="${p.id}"${s.subPath===p.id?' selected':''}>${p.ic} ${p.n} (${p.tag})</option>`).join('')}</select></label></div></div>`:'')
-  +`<div class="pn"><h3>${pt.ic} Nghi Thức Đột Phá: ${pb.ritual}</h3><div class="mu" style="margin-bottom:6px">${esc(pb.d)}</div>`
+  const dec=UD[s.profile&&s.profile.decor]||UD[1];
+  const petObj=s.pet&&PETS.find(p=>p.id===s.pet),petLv=petObj&&s.pets?s.pets[petObj.id]||1:0;
+  const bmIt=s.bmWeapon&&s.inv.find(i=>i.u===s.bmWeapon.u),bmDef=bmIt&&ID[bmIt.id];
+  const leftOrb=petObj?`<div class="cul-orbit"><div class="orb-box">${petArt(petObj.id,petLv)}</div><span class="mu" style="font-size:11px;line-height:1.2">🐉 ${petObj.n}</span></div>`:`<div class="cul-orbit"><div class="orb-box">${pathIconHtml(pt.id,'lg')}</div><span class="mu" style="font-size:11px;line-height:1.2">${pt.n}</span></div>`;
+  const rightOrb=bmDef?`<div class="cul-orbit r"><div class="orb-box">${itemIconHtml(bmDef.id,'lg')}</div><span class="mu" style="font-size:11px;line-height:1.2">⚔ ${bmDef.n} +${s.bmWeapon.lv}</span></div>`:`<div class="cul-orbit r"><div class="orb-box">${pathIconHtml(s.subPath||pt.id,'lg')}</div><span class="mu" style="font-size:11px;line-height:1.2">${s.subPath?PD[s.subPath].n:pt.tag}</span></div>`;
+  const qiDots=Array.from({length:10},(_,i)=>{const ang=i*36*Math.PI/180,qx=50+Math.cos(ang)*42,qy=42+Math.sin(ang)*36,qtx=Math.round(-Math.cos(ang)*110),qty=Math.round(-Math.sin(ang)*75);return `<i style="--qx:${qx.toFixed(1)}%;--qy:${qy.toFixed(1)}%;--qtx:${qtx}px;--qty:${qty}px;--qd:${-(i*.32).toFixed(2)}s"></i>`}).join('');
+  const rtBox=isRT?`<div class="ainr" style="border-left-color:var(--jade);margin:8px 0;background:rgba(5,9,20,.55);border-radius:0 8px 8px 0"><div class="row"><span>⏳ <b>Linh Khí Động Phủ (Trường Sinh Đạo)</b></span><b class="ok num">+${xps>=10?Math.round(xps).toLocaleString('vi-VN'):xps.toFixed(1)} tu vi/giây</b></div><div class="mu">${s.xp>=nd?'<span class="ok">✔ Thanh Tu Vi đã viên mãn, có thể đột phá!</span>':`Dự kiến đầy tầng: <b class="num">${rtService.fmtDur(etaSec)}</b> (tự tích lũy tối đa 14 ngày khi tắt game)`}</div><div class="row" style="margin-top:4px"><span>🌬 Thổ Nạp hôm nay: <b>${brCur}/${brMax}</b></span><span>💊 Đan Tu Vi hôm nay: <b>${plCur}/${plMax}</b></span></div>${cdRem>0?`<div class="bad" style="margin-top:4px">⛔ Bình Cảnh Trệ Khí: còn <b class="num">${rtService.fmtDur(cdRem)}</b> (dùng Tịnh Tâm Đan hoặc Phá Cảnh Đan để rút ngắn/xóa)</div>`:''}</div>`:'';
+  const stage=`<div class="pn hero cul-stage"><div class="cul-qi-flow" aria-hidden="true">${qiDots}</div><div class="cul-top"><span class="cul-pill-tag" style="border-color:${qi.c};color:${qi.c}">☁ Thiên Thời: <b>${qi.n}</b></span><span class="cul-pill-tag">${s.activeArray?'✦ '+AR.find(a=>a[0]===s.activeArray)[1]:(isRT?'⏳ Trường Sinh Đạo':'⚡ Tiêu Dao Nhanh')}</span></div><div class="cul-center">${leftOrb}<div class="cul-core"><div class="cul-av-wrap">${avatar(s)}${dec&&dec.ok(s)?dec.h:''}</div><div class="cul-ped"></div><div class="cul-realm">${realmName(s)} · Tầng ${s.layer+1}</div><div class="mu" style="font-size:12px">${pt.ic} ${pt.n}${s.subPath?' · Kiêm '+PD[s.subPath].n:''}</div></div>${rightOrb}</div>${rtBox}<div class="bar" style="height:14px"><i style="width:${clamp(s.xp/nd*100,0,100)}%"></i></div><div class="row" style="margin-top:4px"><span class="mu">Tu vi: <b class="num" style="color:var(--iv)">${s.xp.toLocaleString('vi-VN')}</b> / ${nd.toLocaleString('vi-VN')}</span><span class="mu">Hấp thụ đan: ${(s.pillXp||0).toLocaleString('vi-VN')}/${Math.round(nd*.45).toLocaleString('vi-VN')}</span></div><div class="row ${s.age>cultivationService.life(s)*.8?'warn':''}"><span class="mu">Thọ nguyên</span><b class="num">${s.age} / ${cultivationService.life(s)}${s.age>cultivationService.life(s)*.8?' · SẮP CẠN':''}</b></div><div class="bar ${s.age>cultivationService.life(s)*.8?'warn':''}" style="height:7px"><i style="width:${clamp(s.age/cultivationService.life(s)*100,0,100)}%"></i></div><div class="bt" style="justify-content:center;margin-top:10px">${isRT?btn('train','',`🌬 Thổ Nạp Bế Quan Sâu (${brCur}/${brMax})`,brCur>=brMax):btn('train','','🧘 Bế quan (+1 tuổi)')+btn('auto','','⚡ Bế quan liên tục')}${ptLbl?btn('ptrain','',ptLbl):''}${btn('brk','',major?`✨ ${pb.ritual} (${tr.n})`:'⚡ Đột phá tầng')}</div></div>`;
+  const ritual=`<div class="pn"><h3>${pt.ic} Nghi Thức Đột Phá: ${pb.ritual}</h3><div class="mu" style="margin-bottom:6px">${esc(pb.d)}</div>`
   +(major&&s.realm<REALMS.length-1?`<div class="bt" style="margin-bottom:8px">${BRK_TIERS.map(t=>`<button class="chip ${tier===t.id?'on':''}" data-a="brk_tier" data-x="${t.id}" style="border-color:${t.c};color:${tier===t.id?'#fff':t.c}">${t.n}</button>`).join('')}</div><div class="mu" style="margin-bottom:6px;color:${tr.c}">${esc(tr.d)}</div>`:'')
   +`<div class="mu" style="margin-bottom:4px"><b>Điều kiện đột phá (${major?tr.n:'Tầng nhỏ'}):</b></div>`
   +`${c.map(x=>`<div class="${x[0]?'ok':'bad'}">${x[0]?'✔':'✘'} ${x[1]}</div>`).join('')}`
   +(major&&s.realm<REALMS.length-1?`<div class="bt" style="margin-top:6px">${btn('forge_mat','',`✨ Ngưng Luyện ${ID[pm[1]].n} (3 ${ID[pm[0]].n} + ${200*(s.realm+1)} LT)`,mq(s,pm[0])<3||s.stones<200*(s.realm+1))}</div><div class="mu" style="margin-top:6px">• Tỷ lệ thành công nghi thức: <b>${Math.round(cultivationService.chance(s)*100)}%</b>${s.pb?' (đã có Phá Cảnh Đan)':''}${s.realm>=1?` · Vượt <b>${pb.kiap}</b> (${pb.stat}): <b class="${kiapCh>=60?'ok':'warn'}">${kiapCh}%</b>`:''}</div>`:'')
-  +`${pv}${s.tm?'<div class="bad">Tâm ma: Tâm cảnh -8 và chặn đột phá cảnh giới. Dùng Tịnh Tâm Đan trong Kho đồ.</div>':''}</div>`
+  +`${pv}${s.tm?'<div class="bad" style="margin-top:6px">Tâm ma: Tâm cảnh -8 và chặn đột phá cảnh giới. Dùng Tịnh Tâm Đan trong Kho đồ.</div>':''}</div>`;
+  const bodySt=`<div class="pn sub"><h3>☯ Trạng Thái Đạo Thể &amp; Thiên Thời</h3><div class="mu" style="margin-bottom:6px">${qi.d}</div><div class="row"><span>Đan độc</span><b class="${s.toxin>40?'bad':''} num">${s.toxin}/100</b></div><div class="bar${s.toxin>40?' warn':''}"><i style="width:${s.toxin}%"></i></div><div class="mu" style="margin-top:3px">Đan độc giảm tốc độ bế quan, hiệu quả đan &amp; tỷ lệ đột phá${isRT?' (tự tiêu tan theo thời gian thực)':''}.</div>`
+  +((s.wounds||0)>0?`<div class="row" style="margin-top:8px"><span class="bad">🩸 Ám Thương Kinh Mạch</span><b class="bad">${s.wounds}/3 tầng</b></div><div class="mu">Mỗi tầng giảm 8% Công/Thủ &amp; 10% Bế quan; đạt 3/3 cấm đột phá &amp; càn quét.</div><div class="bt">${btn('heal_wound','',`💊 Tĩnh Dưỡng Chữa Thương (+1 tuổi · ${40*(s.realm+1)} LT)`)}</div>`:'')+`</div>`
+  +(s.realm>=3?`<div class="pn sub"><h3>☯ Song Tu Đạo Lộ (Kiêm Tu · Nguyên Anh)</h3><div class="mu">Chọn 1 Phó Đạo Lộ để hưởng 45% chỉ số &amp; nội tại bổ trợ cho ${pt.ic} ${pt.n}.</div><div class="bt"><label>Phó Đạo Lộ: <select data-chg="sub_path"><option value="">(Chưa chọn)</option>${PATHS.filter(p=>p.id!==pt.id).map(p=>`<option value="${p.id}"${s.subPath===p.id?' selected':''}>${p.ic} ${p.n} (${p.tag})</option>`).join('')}</select></label></div></div>`:'')
   +(s.realm>=8||dead?`<div class="pn"><h3>♻ ${dead?'Thọ Nguyên Cạn Kiệt · ':''}Luân Hồi Chuyển Thế (Kiếp thứ ${(s.reborn||0)+1})</h3><div class="mu">${s.realm>=8?'Đạt tới Độ Kiếp viên mãn, ngươi có thể tiếp tục xung kích Tiên Giới hoặc thực hiện <b>Binh Giải Chuyển Thế</b>: quay về tuổi 16 với +15 Tiên Thiên Khí Vận, +10 toàn thuộc tính gốc, giữ Bản Mệnh Pháp Bảo và 1 Thiên Phú.':'Thọ nguyên đã tận! Thực hiện <b>Binh Giải Chuyển Thế</b> để mang theo Đạo Quả (+'+(4+s.realm*2)+' Khí Vận, +'+(2+s.realm)+' Thuộc tính gốc) và 1 Thiên Phú sang kiếp mới.'}</div>${s.tal.length?`<div class="bt"><label>Thiên phú mang theo kiếp sau: <select data-chg="rb_tal">${s.tal.map(t=>`<option value="${t.u}"${ui.rbTal===t.u?' selected':''}>${TD[t.id].n} Lv${t.lv}</option>`).join('')}</select></label></div>`:''}<div class="bt">${btn('reborn','','♻ Binh Giải Chuyển Thế (New Game+)')}</div></div>`:'')
-  +`<div class="pn"><h3>Nhật ký</h3>${s.log.map(l=>`<div class="mu">• ${esc(l)}</div>`).join('')||'<span class="mu">Chưa có</span>'}</div>`;
+  +`<div class="pn sub"><h3>📜 Nhật Ký Tu Tiên</h3><div class="cul-log">${s.log.map(l=>`<div class="mu">• ${esc(l)}</div>`).join('')||'<span class="mu">Chưa có</span>'}</div></div>`;
+  return stage+`<div class="cul-grid"><div>${ritual}</div><div>${bodySt}</div></div>`;
 }
 
 function vInv(){
@@ -3747,8 +3827,46 @@ function vComp(){
 
 function vCreate(){
   const cur=PD[ui.crPath||'linh']||PD.linh,md=ui.crMode==='realtime'?'realtime':'classic';
-  const mdDesc=md==='realtime'?'<b>⏳ Trường Sinh Đạo (Thời Gian Thực · Khó):</b> Luyện Khí lên Trúc Cơ nhanh (~15–25 phút), từ Trúc Cơ kéo dài dần sang nhiều giờ → ngày → tuần → tháng. Tự tích lũy Linh Khí kể cả khi tắt game (tối đa 14 ngày), giới hạn Thổ Nạp & Đan Tu Vi theo ngày, Bình Cảnh Trệ Khí và Lò Luyện thời gian thực!':'<b>⚡ Tiêu Dao Nhanh (Cổ Điển):</b> Tu luyện theo lượt năm tuổi ngay lập tức, không chờ thời gian thực — phù hợp để thử build và trải nghiệm trọn 1 kiếp trong vài tiếng.';
-  return `<div class="pn" style="max-width:680px;margin:24px auto"><h3>Tạo nhân vật chính</h3><p class="mu">Linh căn khởi đầu, Đạo lộ và Nhịp độ thế giới định hình con đường tu tiên của bạn.</p><p><input id="nm" value="${esc(ui.crNm||'')}" placeholder="Tên nhân vật" style="width:100%"></p><p><select id="gd"><option${ui.crGd==='Nam'?' selected':''}>Nam</option><option${ui.crGd==='Nữ'?' selected':''}>Nữ</option></select> <select id="rt">${ROOTS.slice(0,5).map((r,i)=>`<option value="${i}"${+(ui.crRt||0)===i?' selected':''}>${r.n}</option>`).join('')}</select></p><div class="mu" style="margin:8px 0 6px">Chọn Nhịp Độ Thế Giới:</div><div class="bt" style="gap:6px"><button class="chip ${md==='classic'?'on':''}" data-a="crm" data-x="classic">⚡ Tiêu Dao Nhanh (Cổ Điển)</button><button class="chip ${md==='realtime'?'on':''}" data-a="crm" data-x="realtime">⏳ Trường Sinh Đạo (Thời Gian Thực · Khó)</button></div><div class="ainr" style="margin:6px 0 10px;border-left-color:${md==='realtime'?'var(--jade)':'var(--gold)'};font-size:12.5px">${mdDesc}</div><div class="mu" style="margin:8px 0 6px">Chọn Nhánh Tu Luyện (Đạo Lộ):</div><div class="bt" style="gap:6px">${PATHS.map(p=>`<button class="chip ${cur.id===p.id?'on':''}" data-a="crp" data-x="${p.id}">${pathIconHtml(p.id,'sm')}${p.n}</button>`).join('')}</div><div class="ainr" style="margin:8px 0;border-left-color:var(--gold)"><div style="display:flex;align-items:center;gap:8px">${pathIconHtml(cur.id)}<div><b>${cur.n}</b> <span class="mu">(${cur.tag})</span><div class="mu" style="margin-top:2px">${esc(cur.d)}</div></div></div><div class="mu" style="margin-top:4px">Cảnh giới: ${cur.realms.slice(0,4).join(' → ')} → ... → ${cur.realms[13]}</div></div>${btn('create','','Bắt đầu tu tiên')}</div>`;
+  const gd=ui.crGd==='Nữ'?'Nữ':'Nam',rtIdx=+(ui.crRt||0),rtObj=ROOTS[rtIdx]||ROOTS[0];
+  const avList=gd==='Nữ'?QCBH_AVATARS.nu:QCBH_AVATARS.nam;
+  const avIdx=clamp(+(ui.crAvIdx||0),0,avList.length-1),avCur=avList[avIdx]||avList[0];
+  const priTxt=(cur.pri||[]).map(k=>SN[k]||k).join(' · ');
+  const nmShow=(ui.crNm||'').trim()||'Đạo Hữu Vô Danh';
+  return `<div class="cr-wrap">
+    <div class="pn hero cr-stage">
+      <div style="width:100%">
+        <div class="mu" style="letter-spacing:1.4px;text-transform:uppercase;font-size:11px">✦ Sân Khấu Đạo Thân ✦</div>
+        <div class="cr-av-ring"><img src="${avCur.u}" alt="${esc(avCur.n)}">${UD[1].h}</div>
+        <div class="cr-av-pick" title="Chọn diện mạo khởi đầu">${avList.map((a,i)=>`<button type="button" class="cr-av-btn ${i===avIdx?'on':''}" data-a="crav" data-x="${i}" title="${esc(a.n)}"><img src="${a.u}" alt="${esc(a.n)}"></button>`).join('')}</div>
+        <div class="hero-title" style="font-size:calc(var(--fs)*1.24);color:var(--gold);font-weight:700">${esc(nmShow)}</div>
+        <div class="mu" style="margin-top:2px">${gd} · <b style="color:var(--jade)">${rtObj.n}</b></div>
+      </div>
+      <div style="width:100%;margin-top:10px;padding-top:10px;border-top:1px solid color-mix(in srgb,var(--ln) 75%,transparent)">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px">${pathIconHtml(cur.id)}<div style="text-align:left"><b style="color:var(--gold)">${cur.n}</b> <span class="c-bdg on">${cur.tag}</span><div class="mu" style="font-size:11.5px">Bản mệnh ★: ${priTxt}</div></div></div>
+        <div class="mu" style="font-size:12px;line-height:1.45">${esc(cur.d)}</div>
+        <div class="mu" style="font-size:11.5px;margin-top:6px;padding:5px 8px;border-radius:6px;background:rgba(5,9,20,.65);border:1px solid var(--ln)">${cur.realms.slice(0,3).join(' → ')} → … → <b style="color:var(--gold)">${cur.realms[13]}</b></div>
+      </div>
+    </div>
+    <div class="pn hero" style="margin-bottom:0;display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <h3 class="hero-title" style="font-size:calc(var(--fs)*1.22);margin-bottom:4px">☯ Khai Mở Tiên Đồ · Tạo Nhân Vật Chính</h3>
+        <div class="mu" style="margin-bottom:10px">Đạo hiệu, Linh căn, Nhịp độ thế giới và Đạo lộ sẽ định hình hành trình nghịch thiên của ngươi.</div>
+        <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-bottom:12px">
+          <input id="nm" value="${esc(ui.crNm||'')}" placeholder="Nhập Đạo Hiệu (tên nhân vật)..." maxlength="24">
+          <select id="gd" data-chg="cr_gd"><option${gd==='Nam'?' selected':''}>Nam</option><option${gd==='Nữ'?' selected':''}>Nữ</option></select>
+          <select id="rt" data-chg="cr_rt">${ROOTS.slice(0,5).map((r,i)=>`<option value="${i}"${rtIdx===i?' selected':''}>${r.n}</option>`).join('')}</select>
+        </div>
+        <div class="mu" style="margin-bottom:4px"><b>1. Chọn Nhịp Độ Thế Giới:</b></div>
+        <div class="cr-mode-grid">
+          <button type="button" class="mode-card ${md==='classic'?'on':''}" data-a="crm" data-x="classic"><b>⚡ Tiêu Dao Nhanh (Cổ Điển)</b><span class="mu" style="font-size:11.5px">Bế quan theo năm tuổi ngay lập tức, không chờ thực tế — hợp thử nhiều build nhanh gọn.</span></button>
+          <button type="button" class="mode-card ${md==='realtime'?'on':''}" data-a="crm" data-x="realtime"><b>⏳ Trường Sinh Đạo (Real-Time · Khó)</b><span class="mu" style="font-size:11.5px">Luyện Khí nhanh (~20p), từ Trúc Cơ kéo dài dần theo giờ/ngày/tháng. Tích lũy offline 14 ngày!</span></button>
+        </div>
+        <div class="mu" style="margin:6px 0 4px"><b>2. Chọn Nhánh Tu Luyện (8 Đạo Lộ):</b></div>
+        <div class="cr-path-grid">${PATHS.map(p=>`<button type="button" class="path-btn ${cur.id===p.id?'on':''}" data-a="crp" data-x="${p.id}">${pathIconHtml(p.id,'sm')}<span>${p.n}</span></button>`).join('')}</div>
+      </div>
+      <div class="bt" style="margin-top:12px;justify-content:flex-end">${btn('create','','☯ Khai Mở Tiên Đồ · Bắt Đầu Tu Tiên')}</div>
+    </div>
+  </div>`;
 }
 
 /* ===== TÙY BIẾN GIAO DIỆN & HỒ SƠ ĐẠO HỮU ===== */
@@ -3996,10 +4114,14 @@ function smeltEquip(r){
 /* ===== ĐIỀU HƯỚNG & RENDER ===== */
 const TABS=[['char','Nhân vật',vChar],['tal','Thiên phú',vTal],['cul','Tu luyện',vCul],['inv','Kho đồ',vInv],['tec','Công pháp',vTec],['craft','Bách Nghệ',vCraft],['sect','Tông Môn',vSect],['comp','Đồng Hành',vComp],['kt','Kim Thủ Chỉ',vKt],['adv','Lịch Luyện',vAdv],['shop','Phường Thị',vShop],['admin','⚙ Admin',vAdmin]];
 
+const REALM_AURA=['#38bdf8','#2dd4bf','#e5c158','#a78bfa','#60a5fa','#f472b6','#fb923c','#f43f5e','#c084fc','#fde047','#38bdf8','#e879f9','#fbbf24','#5eead4'];
+const BG_SCENE_SVG=`<svg viewBox="0 0 1440 360" preserveAspectRatio="none"><defs><linearGradient id="m1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="currentColor" stop-opacity=".28"/><stop offset="100%" stop-color="currentColor" stop-opacity=".02"/></linearGradient><linearGradient id="m2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="currentColor" stop-opacity=".46"/><stop offset="100%" stop-color="currentColor" stop-opacity=".08"/></linearGradient><linearGradient id="m3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="currentColor" stop-opacity=".78"/><stop offset="100%" stop-color="currentColor" stop-opacity=".95"/></linearGradient></defs><path d="M0 240 L120 150 L240 205 L390 105 L540 190 L700 88 L860 175 L1030 96 L1190 182 L1340 120 L1440 175 L1440 360 L0 360 Z" fill="url(#m1)" style="color:var(--glow)"/><path d="M0 278 L160 195 L320 250 L490 155 L680 232 L870 148 L1060 226 L1240 165 L1440 238 L1440 360 L0 360 Z" fill="url(#m2)" style="color:var(--pn)"/><path d="M0 315 Q240 250 480 295 T960 286 T1440 308 L1440 360 L0 360 Z" fill="url(#m3)" style="color:var(--bg)"/></svg>`;
 function render(){
   const sy0=typeof window!=='undefined'?window.scrollY||0:0;
   const mb0=document.querySelector('#adm-auth .modal-box'),ms0=mb0?mb0.scrollTop:0;
   applyTheme();applyWp();
+  const bgs=$('bg-scene');if(bgs&&!bgs.children.length)bgs.innerHTML=BG_SCENE_SVG;
+  document.documentElement.style.setProperty('--realm-aura',s?(REALM_AURA[s.realm]||REALM_AURA[0]):'var(--jade)');
   const pt=$('ptc');if(pt&&!pt.children.length)pt.innerHTML=Array.from({length:20},(_,i)=>`<i style="--x:${(i*5.1+2)%98}%;--s:${2+(i%3)*1.5}px;--d:${11+(i%7)*2.5}s;--dl:${-(i*1.3)%14}s;--dx:${((i%5)-2)*18}px"></i>`).join('');
   const nv=$('nav'),sy=$('sys'),au=$('adm-auth'),gl=$('guide-layer'),dm=$('det-modal');
   if(au)au.innerHTML=admAuthHTML();
@@ -4026,7 +4148,8 @@ const A={
   det_open:x=>{const sp=x.indexOf('|');if(sp>0)ui.det={k:x.slice(0,sp),id:x.slice(sp+1)}},det_cls:()=>{ui.det=null},
   crp:x=>{ui.crNm=$('nm')?$('nm').value:'';ui.crGd=$('gd')?$('gd').value:'Nam';ui.crRt=$('rt')?+$('rt').value:0;ui.crPath=PD[x]?x:'linh'},
   crm:x=>{ui.crNm=$('nm')?$('nm').value:'';ui.crGd=$('gd')?$('gd').value:'Nam';ui.crRt=$('rt')?+$('rt').value:0;ui.crMode=x==='realtime'?'realtime':'classic'},
-  create:()=>{s=characterService.create($('nm').value.trim().slice(0,24),$('gd').value,+$('rt').value,ui.crPath||'linh',ui.crMode||'classic');migrate();guideService.checkAuto()},
+  crav:x=>{ui.crNm=$('nm')?$('nm').value:'';ui.crGd=$('gd')?$('gd').value:'Nam';ui.crRt=$('rt')?+$('rt').value:0;ui.crAvIdx=+x||0},
+  create:()=>{const gd=$('gd').value,avL=gd==='Nữ'?QCBH_AVATARS.nu:QCBH_AVATARS.nam,avPick=avL[clamp(+(ui.crAvIdx||0),0,avL.length-1)];s=characterService.create($('nm').value.trim().slice(0,24),gd,+$('rt').value,ui.crPath||'linh',ui.crMode||'classic');if(avPick&&s.uiCfg)s.uiCfg.av=avPick.u;migrate();guideService.checkAuto()},
   gd_open:()=>{ui.gdModal=ui.gdModal==='codex'?null:'codex';ui.gdTab='tour'},
   gd_tab:x=>{ui.gdTab=x},
   gd_close:()=>{guideService.dismissModal()},
@@ -4145,7 +4268,7 @@ const A={
 };
 
 /* ===== SỰ KIỆN TOÀN CỤC ===== */
-const NO_TS={tab:1,flt:1,cflt:1,crm:1,gd_seed:1,ui:1,uic:1,aiopen:1,qsave:1,sv_open:1,sv_close:1,sv_slim:1,sv_dl:1,sv_link:1,sv_link_clr:1,sv_share:1,sv_load:1,sv_del:1,sv_leg:1,sv_imp_txt:1,sv_confirm:1,sv_cancel:1,gd_open:1,gd_tab:1,gd_close:1,gd_start_onboard:1,gd_skip_onboard:1,gd_start_wn:1,gd_next:1,gd_prev:1,gd_tour_end:1,gd_jump:1,adm_cls:1,det_open:1,det_cls:1,noop:1};
+const NO_TS={tab:1,flt:1,cflt:1,crm:1,crav:1,gd_seed:1,ui:1,uic:1,aiopen:1,qsave:1,sv_open:1,sv_close:1,sv_slim:1,sv_dl:1,sv_link:1,sv_link_clr:1,sv_share:1,sv_load:1,sv_del:1,sv_leg:1,sv_imp_txt:1,sv_confirm:1,sv_cancel:1,gd_open:1,gd_tab:1,gd_close:1,gd_start_onboard:1,gd_skip_onboard:1,gd_start_wn:1,gd_next:1,gd_prev:1,gd_tour_end:1,gd_jump:1,adm_cls:1,det_open:1,det_cls:1,noop:1};
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-a]');if(!t||t.disabled)return;
   const a=t.dataset.a;if(a==='noop')return;if(a==='adm_ok'){verifyAdminPwd();return}
@@ -4159,6 +4282,7 @@ document.addEventListener('click',e=>{
 
 document.addEventListener('change',e=>{
   const k=e.target.dataset.chg,f=e.target.files&&e.target.files[0];
+  if(k==='cr_gd'||k==='cr_rt'){ui.crNm=$('nm')?$('nm').value:'';ui.crGd=$('gd')?$('gd').value:'Nam';ui.crRt=$('rt')?+$('rt').value:0;if(k==='cr_gd')ui.crAvIdx=0;render();return}
   if(k==='name'&&s){
     const val=e.target.value.trim();
     if(val==='/thiendao'){e.target.value=s.name;openAdminPrompt();return}
