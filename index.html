@@ -1022,11 +1022,11 @@ const characterStatsService={
 /* ===== CHẾ ĐỘ TRƯỜNG SINH ĐẠO (REAL-TIME IDLE · DƯỢC VIÊN · LÒ LUYỆN) ===== */
 const RT_NEED_MUL=[1,14,100,280,650,1300,2300,3900,6400,10000,16000,25000,40000,64000];
 const GARDEN_SEEDS=[
-  {id:'g1',n:'Linh Thảo Phàm Phẩm',ic:'m1',req:0,cost:40,mins:5,yrs:2,out:'m1',minQ:3,maxQ:5,d:'Thu 3–5 Linh Thảo (m1).'},
+  {id:'g1',n:'Linh Thảo Phàm Phẩm',ic:'m1',req:0,cost:40,mins:5,yrs:2,out:'m1',minQ:3,maxQ:5,d:'Thu 3–5 Linh Thảo.'},
   {id:'g4',n:'Linh Ngọc Khoáng Mạch',ic:'m7',req:0,cost:65,mins:20,yrs:4,out:'m7',minQ:3,maxQ:5,bonus:'m8',bCh:.25,d:'Thu 3–5 Khoáng Thạch (25% kèm 1 Tinh Thiết).'},
   {id:'g7',n:'Trận Ngọc Trúc',ic:'m10',req:0,cost:65,mins:20,yrs:4,out:'m10',minQ:3,maxQ:5,bonus:'m11',bCh:.25,d:'Thu 3–5 Trận Kỳ Phàm Phẩm (25% kèm 1 Trận Kỳ Linh Phẩm).'},
   {id:'g5',n:'Huyết Yêu Quả',ic:'m4',req:1,cost:110,mins:35,yrs:6,out:'m4',minQ:2,maxQ:3,bonus:'m5',bCh:.25,d:'[Trúc Cơ+] Thu 2–3 Yêu Đan Nhất Giai (25% kèm 1 Yêu Đan Tam Giai).'},
-  {id:'g2',n:'Huyền Linh Thảo',ic:'m2',req:2,cost:180,mins:25,yrs:5,out:'m2',minQ:2,maxQ:4,d:'[Kim Đan+] Thu 2–4 Ngưng Huyết Thảo (m2).'},
+  {id:'g2',n:'Huyền Linh Thảo',ic:'m2',req:2,cost:180,mins:25,yrs:5,out:'m2',minQ:2,maxQ:4,d:'[Kim Đan+] Thu 2–4 Ngưng Huyết Thảo.'},
   {id:'g6',n:'Ngộ Đạo Trà Thụ',ic:'bm_linh_d',req:2,cost:1500,mins:240,yrs:20,out:'pathMat',minQ:1,maxQ:1,d:'[Kim Đan+] Thu 1 Đạo Dẫn Địa Phẩm đúng Đạo Lộ + Tu Vi!'},
   {id:'g3',n:'Cửu Diệp Tiên Thảo',ic:'m3',req:4,cost:750,mins:90,yrs:10,out:'m3',minQ:2,maxQ:3,bonus:'d12',bCh:.20,d:'[Hóa Thần+] Thu 2–3 Thiên Niên Linh Chi (20% kèm 1 Bổ Thiên Đan).'}
 ];
@@ -1040,10 +1040,10 @@ const MAT_UPG=[
 const MAT_GRP={m1:'herb',m2:'herb',m3:'herb',m4:'beast',m5:'beast',m6:'beast',m7:'ore',m8:'ore',m9:'ore',m10:'arr',m11:'arr',m12:'arr'};
 const ADV_FOC=[
   {id:'',n:'Tự do',ic:'🧭',d:'Phân bổ rơi theo Ngũ Hành tự nhiên của từng ải.'},
-  {id:'herb',n:'🌿 Thảo',ic:'🌿',d:'Tăng ×3 tỷ lệ rơi Thảo Dược (m1–m3) khi Lịch Luyện.'},
-  {id:'beast',n:'🐾 Yêu Đan',ic:'🐾',d:'Tăng ×3 tỷ lệ rơi Yêu Đan (m4–m6) khi Lịch Luyện.'},
-  {id:'ore',n:'⛏ Khoáng',ic:'⛏',d:'Tăng ×3 tỷ lệ rơi Khoáng Thạch (m7–m9) khi Lịch Luyện.'},
-  {id:'arr',n:'🏴 Trận Kỳ',ic:'🏴',d:'Tăng ×3 tỷ lệ rơi Trận Kỳ (m10–m12) khi Lịch Luyện.'}
+  {id:'herb',n:'🌿 Thảo',ic:'🌿',d:'Tăng ×3 tỷ lệ rơi Thảo Dược khi Lịch Luyện.'},
+  {id:'beast',n:'🐾 Yêu Đan',ic:'🐾',d:'Tăng ×3 tỷ lệ rơi Yêu Đan khi Lịch Luyện.'},
+  {id:'ore',n:'⛏ Khoáng',ic:'⛏',d:'Tăng ×3 tỷ lệ rơi Khoáng Thạch khi Lịch Luyện.'},
+  {id:'arr',n:'🏴 Trận Kỳ',ic:'🏴',d:'Tăng ×3 tỷ lệ rơi Trận Kỳ khi Lịch Luyện.'}
 ];
 const EL_MAT_W={
   moc:{herb:3.0,beast:2.0,ore:1.0,arr:1.2},
@@ -1054,17 +1054,17 @@ const EL_MAT_W={
 };
 const MAT_SRC={
   m1:'Lịch Luyện Ải 1–4 (mạnh ở Ải Mộc/Thủy · Trọng Tâm 🌿 Thảo) · Dược Viên (Linh Thảo Phàm) · Bảo Khố Tông Môn · Phường Thị',
-  m2:'Lịch Luyện Ải 4–8 (mạnh ở Ải Mộc/Thủy) · Dược Viên [Kim Đan+] · Hợp thành 3 m1 → 1 [Trúc Cơ+]',
-  m3:'Lịch Luyện Ải 7–14 (mạnh ở Ải Mộc/Thủy) · Dược Viên [Hóa Thần+] · Hợp thành 3 m2 → 1 [Nguyên Anh+]',
+  m2:'Lịch Luyện Ải 4–8 (mạnh ở Ải Mộc/Thủy) · Dược Viên [Kim Đan+] · Hợp thành 3 Linh Thảo → 1 [Trúc Cơ+]',
+  m3:'Lịch Luyện Ải 7–14 (mạnh ở Ải Mộc/Thủy) · Dược Viên [Hóa Thần+] · Hợp thành 3 Ngưng Huyết Thảo → 1 [Nguyên Anh+]',
   m4:'Lịch Luyện Ải 1–5 (mạnh ở Ải Hỏa/Mộc · Biến Dị ×2 · Trọng Tâm 🐾 Yêu Đan) · Dược Viên [Trúc Cơ+] · Bảo Khố Tông Môn',
-  m5:'Lịch Luyện Ải 4–8 (mạnh ở Ải Hỏa/Kim · Biến Dị ×2) · Dược Viên (Huyết Yêu Quả 25%) · Hợp thành 3 m4 → 1 [Trúc Cơ+] · Phân giải đồ cao cấp',
-  m6:'Lịch Luyện Ải 7–14 (mạnh ở Ải Hỏa/Kim · Biến Dị ×2) · Hợp thành 3 m5 → 1 [Nguyên Anh+] · Phân giải đồ Tiên/Thánh',
+  m5:'Lịch Luyện Ải 4–8 (mạnh ở Ải Hỏa/Kim · Biến Dị ×2) · Dược Viên (Huyết Yêu Quả 25%) · Hợp thành 3 Yêu Đan I → 1 [Trúc Cơ+] · Phân giải đồ cao cấp',
+  m6:'Lịch Luyện Ải 7–14 (mạnh ở Ải Hỏa/Kim · Biến Dị ×2) · Hợp thành 3 Yêu Đan III → 1 [Nguyên Anh+] · Phân giải đồ Tiên/Thánh',
   m7:'Lịch Luyện Ải 1–4 (mạnh ở Ải Thổ/Kim · Trọng Tâm ⛏ Khoáng) · Dược Viên (Khoáng Mạch) · Bảo Khố Tông Môn · Phân giải đồ',
-  m8:'Lịch Luyện Ải 4–8 (mạnh ở Ải Thổ/Kim) · Dược Viên (Khoáng Mạch 25%) · Bảo Khố Tông Môn · Hợp thành 3 m7 → 1 [Trúc Cơ+]',
-  m9:'Lịch Luyện Ải 7–14 (mạnh ở Ải Thổ/Kim) · Bảo Khố Tông Môn · Hợp thành 3 m8 → 1 [Nguyên Anh+] · Phân giải đồ cấp cao',
+  m8:'Lịch Luyện Ải 4–8 (mạnh ở Ải Thổ/Kim) · Dược Viên (Khoáng Mạch 25%) · Bảo Khố Tông Môn · Hợp thành 3 Khoáng Thạch → 1 [Trúc Cơ+]',
+  m9:'Lịch Luyện Ải 7–14 (mạnh ở Ải Thổ/Kim) · Bảo Khố Tông Môn · Hợp thành 3 Tinh Thiết → 1 [Nguyên Anh+] · Phân giải đồ cấp cao',
   m10:'Lịch Luyện Ải 1–4 (mạnh ở Ải Thủy/Thổ · Trọng Tâm 🏴 Trận Kỳ) · Dược Viên (Trận Ngọc Trúc) · Bảo Khố Tông Môn · Phường Thị',
-  m11:'Lịch Luyện Ải 4–8 (mạnh ở Ải Thủy/Thổ) · Dược Viên (Trận Ngọc Trúc 25%) · Bảo Khố Tông Môn · Hợp thành 3 m10 → 1 [Trúc Cơ+]',
-  m12:'Lịch Luyện Ải 7–14 (mạnh ở Ải Thủy/Kim) · Hợp thành 3 m11 → 1 [Nguyên Anh+]',
+  m11:'Lịch Luyện Ải 4–8 (mạnh ở Ải Thủy/Thổ) · Dược Viên (Trận Ngọc Trúc 25%) · Bảo Khố Tông Môn · Hợp thành 3 Trận Kỳ Phàm → 1 [Trúc Cơ+]',
+  m12:'Lịch Luyện Ải 7–14 (mạnh ở Ải Thủy/Kim) · Hợp thành 3 Trận Kỳ Linh → 1 [Nguyên Anh+]',
   yaodan:'Lịch Luyện mọi ải (chọn Trọng Tâm 🐾 Yêu Đan ×3 · Ải Hỏa/Mộc/Kim · Biến Dị ×2) · Dược Viên (Huyết Yêu Quả) · Bảo Khố Tông Môn'
 };
 function matSource(id){
@@ -3255,10 +3255,10 @@ function buildDet(kind,id){
     return {r:Math.min(idx,6),title:`${a[0]} · ${REALMS[rIdx]}`,ico:'',sub:`${a[1]} · Hệ ${ELN[a[2]]||a[2]}${idx>=10?' · +1 NL Ải Cuối':''}`,stat:`<b>Nguyên liệu rơi (★ = thế mạnh Ngũ Hành ải):</b><div style="margin-top:4px">${dropIcons}</div>${bossDrop}`,meta:'Chọn Trọng Tâm Săn ×3 đúng nhóm · Bật 🔥 Hiểm Địa +1 NL & ×1.5 Đạo dẫn!',acts:''};
   }
   if(kind==='tip'){
-    if(id==='fire')return{r:4,title:'🔥 Chế Độ Thiên Hỏa (Xúc Tác)',ico:'',sub:'Đánh cược nguyên liệu để rèn Cực Phẩm',stat:'Tốn thêm <b>1 Xúc Tác</b> (Luyện Đan: Yêu Đan m4/m5 · Luyện Khí: Trận Kỳ m10/m11), giảm 8% tỷ lệ thành công.<br>• <b>Luyện Đan:</b> +25% ra Cực Phẩm (×2 hiệu quả, <b>-50% Đan độc</b>).<br>• <b>Luyện Khí:</b> +25% ra Linh/Bảo Khí & <b>khắc Ngũ Hành</b> hợp Linh Căn (+10% chỉ số).',meta:'Bấm lại để quay về Văn Hỏa (an toàn).',acts:''};
+    if(id==='fire')return{r:4,title:'🔥 Chế Độ Thiên Hỏa (Xúc Tác)',ico:'',sub:'Đánh cược nguyên liệu để rèn Cực Phẩm',stat:'Tốn thêm <b>1 Xúc Tác</b> (Luyện Đan: Yêu Đan Nhất/Tam Giai · Luyện Khí: Trận Kỳ Phàm/Linh Phẩm), giảm 8% tỷ lệ thành công.<br>• <b>Luyện Đan:</b> +25% ra Cực Phẩm (×2 hiệu quả, <b>-50% Đan độc</b>).<br>• <b>Luyện Khí:</b> +25% ra Linh/Bảo Khí & <b>khắc Ngũ Hành</b> hợp Linh Căn (+10% chỉ số).',meta:'Bấm lại để quay về Văn Hỏa (an toàn).',acts:''};
     if(id==='risk')return{r:5,title:'🔥 Chế Độ Hiểm Địa (Đánh Đổi)',ico:'',sub:'Rủi ro cao · Thưởng nguyên liệu lớn',stat:'• <b>Địch mạnh hơn:</b> +25% HP, +20% Công/Thủ.<br>• <b>Thưởng thắng:</b> +1 nguyên liệu rơi, ×1.5 Đạo dẫn, ×1.4 Kỳ vật Thiên Phẩm, +30% Linh thạch.<br>• <b>Phạt thua:</b> ngoài Ám Thương, rơi mất 15% Linh thạch.',meta:'Hợp khi đã mạnh hơn ải hoặc cần farm Đạo Dẫn/Kỳ Vật.',acts:''};
-    if(id==='fuel')return{r:3,title:'⚡ Trận Nhãn Động Phủ',ico:'',sub:`Hiện nạp: ${s.arrayFuel||0}/100 tầng`,stat:'Nạp Trận Kỳ để duy trì <b>Trận Nhãn > 0</b>: tăng thêm <b>+35% hiệu quả</b> Trận Pháp đang kích hoạt (Tụ Linh, Hộ Sơn, Dược Vương, Tru Tiên...).<br>Hao 1 tầng mỗi trận thắng / 1 năm bế quan / 10 phút Trường Sinh Đạo.',meta:'2 m10 (+15) · 1 m11 (+25) · 1 m12 (+50).',acts:''};
-    if(id==='fert')return{r:2,title:'🩸 Bón Yêu Đan Kích Biến',ico:itemIconHtml('m4','lg'),sub:'Tốn 1 Yêu Đan Nhất Giai (m4)',stat:'Rút ngắn <b>35% thời gian</b> chín còn lại, chắc chắn <b>+1 sản lượng</b> và <b>×2 tỷ lệ đột biến</b> ra bậc cao / bảo vật phụ!',meta:'Mỗi ô đất bón tối đa 1 lần mỗi vụ.',acts:''};
+    if(id==='fuel')return{r:3,title:'⚡ Trận Nhãn Động Phủ',ico:'',sub:`Hiện nạp: ${s.arrayFuel||0}/100 tầng`,stat:'Nạp Trận Kỳ để duy trì <b>Trận Nhãn > 0</b>: tăng thêm <b>+35% hiệu quả</b> Trận Pháp đang kích hoạt (Tụ Linh, Hộ Sơn, Dược Vương, Tru Tiên...).<br>Hao 1 tầng mỗi trận thắng / 1 năm bế quan / 10 phút Trường Sinh Đạo.',meta:'2 Trận Kỳ Phàm (+15) · 1 Trận Kỳ Linh (+25) · 1 Trận Kỳ Địa Sát (+50).',acts:''};
+    if(id==='fert')return{r:2,title:'🩸 Bón Yêu Đan Kích Biến',ico:itemIconHtml('m4','lg'),sub:'Tốn 1 Yêu Đan Nhất Giai',stat:'Rút ngắn <b>35% thời gian</b> chín còn lại, chắc chắn <b>+1 sản lượng</b> và <b>×2 tỷ lệ đột biến</b> ra bậc cao / bảo vật phụ!',meta:'Mỗi ô đất bón tối đa 1 lần mỗi vụ.',acts:''};
     if(id.startsWith('foc_')){const f=ADV_FOC.find(x=>x.id===id.slice(4))||ADV_FOC[0];return{r:2,title:'Trọng Tâm Săn: '+f.n,ico:'',sub:'Điều hướng bảng rơi Lịch Luyện',stat:esc(f.d),meta:'Kết hợp tốt với ải cùng thế mạnh Ngũ Hành!',acts:''}}
   }
   return null;
@@ -3982,7 +3982,7 @@ function vCraft(){
   if(cf==='all'||cf==='khi')out+=P('khi','Rèn đúc trang bị, nâng phẩm, Tinh luyện (+1→+10). Bật 🔥 Thiên Hỏa để tăng tỷ lệ Linh/Bảo Khí & khắc Ngũ Hành hợp Linh Căn (+10%).',`<div class="grid">${KR.map((r,i)=>{const d=ID[r[0]],cat=fire?craftCat('khi',r[1]):null,reqM=cat?[...r[2],cat]:r[2],dis=!can('khi',reqM,r[1],r[3]),useF=isRT&&r[1]>=4,ch=Math.round(clamp(cch(s,'khi',r[4],r[1])-(fire?.08:0),.25,.97)*100);return card(d.r,itemIconHtml(d.id,'sm')+d.n,`${fx(d.s)}<br>NL: ${mt(reqM)}<br>${r[3]}💎 · ${GN[r[1]]} · ${ch}%${fire?' <span style="color:#fdba74">🔥</span>':''}${useF?`<br><span style="color:var(--jade)">🔥 Lò ${Math.min(30,5*(r[1]-3))}p</span>`:''}`,btn('kc',i,useF?'🔥 Đưa vào Lò':(fire?'🔥 Rèn':'Rèn đúc'),dis||(useF&&!!f))+(useF?'':btn('kc5',i,'×5',dis)))}).join('')}</div><div class="pn"><h3>Nâng phẩm chất trang bị</h3><div class="bt">${all.length?sel('kq',all):'<span class="mu">Chưa có trang bị phù hợp</span>'}${btn('kq','','Nâng phẩm',!all.length)}</div>${(()=>{const it=all.find(i=>i.u===ui.cr.kq);if(!it)return'';const U=QU[it.ql||0];return`<div class="mu">Lên ${QL[(it.ql||0)+1]}: ${mt(U[1])} · ${U[2]} linh thạch · cần ${GN[U[0]]} · thành công ${Math.round(cch(s,'khi',U[3],U[0])*100)}%</div>`})()}</div><div class="pn"><h3>🔨 Tinh luyện trang bị (+1 → +10)</h3><div class="mu">Cường hóa mọi loại trang bị (Vũ khí, Pháp bảo, Giáp, Phụ kiện). Mỗi cấp +10% chỉ số, thất bại không vỡ đồ.</div><div class="bt">${rfs.length?sel('rf',rfs):'<span class="mu">Chưa có trang bị dưới ★+10</span>'}${(()=>{const it=rfs.find(i=>i.u===ui.cr.rf);if(!it)return btn('rf','','Tinh luyện',true);const lv=it.rf||0,R=rfCost(lv),dis=!can('khi',R[1],R[0],R[2]);return btn('rf','','Tinh luyện ★+'+(lv+1),dis)+btn('rf5','','Tinh luyện ×5',dis)})()}</div>${(()=>{const it=rfs.find(i=>i.u===ui.cr.rf);if(!it)return'';const lv=it.rf||0,R=rfCost(lv);return`<div class="mu">Hiện tại: <b>★+${lv} (+${lv*10}%)</b> → Tiếp theo: <b class="ok">★+${lv+1} (+${(lv+1)*10}%)</b> · ${mt(R[1])} · ${R[2]} linh thạch · cần ${GN[R[0]]} · thành công ${Math.round(cch(s,'khi',R[3],R[0])*100)}%</div>`})()}</div><div class="pn"><h3>🔥 Dung luyện trang bị dư (3 đổi 1 lên bậc)</h3><div class="mu">Gộp 3 trang bị dư (không khóa, không đang mặc, không Bản Mệnh) cùng phẩm chất thành 1 trang bị ngẫu nhiên phẩm chất cao hơn 1 bậc (có 15% ra sẵn Linh khí).</div><div class="bt">${[0,1,2,3,4,5].map(r=>{const eqU=Object.values(s.eq),cnt=s.inv.filter(i=>EQT.includes(ID[i.id].t)&&ID[i.id].r===r&&!i.lk&&!eqU.includes(i.u)&&!(s.bmWeapon&&s.bmWeapon.u===i.u)).length,sc=60*(r+1)*(r+1);return btn('smelt',r,`${RN[r]} (${cnt}/3) → ${RN[r+1]} · ${sc}💎`,cnt<3||s.stones<sc)}).join('')}</div></div>`);
   if(cf==='all'||cf==='tran'){
     const fuel=s.arrayFuel||0;
-    const fuelBar=`<div class="pn" style="margin-bottom:8px;padding:10px"><div class="bt" style="align-items:center"><span data-tip="tip|fuel" style="cursor:help;border-bottom:1px dotted var(--gold)">⚡ <b>Trận Nhãn:</b> <b class="${fuel>0?'ok':'mu'}">${fuel}/100</b>${fuel>0?' (+35% hiệu lực trận)':''}</span><button class="chip" data-a="arr_fuel" data-x="m10" data-tip="tip|fuel"${mq(s,'m10')<2||fuel>=100?' disabled':''}>${itemIconHtml('m10','sm')}2 m10 (+15)</button><button class="chip" data-a="arr_fuel" data-x="m11" data-tip="tip|fuel"${mq(s,'m11')<1||fuel>=100?' disabled':''}>${itemIconHtml('m11','sm')}1 m11 (+25)</button><button class="chip" data-a="arr_fuel" data-x="m12" data-tip="tip|fuel"${mq(s,'m12')<1||fuel>=100?' disabled':''}>${itemIconHtml('m12','sm')}1 m12 (+50)</button></div></div>`;
+    const fuelBar=`<div class="pn" style="margin-bottom:8px;padding:10px"><div class="bt" style="align-items:center"><span data-tip="tip|fuel" style="cursor:help;border-bottom:1px dotted var(--gold)">⚡ <b>Trận Nhãn:</b> <b class="${fuel>0?'ok':'mu'}">${fuel}/100</b>${fuel>0?' (+35% hiệu lực trận)':''}</span><button class="chip" data-a="arr_fuel" data-x="m10" data-tip="tip|fuel"${mq(s,'m10')<2||fuel>=100?' disabled':''}>${itemIconHtml('m10','sm')}2 Trận Kỳ Phàm (+15)</button><button class="chip" data-a="arr_fuel" data-x="m11" data-tip="tip|fuel"${mq(s,'m11')<1||fuel>=100?' disabled':''}>${itemIconHtml('m11','sm')}1 Trận Kỳ Linh (+25)</button><button class="chip" data-a="arr_fuel" data-x="m12" data-tip="tip|fuel"${mq(s,'m12')<1||fuel>=100?' disabled':''}>${itemIconHtml('m12','sm')}1 Trận Kỳ Địa Sát (+50)</button></div></div>`;
     out+=P('tran','Bố trí trận pháp động phủ, nạp Trận Kỳ vào Trận Nhãn (+35% hiệu lực) và khắc chế Trận Bàn thực chiến (Lv2 → Lv8).',fuelBar+`<div class="grid">${AR.map(a=>{const on=s.activeArray===a[0],built=s.arrays[a[0]],sc=Math.round(a[4]*(hasT(s,'t35')?.7:1));return card(on?4:1,a[1],`${a[5]}${hasT(s,'t35')?' (+20% Tông Sư)':''}${on&&fuel>0?' <span class="ok">(+35% Trận Nhãn)</span>':''}<br>${built?'<span class="ok">Đã bố trí</span>':'NL: '+mt(a[3])+' · '+sc+'💎 · '+GN[a[2]]}${on?'<br><span class="ok">Đang kích hoạt</span>':''}`,built?btn('aa',on?'':a[0],on?'Tắt trận':'Kích hoạt'):btn('ab',a[0],'Bố trí',!can('tran',a[3],a[2],sc)))}).join('')}</div><div class="pn"><h3>Chế Tạo Trận Bàn Thực Chiến</h3><div class="grid">${TR.map((r,i)=>{const d=ID[r[0]],dis=!can('tran',r[2],r[1],r[3]);return card(d.r,itemIconHtml(d.id,'sm')+d.n,`${esc(d.u)}<br>NL: ${mt(r[2])}<br>${r[3]}💎 · ${GN[r[1]]} · ${Math.round(cch(s,'tran',r[4],r[1])*100)}%`,btn('tc',i,'Khắc trận',dis)+btn('tc5',i,'×5',dis))}).join('')}</div></div>`);
   }
   if(cf==='all'||cf==='bm')out+=`<div class="pn"><h3>Tế Luyện Bản Mệnh Pháp Bảo</h3><div class="mu">Chọn 1 Vũ khí hoặc Pháp bảo làm bản mệnh rồi Ôn Dưỡng (+1 đến +10). Chỉ số tăng theo cảnh giới chủ nhân. Đổi bản mệnh sẽ mất cấp Ôn Dưỡng.</div>${bi?`<div class="row"><span>Bản mệnh hiện tại</span><b>${ID[bi.id].n} +${bm.lv}</b></div>`:''}<div class="bt">${eqs.length?sel('bm',eqs):'<span class="mu">Chưa có Vũ khí hoặc Pháp bảo</span>'}${btn('bms','','Chọn làm Bản Mệnh',!eqs.length)}${bm&&bm.lv>0?btn('bmt','','Chuyển Di Bản Mệnh (giữ 70% cấp · '+(50*bm.lv*(s.realm+1))+' linh thạch)'):''}${btn('bmo','','Ôn Dưỡng'+(bm&&bm.lv<10?' ('+80*(bm.lv+1)*(s.realm+1)+' linh thạch, '+30*(bm.lv+1)*(s.realm+1)+' tu vi)':''),!bm||bm.lv>=10)}</div></div>`;
@@ -4044,7 +4044,7 @@ function vComp(){
   const gCost=150*(s.realm+1),curPt=s.partner&&PARTNERS.find(p=>p.id===s.partner),cd=s.dualAge?Math.max(0,s.dualAge+3-s.age):0;
   const ptCards=PARTNERS.map(pt=>{
     const aff=(s.pAff&&s.pAff[pt.id])||0,isP=s.partner===pt.id,tb=Math.round(pt.trib*(1+Math.floor(Math.max(0,aff-100)/100)*.2)*100),canH=mq(s,'m2')>=1||mq(s,'m1')>=3;
-    return card(isP?5:aff>=100?3:1,`${pt.n}${isP?' · Đạo Lữ':''}`,`<div class="comp-hd">${partnerArt(pt.id)}<div><span style="color:var(--gold)">${pt.ti}</span><br>${esc(pt.d)}</div></div>Hảo cảm: <b>${aff}</b> · Hộ pháp Thiên Kiếp: <b class="ok">+${tb}%</b>`,btn('pt_gift',pt.id,`Tặng Lễ (${gCost.toLocaleString('vi-VN')}💎)`,s.stones<gCost)+btn('pt_herb',pt.id,mq(s,'m2')>=1?'🌿 Tặng 1 m2':'🌿 Tặng 3 m1',!canH)+(!isP&&aff>=100?btn('pt_bond',pt.id,'Kết Thành Đạo Lữ'):''));
+    return card(isP?5:aff>=100?3:1,`${pt.n}${isP?' · Đạo Lữ':''}`,`<div class="comp-hd">${partnerArt(pt.id)}<div><span style="color:var(--gold)">${pt.ti}</span><br>${esc(pt.d)}</div></div>Hảo cảm: <b>${aff}</b> · Hộ pháp Thiên Kiếp: <b class="ok">+${tb}%</b>`,btn('pt_gift',pt.id,`Tặng Lễ (${gCost.toLocaleString('vi-VN')}💎)`,s.stones<gCost)+btn('pt_herb',pt.id,mq(s,'m2')>=1?'🌿 Tặng 1 Ngưng Huyết Thảo':'🌿 Tặng 3 Linh Thảo',!canH)+(!isP&&aff>=100?btn('pt_bond',pt.id,'Kết Thành Đạo Lữ'):''));
   }).join('');
   return`<div class="pn"><h3>🐉 Linh Thú Thực Chiến</h3><div class="mu">Thu phục Linh Thú và dùng <b>Yêu Đan</b> (nhặt từ Lịch Luyện) để tiến hóa tối đa 7 bậc. Linh Thú xuất chiến sẽ cộng chỉ số và trực tiếp ra đòn/hộ thuẫn/trị liệu mỗi hiệp trong Chiến Trường!</div>${(s.path==='yeu'||s.subPath==='yeu')?`<div class="ok" style="margin-top:4px">🐉 Huyết Mạch Yêu Tu: Buff Linh Thú +${s.path==='yeu'?50:22.5}% · Sát thương Linh Thú thực chiến +${s.path==='yeu'?60:25}%</div>`:''}<div class="grid" style="margin-top:8px">${petCards}</div></div>
   <div class="pn"><div class="row" style="align-items:center"><h3>💞 Đạo Lữ Song Tu &amp; Hộ Pháp Độ Kiếp</h3>${curPt?btn('pt_dual','',cd?`Song Tu (chờ ${cd} năm)`:`💞 Song Tu cùng ${curPt.n} (+1 tuổi)`,cd>0||s.age>=cultivationService.life(s)):''}</div>
