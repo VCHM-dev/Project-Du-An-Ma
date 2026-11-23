@@ -3274,10 +3274,11 @@ function detModalHTML(){
 function showHoverTip(key,e){
   const el=$('hover-tip');if(!el||!key||ui.det)return;
   const sp=key.indexOf('|');if(sp<0)return;
-  const info=buildDet(key.slice(0,sp),key.slice(sp+1));
+  const kind=key.slice(0,sp),info=buildDet(kind,key.slice(sp+1));
   if(!info){hideHoverTip();return}
+  const clickHint=(kind==='tal'||kind==='tec'||kind==='inv')?'<div class="mu" style="font-size:11px;opacity:.75;border-top:1px solid var(--ln);padding-top:4px">💡 Click vào thẻ để mở nâng cấp / tu luyện / thao tác</div>':'';
   el.style.setProperty('--rc',RC[info.r]||'#e5c158');
-  el.innerHTML=`<div style="display:flex;align-items:center;gap:8px">${info.ico||''}<div><div class="ht-title">${info.title}</div><div class="mu" style="font-size:11.5px">${info.sub}</div></div></div><div class="ht-stat">${info.stat}</div><div class="mu" style="font-size:11.5px">${info.meta}</div><div class="mu" style="font-size:11px;opacity:.75;border-top:1px solid var(--ln);padding-top:4px">💡 Click vào thẻ để mở nâng cấp / tu luyện / thao tác</div>`;
+  el.innerHTML=`<div style="display:flex;align-items:center;gap:8px">${info.ico||''}<div><div class="ht-title">${info.title}</div><div class="mu" style="font-size:11.5px">${info.sub}</div></div></div><div class="ht-stat">${info.stat}</div><div class="mu" style="font-size:11.5px">${info.meta}</div>${clickHint}`;
   el.classList.add('show');
   if(e)moveHoverTip(e);
 }
