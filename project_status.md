@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.39 (`index.html`)  
-> **Cập nhật lần cuối:** 2026-11-19  
+> **Phiên bản hiện tại:** v5.40 (`index.html`)  
+> **Cập nhật lần cuối:** 2026-11-22  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Hệ Thống Tra Cứu Nguồn Nguyên Liệu Hover-Only & Tổng Hợp NL (`v5.40` · `MAT_SRC`, `matSource`, `stageMatDrops`, `MAT_UPG`, `A.mat_up`, `GARDEN_SEEDS.g7`, `SECT_SHOP`, `buildDet`):**
+  - **Hover-Only Tooltips (`data-tip="mat|<id>"` & `data-tip="adv|<i>"`):** Không thêm chữ rối mắt trên giao diện; trỏ chuột vào điều kiện Đột Phá (`vCul`), nguyên liệu trong công thức Bách Nghệ (`vCraft`), thẻ ải Lịch Luyện (`vAdv`) hoặc vật phẩm trong Túi đồ (`buildDet('inv', ...)`) sẽ hiện tooltip chi tiết nguồn rơi chính xác (Ải Lịch Luyện, Dược Viên, Bảo Khố Tông Môn, Đấu Giá / Cơ Duyên) kèm tồn kho hiện tại.
+  - **Thanh ⚗ Nâng bậc NL (3→1) (`MAT_UPG`, `A.mat_up`):** Thanh chip 1 dòng gọn gàng trong tab Bách Nghệ cho phép hợp thành 3 nguyên liệu bậc thấp + linh thạch lên 1 bậc cao (Linh Thảo, Yêu Đan, Linh Quáng, Trận Kỳ), kèm tooltip nguồn khi trỏ chuột.
+  - **Mở rộng nguồn cung Trận Kỳ & Yêu Đan:** Thêm hạt giống `g7` (*Trận Ngọc Trúc*) vào `GARDEN_SEEDS` cho Trận Kỳ (`m10`/`m11`) và bổ sung `m1`, `m4`, `m10`, `m11` vào `SECT_SHOP`.
 - **Cân Bằng Liên Kết Toàn Hệ Thống Chế Độ Trường Sinh Đạo (`v5.39` · `RT_NEED_MUL`, `rtService.actXp`, `rtService.rtAge`, `pillGain`, `cxp`, `pathTrain`, `destinyService`, `sectService`, `compService`, `adventureService`, `rewardIntegrationService`, `vCul`):**
   - **Đường Cong Tu Vi & Linh Khí Động Phủ Đã Mô Phỏng 3 Vòng:** Chỉnh `xpPerSec` (`1.15 × 1.62^realm`) và `RT_NEED_MUL` (`[1, 14, 100, 280, 650, 1300, 2300, 3900, 6400, ...]`) cho nhịp độ chuẩn: *Luyện Khí* ~17p, *Trúc Cơ* ~3.5h, *Kim Đan* ~1.1 ngày, *Nguyên Anh* ~3.8 ngày, *Hóa Thần* ~10.5 ngày, *Luyện Hư* ~26 ngày, *Hợp Thể* ~2 tháng, *Đại Thừa* ~4.2 tháng, *Độ Kiếp* ~9.3 tháng (Active) / ~2 năm (Idle thuần).
   - **Chống Vượt Cấp & Liên Kết Chặt Mọi Nguồn XP (Chỉ áp dụng `realtime`, giữ nguyên `classic`):**
