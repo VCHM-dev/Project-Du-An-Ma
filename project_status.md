@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.40 (`index.html`)  
+> **Phiên bản hiện tại:** v5.41 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-22  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Tu Hệ Sinh Thái Nguyên Liệu 4 Trụ Cột (`v5.41` · `stageMatProfile`, `pickStageMat`, `ADV_FOC`, `ui.advRisk`, `craftCat`, `ui.cr.fire`, `arrayFuel`, `rtService.fertilize`, `sectService.submitMat`, `compService.giftHerb`, `salvageYield`, `TR.b3/b4`):**
+  - **Khóa Tầng Nguồn Cung & Phân Hóa Ngũ Hành 14 Ải:** Khóa rơi Kỳ Vật Thiên Phẩm (`bm_*_t`) từ Ải 4+ (chống farm Ải 1), phân hóa bảng rơi 14 ải theo Ngũ Hành (`EL_MAT_W`) + `+1` lượt rơi cho Ải 11–14; thêm **Trọng Tâm Săn (`×3`)** và chế độ **🔥 Hiểm Địa** (`+25% HP / +20% Công Thủ` đổi `+1 NL, ×1.5 Đạo Dẫn, ×1.4 Kỳ Vật, +30% LT`); khóa Cảnh Giới cho hạt Dược Viên (`g2–g6`) & `MAT_UPG` (`Trúc Cơ` / `Nguyên Anh`), cân bằng lại giá hạt giống (`0%` đến `-32%` ROI).
+  - **Chiều Sâu Chế Tạo (🔥 Thiên Hỏa & Đan Độc & Phân Giải):** Bật **Thiên Hỏa** tốn 1 xúc tác (`m4/m5` cho Đan, `m10/m11` cho Khí, `-8%` thành công) để `+25%` Cực Phẩm (Đan Cực Phẩm **giảm 50% Đan Độc**) & khắc Ngũ Hành trang bị (`+10%` chỉ số khi hợp/tương sinh Linh Căn); sửa `salvageYield` hoàn trả 50% nguyên liệu công thức `KR` (kèm Yêu Đan) và sửa `takeM` hỗ trợ cả mảng lẫn object (khắc phục lỗi thu phục/tiến hóa Linh Thú).
+  - **Cứu Trận Pháp & Tuần Hoàn Đầu Ra (Sinks):** Thêm **⚡ Trận Nhãn Động Phủ** (`arrayFuel` nạp bằng `m10/m11/m12` để `+35%` hiệu lực Trận Pháp, tiêu hao dần theo trận/năm/10p Real-Time), thêm 2 Trận Bàn thực chiến Lv6 (`b3`) & Lv8 (`b4`), **🩸 Bón Yêu Đan** kích biến Dược Viên (`-35%` thời gian, `+1` sản lượng, `×2` đột biến), **📦 Giao Nộp NL dư** lấy Cống Hiến Tông Môn và **🌿 Tặng Thảo Dược** cho Đạo Lữ; cân bằng điều kiện Đan dược đột phá Thiên Phẩm của Linh Tu (`r ≥ tier` hoặc Cực Phẩm).
 - **Hệ Thống Tra Cứu Nguồn Nguyên Liệu Hover-Only & Tổng Hợp NL (`v5.40` · `MAT_SRC`, `matSource`, `stageMatDrops`, `MAT_UPG`, `A.mat_up`, `GARDEN_SEEDS.g7`, `SECT_SHOP`, `buildDet`):**
   - **Hover-Only Tooltips (`data-tip="mat|<id>"` & `data-tip="adv|<i>"`):** Không thêm chữ rối mắt trên giao diện; trỏ chuột vào điều kiện Đột Phá (`vCul`), nguyên liệu trong công thức Bách Nghệ (`vCraft`), thẻ ải Lịch Luyện (`vAdv`) hoặc vật phẩm trong Túi đồ (`buildDet('inv', ...)`) sẽ hiện tooltip chi tiết nguồn rơi chính xác (Ải Lịch Luyện, Dược Viên, Bảo Khố Tông Môn, Đấu Giá / Cơ Duyên) kèm tồn kho hiện tại.
   - **Thanh ⚗ Nâng bậc NL (3→1) (`MAT_UPG`, `A.mat_up`):** Thanh chip 1 dòng gọn gàng trong tab Bách Nghệ cho phép hợp thành 3 nguyên liệu bậc thấp + linh thạch lên 1 bậc cao (Linh Thảo, Yêu Đan, Linh Quáng, Trận Kỳ), kèm tooltip nguồn khi trỏ chuột.
