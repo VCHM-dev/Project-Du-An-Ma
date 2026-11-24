@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.56 (`index.html`)  
+> **Phiên bản hiện tại:** v5.57 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Sửa Lỗi Nghiêm Trọng `Tốc NaN` & Kẹt Nhân Vật Ở Góc Sàn Khi Kiêm Tu (`v5.57` · `characterStatsService`, `ARENA_2D`):**
+  - **Sửa công thức `sumW` trong `characterStatsService`:** Hợp nhất khóa thuộc tính của cả Chính Tu (`w0`) và Kiêm Tu (`w1`) và mặc định `0` cho thuộc tính không tồn tại ở một trong hai Đạo lộ (trước đây `undefined * 0.25` sinh ra `NaN` khiến `Tốc`/`Lực`/`Thủ` thành `NaN` khi Kiêm Tu khác nhóm thuộc tính như *Kiếm Tu + Linh/Thể Tu*).
+  - **Gia cố phòng thủ tốc độ trong `ARENA_2D.mount()`:** Kiểm tra `Number.isFinite(b.toc)` và `Number.isFinite(b.f.toc)` trước khi tính `spdRatio`/`pSpd` để tránh kẹt tọa độ `(NaN, NaN)` ở góc trên bên trái sân đấu.
 - **Tối Ưu Điều Khiển Bàn Phím & Chuột PC Cho Đấu Trường 2D (`v5.56` · `ARENA_2D`):**
   - **Chống Kẹt Phím Khi Mất Focus (`_blur`, `_vis`, `stop`):** Gắn listener `window.blur` và `document.visibilitychange` tự động xóa sạch `this.keys` & trạng thái `joy` khi người chơi `Alt+Tab` hoặc ẩn tab (và gỡ sạch trong `ARENA_2D.stop()`), loại bỏ hoàn toàn lỗi nhân vật tiếp tục tự chạy vào vùng đỏ Boss.
   - **Chặn Lặp Phím Tắt (`e.repeat`):** Giữ `e.preventDefault()` cho `Space/Tab/Arrows`, nhưng bỏ qua sự kiện `e.repeat` trong `this._kd` để giữ lì phím `H` (Auto AI), `Tab` (Đổi thế), `Space`, `Q/E/R`, `1–4`... không bị kích hoạt lặp ngoài ý muốn.
