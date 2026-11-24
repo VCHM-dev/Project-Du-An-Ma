@@ -303,7 +303,7 @@ h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.56';
+const APP_VERSION='5.57';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -320,7 +320,7 @@ const GUIDE_DATA={
   ],
   patchNotes:[
     {
-      version:'5.56',date:'2026-11-24',title:'Sửa Lỗi Tốc Độ NaN Kẹt Góc Sàn Khi Kiêm Tu & Chống One-Shot Ở Chế Độ Hỗn Độn',
+      version:'5.57',date:'2026-11-24',title:'Sửa Lỗi Tốc Độ NaN Kẹt Góc Sàn Khi Kiêm Tu & Chống One-Shot Ở Chế Độ Hỗn Độn',
       highlights:[
         {icon:'🛠',title:'Khắc Phục Triệt Để Lỗi Tốc NaN & Kẹt Nhân Vật Ở Góc Trên Trái Khi Kiêm Tu',desc:'Sửa công thức trộn trọng số thuộc tính giữa Chính Tu và Kiêm Tu (sumW) để hợp nhất đầy đủ khóa thuộc tính của cả 2 Đạo lộ (mặc định 0 khi khác hệ) và khóa bảo vệ tọa độ/tốc độ trên Đấu Trường 2D!',tab:'adv'},
         {icon:'🛡',title:'Cân Bằng Sát Thương Quái & Boss Chế Độ Hỗn Độn (Chống One-Shot)',desc:'Đồng bộ Công quái/Boss theo Thủ & HP tối đa thay vì nhân theo Lực của các nhánh sát thương cao như Kiếm Tu, đồng thời thêm trần sát thương mỗi đòn trên Đấu Trường 2D (tối đa 45% HP đòn thường, 75% HP đại chiêu vùng đỏ).',tab:'adv'}
@@ -1189,7 +1189,7 @@ const characterStatsService={
     ATTR.forEach(n=>{a[n]=Math.round(base[n]+(m[n]||0));bonus[n]=a[n]-base[n]});
     const flatMul=Math.pow(1.85,x.realm),realmMul=Math.pow(2.05,x.realm)*(1+x.layer*.1),gfMul=1+(x.gfBuff||0);
     const p0=PD[x.path||'linh']||PD.linh,p1=x.subPath&&x.subPath!==p0.id?PD[x.subPath]:null;
-    const sumW=(w0,w1,f)=>Object.keys(w0).reduce((s,k)=>s+a[k]*(p1&&w1?w0[k]*(1-f)+w1[k]*f:w0[k]),0);
+    const sumW=(w0,w1,f)=>{const ks=p1&&w1?Array.from(new Set([...Object.keys(w0),...Object.keys(w1)])):Object.keys(w0);return ks.reduce((s,k)=>s+(a[k]||0)*(p1&&w1?(w0[k]||0)*(1-f)+(w1[k]||0)*f:(w0[k]||0)),0)};
     const hpW=p1?p0.w.hp*.75+p1.w.hp*.25:p0.w.hp,mpW=p1?p0.w.mp*.75+p1.w.mp*.25:p0.w.mp;
     let luc=Math.round((sumW(p0.w.luc,p1&&p1.w.luc,.25)+(m.luc||0)*flatMul)*realmMul*gfMul);
     let thu=Math.round((sumW(p0.w.thu,p1&&p1.w.thu,.25)+(m.thu||0)*flatMul)*realmMul*gfMul);
@@ -2098,7 +2098,7 @@ const adventureService={
     const shCap=Math.round(maxHp*1.5);
     const sh=Math.min(shCap,(hasShield?Math.round(thu*1.4):0)+(da.includes('da_k3')?Math.round(Math.min(luc*.85,maxHp*.9)):0));
     const skills=eqTechs.map(id=>skillOf(x,id)).filter(Boolean);
-    if(df.sync){f.luc=Math.max(f.luc,Math.round(st.luc*.72));f.thu=Math.max(f.thu,Math.round(st.thu*.7));f.hp=Math.max(f.hp,Math.round(Math.max(st.maxHp*4.5,st.luc*12)));}
+    if(df.sync){const sLuc=Math.round(st.thu*.28+st.maxHp*.22);f.luc=Math.max(f.luc,sLuc);f.thu=Math.max(f.thu,Math.round(st.thu*.7));f.hp=Math.max(f.hp,Math.round(Math.max(st.maxHp*4.5,st.luc*12)));}
     const fn=(df.id?`[${df.n}] `:'')+(risk?'【🔥 Hiểm Địa】 ':'')+(mut?`【Biến Dị · ${mut.n}】 `:'')+ADV[i][0];
     const logs=[`⚔ ${x.name} (${sn.n}) đối đầu ${fn} [Hệ ${ELN[f.el]}] tại ${ADV[i][1]}`];
     const pet=x.pet&&x.pets&&x.pets[x.pet]?{d:PETS.find(p=>p.id===x.pet),lv:x.pets[x.pet]}:null;
@@ -4729,7 +4729,8 @@ const ARENA_2D={
     const elInfo=ELC[b.f.el]||['#fbbf24','⚡'];
     const bgMap={moc:['#0a1d14','#050b09'],tho:['#1d150c','#0a0705'],hoa:['#230e0f','#0a0507'],thuy:['#081829','#040812'],kim:['#16132b','#060813']};
     const bgs=bgMap[b.f.el]||bgMap.kim;
-    const spdRatio=clamp(b.toc/Math.max(1,b.f.toc),.72,1.45);
+    const safeToc=Number.isFinite(b.toc)&&b.toc>0?b.toc:100,safeFToc=Number.isFinite(b.f.toc)&&b.f.toc>0?b.f.toc:100;
+    const spdRatio=clamp(safeToc/Math.max(1,safeFToc),.72,1.45);
     const pSpd=Math.round(175+spdRatio*50),bSpd=Math.round(112+(b.mut&&b.mut.id==='huyet'?16:0)+(b.risk?12:0));
     const arch=b.arch||BOSS_ARCH_MAP[b.i]||'wolf';
     const hasHomeArr=!!(s.activeArray&&(s.arrayFuel||0)>0);
@@ -4905,7 +4906,8 @@ const ARENA_2D={
       const nhoMit=(b.path==='nho'||b.subPath==='nho')&&(s.nq||0)>=(s.ng||0)?(b.path==='nho'?.9:.95):1;
       const gMit=(st.p.guardTime>0?.65:1)*(st.p.inSanctuary?.65:1);
       const pArm=reason?b.thu*.22:b.thu*.28;
-      let dmg=Math.max(1,Math.round((raw-pArm)*b.supTaken*nhoMit*gMit*(.92+Math.random()*.16)));
+      const maxHit=Math.max(1,Math.round(b.maxHp*(reason?.75:.45)));
+      let dmg=Math.min(maxHit,Math.max(1,Math.round((raw-pArm)*b.supTaken*nhoMit*gMit*(.92+Math.random()*.16))));
       if(b.sh>0){const ab=Math.min(b.sh,dmg);b.sh-=ab;dmg-=ab;if(ab>0){this.addFloat(st.p.x,st.p.y-22,`🛡-${ab}`,'#fbbf24');this.spawnFx('fx_golden_body',st.p.x,st.p.y,{follow:'p',scale:1.4})}}
       if(dmg>0){
         b.hp=Math.max(0,b.hp-dmg);st.stats.dmgTaken+=dmg;st.p.hitFlash=.2;st.shake=Math.max(st.shake,7);
@@ -5474,6 +5476,7 @@ const ARENA_2D={
         }
       }
       p.x=clamp(p.x,38,W-38);p.y=clamp(p.y,38,H-38);
+      if(!Number.isFinite(p.x))p.x=195;if(!Number.isFinite(p.y))p.y=H/2;
       pushOutPillars(p);
 
       // Player animation state machine
@@ -7029,10 +7032,6 @@ setInterval(()=>{
     if(ui.tab==='cul'||ui.tab==='craft'){
       const sb=$('sb');if(sb)sb.innerHTML=sbar();
       const app=$('app');if(app)app.innerHTML=ui.tab==='cul'?vCul():vCraft();
-    }
-  }
-},5000);
-</script></body></html>p.innerHTML=ui.tab==='cul'?vCul():vCraft();
     }
   }
 },5000);

@@ -1,13 +1,13 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.56 (`index.html`)  
+> **Phiên bản hiện tại:** v5.57 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
-- **Sửa Lỗi Combat `Tốc NaN` Kẹt Góc Sàn Khi Kiêm Tu & Chống One-Shot Chế Độ Hỗn Độn (`v5.56` · `characterStatsService`, `adventureService`, `ARENA_2D`):**
+- **Sửa Lỗi Combat `Tốc NaN` Kẹt Góc Sàn Khi Kiêm Tu & Chống One-Shot Chế Độ Hỗn Độn (`v5.57` · `characterStatsService`, `adventureService`, `ARENA_2D`):**
   - **Sửa `sumW` trong `characterStatsService`:** Hợp nhất khóa thuộc tính của cả Chính Tu (`w0`) và Kiêm Tu (`w1`) và mặc định `0` cho thuộc tính không tồn tại, trị dứt điểm lỗi `Tốc NaN` khiến nhân vật bị đẩy ra góc `(0, 0)` không di chuyển được trên Đấu Trường 2D; bổ sung khóa bảo vệ `Number.isFinite` cho `spdRatio` và `(p.x, p.y)`.
   - **Cân Bằng `df.sync` & Trần Sát Thương Chống One-Shot:** Sửa đồng bộ Công quái/Boss ở chế độ `💀 Hỗn Độn` trong `initBattle` & `initSpecialBattle` theo `baseThu * 0.28 + maxHp * 0.22–0.26` thay vì `0.72–0.92 × Lực`, kèm trần sát thương mỗi đòn trong `dealPlayer` (`45% maxHp` đòn thường / `75% maxHp` đại chiêu vùng đỏ). Giữ nguyên 100% cơ chế điều khiển bàn phím & chuột gốc của `v5.55`.
 - **Bảng Thuộc Tính Nhân Vật Tinh Gọn Chuẩn ARPG + Tooltip Phân Tích Chi Tiết (`v5.55` · `.st`, `.st-c`, `.st-cols`, `.st-row`, `vChar`, `buildDet`):**
