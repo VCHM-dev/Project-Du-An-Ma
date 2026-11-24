@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.53 (`index.html`)  
+> **Phiên bản hiện tại:** v5.54 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Kỷ Lục, Thành Tựu & Ghost Replay Cho Cơ Chế Né Hoàn Hảo (`v5.54` · `ACH`, `ACI`, `migrate`, `GHOST_2D`, `adventureService.fightBossRush`, `ARENA_2D`, `btl2dModal`, `vAdv`):**
+  - **Tổng Kết Sau Trận & Kỷ Lục 2D (`s.arenaRec`, `ARENA_2D.finish`, `vAdv`):** Lưu và migrate tương thích ngược `totalPerfectDodges` (tổng tích lũy) và `bestPerfectDodge` (đỉnh cao mỗi trận, bao gồm chuỗi 4 ải Boss Rush `rush.totalPd`); hiển thị dòng **`⚡ Né Hoàn Hảo`** + huy hiệu **`⚡ THỜI KHÔNG TĨNH LẶNG ×N`** trên bảng tổng kết sau trận, thẻ KPI kỷ lục mới + cột **`⚡ Né HH`** trong bảng 12 trận gần nhất của `vAdv`.
+  - **2 Thành Tựu Mới (`ACH`, `ACI`):** Thêm **`⚡ pd1` — Thời Không Tĩnh Lặng** (đạt `≥ 3` lần Né Hoàn Hảo trong 1 trận 2D) và **`🌌 pd2` — Thân Pháp Nhập Vi** (tích lũy `25` lần Né Hoàn Hảo trên Đấu Trường 2D), hiển thị tiến độ ngay trên bảng kỷ lục và huy hiệu trong `profileCard()`.
+  - **Tích Hợp `perfectDodges` Vào Ghost Replay Liên Server (`GHOST_2D`):** Mã hóa trường `pd` vào mã chia sẻ `DM2D-...` (tương thích ngược 100% mã `DM2D-` cũ không có `pd`), gán mốc Né Hoàn Hảo cho 4 Cao Thủ NPC (`3 / 5 / 7 / 12`), so kè trực tiếp `⚡ Né HH` trên thanh đua Ghost trong trận (`#a2dGhostTxt`), thẻ Ghost ở `vAdv()`, bản ghi `beatenIds[id].pd` và huy hiệu vượt Ghost Né Hoàn Hảo sau trận.
 - **Cơ Chế Né Hoàn Hảo (Perfect Dodge) Trên Đấu Trường 2D (`v5.53` · `SFX_2D.pdodge`, `ARENA_2D`, `btl2dModal`):**
   - **2 Điều Kiện Kích Hoạt Mượt Mà (`triggerPerfectDodge`, `inTimedDanger`):** Nhấn `Space` lướt xuyên đòn/đạn Boss trong khung bất tử `0.28s` HOẶC lướt thoát khỏi Vùng Cảnh Báo Đỏ đúng nhịp (tụ lực `≥ 48%` hoặc đang Quét Ma Quang).
   - **Hiệu Ứng Thời Không & Phần Thưởng Thực Chiến:** Kích hoạt **làm chậm thời gian `0.35s`** (`0.22×` tốc độ mô phỏng kèm sóng chấn động lam-tím & viền thời không), phát âm thanh Web Audio `pdodge`, **hồi ngay `+15% MP`**, và kích hoạt bùa **`⚡ Phản Công +40%`** (`st.p.pdBuff`, hiển thị trên thanh MP & vòng hào quang xanh lam) cộng `+40%` sát thương cho đòn đánh/tuyệt kỹ kế tiếp trúng Boss.

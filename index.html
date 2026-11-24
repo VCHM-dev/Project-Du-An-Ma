@@ -283,7 +283,7 @@ h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.53';
+const APP_VERSION='5.54';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -299,6 +299,17 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.54',date:'2026-11-24',title:'Kỷ Lục, Thành Tựu & Đua Ghost Liên Server Cho Né Hoàn Hảo (Perfect Dodge)',
+      highlights:[
+        {icon:'🏆',title:'Thống Kê Né Hoàn Hảo Trong Tổng Kết Trận & Bảng Kỷ Lục 2D',desc:'Hiển thị số lần Né Hoàn Hảo ngay trên bảng tổng kết sau trận 2D (gồm cả Boss Rush 4 Cổ Thần), đồng thời lưu kỷ lục tổng tích lũy, đỉnh cao mỗi trận và cột ⚡ Né HH trong Nhật Ký Chiến Tích 2D!',tab:'adv'},
+        {icon:'⚡',title:'2 Thành Tựu Mới Cho Cao Thủ Thân Pháp',desc:'Thêm thành tựu ⚡ Thời Không Tĩnh Lặng (đạt ≥ 3 lần Né Hoàn Hảo trong 1 trận 2D) và 🌌 Thân Pháp Nhập Vi (tích lũy 25 lần Né Hoàn Hảo trên Đấu Trường 2D)!',tab:'char'},
+        {icon:'👻',title:'So Kè Né Hoàn Hảo Trong Ghost Replay 2D (DM2D-...)',desc:'Tích hợp chỉ số perfectDodges (pd) vào mã chia sẻ DM2D- (tương thích ngược hoàn toàn mã cũ), hiển thị trực tiếp trên thanh đua Ghost trong trận, thẻ Cao Thủ NPC và bảng tổng kết vượt mặt Ghost!',tab:'adv'}
+      ],
+      tourSteps:[
+        {tab:'adv',selector:'#app .pn',title:'Kỷ Lục & Ghost Replay Né Hoàn Hảo',desc:'Vào tab Vạn Kiếp Tháp & Cổ Thần 3 Pha để xem Bảng Kỷ Lục ⚡ Né Hoàn Hảo và so kè thân pháp với các Ghost Cao Thủ Liên Server!'}
+      ]
+    },
     {
       version:'5.53',date:'2026-11-24',title:'Cơ Chế Né Hoàn Hảo (Perfect Dodge · Làm Chậm Thời Gian 0.35s · +15% MP · +40% Phản Công)',
       highlights:[
@@ -2437,7 +2448,7 @@ const adventureService={
   fightBossRush(x,prevRush){
     if(x.age>=cultivationService.life(x))return say('Thọ nguyên cạn kiệt, không thể Đột Kích Liên Hoàn');
     const stg=prevRush?prevRush.stage:0;
-    const rush=prevRush?Object.assign({},prevRush):{stage:0,total:WORLD_BOSSES.length,totalTime:0,totalDmg:0,totalTaken:0,totalDodged:0,totalInt:0,hpCarry:null,mpCarry:null,pills:null,ghost:null};
+    const rush=prevRush?Object.assign({totalPd:0},prevRush):{stage:0,total:WORLD_BOSSES.length,totalTime:0,totalDmg:0,totalTaken:0,totalDodged:0,totalPd:0,totalInt:0,hpCarry:null,mpCarry:null,pills:null,ghost:null};
     const spec=wbFoeOf(stg,advDiffOf(x));
     if(stg>0){const fm=1+stg*.18,am=1+stg*.14;spec.hp=Math.round(spec.hp*fm);spec.luc=Math.round(spec.luc*am);spec.thu=Math.round(spec.thu*am)}
     spec.pillarCnt=4;
@@ -2977,7 +2988,7 @@ const rewardIntegrationService={
 };
 
 /* ===== THÀNH TỰU, SAO LƯU & MIGRATE HỢP NHẤT ===== */
-const ACH=[['kd','Đạt Kim Đan',x=>x.realm>=2],['na','Đạt Nguyên Anh',x=>x.realm>=3],['ht','Đạt Hóa Thần',x=>x.realm>=4],['th','Sống trên 1000 tuổi',x=>x.age>=1000],['tt','Sở hữu thiên phú Thất Thải',x=>x.tal.some(t=>TD[t.id].r===6)],['sss','Đạt hạng SSS mô phỏng',x=>x.best===8],['sm','Hoàn thành 5 lần mô phỏng',x=>x.hist.length>=5],['lw','Thắng 10 trận Lịch Luyện',x=>(x.wins||0)>=10],['gd','Sở hữu 5000 linh thạch',x=>x.stones>=5000],['tw10','Chinh phục Tầng 10 Vạn Kiếp Tháp',x=>(x.towerFloor||0)>=10],['wb1','Trảm sát Cổ Thần 3 Pha',x=>Object.values(x.wbWins||{}).some(v=>v>0)],['rush1','Phá đảo Đột Kích Liên Hoàn (4 Cổ Thần)',x=>!!(x.arenaRec&&x.arenaRec.rushBest&&x.arenaRec.rushBest.clears>=1)]];
+const ACH=[['kd','Đạt Kim Đan',x=>x.realm>=2],['na','Đạt Nguyên Anh',x=>x.realm>=3],['ht','Đạt Hóa Thần',x=>x.realm>=4],['th','Sống trên 1000 tuổi',x=>x.age>=1000],['tt','Sở hữu thiên phú Thất Thải',x=>x.tal.some(t=>TD[t.id].r===6)],['sss','Đạt hạng SSS mô phỏng',x=>x.best===8],['sm','Hoàn thành 5 lần mô phỏng',x=>x.hist.length>=5],['lw','Thắng 10 trận Lịch Luyện',x=>(x.wins||0)>=10],['gd','Sở hữu 5000 linh thạch',x=>x.stones>=5000],['tw10','Chinh phục Tầng 10 Vạn Kiếp Tháp',x=>(x.towerFloor||0)>=10],['wb1','Trảm sát Cổ Thần 3 Pha',x=>Object.values(x.wbWins||{}).some(v=>v>0)],['rush1','Phá đảo Đột Kích Liên Hoàn (4 Cổ Thần)',x=>!!(x.arenaRec&&x.arenaRec.rushBest&&x.arenaRec.rushBest.clears>=1)],['pd1','Thời Không Tĩnh Lặng (≥ 3 Né Hoàn Hảo trong 1 trận 2D)',x=>!!(x.arenaRec&&(x.arenaRec.bestPerfectDodge||0)>=3)],['pd2','Thân Pháp Nhập Vi (Tích lũy 25 Né Hoàn Hảo 2D)',x=>!!(x.arenaRec&&(x.arenaRec.totalPerfectDodges||0)>=25)]];
 const achievementService={check(x){ACH.forEach(a=>{if(!x.ach[a[0]]&&a[2](x)){x.ach[a[0]]=true;toast('🏆 Thành tựu: '+a[1],'ach')}})}};
 
 const TK='msns_theme_v1',UT={preset:0,bg:'#10131f',ac:'#f59e0b',font:0,size:1,dens:0,glow:true,blur:true},UP={banner:0,decor:0,status:'',emo:'🧘'},UC={av:'',bn:'',wp:'',wo:70,wb:4,vol:60,trk:0,auto:true,on:false,cn:'',dynBgm:true};
@@ -2991,7 +3002,7 @@ function migrate(){
   s.pathRes=typeof s.pathRes==='number'?s.pathRes:0;
   rtService.ensure(s);
   s.ach=s.ach||{};s.wins=s.wins||0;s.advWins=s.advWins||{};s.towerFloor=s.towerFloor||0;s.towerClaimed=s.towerClaimed||{};s.wbWins=s.wbWins||{};
-  s.arenaRec=Object.assign({bestDps:0,totalDodged:0,totalInterrupted:0,perfectWins:0,wbBest:{},rushBest:{bestTime:9999,bestDps:0,clears:0,perfect:0},recent:[],rivals:[],beatenIds:{}},s.arenaRec||{});
+  s.arenaRec=Object.assign({bestDps:0,totalDodged:0,totalPerfectDodges:0,bestPerfectDodge:0,totalInterrupted:0,perfectWins:0,wbBest:{},rushBest:{bestTime:9999,bestDps:0,clears:0,perfect:0},recent:[],rivals:[],beatenIds:{}},s.arenaRec||{});
   if(!s.arenaRec.rushBest||typeof s.arenaRec.rushBest!=='object')s.arenaRec.rushBest={bestTime:9999,bestDps:0,clears:0,perfect:0};
   if(!s.arenaRec.wbBest||typeof s.arenaRec.wbBest!=='object')s.arenaRec.wbBest={};
   if(!Array.isArray(s.arenaRec.recent))s.arenaRec.recent=[];
@@ -4254,10 +4265,10 @@ const SFX_2D={
 /* ===== THI ĐẤU LIÊN SERVER · GHOST REPLAY & MÃ CHIẾN TÍCH 2D (GHOST_2D) ===== */
 const GHOST_2D={
   NPC:[
-    {id:'npc_hanlap',nm:'Kiếm Thánh · Hàn Lập',rl:4,av:'nam0',type:'wb',target:0,fn:'Cổ Thần Thanh Long',dur:22.5,dps:4800,dodged:8,interrupted:3,perfect:false,npc:true},
-    {id:'npc_namcung',nm:'Huyền Nữ · Nam Cung Uyển',rl:5,av:'nu1',type:'tower',target:10,fn:'Vạn Kiếp Tháp · Tầng 10',dur:18.0,dps:9200,dodged:11,interrupted:4,perfect:true,npc:true},
-    {id:'npc_thachhao',nm:'Đạo Tôn · Thạch Hạo',rl:7,av:'nam3',type:'wb',target:3,fn:'Hỗn Độn Thái Cổ Đế',dur:15.8,dps:22500,dodged:14,interrupted:5,perfect:true,npc:true},
-    {id:'npc_dieppham',nm:'Thiên Đế · Diệp Phàm',rl:8,av:'nam2',type:'rush',target:0,fn:'Đột Kích Liên Hoàn (4 Cổ Thần)',dur:68.0,dps:28000,dodged:26,interrupted:10,perfect:true,npc:true}
+    {id:'npc_hanlap',nm:'Kiếm Thánh · Hàn Lập',rl:4,av:'nam0',type:'wb',target:0,fn:'Cổ Thần Thanh Long',dur:22.5,dps:4800,dodged:8,perfectDodges:3,interrupted:3,perfect:false,npc:true},
+    {id:'npc_namcung',nm:'Huyền Nữ · Nam Cung Uyển',rl:5,av:'nu1',type:'tower',target:10,fn:'Vạn Kiếp Tháp · Tầng 10',dur:18.0,dps:9200,dodged:11,perfectDodges:5,interrupted:4,perfect:true,npc:true},
+    {id:'npc_thachhao',nm:'Đạo Tôn · Thạch Hạo',rl:7,av:'nam3',type:'wb',target:3,fn:'Hỗn Độn Thái Cổ Đế',dur:15.8,dps:22500,dodged:14,perfectDodges:7,interrupted:5,perfect:true,npc:true},
+    {id:'npc_dieppham',nm:'Thiên Đế · Diệp Phàm',rl:8,av:'nam2',type:'rush',target:0,fn:'Đột Kích Liên Hoàn (4 Cổ Thần)',dur:68.0,dps:28000,dodged:26,perfectDodges:12,interrupted:10,perfect:true,npc:true}
   ],
   hash(str){
     let h=2166136261;
@@ -4276,6 +4287,7 @@ const GHOST_2D={
       dur:Math.max(.5,Math.round((+rec.dur||10)*10)/10),
       dps:Math.max(1,Math.round(+rec.dps||100)),
       dodged:Math.max(0,Math.floor(+rec.dodged||0)),
+      pd:Math.max(0,Math.floor(+(rec.perfectDodges!=null?rec.perfectDodges:rec.pd)||0)),
       interrupted:Math.max(0,Math.floor(+rec.interrupted||0)),
       perfect:!!rec.perfect,
       ts:Math.floor(+rec.ts||Date.now())
@@ -4289,7 +4301,7 @@ const GHOST_2D={
       const raw=String(code||'').trim();
       if(!raw.startsWith('DM2D-'))return null;
       const obj=JSON.parse(new TextDecoder().decode(b64uDec(raw.slice(5))));
-      if(!obj||obj.v!==1||typeof obj.cs!=='string')return null;
+      if(!obj||(obj.v!==1&&obj.v!==2)||typeof obj.cs!=='string')return null;
       const cs=obj.cs;const p=Object.assign({},obj);delete p.cs;
       if(this.hash(JSON.stringify(p))!==cs)return null;
       if(!['wb','tower','wild','rush'].includes(p.type)||!(p.dur>0)||!(p.dps>=0))return null;
@@ -4304,6 +4316,7 @@ const GHOST_2D={
         dur:Math.max(.5,Math.round(+p.dur*10)/10),
         dps:Math.max(1,Math.round(+p.dps)),
         dodged:Math.max(0,Math.floor(+p.dodged||0)),
+        perfectDodges:Math.max(0,Math.floor(+(p.pd!=null?p.pd:p.perfectDodges)||0)),
         interrupted:Math.max(0,Math.floor(+p.interrupted||0)),
         perfect:!!p.perfect,
         ts:p.ts||Date.now(),
@@ -4315,12 +4328,12 @@ const GHOST_2D={
     const rec=(x&&x.arenaRec)||{};
     const beaten=rec.beatenIds||{};
     const custom=Array.isArray(rec.rivals)?rec.rivals:[];
-    return custom.concat(this.NPC).map(g=>Object.assign({},g,{beaten:beaten[g.id]||null})).sort((a,b)=>b.dps-a.dps);
+    return custom.concat(this.NPC).map(g=>Object.assign({perfectDodges:0},g,{beaten:beaten[g.id]||null})).sort((a,b)=>b.dps-a.dps);
   },
   add(x,code){
     const g=this.decode(code);
     if(!g)return{ok:false,err:'Mã chiến tích không hợp lệ hoặc đã bị chỉnh sửa (phải bắt đầu bằng DM2D-)'};
-    const rec=x.arenaRec=Object.assign({bestDps:0,totalDodged:0,totalInterrupted:0,perfectWins:0,wbBest:{},recent:[],rivals:[],beatenIds:{}},x.arenaRec||{});
+    const rec=x.arenaRec=Object.assign({bestDps:0,totalDodged:0,totalPerfectDodges:0,bestPerfectDodge:0,totalInterrupted:0,perfectWins:0,wbBest:{},recent:[],rivals:[],beatenIds:{}},x.arenaRec||{});
     if(!Array.isArray(rec.rivals))rec.rivals=[];
     rec.rivals=rec.rivals.filter(r=>r.id!==g.id);
     rec.rivals.unshift(g);
@@ -4353,7 +4366,7 @@ const GHOST_2D={
     }
     if(ui.btl){
       ui.btl.ghost=g;
-      ui.btl.logs.push(`👻 Đua Ghost Liên Server cùng ${g.nm} (Kỷ lục ${g.dur.toFixed(1)}s · ${g.dps.toLocaleString('vi-VN')} DPS)!`);
+      ui.btl.logs.push(`👻 Đua Ghost Liên Server cùng ${g.nm} (Kỷ lục ${g.dur.toFixed(1)}s · ${g.dps.toLocaleString('vi-VN')} DPS · ⚡ ${g.perfectDodges||0} Né HH)!`);
     }
   }
 };
@@ -4830,8 +4843,9 @@ const ARENA_2D={
       b.done=1;b.win=win?1:0;b.r=Math.max(1,Math.round(st.t/4));
       SFX_2D.play(win?'win':'lose');
       const dps=Math.round(st.stats.dmgDealt/Math.max(1,st.t)),dur=Math.round(st.t*10)/10,perfect=win&&st.stats.dmgTaken===0;
-      const rec=s.arenaRec=Object.assign({bestDps:0,totalDodged:0,totalInterrupted:0,perfectWins:0,wbBest:{},recent:[]},s.arenaRec||{});
+      const rec=s.arenaRec=Object.assign({bestDps:0,totalDodged:0,totalPerfectDodges:0,bestPerfectDodge:0,totalInterrupted:0,perfectWins:0,wbBest:{},recent:[]},s.arenaRec||{});
       rec.totalDodged=(rec.totalDodged||0)+st.stats.dodged;
+      rec.totalPerfectDodges=(rec.totalPerfectDodges||0)+st.stats.perfectDodges;
       rec.totalInterrupted=(rec.totalInterrupted||0)+st.stats.interrupted;
       let newRec=false;
       if(dps>(rec.bestDps||0)){rec.bestDps=dps;newRec=true}
@@ -4843,19 +4857,19 @@ const ARENA_2D={
         if(dps>wb.bestDps){wb.bestDps=dps;newRec=true}
         if(perfect)wb.perfect++;
       }
-      let rushMid=false,rushClear=false,rushGrandTxt='',evalDur=dur,evalDps=dps;
+      let rushMid=false,rushClear=false,rushGrandTxt='',evalDur=dur,evalDps=dps,evalPd=st.stats.perfectDodges;
       if(b.rush){
         const ru=b.rush;
         ru.totalTime=Math.round((ru.totalTime+dur)*10)/10;
         ru.totalDmg+=st.stats.dmgDealt;ru.totalTaken+=st.stats.dmgTaken;
-        ru.totalDodged+=st.stats.dodged;ru.totalInt+=st.stats.interrupted;
+        ru.totalDodged+=st.stats.dodged;ru.totalPd=(ru.totalPd||0)+st.stats.perfectDodges;ru.totalInt+=st.stats.interrupted;
         ru.hpCarry=b.hp;ru.mpCarry=b.mp;ru.pills=b.pills;
         if(win&&ru.stage<ru.total-1){
           rushMid=true;
           ui.rushNext=Object.assign({},ru,{stage:ru.stage+1});
         }else if(win&&ru.stage===ru.total-1){
           rushClear=true;ui.rushNext=null;
-          evalDur=ru.totalTime;evalDps=Math.round(ru.totalDmg/Math.max(1,ru.totalTime));
+          evalDur=ru.totalTime;evalDps=Math.round(ru.totalDmg/Math.max(1,ru.totalTime));evalPd=ru.totalPd;
           const rPerf=ru.totalTaken===0;
           const rb=rec.rushBest||(rec.rushBest={bestTime:9999,bestDps:0,clears:0,perfect:0});
           rb.clears=(rb.clears||0)+1;
@@ -4868,22 +4882,25 @@ const ARENA_2D={
           if(pm[1]&&ID[pm[1]])inventoryService.add(s,pm[1],1);
           if(ID.b4)inventoryService.add(s,'b4',1);
           rushGrandTxt=` 🔥 PHÁ ĐẢO 4/4 CỔ THẦN! Thưởng Đại Lễ: +${stGrand.toLocaleString('vi-VN')}💎, +2 Đạo Dẫn Địa, +1 Kỳ Vật Thiên & +1 Trận Bàn Hỗn Độn Hộ Đạo!`;
-          rec.recent.unshift({t:Date.now(),fn:'Đột Kích Liên Hoàn (4 Cổ Thần)',win:true,dur:evalDur,dps:evalDps,dodged:ru.totalDodged,interrupted:ru.totalInt,dmgDealt:ru.totalDmg,dmgTaken:ru.totalTaken,perfect:rPerf,type:'rush',target:0});
+          rec.recent.unshift({t:Date.now(),fn:'Đột Kích Liên Hoàn (4 Cổ Thần)',win:true,dur:evalDur,dps:evalDps,dodged:ru.totalDodged,perfectDodges:ru.totalPd,interrupted:ru.totalInt,dmgDealt:ru.totalDmg,dmgTaken:ru.totalTaken,perfect:rPerf,type:'rush',target:0});
           if(rec.recent.length>12)rec.recent.length=12;
         }else{
           ui.rushNext=null;
-          rec.recent.unshift({t:Date.now(),fn:`Đột Kích (${ru.stage+1}/${ru.total} · ${b.fn})`,win:false,dur:ru.totalTime,dps:Math.round(ru.totalDmg/Math.max(1,ru.totalTime)),dodged:ru.totalDodged,interrupted:ru.totalInt,dmgDealt:ru.totalDmg,dmgTaken:ru.totalTaken,perfect:false,type:'rush',target:0});
+          evalPd=ru.totalPd;
+          rec.recent.unshift({t:Date.now(),fn:`Đột Kích (${ru.stage+1}/${ru.total} · ${b.fn})`,win:false,dur:ru.totalTime,dps:Math.round(ru.totalDmg/Math.max(1,ru.totalTime)),dodged:ru.totalDodged,perfectDodges:ru.totalPd,interrupted:ru.totalInt,dmgDealt:ru.totalDmg,dmgTaken:ru.totalTaken,perfect:false,type:'rush',target:0});
           if(rec.recent.length>12)rec.recent.length=12;
         }
       }else{
         const rType=b.towerFloor?'tower':b.wbId?'wb':'wild';
         const rTarget=b.towerFloor||(b.wbId?Math.max(0,WORLD_BOSSES.findIndex(w=>w.id===b.wbId)):b.i);
-        rec.recent.unshift({t:Date.now(),fn:b.fn,win:!!win,dur,dps,dodged:st.stats.dodged,interrupted:st.stats.interrupted,dmgDealt:st.stats.dmgDealt,dmgTaken:st.stats.dmgTaken,perfect,type:rType,target:rTarget});
+        rec.recent.unshift({t:Date.now(),fn:b.fn,win:!!win,dur,dps,dodged:st.stats.dodged,perfectDodges:st.stats.perfectDodges,interrupted:st.stats.interrupted,dmgDealt:st.stats.dmgDealt,dmgTaken:st.stats.dmgTaken,perfect,type:rType,target:rTarget});
         if(rec.recent.length>12)rec.recent.length=12;
       }
-      let ghostBeat=false,ghostBonus='';
+      if(evalPd>(rec.bestPerfectDodge||0)){if((rec.bestPerfectDodge||0)>0&&win)newRec=true;rec.bestPerfectDodge=evalPd}
+      let ghostBeat=false,ghostPdBeat=false,ghostBonus='';
       if(win&&b.ghost&&(!b.rush||rushClear)){
         const g=b.ghost;
+        if(evalPd>(g.perfectDodges||0))ghostPdBeat=true;
         if(evalDur<=g.dur||evalDps>g.dps){
           ghostBeat=true;
           if(!rec.beatenIds)rec.beatenIds={};
@@ -4891,22 +4908,23 @@ const ARENA_2D={
             const stBon=300*(s.realm+1),pm=(PATH_MATS[s.path||'linh']||PATH_MATS.linh)[0];s.stones+=stBon;if(pm&&ID[pm])inventoryService.add(s,pm,1);
             ghostBonus=` (+${stBon.toLocaleString('vi-VN')}💎 & 1 Đạo Dẫn thưởng vượt Ghost lần đầu!)`;
           }
-          rec.beatenIds[g.id]={dur:evalDur,dps:evalDps,t:Date.now()};
+          rec.beatenIds[g.id]={dur:evalDur,dps:evalDps,pd:evalPd,t:Date.now()};
         }
       }
-      b.logs.push(`⚔ Đấu Trường 2D (${st.t.toFixed(1)}s · DPS ${dps.toLocaleString('vi-VN')}/s · Né ${st.stats.dodged} · Ngắt ${st.stats.interrupted}): ${win?'Trảm sát thành công!':'Chiến bại!'}${rushGrandTxt}${ghostBonus}`);
+      b.logs.push(`⚔ Đấu Trường 2D (${st.t.toFixed(1)}s · DPS ${dps.toLocaleString('vi-VN')}/s · Né ${st.stats.dodged} · ⚡ Né HH ${st.stats.perfectDodges} · Ngắt ${st.stats.interrupted}): ${win?'Trảm sát thành công!':'Chiến bại!'}${rushGrandTxt}${ghostBonus}`);
       adventureService.resolve(s,b,false);
       achievementService.check(s);store.save(s);
       const ov=$('a2dOv');
       if(ov){
         ov.classList.add('on');
         const rewardTxt=(rushGrandTxt?rushGrandTxt.trim()+' · ':'')+(b.logs[b.logs.length-1]||'');
-        const badges=[rushClear?'<span class="chip on" style="border-color:#fb923c;color:#fb923c">🔥 PHÁ ĐẢO BOSS RUSH 4/4!</span>':'',newRec?'<span class="chip on" style="border-color:var(--gold);color:var(--gold)">🏅 KỶ LỤC MỚI!</span>':'',perfect?'<span class="chip on" style="border-color:#5eead4;color:#5eead4">✨ VÔ THƯƠNG HOÀN HẢO!</span>':'',ghostBeat?`<span class="chip on" style="border-color:#38bdf8;color:#38bdf8">👻 VƯỢT MẶT ${esc(b.ghost.nm)}!</span>`:''].filter(Boolean).join('');
+        const dispTime=rushClear?b.rush.totalTime:st.t,dispDps=rushClear?evalDps:dps,dispDmg=rushClear?b.rush.totalDmg:st.stats.dmgDealt,dispDd=rushClear?b.rush.totalDodged:st.stats.dodged,dispPd=rushClear?(b.rush.totalPd||0):st.stats.perfectDodges,dispIn=rushClear?b.rush.totalInt:st.stats.interrupted;
+        const badges=[rushClear?'<span class="chip on" style="border-color:#fb923c;color:#fb923c">🔥 PHÁ ĐẢO BOSS RUSH 4/4!</span>':'',newRec?'<span class="chip on" style="border-color:var(--gold);color:var(--gold)">🏅 KỶ LỤC MỚI!</span>':'',perfect?'<span class="chip on" style="border-color:#5eead4;color:#5eead4">✨ VÔ THƯƠNG HOÀN HẢO!</span>':'',dispPd>=3?`<span class="chip on" style="border-color:#c084fc;color:#e9d5ff">⚡ THỜI KHÔNG TĨNH LẶNG ×${dispPd}!</span>`:'',ghostBeat?`<span class="chip on" style="border-color:#38bdf8;color:#38bdf8">👻 VƯỢT MẶT ${esc(b.ghost.nm)}!</span>`:'',ghostPdBeat?`<span class="chip on" style="border-color:#c084fc;color:#7dd3fc">⚡ HƠN GHOST NÉ HH (${dispPd} vs ${b.ghost.perfectDodges||0})!</span>`:''].filter(Boolean).join('');
         const nextBtn=rushMid?btn('rush_next','',`🔥 Tiếp Tục Ải ${b.rush.stage+2}/${b.rush.total} (${WORLD_BOSSES[b.rush.stage+1].n})`):(b.rush&&!win)?btn('rush_go','','🔁 Đột Kích Lại Từ Đầu'):(win&&b.towerFloor)?btn('tw_go',b.towerFloor+1,`▶ Leo Tầng ${b.towerFloor+1}`):'';
         const shareBtn=(win&&!rushMid)?btn('ghost_exp',0,rushClear?'📤 Xuất Mã Ghost Boss Rush':'📤 Chia Sẻ Mã Chiến Tích'):'';
-        const dispTime=rushClear?b.rush.totalTime:st.t,dispDps=rushClear?evalDps:dps,dispDmg=rushClear?b.rush.totalDmg:st.stats.dmgDealt,dispDd=rushClear?b.rush.totalDodged:st.stats.dodged,dispIn=rushClear?b.rush.totalInt:st.stats.interrupted;
+        const pdSub=b.ghost?` <span class="mu">(Ghost ${b.ghost.perfectDodges||0})</span>`:(rec.bestPerfectDodge?` <span class="mu">(Đỉnh ${rec.bestPerfectDodge})</span>`:'');
         const ovTitle=rushClear?'🔥 PHÁ ĐẢO ĐỘT KÍCH LIÊN HOÀN!':rushMid?`⚔ Vượt Ải ${b.rush.stage+1}/${b.rush.total} · Chuẩn Bị Đối Thủ Kế!`:win?'🏆 Đại Thắng Khải Hoàn!':'💀 Chiến Bại';
-        ov.innerHTML=`<div class="a2d-ov-card"><h3 style="margin:0 0 6px;color:${win?'var(--gold)':'#fb7185'}">${ovTitle}</h3>${badges?`<div class="bt" style="justify-content:center;margin-bottom:6px">${badges}</div>`:''}<div class="mu" style="font-size:12px;margin-bottom:8px;line-height:1.45">${esc(rewardTxt)}</div><div class="g2" style="gap:6px;margin-bottom:10px;font-size:11.5px;background:var(--in);padding:8px;border-radius:8px;border:1px solid var(--ln)"><div><span class="mu">${rushClear?'Tổng thời gian (4 ải)':'Thời gian'}</span><br><b>${dispTime.toFixed(1)}s</b></div><div><span class="mu">DPS trung bình</span><br><b style="color:var(--gold)">${dispDps.toLocaleString('vi-VN')}/s</b></div><div><span class="mu">Tổng sát thương</span><br><b class="ok">${dispDmg.toLocaleString('vi-VN')}</b></div><div><span class="mu">Né / Ngắt chiêu</span><br><b style="color:#38bdf8">${dispDd} / ${dispIn}</b></div></div><div class="bt" style="justify-content:center">${shareBtn}${nextBtn}${btn('btla','close','Đóng chiến trường')}</div></div>`;
+        ov.innerHTML=`<div class="a2d-ov-card"><h3 style="margin:0 0 6px;color:${win?'var(--gold)':'#fb7185'}">${ovTitle}</h3>${badges?`<div class="bt" style="justify-content:center;margin-bottom:6px">${badges}</div>`:''}<div class="mu" style="font-size:12px;margin-bottom:8px;line-height:1.45">${esc(rewardTxt)}</div><div class="g2" style="gap:6px;margin-bottom:10px;font-size:11.5px;background:var(--in);padding:8px;border-radius:8px;border:1px solid var(--ln)"><div><span class="mu">${rushClear?'Tổng thời gian (4 ải)':'Thời gian'}</span><br><b>${dispTime.toFixed(1)}s</b></div><div><span class="mu">DPS trung bình</span><br><b style="color:var(--gold)">${dispDps.toLocaleString('vi-VN')}/s</b></div><div><span class="mu">Tổng sát thương</span><br><b class="ok">${dispDmg.toLocaleString('vi-VN')}</b></div><div><span class="mu">Né / Ngắt chiêu</span><br><b style="color:#38bdf8">${dispDd} / ${dispIn}</b></div><div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,.06);padding-top:5px"><span class="mu">⚡ Né Hoàn Hảo (Perfect Dodge)</span><br><b style="color:#c084fc">${dispPd} lần</b>${pdSub}</div></div><div class="bt" style="justify-content:center">${shareBtn}${nextBtn}${btn('btla','close','Đóng chiến trường')}</div></div>`;
       }
     };
 
@@ -5226,8 +5244,9 @@ const ARENA_2D={
         const gProg=clamp(elapsed/Math.max(.5,b.ghost.dur),0,1);
         const pProg=b.rush?clamp((b.rush.stage+(1-b.fh/Math.max(1,b.fMaxHp)))/b.rush.total,0,1):clamp(1-(b.fh/Math.max(1,b.fMaxHp)),0,1);
         const lead=(pProg-gProg)*b.ghost.dur;
+        const curPd=(b.rush?(b.rush.totalPd||0):0)+st.stats.perfectDodges;
         setW('a2dGhostBar',gProg*100);
-        setT('a2dGhostTxt',`👻 ${b.ghost.nm} (${Math.round(gProg*100)}%) · ${lead>=0?'▲ Dẫn trước +'+lead.toFixed(1)+'s':'▼ Chậm hơn '+Math.abs(lead).toFixed(1)+'s'} (Mục tiêu ${b.ghost.dur.toFixed(1)}s)`);
+        setT('a2dGhostTxt',`👻 ${b.ghost.nm} (${Math.round(gProg*100)}%) · ${lead>=0?'▲ +'+lead.toFixed(1)+'s':'▼ '+lead.toFixed(1)+'s'} · ⚡ Né HH ${curPd}/${b.ghost.perfectDodges||0} (Mục tiêu ${b.ghost.dur.toFixed(1)}s)`);
       }
       const setCd=(id,v)=>{const e=$(id);if(!e)return;if(v>.05){e.classList.add('on');e.textContent=v.toFixed(1)+'s'}else e.classList.remove('on')};
       setCd('a2dCdDash',p.dashCd);setCd('a2dCdGuard',p.guardCd);setCd('a2dCdPet',p.petCd);
@@ -5965,7 +5984,7 @@ function btl2dModal(){
 </div>
 
 <div class="a2d-tbar"><span id="a2dTerrainTxt" class="mu">🏛 Linh Trụ · 🌀 Vòng Linh Khí · 🧭 Trận Bàn</span><span class="mu" style="font-size:10.5px">Mẹo: Nấp sau Linh Trụ chắn đạn & Ma Quang · Đứng Vòng Linh Khí hồi +220% MP</span></div>
-${b.ghost?`<div class="a2d-tbar" style="border-color:#38bdf8;background:rgba(14,165,233,.08)"><span id="a2dGhostTxt" style="color:#7dd3fc;font-size:11.5px">👻 ${esc(b.ghost.nm)} · Mục tiêu ${b.ghost.dur.toFixed(1)}s</span><div class="bar" style="width:170px;height:6px;margin:0"><i id="a2dGhostBar" style="width:0%;background:linear-gradient(90deg,#38bdf8,#fbbf24)"></i></div></div>`:''}
+${b.ghost?`<div class="a2d-tbar" style="border-color:#38bdf8;background:rgba(14,165,233,.08)"><span id="a2dGhostTxt" style="color:#7dd3fc;font-size:11.5px">👻 ${esc(b.ghost.nm)} · Mục tiêu ${b.ghost.dur.toFixed(1)}s · ⚡ Né HH 0/${b.ghost.perfectDodges||0}</span><div class="bar" style="width:170px;height:6px;margin:0"><i id="a2dGhostBar" style="width:0%;background:linear-gradient(90deg,#38bdf8,#fbbf24)"></i></div></div>`:''}
 
 ${(()=>{
   const svgDash=`<svg class="sl-svg" viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M2 11h5v1H3v1H2zm2-3h7v1H4zm2-3h7v1H6z" fill="#38bdf8"/><path d="M9 3h4v1h1v4h-1v1h-2V8h1V5H9zm-3 6h6v2H6z" fill="#e0f2fe"/><rect x="11" y="4" width="2" height="2" fill="#fff"/></svg>`;
@@ -6132,7 +6151,7 @@ function vAdv(){
     <div class='mu' style='margin:6px 0'>Tầng kế tiếp: <b>${esc(tf.n)}</b> ${tf.isBoss?'<span class="wb-badge">⚡ Boss 3 Pha · 4 Linh Trụ</span>':'<span class="chip">2 Linh Trụ · Vòng Linh Khí</span>'}</div>
     <div class='mu'>Lực ${tf.luc.toLocaleString('vi-VN')} · Thủ ${tf.thu.toLocaleString('vi-VN')} · Tốc ${tf.toc.toLocaleString('vi-VN')} · HP ${tf.hp.toLocaleString('vi-VN')} · Mốc thưởng lớn kế: <b>Tầng ${nextBossFl}</b> (Trận Bàn + Đạo Dẫn + Bí Tịch)</div>
     <div class='bt' style='margin-top:8px'>${btn('tw_go',nxFl,`⚔ Leo Tầng ${nxFl}${tf.isBoss?' (Boss 3 Pha!)':''}`)}${prevBossFl>=5?btn('tw_go',prevBossFl,`🔁 Đánh lại Tầng ${prevBossFl} (Boss 3 Pha)`):''}</div></div>`;
-    const rec=s.arenaRec||{bestDps:0,totalDodged:0,totalInterrupted:0,perfectWins:0,wbBest:{},rushBest:{bestTime:9999,bestDps:0,clears:0,perfect:0},recent:[]};
+    const rec=s.arenaRec||{bestDps:0,totalDodged:0,totalPerfectDodges:0,bestPerfectDodge:0,totalInterrupted:0,perfectWins:0,wbBest:{},rushBest:{bestTime:9999,bestDps:0,clears:0,perfect:0},recent:[]};
     const rb=rec.rushBest||{bestTime:9999,bestDps:0,clears:0,perfect:0};
     const rushBox=`<div class='pn' style='border-color:color-mix(in srgb,#fb923c 55%,var(--ln));background:radial-gradient(circle at 86% 24%,rgba(249,115,22,.18),transparent 55%),radial-gradient(circle at 14% 82%,rgba(244,63,94,.14),transparent 50%),var(--pn)'>
       <div class='row' style='align-items:center;flex-wrap:wrap;gap:6px'><h3 style='margin:0;color:#fdba74'>🔥 Đột Kích Liên Hoàn (Boss Rush 2D · 4 Cổ Thần 3 Pha Liên Tiếp)</h3>${rb.clears?`<span class='chip on' style='border-color:#fb923c;color:#fdba74'>🏆 Đã phá đảo ×${rb.clears} · ⏱ ${rb.bestTime.toFixed(1)}s · 🔥 ${rb.bestDps.toLocaleString('vi-VN')}/s</span>`:'<span class="chip">Thưởng Đại Lễ: +1.500×(CG)💎 · +2 Đạo Dẫn Địa · +1 Kỳ Vật Thiên · +1 Trận Bàn b4</span>'}</div>
@@ -6147,29 +6166,33 @@ function vAdv(){
     }).join('')}</div></div>`;
     const wbDist=Object.values(s.wbWins||{}).filter(v=>v>0).length;
     const f6ok=curFl>=10,f7ok=wbDist>=2||(rec.perfectWins||0)>=1;
+    const pd1ok=(rec.bestPerfectDodge||0)>=3,pd2ok=(rec.totalPerfectDodges||0)>=25;
     const recBox=`<div class='pn'><h3>🏆 Bảng Kỷ Lục &amp; Nhật Ký Chiến Tích Đấu Trường 2D</h3>
-      <div class='g2' style='gap:8px;margin:8px 0;grid-template-columns:repeat(auto-fit,minmax(145px,1fr))'>
+      <div class='g2' style='gap:8px;margin:8px 0;grid-template-columns:repeat(auto-fit,minmax(135px,1fr))'>
         <div class='hud-box'><div class='mu' style='font-size:11px'>🏯 Đỉnh Vạn Kiếp Tháp</div><b style='font-size:16px;color:var(--gold)'>Tầng ${curFl}</b></div>
         <div class='hud-box'><div class='mu' style='font-size:11px'>🔥 DPS Đỉnh Cao</div><b style='font-size:16px;color:#fb923c'>${(rec.bestDps||0).toLocaleString('vi-VN')}/s</b></div>
         <div class='hud-box'><div class='mu' style='font-size:11px'>💨 Né / ⛓ Ngắt Chiêu</div><b style='font-size:16px;color:#38bdf8'>${rec.totalDodged||0} / ${rec.totalInterrupted||0}</b></div>
+        <div class='hud-box'><div class='mu' style='font-size:11px'>⚡ Né Hoàn Hảo</div><b style='font-size:16px;color:#c084fc'>${rec.totalPerfectDodges||0}</b> <span class='mu' style='font-size:11px'>(Đỉnh ${rec.bestPerfectDodge||0}/trận)</span></div>
         <div class='hud-box'><div class='mu' style='font-size:11px'>✨ Vô Thương Hoàn Hảo</div><b style='font-size:16px;color:#5eead4'>${rec.perfectWins||0} trận</b></div>
       </div>
       <div class='bt' style='margin-bottom:8px;font-size:11.5px'>
         <span class='chip ${f6ok?'on':''}'>${f6ok?'✅':'🔒'} Khung 🏯 Vạn Kiếp Tháp Chủ (Tầng ${curFl}/10)</span>
         <span class='chip ${f7ok?'on':''}'>${f7ok?'✅':'🔒'} Khung 🐉 Trảm Cổ Thần Tôn (${wbDist}/2 Cổ Thần hoặc 1 Vô Thương)</span>
+        <span class='chip ${pd1ok?'on':''}'>${pd1ok?'✅':'🔒'} Thành tựu ⚡ Thời Không Tĩnh Lặng (${Math.min(3,rec.bestPerfectDodge||0)}/3 Né HH/trận)</span>
+        <span class='chip ${pd2ok?'on':''}'>${pd2ok?'✅':'🔒'} Thành tựu 🌌 Thân Pháp Nhập Vi (${Math.min(25,rec.totalPerfectDodges||0)}/25 Né HH)</span>
       </div>
-      ${(rec.recent||[]).length?`<div style='overflow-x:auto'><table style='width:100%;font-size:12px;border-collapse:collapse;text-align:left'><tr class='mu' style='border-bottom:1px solid var(--ln)'><th style='padding:4px 6px'>Trận Đấu</th><th>KQ</th><th>Thời gian</th><th>DPS</th><th>Né / Ngắt</th><th>Mã</th></tr>${rec.recent.map((r,ri)=>`<tr style='border-bottom:1px solid rgba(255,255,255,.05)'><td style='padding:4px 6px'>${r.type==='rush'?'🔥':r.type==='tower'?'🏯':r.type==='wb'?'🐉':'⚔'} ${esc(r.fn)}${r.perfect?' <span class="ok">✨</span>':''}</td><td class='${r.win?'ok':'bad'}'>${r.win?'Thắng':'Bại'}</td><td>${r.dur.toFixed(1)}s</td><td style='color:var(--gold)'>${r.dps.toLocaleString('vi-VN')}/s</td><td style='color:#38bdf8'>${r.dodged}/${r.interrupted}</td><td>${r.win?`<button class='chip' style='padding:2px 6px;font-size:11px' data-a='ghost_exp' data-x='${ri}' title='Xuất mã thách đấu DM2D-...'>📤</button>`:''}</td></tr>`).join('')}</table></div>`:'<div class="mu">Chưa có chiến tích Đấu Trường 2D nào. Hãy xuất chiến để lập kỷ lục!</div>'}
+      ${(rec.recent||[]).length?`<div style='overflow-x:auto'><table style='width:100%;font-size:12px;border-collapse:collapse;text-align:left'><tr class='mu' style='border-bottom:1px solid var(--ln)'><th style='padding:4px 6px'>Trận Đấu</th><th>KQ</th><th>Thời gian</th><th>DPS</th><th>Né / Ngắt</th><th>⚡ Né HH</th><th>Mã</th></tr>${rec.recent.map((r,ri)=>`<tr style='border-bottom:1px solid rgba(255,255,255,.05)'><td style='padding:4px 6px'>${r.type==='rush'?'🔥':r.type==='tower'?'🏯':r.type==='wb'?'🐉':'⚔'} ${esc(r.fn)}${r.perfect?' <span class="ok">✨</span>':''}</td><td class='${r.win?'ok':'bad'}'>${r.win?'Thắng':'Bại'}</td><td>${r.dur.toFixed(1)}s</td><td style='color:var(--gold)'>${r.dps.toLocaleString('vi-VN')}/s</td><td style='color:#38bdf8'>${r.dodged}/${r.interrupted}</td><td style='color:${(r.perfectDodges||0)>0?'#c084fc':'var(--mu)'};font-weight:${(r.perfectDodges||0)>0?'700':'400'}'>${r.perfectDodges||0}</td><td>${r.win?`<button class='chip' style='padding:2px 6px;font-size:11px' data-a='ghost_exp' data-x='${ri}' title='Xuất mã thách đấu DM2D-...'>📤</button>`:''}</td></tr>`).join('')}</table></div>`:'<div class="mu">Chưa có chiến tích Đấu Trường 2D nào. Hãy xuất chiến để lập kỷ lục!</div>'}
     </div>`;
     const ghosts=GHOST_2D.list(s),bestWinIdx=(rec.recent||[]).findIndex(r=>r.win);
     const ghostBox=`<div class='pn' style='border-color:color-mix(in srgb,#38bdf8 40%,var(--ln))'>
       <div class='row' style='align-items:center;flex-wrap:wrap;gap:6px'><h3 style='margin:0;color:#7dd3fc'>🌐 Thi Đấu Liên Server · Đua Ghost &amp; Mã Chiến Tích 2D</h3>${bestWinIdx>=0?btn('ghost_exp',bestWinIdx,'📤 Xuất Mã Chiến Tích Mới Nhất'):''}</div>
-      <div class='mu' style='margin:5px 0 8px'>Đua trực tiếp với <b>Tàn Ảnh Ghost</b> của Cao Thủ trên sàn đấu 2D để so tài tốc độ &amp; DPS. Lần đầu vượt mặt mỗi Ghost nhận ngay thưởng <b>Linh Thạch + Đạo Dẫn</b>!</div>
+      <div class='mu' style='margin:5px 0 8px'>Đua trực tiếp với <b>Tàn Ảnh Ghost</b> của Cao Thủ trên sàn đấu 2D để so tài tốc độ, DPS &amp; <b>⚡ Né Hoàn Hảo</b>. Lần đầu vượt mặt mỗi Ghost nhận ngay thưởng <b>Linh Thạch + Đạo Dẫn</b>!</div>
       <div class='bt' style='margin-bottom:8px'>
         <input id='ghostImpIn' placeholder='Dán mã thách đấu DM2D-... từ đạo hữu khác' style='flex:1;min-width:200px'>
         ${btn('ghost_imp','','📥 Nhập Mã Ghost')}
       </div>
       ${ui.ghostCode?`<div style='background:var(--in);border:1px solid #38bdf8;border-radius:8px;padding:8px;margin-bottom:8px'><div class='row' style='font-size:11.5px;margin-bottom:4px'><b style='color:#7dd3fc'>📤 Mã Chiến Tích Liên Server Của Bạn (gửi cho đạo hữu khác để thách đấu):</b><button class='chip' data-a='ghost_clr'>Đóng</button></div><input readonly value='${esc(ui.ghostCode)}' onclick='this.select()' style='width:100%;font-family:monospace;font-size:11px'></div>`:''}
-      <div class='grid'>${ghosts.map(g=>`<div class='card' style='--rc:${g.npc?'#38bdf8':'#fbbf24'}'><div class='ct'><b>👻 ${esc(g.nm)}</b><span class='tag'>${REALMS[g.rl]||''}</span></div><div class='mu' style='font-size:12px;margin:4px 0'>${g.type==='rush'?'🔥':g.type==='wb'?'🐉':g.type==='tower'?'🏯':'⚔'} ${esc(g.fn)} ${g.perfect?'<span class="ok">✨Vô Thương</span>':''}</div><div class='mu' style='font-size:12px'>⏱ <b>${g.dur.toFixed(1)}s</b> · 🔥 <b style='color:var(--gold)'>${g.dps.toLocaleString('vi-VN')}/s</b> · 💨 ${g.dodged}/${g.interrupted}</div><div class='bt' style='margin-top:6px'>${btn('ghost_race',g.id,'👻 Đua Ghost 2D')}${g.beaten?`<span class='chip on'>✅ Đã vượt (${g.beaten.dur.toFixed(1)}s)</span>`:''}${!g.npc?btn('ghost_del',g.id,'✕'):''}</div></div>`).join('')}</div>
+      <div class='grid'>${ghosts.map(g=>`<div class='card' style='--rc:${g.npc?'#38bdf8':'#fbbf24'}'><div class='ct'><b>👻 ${esc(g.nm)}</b><span class='tag'>${REALMS[g.rl]||''}</span></div><div class='mu' style='font-size:12px;margin:4px 0'>${g.type==='rush'?'🔥':g.type==='wb'?'🐉':g.type==='tower'?'🏯':'⚔'} ${esc(g.fn)} ${g.perfect?'<span class="ok">✨Vô Thương</span>':''}</div><div class='mu' style='font-size:12px'>⏱ <b>${g.dur.toFixed(1)}s</b> · 🔥 <b style='color:var(--gold)'>${g.dps.toLocaleString('vi-VN')}/s</b> · 💨 ${g.dodged}/${g.interrupted} · ⚡ <b style='color:#c084fc'>${g.perfectDodges||0}</b></div><div class='bt' style='margin-top:6px'>${btn('ghost_race',g.id,'👻 Đua Ghost 2D')}${g.beaten?`<span class='chip on'>✅ Đã vượt (${g.beaten.dur.toFixed(1)}s${g.beaten.pd!=null?' · ⚡'+g.beaten.pd:''})</span>`:''}${!g.npc?btn('ghost_del',g.id,'✕'):''}</div></div>`).join('')}</div>
     </div>`;
     const logBox=`<div class='pn'><h3>Nhật ký thí luyện</h3>${(ui.al||[]).map(l=>`<div class='mu'>${esc(l)}</div>`).join('')||'<span class=\'mu\'>Chưa thí luyện</span>'}</div>`;
     return head+towerBox+rushBox+wbCards+recBox+ghostBox+logBox;
@@ -6374,7 +6397,7 @@ const UD=[{id:0,n:'Không khung',rq:'',ok:()=>true,h:''},
 {id:5,n:'Thất Thải Thần Quang',rq:'thành tựu Thiên phú Thất Thải, hoặc hạng SSS mô phỏng',ok:x=>!!(x.ach.tt||x.ach.sss),h:'<div class="dc rb7"></div>'},
 {id:6,n:'🏯 Vạn Kiếp Tháp Chủ',rq:'chinh phục Vạn Kiếp Tháp Tầng 10',ok:x=>(x.towerFloor||0)>=10,h:`<svg class="dc sp" viewBox="0 0 180 180"><circle cx="90" cy="90" r="85" fill="none" stroke="#f59e0b" stroke-width="2.6" stroke-dasharray="10 5"/><circle cx="90" cy="90" r="78" fill="none" stroke="#38bdf8" stroke-width="1.4" opacity=".75"/>${rg(6,a=>`<text x="90" y="18" transform="rotate(${a} 90 90)" text-anchor="middle" fill="#fde047" font-size="14">❖</text>`)}</svg>`},
 {id:7,n:'🐉 Trảm Cổ Thần Tôn',rq:'hạ 2 Cổ Thần 3 Pha hoặc 1 trận 2D Vô Thương Hoàn Hảo',ok:x=>Object.values(x.wbWins||{}).filter(v=>v>0).length>=2||!!(x.arenaRec&&x.arenaRec.perfectWins>=1),h:`<svg class="dc sq" viewBox="0 0 180 180"><circle cx="90" cy="90" r="85" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="12 4"/><circle cx="90" cy="90" r="79" fill="none" stroke="#fbbf24" stroke-width="1.6"/>${rg(4,a=>`<text x="90" y="20" transform="rotate(${a} 90 90)" text-anchor="middle" font-size="17">🐉</text>`)}</svg>`}];
-const ACI={kd:'💊',na:'👶',ht:'🌀',th:'⏳',tt:'🌈',sss:'👑',sm:'🎭',lw:'⚔',gd:'💎',tw10:'🏯',wb1:'🐉',rush1:'🔥'},UE=['🧘','⚔','🔥','🍵','🌙','📜','☯','💤'],UQ=[['🧘','Đang bế quan xung kích Kim Đan'],['⚔','Tìm đối thủ luận kiếm'],['🔥','Luyện đan xin đừng làm phiền']];
+const ACI={kd:'💊',na:'👶',ht:'🌀',th:'⏳',tt:'🌈',sss:'👑',sm:'🎭',lw:'⚔',gd:'💎',tw10:'🏯',wb1:'🐉',rush1:'🔥',pd1:'⚡',pd2:'🌌'},UE=['🧘','⚔','🔥','🍵','🌙','📜','☯','💤'],UQ=[['🧘','Đang bế quan xung kích Kim Đan'],['⚔','Tìm đối thủ luận kiếm'],['🔥','Luyện đan xin đừng làm phiền']];
 function profileCard(){const p=s.profile,d=UD[p.decor],bd=ACH.filter(a=>s.ach[a[0]]);
 return `<div class="pn pc"><div class="bn" style="background:${s.uiCfg.bn?"center/cover no-repeat url('"+s.uiCfg.bn+"')":UB[p.banner][1]}" title="${UB[p.banner][0]}"></div><div class="avw">${avatar(s)}${d&&d.ok(s)?d.h:''}</div><div class="pb"><input id="nm" value="${esc(s.name)}" data-chg="name" aria-label="Tên nhân vật" style="width:100%;text-align:center;color:var(--gold);font-weight:bold"><div style="text-align:center"><span class="stt">${p.status?esc(p.emo)+' '+esc(p.status):'<span class="mu">Chưa đặt đạo hiệu</span>'}</span></div><div class="bdg">${bd.map(a=>`<span class="bg1" tabindex="0" data-t="${a[1]}" aria-label="${a[1]}">${ACI[a[0]]}</span>`).join('')||'<span class="mu">Chưa có huy hiệu</span>'}</div><div class="row"><span>Giới tính</span><span>${esc(s.gender)}</span></div><div class="row"><span>Tuổi</span><span>${s.age}</span></div><div class="row"><span>Thân phận</span><span>${characterService.identity(s)}</span></div><div class="row"><span>Danh hiệu</span><span>${characterService.title(s)}${s.reborn?' · Luân Hồi ×'+s.reborn:''}</span></div><div class="row"><span>Ngày tạo</span><span>${new Date(s.created).toLocaleDateString('vi-VN')}</span></div><div class="bt">${btn('pe','',ui.pe?'Đóng chỉnh sửa':'✎ Chỉnh hồ sơ')}</div>${ui.pe?profileEdit():''}</div></div>`}
 function qpickAv(cur){const mk=(list,off)=>`<div class="qpick">${list.map((a,i)=>`<button class="qchip ${cur===safeU(a.u)?'on':''}" data-a="qav" data-x="${off+i}"><img src="${a.u}" referrerpolicy="no-referrer" alt="" onerror="this.style.display='none'">${a.n}</button>`).join('')}</div>`;return`<div class="mu" style="margin-top:4px">Nam Tu Tiên</div>${mk(QCBH_AVATARS.nam,0)}<div class="mu" style="margin-top:4px">Nữ Tu Tiên</div>${mk(QCBH_AVATARS.nu,QCBH_AVATARS.nam.length)}`}
@@ -6766,7 +6789,7 @@ const A={
   ad_tw5:()=>{s.towerFloor=(s.towerFloor||0)+5;say('🏯 Đã mở khóa tới Vạn Kiếp Tháp Tầng '+s.towerFloor)},
   ad_tb5:()=>{['b1','b2','b3','b4'].forEach(id=>inventoryService.add(s,id,5));say('🧭 Đã thêm +5 mỗi loại Trận Bàn (b1–b4) vào kho!')},
   ad_wbtest:()=>{if(typeof ARENA_2D!=='undefined')ARENA_2D.stop();const idx=s.realm>=7?3:s.realm>=5?2:s.realm>=3?1:0;adventureService.fightWorldBoss(s,idx)},
-  ad_rec:()=>{s.towerFloor=Math.max(10,s.towerFloor||0);s.wbWins=Object.assign({},s.wbWins||{},{wb0:1,wb1:1});s.arenaRec=Object.assign({bestDps:0,totalDodged:0,totalInterrupted:0,perfectWins:0,wbBest:{},recent:[]},s.arenaRec||{});s.arenaRec.perfectWins=Math.max(1,s.arenaRec.perfectWins||0);s.arenaRec.bestDps=Math.max(9999,s.arenaRec.bestDps||0);say('🏆 Đã mở khóa 2 Khung Avatar độc quyền (Vạn Kiếp Tháp Chủ & Trảm Cổ Thần Tôn) trong Hồ sơ!')},
+  ad_rec:()=>{s.towerFloor=Math.max(10,s.towerFloor||0);s.wbWins=Object.assign({},s.wbWins||{},{wb0:1,wb1:1});s.arenaRec=Object.assign({bestDps:0,totalDodged:0,totalPerfectDodges:0,bestPerfectDodge:0,totalInterrupted:0,perfectWins:0,wbBest:{},recent:[]},s.arenaRec||{});s.arenaRec.perfectWins=Math.max(1,s.arenaRec.perfectWins||0);s.arenaRec.bestDps=Math.max(9999,s.arenaRec.bestDps||0);say('🏆 Đã mở khóa 2 Khung Avatar độc quyền (Vạn Kiếp Tháp Chủ & Trảm Cổ Thần Tôn) trong Hồ sơ!')},
   buy:x=>shopService.buy(s,+x),sell:x=>shopService.sell(s,x),shopr:()=>shopService.paid(s),
   auc_open:()=>shopService.aucOpen(s),auc_bid:x=>shopService.aucBid(s,+x,.15),auc_bid30:x=>shopService.aucBid(s,+x,.30),auc_pass:x=>shopService.aucPass(s,+x),auc_rob:x=>shopService.aucRobAct(s,+x),
   qsave:()=>{saveService.quickSave(s)},
