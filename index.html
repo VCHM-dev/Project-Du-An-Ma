@@ -303,7 +303,7 @@ h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.59';
+const APP_VERSION='5.60';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -319,6 +319,13 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.60',date:'2026-11-24',title:'Nâng Cấp Trí Tuệ Boss 2D Toàn Diện (Đọc Tình Huống · Đón Đầu · Combo Liên Hoàn · Thân Pháp)',
+      highlights:[
+        {icon:'🧠',title:'AI Đọc Tình Huống & Đón Đầu Hướng Chạy (Context-Aware + Predictive Aiming)',desc:'Boss không còn xoay vòng chiêu cứng: tự phát hiện bạn đang cắm trại Vòng Linh Khí / Kết Giới để gọi Lôi Vực phá vùng an toàn, tự chém Yêu Khí Liên Trảm phá Linh Trụ chắn đạn, và tính vận tốc di chuyển của bạn để đón đầu Địa Chấn Trảm, Lôi Đình Đột Kích và quạt đạn chặn đường!',tab:'adv'},
+        {icon:'⚡',title:'Combo Liên Hoàn 2 Nhịp & Thân Pháp Né Kiếm Khí / Thoái Bộ',desc:'Boss biết phối hợp liên chiêu (Đạn tỏa → Địa Chấn Trảm ép góc, Đột Kích → Yêu Khí Liên Trảm áp sát, Phá Trụ → Quét Ma Quang ở Pha 3), biết đi vòng ngang né đường kiếm khí và bật Thoái Bộ tạo khoảng cách trước khi tung đại chiêu tầm xa!',tab:'adv'}
+      ]
+    },
     {
       version:'5.59',date:'2026-11-24',title:'Khóa Khung Đấu Trường 2D Vừa Gọn 1 Màn Hình PC (Không Che Thanh Kỹ Năng)',
       highlights:[
@@ -4768,7 +4775,7 @@ const ARENA_2D={
       stats:{dmgDealt:0,dmgTaken:0,dodged:0,perfectDodges:0,interrupted:0},
       p:{x:W/2-300,y:H/2,r:21,vx:0,vy:0,ang:0,facing:1,anim:'idle',animT:0,castT:0,atkCd:0,atkHits:0,dashCd:0,dashTime:0,dashVx:0,dashVy:0,invuln:0,hitFlash:0,guardCd:0,guardTime:0,rageTime:0,immTime:0,pImmTime:0,poisonTime:0,skCd:{},petCd:0,quyCd:5,resBuff:0,pdBuff:0,pdUsed:false,inWell:false,inSanctuary:false},
       pet:{x:W/2-350,y:H/2-58,ang:0,atkCd:1.1},
-      boss:{x:W/2+300,y:H/2,r:34,spd:bSpd,facing:-1,anim:'idle',animT:0,castT:0,stun:0,breakTime:0,burnTime:0,burnTick:0,hitFlash:0,enraged:false,reflTime:0,aiCd:1.1,meleeCd:0,casting:null,cycle:0,phase:1,invuln:0},
+      boss:{x:W/2+300,y:H/2,r:34,spd:bSpd,facing:-1,anim:'idle',animT:0,castT:0,stun:0,breakTime:0,burnTime:0,burnTick:0,hitFlash:0,enraged:false,reflTime:0,aiCd:1.1,meleeCd:0,casting:null,cycle:0,phase:1,invuln:0,strafeDir:1,strafeT:2.4,backstepT:0,backVx:0,backVy:0,lastSkill:'',comboNext:null},
       pillars:mkPillars(b.pillarCnt||0),
       well:mkWell(),
       orbs:[],minions:[],arrayField:null,
@@ -5176,63 +5183,142 @@ const ARENA_2D={
       syncButtons();
     };
 
-    const startBossCast=()=>{
-      const bo=st.boss,p=st.p,m=b.mut,cyc=bo.cycle++%6;
+    const leadPos=(sec)=>{
+      const p=st.p,sMul=clamp(sec*(b.advDiff>=2?1.12:b.advDiff===1?1.0:.85),0,.75);
+      return{x:clamp(p.x+(p.vx||0)*sMul,95,W-95),y:clamp(p.y+(p.vy||0)*sMul,85,H-85)};
+    };
+    const triggerBossBackstep=(ang)=>{
+      const bo=st.boss,ba=ang+Math.PI+(Math.random()-.5)*.45;
+      bo.backVx=Math.cos(ba)*640;bo.backVy=Math.sin(ba)*640;bo.backstepT=.22;
+      SFX_2D.play('dash');this.spawnFx('fx_wind_dash',bo.x,bo.y,{scale:1.9,rot:ba});
+      this.addFloat(bo.x,bo.y-bo.r-14,'💨 Thoái Bộ!','#cbd5e1');
+    };
+    const startBossCast=(forced)=>{
+      const bo=st.boss,p=st.p,m=b.mut;bo.cycle++;
       const dist=Math.hypot(p.x-bo.x,p.y-bo.y);
       const ang=Math.atan2(p.y-bo.y,p.x-bo.x);
       bo.facing=p.x>=bo.x?1:-1;
       const dCd=(b.diffObj&&b.diffObj.cd)||1,pSpdB=bo.phase>=3?.78:bo.phase>=2?.86:1;
-      const durMul=((st.arrayField&&st.arrayField.type==='b2')?1.25:1)*Math.max(.7,dCd*pSpdB);
-      const pVel=Math.round(305*(bo.phase>=3?1.22:bo.phase>=2?1.12:1.05));
-      if(m&&m.id==='thiet'&&cyc===2){
+      const durMul=((st.arrayField&&st.arrayField.type==='b2')?1.25:1)*Math.max(.68,dCd*pSpdB);
+      const pVel=Math.round(315*(bo.phase>=3?1.22:bo.phase>=2?1.12:1.05));
+      const canCombo=bo.phase>=2||b.advDiff>=1||!!b.wbId||!!b.mut;
+      const isChain=!!forced;
+
+      // Read live tactical context
+      const blkRay=rayHitPillar(bo.x,bo.y,ang,Math.min(dist,520));
+      const pillarBlk=!!(blkRay&&blkRay.pillar&&blkRay.len<dist-24);
+      const camping=!!(p.inWell||p.inSanctuary);
+
+      if(!forced&&m&&m.id==='thiet'&&bo.cycle%4===0&&bo.reflTime<=0){
         bo.reflTime=4.0;b.fSh=Math.max(b.fSh,Math.round(b.fMaxHp*.14));
         this.spawnFx('fx_golden_body',bo.x,bo.y,{follow:'b',scale:2.0});
         this.addFloat(bo.x,bo.y-bo.r-16,'🛡 THIẾT GIÁP PHẢN CHẤN!','#fbbf24',true);
-        bo.aiCd=1.25*dCd;return;
+        bo.lastSkill='refl';bo.aiCd=1.15*dCd;return;
       }
-      // Gap-closer Lunge Dash when kiting far or on cyc 4 (Hades / Tale of Immortal style!)
-      if((dist>380&&cyc!==5)||(cyc===4&&bo.phase<3)){
-        const lLen=clamp(dist+90,340,600);
-        bo.casting={type:'lunge',ang,len:lLen,w:42,dur:.88*durMul,dashDur:.34,t:0,firing:false,hitDone:false,dmgMul:1.95,label:'⚡ LÔI ĐÌNH ĐỘT KÍCH — NÉ ĐƯỜNG LAO!'};
-        return;
-      }
-      // Phase 3 Signature: Sweeping Elemental Laser Beam (blocked by Linh Trụ!)
-      if(bo.phase>=3&&cyc===4){
-        bo.casting={type:'beam',ang:ang-.65,sweepDir:1.3,dur:1.05*durMul,fireDur:1.4,t:0,firing:false,hitTick:0,dmgMul:2.0,label:'🔥 QUÉT MA QUANG — NẤP SAU LINH TRỤ!'};
-        return;
-      }
-      // Phase 2+ Spiral Bullet Hell
-      if(bo.phase>=2&&cyc===2){
-        bo.castT=.5;
-        const arms=bo.phase>=3?18:14;
-        for(let w=0;w<2;w++){
-          setTimeout(()=>{
-            if(!this.active||b.done||this.st!==st)return;
-            for(let i=0;i<arms;i++){
-              const a=ang+w*.22+(i/arms)*Math.PI*2;
-              st.projs.push({from:'b',x:bo.x,y:bo.y,vx:Math.cos(a)*pVel,vy:Math.sin(a)*pVel,r:9,col:st.elCol,dmg:b.f.luc*1.05,life:4.6,shape:'orb',trail:[]});
-            }
-            this.spawnFx(b.f.el==='thuy'?'fx_frost_palm':'fx_solar_nova',bo.x,bo.y,{scale:2.1});
-          },w*220);
+
+      // Context-Aware Weighted Skill Selection (AI Pack #1)
+      let skill=forced;
+      if(!skill){
+        const w={circle:14,cone:14,multi:14,ring:12,barrage:12,lunge:12,beam:0};
+        if(camping){w.multi+=38;w.circle+=32;w.ring-=6}
+        if(pillarBlk){
+          if(dist<350)w.cone+=34;
+          w.multi+=26;w.circle+=20;w.barrage=2;
         }
-        bo.aiCd=1.15*dCd*pSpdB;return;
+        if(dist>410){w.lunge+=36;w.barrage+=26;w.cone=0}
+        else if(dist<175){w.cone+=28;w.circle+=20;w.lunge=2}
+        if(bo.phase>=3&&dist>=200&&dist<=760){w.beam=pillarBlk?14:32}
+        if(bo.lastSkill&&w[bo.lastSkill]!=null)w[bo.lastSkill]=Math.max(1,Math.round(w[bo.lastSkill]*.22));
+        let sum=0;for(const k in w)if(w[k]>0)sum+=w[k];
+        let roll=Math.random()*sum;
+        for(const k in w){if(w[k]>0){roll-=w[k];if(roll<=0){skill=k;break}}}
+        if(!skill)skill='circle';
+        if(camping&&(skill==='multi'||skill==='circle'))this.addFloat(bo.x,bo.y-bo.r-18,'🧠 PHÁ VÙNG AN TOÀN!','#fbbf24');
+        else if(pillarBlk&&skill==='cone')this.addFloat(bo.x,bo.y-bo.r-18,'🧠 PHÁ LINH TRỤ!','#fb923c');
       }
-      if(cyc===0){bo.casting={type:'circle',x:p.x,y:p.y,r:132,dur:1.12*durMul,t:0,dmgMul:1.85,label:'💥 Địa Chấn Trảm'}}
-      else if(cyc===1){bo.casting={type:'cone',x:bo.x,y:bo.y,r:330,ang,spread:.92,dur:1.05*durMul,t:0,dmgMul:1.95,label:'🌪 Yêu Khí Liên Trảm'}}
-      else if(cyc===2){
-        bo.castT=.45;
-        const cnt=(b.risk||b.advDiff>=2)?16:b.advDiff===1?13:11;
+      bo.lastSkill=skill;
+
+      // Tactical Backstep before ranged skills if player is hugging close (AI Pack #4)
+      if(!isChain&&dist<165&&(skill==='beam'||skill==='barrage'||skill==='ring')&&bo.backstepT<=0&&Math.random()<.65){
+        triggerBossBackstep(ang);
+      }
+
+      // Execute chosen skill with Predictive Aiming (AI Pack #2) & 2-Hit Combo Queuing (AI Pack #3)
+      if(skill==='beam'){
+        const lead=leadPos(.35),la=Math.atan2(lead.y-bo.y,lead.x-bo.x);
+        const dir=(p.vx*(-Math.sin(la))+p.vy*Math.cos(la))>=0?1.3:-1.3;
+        bo.casting={type:'beam',ang:la-dir*.48,sweepDir:dir,dur:1.0*durMul,fireDur:1.4,t:0,firing:false,hitTick:0,dmgMul:2.0,label:(isChain?'⚡ LIÊN HOÀN · ':'')+'🔥 QUÉT MA QUANG — NẤP SAU LINH TRỤ!'};
+        return;
+      }
+      if(skill==='lunge'){
+        const lead=leadPos(.28),la=Math.atan2(lead.y-bo.y,lead.x-bo.x);
+        const lLen=clamp(Math.hypot(lead.x-bo.x,lead.y-bo.y)+85,340,620);
+        bo.casting={type:'lunge',ang:la,len:lLen,w:42,dur:.84*durMul,dashDur:.33,t:0,firing:false,hitDone:false,dmgMul:1.95,label:'⚡ LÔI ĐÌNH ĐỘT KÍCH — NÉ ĐƯỜNG LAO!'};
+        if(canCombo&&!isChain&&Math.random()<.65)bo.comboNext='cone';
+        return;
+      }
+      if(skill==='barrage'){
+        // Predictive Aimed Fan Volley cutting off player's movement vector
+        bo.castT=.44;
+        const lead=leadPos(.42),la=Math.atan2(lead.y-bo.y,lead.x-bo.x);
+        const cnt=bo.phase>=3?7:bo.phase>=2||b.advDiff>=2?6:5,sp=.62;
         for(let i=0;i<cnt;i++){
-          const a=ang+(i/cnt)*Math.PI*2;
-          st.projs.push({from:'b',x:bo.x,y:bo.y,vx:Math.cos(a)*pVel,vy:Math.sin(a)*pVel,r:9,col:st.elCol,dmg:b.f.luc*1.05,life:4.4,shape:'orb',trail:[]});
+          const a=la-sp/2+(cnt>1?(i/(cnt-1))*sp:0);
+          st.projs.push({from:'b',x:bo.x,y:bo.y,vx:Math.cos(a)*(pVel*1.16),vy:Math.sin(a)*(pVel*1.16),r:9,col:st.elCol,dmg:b.f.luc*1.02,life:4.2,shape:'orb',trail:[]});
         }
-        this.spawnFx(b.f.el==='thuy'?'fx_frost_palm':b.f.el==='hoa'?'fx_solar_nova':'fx_poison_mire',bo.x,bo.y,{scale:2.0});
-        bo.aiCd=1.2*dCd*pSpdB;
-      }else{
-        const z=(m&&m.id==='loi')||bo.phase>=3||b.advDiff>=2?6:5,pts=[{x:p.x,y:p.y}];
-        for(let i=1;i<z;i++)pts.push({x:clamp(p.x+(Math.random()-.5)*620,95,W-95),y:clamp(p.y+(Math.random()-.5)*440,85,H-85)});
-        bo.casting={type:'multi',pts,r:96,dur:1.22*durMul,t:0,dmgMul:2.1,label:b.i>=7||bo.phase>=3?'⚡ Cửu Tiêu Thiên Kiếp':'⚡ Lôi Vực Giáng Lâm'};
+        this.spawnFx(b.f.el==='thuy'?'fx_frost_palm':'fx_solar_nova',bo.x,bo.y,{scale:1.9});
+        if(canCombo&&!isChain&&Math.random()<.58){bo.comboNext='circle';bo.aiCd=.42}
+        else bo.aiCd=1.05*dCd*pSpdB;
+        return;
       }
+      if(skill==='ring'){
+        bo.castT=.48;
+        if(bo.phase>=2){
+          const arms=bo.phase>=3?18:14;
+          for(let w=0;w<2;w++){
+            setTimeout(()=>{
+              if(!this.active||b.done||this.st!==st)return;
+              const la=Math.atan2(p.y-bo.y,p.x-bo.x);
+              for(let i=0;i<arms;i++){
+                const a=la+w*.22+(i/arms)*Math.PI*2;
+                st.projs.push({from:'b',x:bo.x,y:bo.y,vx:Math.cos(a)*pVel,vy:Math.sin(a)*pVel,r:9,col:st.elCol,dmg:b.f.luc*1.05,life:4.6,shape:'orb',trail:[]});
+              }
+              this.spawnFx(b.f.el==='thuy'?'fx_frost_palm':'fx_solar_nova',bo.x,bo.y,{scale:2.1});
+            },w*220);
+          }
+          if(canCombo&&!isChain&&Math.random()<.55){bo.comboNext='circle';bo.aiCd=.55}
+          else bo.aiCd=1.1*dCd*pSpdB;
+        }else{
+          const cnt=(b.risk||b.advDiff>=2)?16:b.advDiff===1?13:11;
+          for(let i=0;i<cnt;i++){
+            const a=ang+(i/cnt)*Math.PI*2;
+            st.projs.push({from:'b',x:bo.x,y:bo.y,vx:Math.cos(a)*pVel,vy:Math.sin(a)*pVel,r:9,col:st.elCol,dmg:b.f.luc*1.05,life:4.4,shape:'orb',trail:[]});
+          }
+          this.spawnFx(b.f.el==='thuy'?'fx_frost_palm':b.f.el==='hoa'?'fx_solar_nova':'fx_poison_mire',bo.x,bo.y,{scale:2.0});
+          if(canCombo&&!isChain&&Math.random()<.5){bo.comboNext='circle';bo.aiCd=.45}
+          else bo.aiCd=1.15*dCd*pSpdB;
+        }
+        return;
+      }
+      if(skill==='circle'){
+        const tp=camping?{x:p.x,y:p.y}:leadPos(.42);
+        bo.casting={type:'circle',x:tp.x,y:tp.y,r:134,dur:(isChain?.88:1.08)*durMul,t:0,dmgMul:1.85,label:(isChain?'⚡ LIÊN HOÀN · ':'')+'💥 Địa Chấn Trảm'};
+        return;
+      }
+      if(skill==='cone'){
+        const lead=leadPos(.25),la=Math.atan2(lead.y-bo.y,lead.x-bo.x);
+        bo.casting={type:'cone',x:bo.x,y:bo.y,r:335,ang:la,spread:.95,dur:(isChain?.82:1.02)*durMul,t:0,dmgMul:1.95,label:(isChain?'⚡ LIÊN HOÀN · ':'')+'🌪 Yêu Khí Liên Trảm'};
+        if(bo.phase>=3&&pillarBlk&&!isChain)bo.comboNext='beam';
+        return;
+      }
+      // multi: Predictive Thunder Field (1 on player, 1 leading escape path, rest flanking)
+      const z=(m&&m.id==='loi')||bo.phase>=3||b.advDiff>=2?6:5;
+      const lead=leadPos(.55),pts=[{x:p.x,y:p.y},{x:lead.x,y:lead.y}];
+      for(let i=2;i<z;i++){
+        const fa=ang+(i/z)*Math.PI*2+Math.random()*.5,fr=150+Math.random()*240;
+        pts.push({x:clamp(lead.x+Math.cos(fa)*fr,95,W-95),y:clamp(lead.y+Math.sin(fa)*fr,85,H-85)});
+      }
+      bo.casting={type:'multi',pts,r:98,dur:1.18*durMul,t:0,dmgMul:2.1,label:b.i>=7||bo.phase>=3?'⚡ Cửu Tiêu Thiên Kiếp':'⚡ Lôi Vực Giáng Lâm'};
     };
 
     const resolveBossCast=c=>{
@@ -5240,7 +5326,7 @@ const ARENA_2D={
       if(c.type==='circle'){
         this.spawnFx(b.mut&&b.mut.id==='doc'?'fx_poison_mire':'fx_earth_slam',c.x,c.y,{scale:2.4});
         st.cracks.push({x:c.x,y:c.y,r:68,life:5.5,maxLife:5.5,col:st.elCol});
-        st.pillars.forEach(pl=>{if(pl.hp>0&&Math.hypot(pl.x-c.x,pl.y-c.y)<=c.r+pl.r)damagePillar(pl,b.f.luc*1.7)});
+        st.pillars.forEach(pl=>{if(pl.hp>0&&Math.hypot(pl.x-c.x,pl.y-c.y)<=c.r+pl.r)damagePillar(pl,b.f.luc*1.8)});
         if(Math.hypot(p.x-c.x,p.y-c.y)<=c.r+p.r*.65){
           dealPlayer(b.f.luc*c.dmgMul,'💥Địa Chấn',true);
           if(b.mut&&b.mut.id==='doc'&&st.p.pImmTime<=0&&st.p.immTime<=0)st.p.poisonTime=5.0;
@@ -5248,6 +5334,13 @@ const ARENA_2D={
         if(b.mut&&b.mut.id==='doc')st.pools.push({x:c.x,y:c.y,r:72,life:7.0,tick:0});
       }else if(c.type==='cone'){
         this.spawnFx('fx_flame_slash',bo.x+Math.cos(c.ang)*88,bo.y+Math.sin(c.ang)*88,{scale:3.3,rot:c.ang});
+        st.pillars.forEach(pl=>{
+          if(pl.hp<=0)return;
+          const dp=Math.hypot(pl.x-bo.x,pl.y-bo.y);
+          let dap=Math.atan2(pl.y-bo.y,pl.x-bo.x)-c.ang;
+          while(dap>Math.PI)dap-=Math.PI*2;while(dap<-Math.PI)dap+=Math.PI*2;
+          if(dp<=c.r+pl.r&&Math.abs(dap)<=c.spread/2+.15)damagePillar(pl,b.f.luc*2.2);
+        });
         const d=Math.hypot(p.x-bo.x,p.y-bo.y);
         let da=Math.atan2(p.y-bo.y,p.x-bo.x)-c.ang;
         while(da>Math.PI)da-=Math.PI*2;while(da<-Math.PI)da+=Math.PI*2;
@@ -5257,7 +5350,7 @@ const ARENA_2D={
         st.flash=.18;st.flashCol=b.i>=7?'#fbbf24':'#c084fc';
         c.pts.forEach(pt=>{
           this.spawnFx(fk,pt.x,pt.y-32,{scale:2.2});
-          st.pillars.forEach(pl=>{if(pl.hp>0&&Math.hypot(pl.x-pt.x,pl.y-pt.y)<=c.r+pl.r)damagePillar(pl,b.f.luc*1.5)});
+          st.pillars.forEach(pl=>{if(pl.hp>0&&Math.hypot(pl.x-pt.x,pl.y-pt.y)<=c.r+pl.r)damagePillar(pl,b.f.luc*1.6)});
           if(Math.hypot(p.x-pt.x,p.y-pt.y)<=c.r+p.r*.6)dealPlayer(b.f.luc*c.dmgMul,'⚡Thiên Kiếp',true);
         });
       }
@@ -5501,6 +5594,7 @@ const ARENA_2D={
         if(this.keys.KeyD||this.keys.ArrowRight)mx+=1;
         if(this.joy.on){mx+=this.joy.dx;my+=this.joy.dy}
       }
+      const prevPx=p.x,prevPy=p.y;
       let moving=false;
       if(p.dashTime>0){
         p.dashTime-=dt;p.x+=p.dashVx*dt;p.y+=p.dashVy*dt;moving=true;
@@ -5516,6 +5610,10 @@ const ARENA_2D={
       p.x=clamp(p.x,44,W-44);p.y=clamp(p.y,44,H-44);
       if(!Number.isFinite(p.x))p.x=W/2-300;if(!Number.isFinite(p.y))p.y=H/2;
       pushOutPillars(p);
+      if(dt>.001){
+        const ivx=(p.x-prevPx)/dt,ivy=(p.y-prevPy)/dt;
+        p.vx=(p.vx||0)*.62+ivx*.38;p.vy=(p.vy||0)*.62+ivy*.38;
+      }
 
       // Player animation state machine
       p.anim=p.hitFlash>0?'hit':p.castT>0?'cast':moving?'move':'idle';
@@ -5596,8 +5694,10 @@ const ARENA_2D={
       }
       let bossMoving=false;
       const slowMul=(st.arrayField&&st.arrayField.type==='b2')?.65:1;
-      if(bo.stun>0)bo.stun=Math.max(0,bo.stun-dt);
-      else if(bo.casting){
+      if(bo.stun>0){bo.stun=Math.max(0,bo.stun-dt);bo.comboNext=null;bo.backstepT=0}
+      else if(bo.backstepT>0){
+        bo.backstepT-=dt;bo.x+=bo.backVx*dt;bo.y+=bo.backVy*dt;bossMoving=true;
+      }else if(bo.casting){
         const c=bo.casting;
         if(c.type==='lunge'){
           c.t+=dt;
@@ -5614,7 +5714,9 @@ const ARENA_2D={
               st.shake=Math.max(st.shake,10);
               this.spawnFx('fx_earth_slam',bo.x,bo.y,{scale:2.2});
               if(!c.hitDone&&Math.hypot(p.x-bo.x,p.y-bo.y)<=120+p.r*.6)dealPlayer(b.f.luc*c.dmgMul,'⚡Đột Kích',true);
-              bo.casting=null;bo.aiCd=bo.enraged||bo.phase>=3?.95:1.25;
+              bo.casting=null;
+              if(bo.comboNext==='cone'&&Math.hypot(p.x-bo.x,p.y-bo.y)<340){bo.aiCd=.22}
+              else{bo.comboNext=null;bo.aiCd=bo.enraged||bo.phase>=3?.9:1.2}
             }
           }
         }else if(c.type==='beam'){
@@ -5632,18 +5734,41 @@ const ARENA_2D={
               const perp=Math.abs(fx*Math.sin(curA)-fy*Math.cos(curA));
               if(proj>0&&proj<=hit.len&&perp<=p.r+12)dealPlayer(b.f.luc*.72,'🔥Ma Quang',true);
             }
-            if(c.t>=c.fireDur){bo.casting=null;bo.aiCd=1.25}
+            if(c.t>=c.fireDur){bo.casting=null;bo.aiCd=1.2}
           }
         }else{
           c.t+=dt;
-          if(c.t>=c.dur){resolveBossCast(c);bo.casting=null;bo.aiCd=bo.enraged||bo.phase>=3?.95:1.35}
+          if(c.t>=c.dur){
+            resolveBossCast(c);bo.casting=null;
+            bo.aiCd=bo.comboNext?.3:(bo.enraged||bo.phase>=3?.9:1.25);
+          }
         }
       }else{
-        const d=Math.hypot(bo.x-p.x,bo.y-p.y);
+        // Tactical Strafe + Projectile Sidestep (AI Pack #4)
+        const d=Math.hypot(bo.x-p.x,bo.y-p.y),a=Math.atan2(p.y-bo.y,p.x-bo.x);
         bo.facing=p.x>=bo.x?1:-1;
-        if(d>bo.r+p.r+18){const a=Math.atan2(p.y-bo.y,p.x-bo.x);bo.x+=Math.cos(a)*bo.spd*slowMul*dt;bo.y+=Math.sin(a)*bo.spd*slowMul*dt;bossMoving=true}
-        else{bo.meleeCd-=dt;if(bo.meleeCd<=0){bo.meleeCd=.88;bo.castT=.3;dealPlayer(b.f.luc*.92)}}
-        bo.aiCd-=dt;if(bo.aiCd<=0)startBossCast();
+        bo.strafeT-=dt;
+        if(bo.strafeT<=0||bo.x<120||bo.x>W-120||bo.y<120||bo.y>H-120){bo.strafeDir*=-1;bo.strafeT=2.0+Math.random()*1.6}
+        if(d>bo.r+p.r+20){
+          const approach=d>320?.88:d<160?.2:.62;
+          const lateral=.62*bo.strafeDir;
+          let bx=Math.cos(a)*approach+Math.cos(a+Math.PI/2)*lateral;
+          let by=Math.sin(a)*approach+Math.sin(a+Math.PI/2)*lateral;
+          // Subtle sidestep away from incoming player swords
+          for(let pi=0;pi<st.projs.length;pi++){
+            const pr=st.projs[pi];
+            if(pr.from!=='p')continue;
+            const pdx=bo.x-pr.x,pdy=bo.y-pr.y,pd=Math.hypot(pdx,pdy);
+            if(pd<190&&pd>10){
+              const dot=(pdx*pr.vx+pdy*pr.vy)/(pd*(Math.hypot(pr.vx,pr.vy)||1));
+              if(dot>.88){const side=(pdx*pr.vy-pdy*pr.vx)>=0?-1:1;const pa=Math.atan2(pr.vy,pr.vx)+side*Math.PI/2;bx+=Math.cos(pa)*.75;by+=Math.sin(pa)*.75;break}
+            }
+          }
+          const bl=Math.hypot(bx,by)||1;
+          bo.x+=(bx/bl)*bo.spd*slowMul*dt;bo.y+=(by/bl)*bo.spd*slowMul*dt;bossMoving=true;
+        }else{bo.meleeCd-=dt;if(bo.meleeCd<=0){bo.meleeCd=.85;bo.castT=.3;dealPlayer(b.f.luc*.92)}}
+        bo.aiCd-=dt;
+        if(bo.aiCd<=0){const nx=bo.comboNext;bo.comboNext=null;startBossCast(nx)}
       }
       bo.x=clamp(bo.x,56,W-56);bo.y=clamp(bo.y,56,H-56);
       pushOutPillars(bo);

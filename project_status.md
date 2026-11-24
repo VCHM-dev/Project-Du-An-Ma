@@ -1,12 +1,17 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.59 (`index.html`)  
+> **Phiên bản hiện tại:** v5.60 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Nâng Cấp Trí Tuệ Boss 2D Toàn Diện — Gói AI 1+2+3+4 (`v5.60` · `ARENA_2D`):**
+  - **1. Chọn Chiêu Theo Tình Huống (`startBossCast`):** Bỏ xoay vòng cứng `cyc % 6`, chuyển sang trọng số động đọc ngữ cảnh thực chiến: phát hiện người chơi cắm trại Vòng Linh Khí / Kết Giới `b4` để gọi `Lôi Vực` / `Địa Chấn` phá vùng an toàn, tự chém `Yêu Khí Liên Trảm` phá Linh Trụ chắn đạn (bổ sung sát thương trụ trong `cone`), ưu tiên `Lôi Đình Đột Kích` & quạt đạn `barrage` khi bị thả diều xa, hạn chế lặp chiêu liên tiếp.
+  - **2. Đón Đầu Hướng Chạy (`leadPos`, theo dõi vận tốc mượt `p.vx/p.vy`):** Boss đón đầu quỹ đạo chạy của người chơi cho `Địa Chấn Trảm`, `Lôi Vực` (tia 1 tại chỗ + tia 2 chặn đường chạy), `Lôi Đình Đột Kích`, `Quét Ma Quang` (tự chọn chiều quét thuận hướng chạy) và loạt quạt đạn `barrage`.
+  - **3. Phối Hợp Combo 2 Nhịp Liên Hoàn (`bo.comboNext`):** Kích hoạt từ Pha 2+, Ác Mộng/Hỗn Độn hoặc Cổ Thần/Biến Dị (`ring`/`barrage` → `Địa Chấn` ép góc; `lunge` → `Yêu Khí Liên Trảm` áp sát; `Phá Trụ` → `Quét Ma Quang` ở Pha 3).
+  - **4. Thân Pháp Chiến Thuật (`strafe`, `sidestep`, `triggerBossBackstep`):** Boss đi vòng ngang linh hoạt, lách nhẹ khỏi đường kiếm khí bay tới và chủ động **Thoái Bộ** tạo khoảng cách khi người chơi áp sát trước lúc tung đại chiêu tầm xa.
 - **Khóa Khung Đấu Trường 2D Vừa Gọn 1 Màn Hình PC (`v5.59` · `.a2d-modal`, `.a2d-stage`, `#a2dCanvas`, `.a2d-tbar`):**
   - Chuyển `.a2d-modal` sang `height: 96vh; display: flex; flex-direction: column; overflow: hidden;` và `.a2d-stage` sang `flex: 1 1 0; min-height: 0;` giúp `#a2dCanvas` tự co khít theo chiều cao còn lại, đảm bảo thanh kỹ năng `.a2d-hb-dock` luôn hiện đủ 100% mà không cần cuộn xuống (giữ responsive riêng cho mobile `≤ 860px`).
 - **Mở Rộng Đấu Trường 2D 3.5× (`2000×1200` + Camera + Minimap) & Nâng Sức Mạnh Boss/Quái (`v5.58` · `ARENA_2D`, `adventureService`, `btl2dModal`, `#a2dCanvas`):**
