@@ -143,19 +143,37 @@ img.av{object-fit:cover;image-rendering:pixelated}.pe input[type=file]{padding:3
 @keyframes vfxPop{0%{opacity:0;transform:scale(.55)}30%{opacity:1;transform:scale(1.12)}100%{opacity:0;transform:scale(1.3)}}
 .intent-bar{margin-top:6px;padding:5px 10px;border-radius:7px;font-size:12px;text-align:center;background:rgba(251,191,36,.1);border:1px dashed rgba(251,191,36,.5);color:#fde68a;position:relative;z-index:2}
 .intent-bar.danger{background:rgba(244,63,94,.16);border:1px solid rgba(251,113,133,.75);color:#fecdd3}
-.a2d-stage{position:relative;border-radius:10px;overflow:hidden;border:1px solid color-mix(in srgb,var(--gold) 45%,var(--ln));background:#050812;margin:6px 0}
-#a2dCanvas{display:block;width:100%;height:auto;aspect-ratio:1120/620;touch-action:none;cursor:crosshair;image-rendering:pixelated}
-.a2d-modal{width:min(1140px,98vw);max-height:96vh;overflow-y:auto;padding:12px}
-.a2d-modal.wide{width:min(1440px,99vw)}
-.a2d-hud{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
-@media(max-width:600px){.a2d-hud{grid-template-columns:1fr;gap:5px}}
-.a2d-sk-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:5px;margin:6px 0}
-.a2d-sk{position:relative;overflow:hidden;text-align:left;padding:6px 8px;border-radius:8px;border:1px solid var(--ln);background:var(--in);color:var(--tx);cursor:pointer;display:flex;flex-direction:column;gap:2px}
-.a2d-sk:hover:not(:disabled){border-color:var(--gold)}
-.a2d-sk:active:not(:disabled){transform:scale(.97)}
-.a2d-sk.is-crit{border-color:#2dd4bf}.a2d-sk.is-combo{border-color:#fde047}.a2d-sk.is-weak{border-color:#fb7185}
-.a2d-cd{position:absolute;inset:0;background:rgba(5,8,18,.76);display:none;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--gold);font-variant-numeric:tabular-nums;pointer-events:none}
+.a2d-stage{position:relative;border-radius:10px;overflow:visible;border:1px solid color-mix(in srgb,var(--gold) 45%,var(--ln));background:#050812;margin:4px 0;display:flex;flex-direction:column;align-items:center}
+#a2dCanvas{display:block;width:auto;max-width:100%;max-height:calc(100vh - 165px);height:auto;aspect-ratio:1120/620;border-radius:9px;touch-action:none;cursor:crosshair;image-rendering:pixelated}
+.a2d-modal{width:min(1180px,98vw);max-height:98vh;overflow-y:auto;padding:8px 10px}
+.a2d-modal.wide{width:min(1480px,99vw)}
+.a2d-hud{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:4px}
+@media(max-width:600px){.a2d-hud{grid-template-columns:1fr;gap:4px}}
+/* ARPG Pixel-Art Square Hotbar overlaid at bottom of 2D Arena */
+.a2d-hb-dock{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;pointer-events:none;z-index:9;padding:0 8px}
+.a2d-hb{pointer-events:auto;display:flex;align-items:flex-end;gap:4px;padding:4px 6px;border-radius:10px;background:rgba(6,8,16,.72);backdrop-filter:blur(3px);border:1px solid rgba(148,163,184,.25);box-shadow:0 8px 26px rgba(0,0,0,.78);flex-wrap:wrap;justify-content:center}
+.a2d-hb-sep{width:6px;height:36px;align-self:center;border-right:1px solid rgba(148,163,184,.22);margin-right:2px}
+.a2d-slot{position:relative;width:50px;height:50px;padding:0;border-radius:7px;background:radial-gradient(circle at 50% 35%,#22283a,#0c0f18 85%);border:2px solid #59647a;box-shadow:0 0 0 2px #05070e,inset 0 0 0 2px #161b28,0 3px 0 #04060b;color:#f8fafc;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .1s ease,border-color .15s ease,box-shadow .15s ease}
+.a2d-slot:hover:not(:disabled){border-color:#fbbf24;box-shadow:0 0 0 2px #05070e,inset 0 0 8px rgba(251,191,36,.28),0 0 12px rgba(251,191,36,.45);transform:translateY(-2px);z-index:20}
+.a2d-slot:active:not(:disabled){transform:scale(.94)}
+.a2d-slot.is-crit{border-color:#2dd4bf;box-shadow:0 0 0 2px #05070e,inset 0 0 8px rgba(45,212,191,.28),0 3px 0 #04060b}
+.a2d-slot.is-combo{border-color:#fde047;box-shadow:0 0 0 2px #05070e,inset 0 0 8px rgba(253,224,71,.3),0 3px 0 #04060b}
+.a2d-slot.is-weak{border-color:#fb7185}
+.a2d-slot.is-on{border-color:#fbbf24;background:radial-gradient(circle at 50% 35%,#3b2a12,#120d08 85%);box-shadow:0 0 0 2px #05070e,inset 0 0 10px rgba(251,191,36,.4),0 0 12px rgba(251,191,36,.5)}
+.a2d-slot.is-empty,.a2d-slot.no-mp{opacity:.44;filter:grayscale(.55)}
+.a2d-slot.stance{width:46px;flex-direction:column;gap:0;border-color:#d4af37;background:linear-gradient(180deg,#1c1914,#090a10)}
+.a2d-slot.stance .st-top{font-size:9px;font-weight:800;color:#fde047;line-height:1;letter-spacing:.2px}
+.a2d-slot.stance .st-mid{font-size:17px;line-height:1.1;margin:1px 0}
+.a2d-slot.stance .st-bot{font-size:9px;font-weight:700;color:#94a3b8;line-height:1}
+.a2d-slot .c-ico,.a2d-slot .c-ico-fuse,.a2d-slot .sk-ico,.a2d-slot img.sl-img,.a2d-slot svg.sl-svg{width:38px;height:38px;margin:0;border-radius:4px;image-rendering:pixelated;object-fit:contain;pointer-events:none;display:block}
+.a2d-slot .sl-k{position:absolute;left:3px;bottom:1px;font-size:10px;font-weight:800;color:#e2e8f0;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;line-height:1;pointer-events:none;z-index:3}
+.a2d-slot .sl-q{position:absolute;right:3px;bottom:1px;font-size:11.5px;font-weight:900;color:#fff;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;line-height:1;font-variant-numeric:tabular-nums;pointer-events:none;z-index:3}
+.a2d-slot .sl-pip{position:absolute;top:1px;right:2px;font-size:10px;font-weight:900;line-height:1;text-shadow:0 1px 2px #000;pointer-events:none;z-index:3}
+.a2d-slot .sl-lbl{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:9.5px;font-weight:800;white-space:nowrap;color:#fef08a;text-shadow:0 1px 3px #000,-1px 0 2px #000,1px 0 2px #000;pointer-events:none}
+.a2d-slot[data-htip]:hover::after{content:attr(data-htip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(6,10,20,.96);color:#f8fafc;border:1px solid var(--gold);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:600;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.8);pointer-events:none;z-index:40}
+.a2d-cd{position:absolute;inset:0;border-radius:5px;background:rgba(4,7,15,.78);display:none;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fde047;text-shadow:0 1px 3px #000;font-variant-numeric:tabular-nums;pointer-events:none;z-index:5}
 .a2d-cd.on{display:flex}
+@media(max-width:860px){.a2d-hb-dock{position:relative;bottom:auto;margin-top:6px;padding:0}#a2dCanvas{max-height:58vh}.a2d-slot{width:42px;height:42px}.a2d-slot.stance{width:40px}.a2d-slot .c-ico,.a2d-slot .c-ico-fuse,.a2d-slot .sk-ico,.a2d-slot img.sl-img,.a2d-slot svg.sl-svg{width:30px;height:30px}}
 .a2d-ov{position:absolute;inset:0;background:rgba(4,7,16,.82);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:14px;z-index:12}
 .a2d-ov.on{display:flex}
 .a2d-ov-card{background:var(--pn);border:1px solid var(--gold);border-radius:12px;padding:14px 16px;max-width:380px;width:100%;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,.7)}
@@ -265,7 +283,7 @@ h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.48';
+const APP_VERSION='5.49';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -281,6 +299,16 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.49',date:'2026-11-24',title:'Thanh Kỹ Năng Ô Vuông Pixel-Art ARPG Nổi Trực Tiếp Trên Đấu Trường 2D (Không Cần Cuộn)',
+      highlights:[
+        {icon:'🎮',title:'Thanh Hotbar Ô Vuông Pixel-Art Chuẩn ARPG (Gọn Trong 1 Màn Hình)',desc:'Thiết kế lại toàn bộ dải nút kỹ năng, đan dược, trận bàn, đổi Tâm Pháp (Tab) và Auto AI (H) thành các ô vuông viền kim loại 16-bit nổi gọn ngay cạnh dưới Đấu Trường 2D — biểu tượng to rõ, phím tắt góc trái, số lượng góc phải, hover hiện chi tiết tức thì và không cần cuộn trang!',tab:'adv'},
+        {icon:'⌨',title:'Phím Tắt Đầy Đủ Cho Mọi Ô Hotbar',desc:'Bổ sung phím Tab đổi nhanh Tâm Pháp, Z/X/C/V kích hoạt 4 Trận Bàn thực chiến (b1–b4) và phím H bật/tắt Auto AI trực tiếp như game ARPG cổ điển!',tab:'adv'}
+      ],
+      tourSteps:[
+        {tab:'adv',selector:'#app .pn',title:'Thanh Hotbar Ô Vuông Pixel-Art ARPG Mới',desc:'Vào bất kỳ trận Đấu Trường 2D nào để trải nghiệm thanh kỹ năng ô vuông nổi gọn ngay trên màn hình chiến đấu (Space, Q/E/R, G, F, Z/X/C/V, 1–4, Tab, H)!'}
+      ]
+    },
     {
       version:'5.48',date:'2026-11-24',title:'Chế Độ Đột Kích Liên Hoàn (Boss Rush 2D) & Nền Địa Hình Ngũ Hành / Thánh Địa Trên Sàn Đấu 2D',
       highlights:[
@@ -5033,12 +5061,22 @@ const ARENA_2D={
     const syncButtons=()=>{
       const cH=cntOf(['d1','d3','d12']),c14=cntOf(['d14']),c15=cntOf(['d15']),c16=cntOf(['d16']);
       const setT=(id,t)=>{const e=$(id);if(e)e.textContent=t};
+      const setEm=(id,em)=>{const e=$(id);if(e)e.classList.toggle('is-empty',!!em)};
       setT('a2dPillCnt',b.pills);setT('a2dH',cH);setT('a2d14',c14);setT('a2d15',c15);setT('a2d16',c16);
-      setT('a2dPetCh',b.petCharges||0);
-      ['b1','b2','b3','b4'].forEach(k=>setT('a2d_'+k,cntOf([k])));
-      document.querySelectorAll('[data-a2d^="st_"]').forEach(el=>{
-        el.classList.toggle('on',+el.dataset.a2d.slice(3)===b.stance);
+      setEm('a2dSlH',cH<=0||b.pills<=0);setEm('a2dSl14',c14<=0||b.pills<=0);setEm('a2dSl15',c15<=0||b.pills<=0);setEm('a2dSl16',c16<=0||b.pills<=0);
+      setT('a2dPetCh',b.petCharges||0);setEm('a2dSlPet',(b.petCharges||0)<=0);
+      ['b1','b2','b3','b4'].forEach(k=>{
+        const q=cntOf([k]),used=!!b['t'+k];
+        setT('a2d_'+k,q);
+        const sl=$('a2dSl_'+k);
+        if(sl){sl.classList.toggle('is-empty',q<=0&&!used);sl.classList.toggle('is-on',used)}
       });
+      const stIco=$('a2dStIcon'),stBox=$('a2dStSlot');
+      if(stIco)stIco.textContent=['⚔','🛡','💨'][b.stance||0];
+      if(stBox&&STANCES[b.stance||0])stBox.setAttribute('data-htip',`Tâm Pháp: ${STANCES[b.stance||0].n} (${STANCES[b.stance||0].d}) · Bấm [Tab] để đổi`);
+      const auSlot=$('a2dAutoSlot'),auSt=$('a2dAutoSt');
+      if(auSlot)auSlot.classList.toggle('is-on',!!this.auto);
+      if(auSt){auSt.textContent=this.auto?'Bật':'Tắt';auSt.style.color=this.auto?'#fde047':'#94a3b8'}
       const au=$('a2dAutoBtn');if(au){au.textContent=this.auto?'🤖 Auto AI: BẬT':'🎮 Thủ Công';au.classList.toggle('on',this.auto)}
       const sp=$('a2dSpdBtn');if(sp){sp.textContent=this.spdMul>1?'⚡ Tốc 1.5×':'▶ Tốc 1×';sp.classList.toggle('on',this.spdMul>1)}
       const sr=$('a2dSprBtn');if(sr){sr.textContent=this.useSpr?'🎨 Sprite Toàn Thân':'🖼 Chân Dung';sr.classList.toggle('on',this.useSpr)}
@@ -5077,7 +5115,8 @@ const ARENA_2D={
       }
       const setCd=(id,v)=>{const e=$(id);if(!e)return;if(v>.05){e.classList.add('on');e.textContent=v.toFixed(1)+'s'}else e.classList.remove('on')};
       setCd('a2dCdDash',p.dashCd);setCd('a2dCdGuard',p.guardCd);setCd('a2dCdPet',p.petCd);
-      b.skills.forEach((sk,idx)=>setCd('a2dCdSk'+idx,p.skCd[sk.id]||0));
+      b.skills.forEach((sk,idx)=>{setCd('a2dCdSk'+idx,p.skCd[sk.id]||0);const sl=$('a2dSlSk'+idx);if(sl)sl.classList.toggle('no-mp',b.mp<Math.round(b.maxMp*sk.mpCost))});
+      const gSl=$('a2dSlGuard');if(gSl)gSl.classList.toggle('no-mp',b.mp<Math.round(b.maxMp*.2));
     };
 
     const drawPortrait=(im,x,y,r,col,flash,fallbackTxt)=>{
@@ -5681,21 +5720,27 @@ const ARENA_2D={
     this._kd=e=>{
       if(!this.active||b.done)return;
       this.keys[e.code]=true;
-      if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();
+      if(['Space','Tab','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();
       if(e.code==='Space'){
         let dx=0,dy=0;
         if(this.keys.KeyW||this.keys.ArrowUp)dy-=1;if(this.keys.KeyS||this.keys.ArrowDown)dy+=1;
         if(this.keys.KeyA||this.keys.ArrowLeft)dx-=1;if(this.keys.KeyD||this.keys.ArrowRight)dx+=1;
         doDash(dx,dy);
-      }else if(e.code==='KeyQ')castSkill(0);
+      }else if(e.code==='Tab')setStance(((b.stance||0)+1)%3);
+      else if(e.code==='KeyQ')castSkill(0);
       else if(e.code==='KeyE')castSkill(1);
       else if(e.code==='KeyR')castSkill(2);
       else if(e.code==='KeyF')castPet();
       else if(e.code==='KeyG')doGuard();
+      else if(e.code==='KeyZ')doTB('b1');
+      else if(e.code==='KeyX')doTB('b2');
+      else if(e.code==='KeyC')doTB('b3');
+      else if(e.code==='KeyV')doTB('b4');
       else if(e.code==='Digit1')doPill(null);
       else if(e.code==='Digit2')doPill('d14');
       else if(e.code==='Digit3')doPill('d15');
       else if(e.code==='Digit4')doPill('d16');
+      else if(e.code==='KeyH'){this.auto=!this.auto;ui.a2dAuto=this.auto;syncButtons()}
     };
     this._ku=e=>{this.keys[e.code]=false};
     window.addEventListener('keydown',this._kd);
@@ -5717,6 +5762,7 @@ const ARENA_2D={
       else if(c==='pill')doPill(null);
       else if(c.slice(0,5)==='pill_')doPill(c.slice(5));
       else if(c.slice(0,3)==='tb_')doTB(c.slice(3));
+      else if(c==='st_next')setStance(((b.stance||0)+1)%3);
       else if(c.slice(0,3)==='st_')setStance(+c.slice(3));
       else if(c==='auto'){this.auto=!this.auto;ui.a2dAuto=this.auto;syncButtons()}
       else if(c==='spd'){this.spdMul=this.spdMul>1?1:1.5;ui.a2dSpd=this.spdMul;syncButtons()}
@@ -5775,55 +5821,47 @@ function btl2dModal(){
 <div class="a2d-tbar"><span id="a2dTerrainTxt" class="mu">🏛 Linh Trụ · 🌀 Vòng Linh Khí · 🧭 Trận Bàn</span><span class="mu" style="font-size:10.5px">Mẹo: Nấp sau Linh Trụ chắn đạn & Ma Quang · Đứng Vòng Linh Khí hồi +220% MP</span></div>
 ${b.ghost?`<div class="a2d-tbar" style="border-color:#38bdf8;background:rgba(14,165,233,.08)"><span id="a2dGhostTxt" style="color:#7dd3fc;font-size:11.5px">👻 ${esc(b.ghost.nm)} · Mục tiêu ${b.ghost.dur.toFixed(1)}s</span><div class="bar" style="width:170px;height:6px;margin:0"><i id="a2dGhostBar" style="width:0%;background:linear-gradient(90deg,#38bdf8,#fbbf24)"></i></div></div>`:''}
 
-<div class="a2d-stage">
-  <canvas id="a2dCanvas" width="1120" height="620"></canvas>
-  <div class="a2d-ov" id="a2dOv"></div>
-</div>
-
-<div class="a2d-sk-row">
-  <button class="a2d-sk" data-a2d="dash">
-    <div class="row" style="font-size:12px"><b>💨 Lướt Né</b><span class="mu">[Space]</span></div>
-    <span class="mu" style="font-size:10.5px">0.28s bất tử né vùng đỏ</span>
-    <div class="a2d-cd" id="a2dCdDash"></div>
-  </button>
-  ${b.skills.map((sk,idx)=>{
+${(()=>{
+  const svgDash=`<svg class="sl-svg" viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M2 11h5v1H3v1H2zm2-3h7v1H4zm2-3h7v1H6z" fill="#38bdf8"/><path d="M9 3h4v1h1v4h-1v1h-2V8h1V5H9zm-3 6h6v2H6z" fill="#e0f2fe"/><rect x="11" y="4" width="2" height="2" fill="#fff"/></svg>`;
+  const svgGuard=`<svg class="sl-svg" viewBox="0 0 16 16" shape-rendering="crispEdges"><path d="M8 1L3 3v5c0 3.5 2.5 5.8 5 7 2.5-1.2 5-3.5 5-7V3z" fill="#b45309"/><path d="M8 2L4 3.6v4.3c0 2.8 1.9 4.7 4 5.8 2.1-1.1 4-3 4-5.8V3.6z" fill="#fbbf24"/><path d="M8 4L5.5 5v3c0 1.8 1.1 3.1 2.5 3.9 1.4-.8 2.5-2.1 2.5-3.9V5z" fill="#fef08a"/><rect x="7" y="6" width="2" height="4" fill="#d97706"/></svg>`;
+  const svgAuto=`<svg class="sl-svg" viewBox="0 0 16 16" shape-rendering="crispEdges"><circle cx="8" cy="8" r="6" fill="none" stroke="#d97706" stroke-width="1.2"/><path d="M3 12l2 1 8-8V3h-2zm10 0l-2 1-8-8V3h2z" fill="#fde047"/><rect x="7" y="7" width="2" height="2" fill="#fff"/></svg>`;
+  const curSt=STANCES[b.stance||0]||STANCES[0];
+  const petImgSrc=b.pet?(ACTOR_ART['pet_'+b.pet.d.id]||PET_IMG[b.pet.d.id]||''):'';
+  const skSlots=[0,1,2].map(idx=>{
+    const sk=b.skills[idx],k=skKeys[idx];
+    if(!sk)return `<div class="a2d-slot is-empty" data-htip="Ô Công Pháp [${k}] trống (Trang bị thêm ở tab Công Pháp)"><span class="sl-k">${k}</span></div>`;
     const m=adventureService.skMatch(s,b,sk),cost=Math.round(b.maxMp*sk.mpCost);
-    const cls=['a2d-sk',m.isCrit?'is-crit':'',m.isWeak?'is-weak':'',m.isCombo?'is-combo':''].join(' ');
-    return `<button class="${cls}" data-a2d="sk_${idx}" title="${esc(sk.tag)}">
-      <div class="row" style="font-size:11.5px"><b>${techIconHtml(sk,'sm')}${esc(sk.n)}</b><span class="mu">[${skKeys[idx]||idx+1}]</span></div>
-      <span class="mu" style="font-size:10px">${cost} MP${m.isCrit?' · ▲Khắc':''}${m.isCombo?' · ✦Hợp':''}</span>
-      <div class="a2d-cd" id="a2dCdSk${idx}"></div>
-    </button>`;
-  }).join('')}
-  <button class="a2d-sk" data-a2d="guard">
-    <div class="row" style="font-size:12px"><b>🛡 Hộ Thể</b><span class="mu">[G]</span></div>
-    <span class="mu" style="font-size:10.5px">Thuẫn + giảm 35% ST</span>
-    <div class="a2d-cd" id="a2dCdGuard"></div>
-  </button>
-  ${b.pet?`<button class="a2d-sk" data-a2d="pet">
-    <div class="row" style="font-size:12px"><b>${b.pet.d.ico} ${esc(b.pet.d.n)}</b><span class="mu">[F] (<span id="a2dPetCh">${b.petCharges}</span>)</span></div>
-    <span class="mu" style="font-size:10.5px">Bản Mệnh Kỹ Linh Thú</span>
-    <div class="a2d-cd" id="a2dCdPet"></div>
-  </button>`:''}
-</div>
-
-<div class="bt" style="justify-content:space-between;align-items:center;font-size:11.5px">
-  <div class="bt" style="margin:0;gap:4px">
-    <span class="mu">Đan(<span id="a2dPillCnt">${b.pills}</span>):</span>
-    <button class="chip" data-a2d="pill">💊 Hồi(<span id="a2dH">${cH}</span>)</button>
-    ${c14?`<button class="chip" data-a2d="pill_d14">🔥 Bạo(<span id="a2d14">${c14}</span>)</button>`:''}
-    ${c15?`<button class="chip" data-a2d="pill_d15">🛡 Cang(<span id="a2d15">${c15}</span>)</button>`:''}
-    ${c16?`<button class="chip" data-a2d="pill_d16">🌿 Độc(<span id="a2d16">${c16}</span>)</button>`:''}
-    ${cB1?`<button class="chip" data-a2d="tb_b1" title="5 Trận Nhãn Ngũ Hành — bước lên cộng hưởng +30% ST">🧭 Nghịch(<span id="a2d_b1">${cB1}</span>)</button>`:''}
-    ${cB2?`<button class="chip" data-a2d="tb_b2" title="4 Xích Tỏa Linh — trói chậm Boss -35% & kéo dài tụ lực">🔱 Tỏa(<span id="a2d_b2">${cB2}</span>)</button>`:''}
-    ${cB3?`<button class="chip" data-a2d="tb_b3" title="4 Kiếm Trụ Tru Ma — tự động bắn kiếm quang liên tục">⚔ Tru(<span id="a2d_b3">${cB3}</span>)</button>`:''}
-    ${cB4?`<button class="chip" data-a2d="tb_b4" title="Kết Giới Hộ Đạo trung tâm — giảm 35% ST & hồi thuẫn">🛡 Hộ(<span id="a2d_b4">${cB4}</span>)</button>`:''}
-  </div>
-  <div class="bt" style="margin:0;gap:4px">
-    ${STANCES.map((st,idx)=>`<button class="chip ${b.stance===idx?'on':''}" data-a2d="st_${idx}" title="${esc(st.d)}">${['⚔','🛡','💨'][idx]} ${st.n.split(' ')[0]}</button>`).join('')}
-  </div>
-</div>
-<div class="mu" style="font-size:10.5px;margin-top:4px">🎮 PC: <b>WASD / Mũi tên</b> di chuyển · <b>Space</b> Lướt né · <b>Q/E/R/F/G</b> Chiêu · <b>1–4</b> Đan | 📱 Cảm ứng: kéo nửa trái sân để di chuyển</div>
+    const cls=['a2d-slot',m.isCrit?'is-crit':'',m.isWeak?'is-weak':'',m.isCombo?'is-combo':''].join(' ');
+    const pip=m.isCrit?'<span class="sl-pip" style="color:#2dd4bf">▲</span>':m.isCombo?'<span class="sl-pip" style="color:#fde047">✦</span>':'';
+    return `<button class="${cls}" id="a2dSlSk${idx}" data-a2d="sk_${idx}" data-htip="${esc(`${sk.n} [${k}] · ${cost.toLocaleString('vi-VN')} MP${m.isCrit?' · ▲Khắc Hệ':''}${m.isCombo?' · ✦Hợp Hệ':''} · ${sk.tag}`)}">${techIconHtml(sk,'lg')}${pip}<span class="sl-k">${k}</span><div class="a2d-cd" id="a2dCdSk${idx}"></div></button>`;
+  }).join('');
+  const tbDefs=[['b1','Z','Ngũ Hành Nghịch Chuyển (+30% ST & -1.5s CD)',cB1],['b2','X','Tứ Tượng Tỏa Linh (Trói Boss -35% tốc)',cB2],['b3','C','Cửu Tiêu Tru Ma (4 Kiếm Trụ tự xạ)',cB3],['b4','V','Hỗn Độn Hộ Đạo (Kết giới -35% ST & hồi thuẫn)',cB4]];
+  const tbSlots=tbDefs.map(([id,k,tip,cnt])=>`<button class="a2d-slot ${cnt<=0&&!b['t'+id]?'is-empty':''} ${b['t'+id]?'is-on':''}" id="a2dSl_${id}" data-a2d="tb_${id}" data-htip="${esc(`${ID[id].n} [${k}] · ${tip}`)}">${itemIconHtml(id,'lg')}<span class="sl-k">${k}</span><span class="sl-q" id="a2d_${id}">${cnt}</span></button>`).join('');
+  const pillDefs=[
+    ['pill','a2dSlH','d12','1','a2dH',cH,'Hồi Linh Đan (Hồi 38% HP & 45% MP)'],
+    ['pill_d14','a2dSl14','d14','2','a2d14',c14,'Bạo Nguyên Đan (+45% Công 9s)'],
+    ['pill_d15','a2dSl15','d15','3','a2d15',c15,'Kim Cang Đan (Thuẫn + Miễn Khống 6s)'],
+    ['pill_d16','a2dSl16','d16','4','a2d16',c16,'Giải Độc Đan (Xóa độc + Miễn độc 12s)']
+  ];
+  const pillSlots=pillDefs.map(([act,sid,iid,k,cid,cnt,tip],pi)=>`<button class="a2d-slot ${cnt<=0||b.pills<=0?'is-empty':''}" id="${sid}" data-a2d="${act}" data-htip="${esc(`${tip} [${k}]`)}">${pi===0?`<span class="sl-lbl">Đan:<b id="a2dPillCnt">${b.pills}</b></span>`:''}${itemIconHtml(iid,'lg')}<span class="sl-k">${k}</span><span class="sl-q" id="${cid}">${cnt}</span></button>`).join('');
+  return `<div class="a2d-stage">
+  <canvas id="a2dCanvas" width="1120" height="620"></canvas>
+  <div class="a2d-hb-dock"><div class="a2d-hb">
+    <button class="a2d-slot stance" id="a2dStSlot" data-a2d="st_next" data-htip="${esc(`Tâm Pháp: ${curSt.n} (${curSt.d}) · Bấm [Tab] để đổi`)}"><span class="st-top">Tâm</span><span class="st-mid" id="a2dStIcon">${['⚔','🛡','💨'][b.stance||0]}</span><span class="st-bot">Tab</span></button>
+    ${skSlots}
+    <button class="a2d-slot" data-a2d="dash" data-htip="Lướt Né [Space] · 0.28s bất tử xuyên vùng đỏ">${svgDash}<span class="sl-k">Spc</span><div class="a2d-cd" id="a2dCdDash"></div></button>
+    <button class="a2d-slot" id="a2dSlGuard" data-a2d="guard" data-htip="Hộ Thể [G] · Tạo Thuẫn + giảm 35% sát thương (20% MP)">${svgGuard}<span class="sl-k">G</span><div class="a2d-cd" id="a2dCdGuard"></div></button>
+    ${b.pet?`<button class="a2d-slot ${b.petCharges<=0?'is-empty':''}" id="a2dSlPet" data-a2d="pet" data-htip="${esc(`${b.pet.d.n} [F] · Bản Mệnh Kỹ Linh Thú`)}">${petImgSrc?`<img class="sl-img" src="${petImgSrc}" alt="">`:`<span style="font-size:24px">${b.pet.d.ico}</span>`}<span class="sl-k">F</span><span class="sl-q" id="a2dPetCh">${b.petCharges}</span><div class="a2d-cd" id="a2dCdPet"></div></button>`:`<div class="a2d-slot is-empty" data-htip="Ô Linh Thú [F] trống (Thu phục Linh Thú ở tab Đồng Hành)"><span class="sl-k">F</span></div>`}
+    <div class="a2d-hb-sep"></div>
+    ${tbSlots}
+    <div class="a2d-hb-sep"></div>
+    ${pillSlots}
+    <div class="a2d-hb-sep"></div>
+    <button class="a2d-slot ${ui.a2dAuto?'is-on':''}" id="a2dAutoSlot" data-a2d="auto" data-htip="Bật/Tắt Tự Động Chiến Đấu (Auto AI) [H]"><span class="sl-lbl">Tự đánh</span>${svgAuto}<span class="sl-k">H</span><span class="sl-q" id="a2dAutoSt" style="font-size:10px;color:${ui.a2dAuto?'#fde047':'#94a3b8'}">${ui.a2dAuto?'Bật':'Tắt'}</span></button>
+  </div></div>
+  <div class="a2d-ov" id="a2dOv"></div>
+</div>`;
+})()}
 </div></div>`;
 }
 

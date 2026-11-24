@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.48 (`index.html`)  
+> **Phiên bản hiện tại:** v5.49 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Thanh Kỹ Năng Ô Vuông Pixel-Art Chuẩn ARPG Nổi Trực Tiếp Trên Đấu Trường 2D (`v5.49` · `.a2d-hb-dock`, `.a2d-slot`, `btl2dModal`, `ARENA_2D`):**
+  - **Thiết Kế Lại Toàn Bộ Dải Nút Thành Thanh Hotbar Ô Vuông 16-bit (`50×50px`, nổi cạnh dưới `.a2d-stage`, vừa gọn 1 màn hình không cần cuộn):** Gồm ô đổi **Tâm Pháp (`Tab`)**, 3 ô **Công Pháp (`Q/E/R`)** dùng ảnh 16-bit toàn phần kèm dấu Khắc/Hợp, ô **Lướt Né (`Spc`)**, **Hộ Thể (`G`)**, **Linh Thú (`F`)**, 4 ô **Trận Bàn (`Z/X/C/V`)**, 4 ô **Đan Dược (`1–4`)** và ô **Tự đánh Auto AI (`H`)** — có phím tắt góc trái, số lượng/trạng thái góc phải, làm mờ khi hết MP/hết đồ, đồng hồ hồi chiêu rõ nét và tooltip chi tiết khi rê chuột (`data-htip`).
+  - **Tối Ưu Khung Canvas 1 Màn Hình & Phím Tắt Đầy Đủ:** Giới hạn `#a2dCanvas` bằng `max-height: calc(100vh - 165px)` giữ đúng tỷ lệ `1120/620` (tọa độ cảm ứng/joystick chính xác 100%) để toàn bộ HUD + Sân Đấu + Thanh Hotbar hiển thị gọn không cần cuộn; bổ sung phím `Tab`, `Z/X/C/V` và `H` trong `ARENA_2D._kd`.
 - **Chế Độ Đột Kích Liên Hoàn (Boss Rush 2D) & 9 Nền Địa Hình Ngũ Hành / Thánh Địa Trên Sàn Đấu 2D (`v5.48` · `adventureService.fightBossRush`, `getArenaFloor`, `ARENA_FLOOR_CACHE`, `GHOST_2D`, `ARENA_2D`, `btl2dModal`, `vAdv`, `ACH.rush1`, `ACI.rush1`, `A.rush_go`/`rush_next`):**
   - **Đột Kích Liên Hoàn (Boss Rush 2D · 4 Cổ Thần 3 Pha Liên Tiếp):** Chiến đấu sinh tồn xuyên suốt cả 4 Cổ Thần (`wb0 → wb1 → wb2 → wb3`) trong 1 chuỗi liên hoàn (giữa mỗi ải tự hồi `+35% HP / +50% MP / +1 lượt đan`, thua không mất thọ nguyên/ám thương); phá đảo `4/4` lưu kỷ lục `s.arenaRec.rushBest`, thưởng đại lễ (`+1.500×(Cảnh giới+1)💎`, `+2 Đạo Dẫn Địa`, `+1 Kỳ Vật Thiên`, `+1 Trận Bàn b4`), mở khóa thành tựu `🔥 rush1` và hỗ trợ xuất/đua **Mã Ghost Boss Rush** (`type:'rush'`, kèm NPC **Thiên Đế · Diệp Phàm** `68.0s`).
   - **9 Nền Địa Hình Minh Họa & Hạt Môi Trường Động (`getArenaFloor`, `ARENA_FLOOR_CACHE`, `ARENA_2D`):** Vẽ minh họa trực tiếp 4 Thánh Địa Cổ Thần (*Thanh Khâu Yêu Vực* hoa đào & đèn linh hỏa, *Cực Bắc Băng Uyên* cực quang & vết nứt pha lê, *Vạn Cốt Ma Đàn* dung nham & hỏa đài, *Vực Ngoại Tiên Đàn* tinh hà chòm sao) cùng 5 địa hình Ngũ Hành (*Thanh Trúc Lâm, Bích Thủy Đầm, Xích Diễm Cốc, Hoàng Sa Cổ Trận, Cửu Kiếm Cổ Đàn*) được cache lên offscreen canvas giữ vững 60fps kèm hạt thời tiết/môi trường động theo bản đồ.
