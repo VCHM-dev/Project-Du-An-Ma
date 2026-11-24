@@ -1,12 +1,14 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.58 (`index.html`)  
+> **Phiên bản hiện tại:** v5.59 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Khóa Khung Đấu Trường 2D Vừa Gọn 1 Màn Hình PC (`v5.59` · `.a2d-modal`, `.a2d-stage`, `#a2dCanvas`, `.a2d-tbar`):**
+  - Chuyển `.a2d-modal` sang `height: 96vh; display: flex; flex-direction: column; overflow: hidden;` và `.a2d-stage` sang `flex: 1 1 0; min-height: 0;` giúp `#a2dCanvas` tự co khít theo chiều cao còn lại, đảm bảo thanh kỹ năng `.a2d-hb-dock` luôn hiện đủ 100% mà không cần cuộn xuống (giữ responsive riêng cho mobile `≤ 860px`).
 - **Mở Rộng Đấu Trường 2D 3.5× (`2000×1200` + Camera + Minimap) & Nâng Sức Mạnh Boss/Quái (`v5.58` · `ARENA_2D`, `adventureService`, `btl2dModal`, `#a2dCanvas`):**
   - **Chiến Trường Mở Rộng `2000×1200` & Khung Nhìn Widescreen `1280×680` (Cảm Hứng *Quỷ Cốc Bát Hoang* & *Hades*):** Mở rộng diện tích sân đấu gấp `~3.5×` kèm **Camera bám nhân vật mượt mà** có góc nhìn Look-Ahead về phía Boss (`78% Player + 22% Boss`), **Minimap chiến thuật** góc trên phải (`160×96px`), **Mũi tên chỉ hướng Boss** kèm khoảng cách khi Boss ra ngoài khung nhìn, viền Kết Giới Đấu Pháp, và mở rộng khoảng cách Linh Trụ / Trận Pháp / tầm đánh (`520px`) / tốc độ lướt (`720 px/s`).
   - **Nâng Sức Mạnh Quái & Boss + Vá Cộng Dồn Hộ Thuẫn Vô Hạn (`addShield`, `dealPlayer`, `startBossCast`):** Khóa chặt trần Hộ Thuẫn `110% maxHP` cho mọi nguồn (`da_l2`, kỹ năng hồi máu/thuẫn, Linh Thú, Hộ Thể, Đan, Trận Bàn), nâng công/HP Quái & Boss toàn chế độ và `df.sync`, bổ sung **Phá Thuẫn `×1.55`** cho đại chiêu vùng đỏ, mở trần sát thương theo Uy Áp Cảnh Giới (`b.diff >= 2`), và thêm chiêu Boss mới **`⚡ Lôi Đình Đột Kích` (`lunge`)** lao xuyên sân áp sát (có hỗ trợ Né Hoàn Hảo `Space`).

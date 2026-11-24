@@ -163,11 +163,11 @@ img.av{object-fit:cover;image-rendering:pixelated}.pe input[type=file]{padding:3
 @keyframes vfxPop{0%{opacity:0;transform:scale(.55)}30%{opacity:1;transform:scale(1.12)}100%{opacity:0;transform:scale(1.3)}}
 .intent-bar{margin-top:6px;padding:5px 10px;border-radius:7px;font-size:12px;text-align:center;background:rgba(251,191,36,.1);border:1px dashed rgba(251,191,36,.5);color:#fde68a;position:relative;z-index:2}
 .intent-bar.danger{background:rgba(244,63,94,.16);border:1px solid rgba(251,113,133,.75);color:#fecdd3}
-.a2d-stage{position:relative;border-radius:10px;overflow:visible;border:1px solid color-mix(in srgb,var(--gold) 45%,var(--ln));background:#050812;margin:4px 0;display:flex;flex-direction:column;align-items:center}
-#a2dCanvas{display:block;width:100%;max-width:100%;max-height:calc(100vh - 150px);height:auto;aspect-ratio:1280/680;border-radius:9px;touch-action:none;cursor:crosshair;image-rendering:pixelated;object-fit:contain}
-.a2d-modal{width:min(1340px,98vw);max-height:98vh;overflow-y:auto;padding:8px 10px}
-.a2d-modal.wide{width:min(1580px,99vw)}
-.a2d-hud{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:4px}
+.a2d-stage{position:relative;flex:1 1 0;min-height:0;border-radius:10px;overflow:hidden;border:1px solid color-mix(in srgb,var(--gold) 45%,var(--ln));background:#050812;margin:2px 0 0;display:flex;align-items:center;justify-content:center}
+#a2dCanvas{display:block;width:100%;height:100%;max-width:100%;max-height:100%;border-radius:9px;touch-action:none;cursor:crosshair;image-rendering:pixelated;object-fit:contain}
+.a2d-modal{width:min(1360px,98vw);height:96vh;max-height:96vh;display:flex;flex-direction:column;overflow:hidden;padding:8px 10px}
+.a2d-modal.wide{width:min(1600px,99vw)}
+.a2d-hud{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:4px;flex-shrink:0}
 @media(max-width:600px){.a2d-hud{grid-template-columns:1fr;gap:4px}}
 /* ARPG Pixel-Art Square Hotbar overlaid at bottom of 2D Arena */
 .a2d-hb-dock{position:absolute;left:0;right:0;bottom:8px;display:flex;justify-content:center;pointer-events:none;z-index:9;padding:0 8px}
@@ -193,12 +193,12 @@ img.av{object-fit:cover;image-rendering:pixelated}.pe input[type=file]{padding:3
 .a2d-slot[data-htip]:hover::after{content:attr(data-htip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(6,10,20,.96);color:#f8fafc;border:1px solid var(--gold);border-radius:6px;padding:4px 8px;font-size:11px;font-weight:600;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.8);pointer-events:none;z-index:40}
 .a2d-cd{position:absolute;inset:0;border-radius:5px;background:rgba(4,7,15,.78);display:none;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:#fde047;text-shadow:0 1px 3px #000;font-variant-numeric:tabular-nums;pointer-events:none;z-index:5}
 .a2d-cd.on{display:flex}
-@media(max-width:860px){.a2d-hb-dock{position:relative;bottom:auto;margin-top:6px;padding:0}#a2dCanvas{max-height:58vh}.a2d-slot{width:42px;height:42px}.a2d-slot.stance{width:40px}.a2d-slot .c-ico,.a2d-slot .c-ico-fuse,.a2d-slot .sk-ico,.a2d-slot img.sl-img,.a2d-slot svg.sl-svg{width:30px;height:30px}}
+@media(max-width:860px){.a2d-modal{height:auto;overflow-y:auto}.a2d-stage{flex:none;flex-direction:column;overflow:visible}.a2d-hb-dock{position:relative;bottom:auto;margin-top:6px;padding:0}#a2dCanvas{height:auto;max-height:58vh}.a2d-slot{width:42px;height:42px}.a2d-slot.stance{width:40px}.a2d-slot .c-ico,.a2d-slot .c-ico-fuse,.a2d-slot .sk-ico,.a2d-slot img.sl-img,.a2d-slot svg.sl-svg{width:30px;height:30px}}
 .a2d-ov{position:absolute;inset:0;background:rgba(4,7,16,.82);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:14px;z-index:12}
 .a2d-ov.on{display:flex}
 .a2d-ov-card{background:var(--pn);border:1px solid var(--gold);border-radius:12px;padding:14px 16px;max-width:380px;width:100%;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,.7)}
 .a2d-ph-mark{position:absolute;top:0;bottom:0;width:2px;background:rgba(255,255,255,.78);box-shadow:0 0 4px #000;z-index:4;pointer-events:none}
-.a2d-tbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between;font-size:11px;padding:4px 8px;margin-bottom:4px;border-radius:7px;background:rgba(8,14,28,.82);border:1px solid color-mix(in srgb,var(--jade) 35%,var(--ln))}
+.a2d-tbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:space-between;font-size:11px;padding:4px 8px;margin-bottom:4px;border-radius:7px;background:rgba(8,14,28,.82);border:1px solid color-mix(in srgb,var(--jade) 35%,var(--ln));flex-shrink:0}
 .tw-hero{background:radial-gradient(circle at 82% 25%,rgba(245,158,11,.18),transparent 52%),radial-gradient(circle at 18% 80%,rgba(56,189,248,.14),transparent 52%),var(--pn);border-color:color-mix(in srgb,var(--gold) 60%,var(--ln))}
 .wb-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:99px;font-size:11px;background:rgba(244,63,94,.16);border:1px solid rgba(251,113,133,.5);color:#fda4af}
 .brk-fx-wrap{position:relative;height:96px;border-radius:10px;overflow:hidden;margin-bottom:8px;background:radial-gradient(circle at 50% 72%,rgba(245,158,11,.22),rgba(5,8,18,.92));border:1px solid color-mix(in srgb,var(--gold) 45%,var(--ln));display:flex;align-items:center;justify-content:center}
@@ -303,7 +303,7 @@ h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.58';
+const APP_VERSION='5.59';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -319,6 +319,12 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.59',date:'2026-11-24',title:'Khóa Khung Đấu Trường 2D Vừa Gọn 1 Màn Hình PC (Không Che Thanh Kỹ Năng)',
+      highlights:[
+        {icon:'🖥',title:'Hiển Thị Trọn Vẹn Toàn Bộ Thanh Kỹ Năng & Sân Đấu Không Cần Cuộn',desc:'Chuyển khung Đấu Trường 2D sang bố cục flex-column cố định 96vh (sân đấu tự co khít theo chiều cao còn lại), đảm bảo thanh Hotbar kỹ năng phía dưới luôn hiển thị đầy đủ trên mọi độ phân giải màn hình PC mà không cần cuộn xuống!',tab:'adv'}
+      ]
+    },
     {
       version:'5.58',date:'2026-11-24',title:'Mở Rộng Đấu Trường 2D 3.5× (2000×1200 + Camera + Minimap) & Nâng Sức Mạnh Boss/Quái',
       highlights:[
