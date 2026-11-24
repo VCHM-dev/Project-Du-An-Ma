@@ -1,24 +1,12 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.59 (`index.html`)  
+> **Phiên bản hiện tại:** v5.55 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
-- **Khôi Phục Kéo Chuột Trái Trên PC Cho Đấu Trường 2D (`v5.59` · `ARENA_2D`):**
-  - Cho phép giữ và kéo chuột trái (`e.button === 0`) trên sàn Đấu Trường 2D để di chuyển song song với `WASD` / phím mũi tên trên PC (vẫn giữ chống kẹt phím `blur`/`visibilitychange` và chặn lặp phím `e.repeat`).
-- **Cân Bằng Sát Thương Boss Chế Độ Hỗn Độn (Chống One-Shot) & Bảo Vệ Tọa Độ 2D (`v5.58` · `adventureService`, `ARENA_2D`):**
-  - **Sửa Công Thức Đồng Bộ Công Boss (`df.sync` trong `initBattle` & `initSpecialBattle`):** Chuyển từ đồng bộ theo `baseLuc` (`0.72–0.92×`, gây one-shot ngay lập tức với các nhánh sát thương cao như Kiếm Tu có `Lực >> HP`) sang đồng bộ theo khả năng chịu đòn thực tế (`baseThu * 0.28 + maxHp * 0.22–0.26`).
-  - **Trần Sát Thương Chống One-Shot (`ARENA_2D` · `dealPlayer`) & Khóa Tọa Độ:** Giới hạn sát thương tối đa mỗi đòn trên Đấu Trường 2D ở `45% maxHp` (đòn thường) và `75% maxHp` (đại chiêu vùng đỏ), đồng thời tự khôi phục tọa độ `(195, H/2)` nếu `p.x`/`p.y` rơi vào trạng thái không hữu hạn.
-- **Sửa Lỗi Nghiêm Trọng `Tốc NaN` & Kẹt Nhân Vật Ở Góc Sàn Khi Kiêm Tu (`v5.57` · `characterStatsService`, `ARENA_2D`):**
-  - **Sửa công thức `sumW` trong `characterStatsService`:** Hợp nhất khóa thuộc tính của cả Chính Tu (`w0`) và Kiêm Tu (`w1`) và mặc định `0` cho thuộc tính không tồn tại ở một trong hai Đạo lộ (trước đây `undefined * 0.25` sinh ra `NaN` khiến `Tốc`/`Lực`/`Thủ` thành `NaN` khi Kiêm Tu khác nhóm thuộc tính như *Kiếm Tu + Linh/Thể Tu*).
-  - **Gia cố phòng thủ tốc độ trong `ARENA_2D.mount()`:** Kiểm tra `Number.isFinite(b.toc)` và `Number.isFinite(b.f.toc)` trước khi tính `spdRatio`/`pSpd` để tránh kẹt tọa độ `(NaN, NaN)` ở góc trên bên trái sân đấu.
-- **Tối Ưu Điều Khiển Bàn Phím & Chuột PC Cho Đấu Trường 2D (`v5.56` · `ARENA_2D`):**
-  - **Chống Kẹt Phím Khi Mất Focus (`_blur`, `_vis`, `stop`):** Gắn listener `window.blur` và `document.visibilitychange` tự động xóa sạch `this.keys` & trạng thái `joy` khi người chơi `Alt+Tab` hoặc ẩn tab (và gỡ sạch trong `ARENA_2D.stop()`), loại bỏ hoàn toàn lỗi nhân vật tiếp tục tự chạy vào vùng đỏ Boss.
-  - **Chặn Lặp Phím Tắt (`e.repeat`):** Giữ `e.preventDefault()` cho `Space/Tab/Arrows`, nhưng bỏ qua sự kiện `e.repeat` trong `this._kd` để giữ lì phím `H` (Auto AI), `Tab` (Đổi thế), `Space`, `Q/E/R`, `1–4`... không bị kích hoạt lặp ngoài ý muốn.
-  - **Tách Chuột PC Khỏi Virtual Joystick (`cv.onpointerdown`):** Bỏ qua `e.pointerType === 'mouse'` khi khởi tạo joystick cảm ứng trên canvas, giúp click chuột trên PC không làm trượt nhân vật.
 - **Bảng Thuộc Tính Nhân Vật Tinh Gọn Chuẩn ARPG + Tooltip Phân Tích Chi Tiết (`v5.55` · `.st`, `.st-c`, `.st-cols`, `.st-row`, `vChar`, `buildDet`):**
   - **Thu Gọn Hơn Nửa Chiều Cao Chiếm Chỗ (`vChar`, `.st`):** Chuyển 6 ô Cốt Cách lớn thành 1 hàng 6 thẻ mini khung mảnh gọn gàng (tự chuyển 3×2 trên màn hẹp), giữ viền vàng `★` cho thuộc tính Bản mệnh Đạo lộ / `☆` cho Kiêm Tu, và sửa lỗi hiển thị dấu `+-` khi chỉ số cộng thêm âm (`-7.5` màu đỏ, `+45.5` màu xanh).
   - **Danh Sách Chỉ Số 2 Cột Phân Nhóm Gọn Mắt (`.st-cols`, `.st-hd`, `.st-row`):** Thay 8 hộp lớn bằng 4 nhóm dòng kẻ ngang xen kẽ nền tối (*Tấn Công · Phòng Thủ · Tu Hành · Căn Cơ & Bổ Trợ*, cân đối 7 dòng mỗi cột), dễ quét số liệu `tabular-nums` trong nháy mắt.

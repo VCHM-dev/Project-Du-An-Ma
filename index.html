@@ -303,7 +303,7 @@ h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.58';
+const APP_VERSION='5.55';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -319,25 +319,6 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
-    {
-      version:'5.58',date:'2026-11-24',title:'Cân Bằng Sát Thương Boss Chế Độ Hỗn Độn (Chống One-Shot) & Bảo Vệ Tọa Độ 2D',
-      highlights:[
-        {icon:'🛡',title:'Sửa Lỗi Vào Boss Bị Chết Ngay (One-Shot) Ở Chế Độ Hỗn Độn',desc:'Đồng bộ Công Boss theo khả năng chịu đòn thực tế (Thủ & HP tối đa) thay vì nhân theo Lực của các nhánh sát thương cao như Kiếm Tu, đồng thời thêm trần sát thương mỗi đòn trên Đấu Trường 2D (tối đa 45% HP cho đòn thường, 75% HP cho đại chiêu vùng đỏ) và khóa bảo vệ tọa độ nhân vật chống NaN!',tab:'adv'}
-      ]
-    },
-    {
-      version:'5.57',date:'2026-11-24',title:'Sửa Lỗi Nghiêm Trọng Tốc Độ NaN & Kẹt Nhân Vật Ở Góc Sàn Khi Kiêm Tu Đạo Lộ',
-      highlights:[
-        {icon:'🛠',title:'Khắc Phục Lỗi Chỉ Số Lực / Thủ / Tốc Thành NaN Khi Kiêm Tu (subPath)',desc:'Sửa công thức trộn trọng số thuộc tính giữa Chính Tu và Kiêm Tu (sumW) để hợp nhất đầy đủ khóa thuộc tính của cả 2 Đạo lộ (mặc định 0 khi khác hệ), loại bỏ triệt để lỗi Tốc NaN khiến nhân vật bị kẹt ở góc trên trái Đấu Trường 2D!',tab:'adv'}
-      ]
-    },
-    {
-      version:'5.56',date:'2026-11-24',title:'Tối Ưu Điều Khiển Bàn Phím & Chuột PC Cho Đấu Trường 2D',
-      highlights:[
-        {icon:'⌨',title:'Chống Kẹt Phím Di Chuyển Khi Alt+Tab / Mất Tiêu Điểm',desc:'Tự động giải phóng toàn bộ trạng thái phím WASD/mũi tên và joystick khi chuyển cửa sổ (blur) hoặc ẩn tab trình duyệt (visibilitychange), không còn tình trạng nhân vật tự lao vào vùng đỏ của Boss.',tab:'adv'},
-        {icon:'🎯',title:'Chặn Lặp Phím Tắt (Key Repeat) & Tách Chuột PC Khỏi Joystick Ảo',desc:'Bỏ qua sự kiện giữ lì phím (e.repeat) cho các nút kỹ năng/đổi thế/Auto AI (Space, Tab, Q/E/R, F, G, Z/X/C/V, 1–4, H) để tránh bật tắt nhầm; chỉ kích hoạt Virtual Joystick cho thao tác cảm ứng/bút, giúp click chuột trên PC không làm trượt nhân vật.',tab:'adv'}
-      ]
-    },
     {
       version:'5.55',date:'2026-11-24',title:'Thiết Kế Lại Bảng Thuộc Tính Nhân Vật Tinh Gọn Chuẩn ARPG + Tooltip Phân Tích Trực Tiếp',
       highlights:[
@@ -4703,15 +4684,13 @@ function getArenaFloor(W,H,themeKey,bg1,bg2){
 const ARENA_2D={
   W:1120,H:620,raf:0,active:false,b:null,st:null,keys:{},auto:false,spdMul:1,useSpr:true,
   joy:{on:false,id:null,sx:0,sy:0,cx:0,cy:0,dx:0,dy:0},
-  imgs:{},_kd:null,_ku:null,_clk:null,_blur:null,_vis:null,
+  imgs:{},_kd:null,_ku:null,_clk:null,
   stop(){
     if(this.raf){cancelAnimationFrame(this.raf);this.raf=0}
     if(this._kd){window.removeEventListener('keydown',this._kd);this._kd=null}
     if(this._ku){window.removeEventListener('keyup',this._ku);this._ku=null}
     if(this._clk){document.removeEventListener('click',this._clk);this._clk=null}
-    if(this._blur){window.removeEventListener('blur',this._blur);this._blur=null}
-    if(this._vis){document.removeEventListener('visibilitychange',this._vis);this._vis=null}
-    this.active=false;this.b=null;this.st=null;this.keys={};this.joy.on=false;this.joy.dx=0;this.joy.dy=0;
+    this.active=false;this.b=null;this.st=null;this.keys={};this.joy.on=false;
     if(typeof bgOverride==='function')bgOverride(null);
   },
   loadSpr(k,src){if(!src)return null;const im=new Image();im.src=src;this.imgs[k]=im;return im},
@@ -5487,7 +5466,6 @@ const ARENA_2D={
         }
       }
       p.x=clamp(p.x,38,W-38);p.y=clamp(p.y,38,H-38);
-      if(!Number.isFinite(p.x))p.x=195;if(!Number.isFinite(p.y))p.y=H/2;
       pushOutPillars(p);
 
       // Player animation state machine
@@ -5977,9 +5955,8 @@ const ARENA_2D={
     // Controls
     this._kd=e=>{
       if(!this.active||b.done)return;
-      if(['Space','Tab','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();
       this.keys[e.code]=true;
-      if(e.repeat)return;
+      if(['Space','Tab','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();
       if(e.code==='Space'){
         let dx=0,dy=0;
         if(this.keys.KeyW||this.keys.ArrowUp)dy-=1;if(this.keys.KeyS||this.keys.ArrowDown)dy+=1;
@@ -6002,16 +5979,11 @@ const ARENA_2D={
       else if(e.code==='KeyH'){this.auto=!this.auto;ui.a2dAuto=this.auto;syncButtons()}
     };
     this._ku=e=>{this.keys[e.code]=false};
-    const clearInputs=()=>{this.keys={};this.joy.on=false;this.joy.dx=0;this.joy.dy=0};
-    this._blur=clearInputs;
-    this._vis=()=>{if(document.hidden)clearInputs()};
     window.addEventListener('keydown',this._kd);
     window.addEventListener('keyup',this._ku);
-    window.addEventListener('blur',this._blur);
-    document.addEventListener('visibilitychange',this._vis);
 
     const pos=e=>{const r=cv.getBoundingClientRect();return{x:((e.clientX-r.left)/r.width)*W,y:((e.clientY-r.top)/r.height)*H}};
-    cv.onpointerdown=e=>{if(e.pointerType==='mouse'&&e.button!==0)return;const pt=pos(e);if(pt.x<W*.65){this.joy.on=true;this.joy.id=e.pointerId;this.joy.sx=pt.x;this.joy.sy=pt.y;this.joy.cx=pt.x;this.joy.cy=pt.y;this.joy.dx=0;this.joy.dy=0;try{cv.setPointerCapture(e.pointerId)}catch(_){}}};
+    cv.onpointerdown=e=>{const pt=pos(e);if(pt.x<W*.65){this.joy.on=true;this.joy.id=e.pointerId;this.joy.sx=pt.x;this.joy.sy=pt.y;this.joy.cx=pt.x;this.joy.cy=pt.y;this.joy.dx=0;this.joy.dy=0;try{cv.setPointerCapture(e.pointerId)}catch(_){}}};
     cv.onpointermove=e=>{if(!this.joy.on||e.pointerId!==this.joy.id)return;const pt=pos(e),dx=pt.x-this.joy.sx,dy=pt.y-this.joy.sy,ln=Math.hypot(dx,dy),mr=42;if(ln>mr){this.joy.cx=this.joy.sx+(dx/ln)*mr;this.joy.cy=this.joy.sy+(dy/ln)*mr}else{this.joy.cx=pt.x;this.joy.cy=pt.y}this.joy.dx=ln>6?dx/Math.max(ln,mr):0;this.joy.dy=ln>6?dy/Math.max(ln,mr):0};
     const endJ=e=>{if(this.joy.on&&e.pointerId===this.joy.id){this.joy.on=false;this.joy.dx=0;this.joy.dy=0}};
     cv.onpointerup=endJ;cv.onpointercancel=endJ;
@@ -7052,15 +7024,4 @@ setInterval(()=>{
     }
   }
 },5000);
-</script></body></html>/body></html>Interval(()=>{
-  if(!s||ui.btl||ui.sv||ui.gdModal||ui.gdTour||ui.admAuth||ui.det||ui.ap||ui.pe||ui.brkInfo)return;
-  const r=rtService.tick(s,false);
-  if(s.mode==='realtime'&&(r||(s.rt&&s.rt.furnace)||(s.rt&&s.rt.garden&&s.rt.garden.some(Boolean)))){
-    store.save(s,true);
-    if(ui.tab==='cul'||ui.tab==='craft'){
-      const sb=$('sb');if(sb)sb.innerHTML=sbar();
-      const app=$('app');if(app)app.innerHTML=ui.tab==='cul'?vCul():vCraft();
-    }
-  }
-},5000);
-</script></body></html>/body></html>
+</script></body></html>
