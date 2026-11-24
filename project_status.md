@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.60 (`index.html`)  
+> **Phiên bản hiện tại:** v5.61 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Bộ Chọn Trang Bị Trực Quan & Chọn Nhanh Đồ Đang Mặc Trong Bách Nghệ (`v5.61` · `sortCraftEq`, `crEqMeta`, `craftPickUI`, `crPickModal`, `vCraft`, `A.cr_pick_*`):**
+  - **Thay thế `<select>` kéo dài ở Nâng Phẩm (`kq`), Tinh Luyện (`rf`) và Bản Mệnh (`bm`):** Hiển thị 1 thẻ xem trước đầy đủ icon Pixel Art, phẩm chất, nhãn (`Đang mặc`, `⚔ Bản Mệnh`, `★ Cực phẩm`, `[Linh/Bảo/Thần Khí]`, `+rf`, `🔒`) và chỉ số gốc.
+  - **Thanh Chọn Nhanh 1-Click Đồ Đang Mặc:** Ngay trên thẻ xem trước có sẵn các chip chọn nhanh cho từng trang bị đang mặc hợp lệ.
+  - **Popup Lưới Thẻ Thông Minh (`crPickModal`):** Tự sắp xếp theo thứ tự ưu tiên (*Đang mặc → Bản Mệnh → Cực phẩm → Khóa → Phẩm chất cao → Tinh luyện cao*), có tab lọc theo loại (*Tất cả / Đang mặc / Vũ khí / Giáp / Phụ kiện / Pháp bảo*), và tự động **gom nhóm trang bị trùng y hệt (`×SL`)** để không còn danh sách dài lặp lại.
 - **Nâng Cấp Trí Tuệ Boss 2D Toàn Diện — Gói AI 1+2+3+4 (`v5.60` · `ARENA_2D`):**
   - **1. Chọn Chiêu Theo Tình Huống (`startBossCast`):** Bỏ xoay vòng cứng `cyc % 6`, chuyển sang trọng số động đọc ngữ cảnh thực chiến: phát hiện người chơi cắm trại Vòng Linh Khí / Kết Giới `b4` để gọi `Lôi Vực` / `Địa Chấn` phá vùng an toàn, tự chém `Yêu Khí Liên Trảm` phá Linh Trụ chắn đạn (bổ sung sát thương trụ trong `cone`), ưu tiên `Lôi Đình Đột Kích` & quạt đạn `barrage` khi bị thả diều xa, hạn chế lặp chiêu liên tiếp.
   - **2. Đón Đầu Hướng Chạy (`leadPos`, theo dõi vận tốc mượt `p.vx/p.vy`):** Boss đón đầu quỹ đạo chạy của người chơi cho `Địa Chấn Trảm`, `Lôi Vực` (tia 1 tại chỗ + tia 2 chặn đường chạy), `Lôi Đình Đột Kích`, `Quét Ma Quang` (tự chọn chiều quét thuận hướng chạy) và loạt quạt đạn `barrage`.
