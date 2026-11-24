@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.62 (`index.html`)  
+> **Phiên bản hiện tại:** v5.63 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Chuẩn Hóa Toàn Bộ Tên Gọi & Thuật Ngữ Thuần Tu Tiên Việt Hóa (`v5.63` · `vAdv`, `btl2dModal`, `ARENA_2D`, `GHOST_2D`, `WORLD_BOSSES`, `towerFoeOf`, `wbFoeOf`, `ADV_DIFFS`, `ACH`, `TABS`, `buildDet`, `vChar`, `vInv`, `vTec`, `vCraft`, `vShop`, `vSect`, `vComp`, `vKt`, `savePanel`, `guideService`, `apHTML`, `mediaHTML`, `A`):**
+  - **Đồng nhất tên nút & chế độ thực chiến (loại bỏ từ kỹ thuật/Anh ngữ):** `Khiêu chiến 2D (3 Pha)` / `Khiêu chiến` → `⚔ Khiêu Chiến`; `3 Pha / Đa Pha / Pha 1-2-3` → `Tam Biến` (`Biến 1/2/3`, `Cổ Thần Tam Biến`, `Thủ Tháp Tam Biến`); `Đấu Trường 2D` → `Đấu Trường Thực Chiến` (`⚔ Thực Chiến`); `Boss Rush 2D` → `Đột Kích Liên Hoàn` (`Liên Hoàn`); `Ghost / Liên Server` → `Tàn Ảnh` / `Liên Giới`; `DPS` → `Sát Thương/s` (`ST/s`); `Auto AI / Sprite / SFX / BGM` → `Tự Động / Toàn Thân / Âm Thanh / Nhạc Nền`; `Perfect Dodge / Né HH` → `Né Hoàn Hảo`; `Boss` (UI người chơi) → `Yêu Vương / Thủ Tháp / Cổ Thần / Địch Thủ`; `Soft Cap / Pity` → `Ngưỡng Giảm Dần / Bảo Hiểm`; `Real-Time / Offline / Avatar / Tour / Nitro Theme` → `Thời Gian Thực / Ngoại Tuyến / Chân Dung / Hướng Dẫn Tân Thủ / Tùy Chỉnh Tự Do`.
+  - **Sửa lỗi lệch tên thực tế & viết hoa toàn game:** Sửa `GHOST_2D.NPC[0]` (`npc_hanlap`, mục tiêu `wb0`) từ `Cổ Thần Thanh Long` → `Cửu Vĩ Yêu Hoàng`; đồng nhất toàn bộ 12 tab trong `TABS` sang Title Case (`Nhân Vật`, `Thiên Phú`, `Tu Luyện`, `Kho Đồ`, `Công Pháp`, ... `⚙ Quản Trị`) và thanh trên (`Kho Lưu Trữ`, `Giao Diện`); đồng nhất `Chí mạng` → `Bạo kích`, `Ngang cấp` → `Đủ Cảnh Giới`, `5,000` → `5.000`, `Linh thạch` → `Linh Thạch` trên tiêu đề/nút chính; cập nhật chú thích trần Hộ Thuẫn trong `buildDet` từ `150% Max HP` → `110% Sinh Mệnh tối đa` khớp cơ chế thực tế từ `v5.58`.
 - **Sửa Lỗi Click Trong Popup Chọn Trang Bị Bách Nghệ (`v5.62` · `crPickModal`, `NO_TS`):**
   - Thay `onclick="event.stopPropagation()"` bằng `data-a="noop"` chuẩn của hệ thống điều phối sự kiện toàn cục, giúp toàn bộ nút lọc, thẻ chọn trang bị và nút Đóng bên trong popup `crPickModal` bấm hoạt động tức thì; đồng thời thêm các lệnh `cr_pick_*` vào `NO_TS`.
 - **Bộ Chọn Trang Bị Trực Quan & Chọn Nhanh Đồ Đang Mặc Trong Bách Nghệ (`v5.61` · `sortCraftEq`, `crEqMeta`, `craftPickUI`, `crPickModal`, `vCraft`, `A.cr_pick_*`):**
