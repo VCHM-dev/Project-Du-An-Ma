@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.45 (`index.html`)  
+> **Phiên bản hiện tại:** v5.46 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-23  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Nhạc Nền Cổ Phong Động Theo Trận Chiến (`BG_SCENES`, `bgOverride`, `bgDrum`) & Thi Đấu Ghost Liên Server 2D (`GHOST_2D`, `v5.46`):**
+  - **Nhạc Nền Cổ Phong Tổng Hợp Web Audio 100% Offline (`BG_SCENES`, `bgOverride`, `bgDrum`, `mediaHTML`, `bgmHTML`, `btl2dModal`):** Bổ sung 3 bản nhạc nền chiến đấu/Thiên Kiếp cổ phong tổng hợp bằng Web Audio không file ngoài (*⚔ Kiếm Khí Trường Ca* cho Đấu Trường 2D, *🐉 Cổ Thần Chiến Cổ* cho Boss 3 Pha/Tháp Boss, *⚡ Cửu Tiêu Lôi Kiếp* cho Đột Phá Thiên Kiếp); tự động crossfade mượt khi vào `ARENA_2D` / `BRK_FX` và khôi phục nhạc gốc khi đóng, kèm nút `🎵/🔇 BGM` ngay trên thanh điều khiển trận đấu 2D và tùy chọn bật/tắt `Tự chuyển nhạc chiến đấu` (`s.uiCfg.dynBgm`) + nghe thử trong Cài đặt.
+  - **Thi Đấu Liên Server · Đua Ghost & Chia Sẻ Mã Chiến Tích 2D (`GHOST_2D`, `ARENA_2D`, `btl2dModal`, `vAdv`, `migrate`, `A`):** Xuất/nhập mã chiến tích `DM2D-...` gọn nhẹ kèm mã kiểm tra toàn vẹn FNV-1a chống sửa đổi; tích hợp sẵn **3 Cao Thủ NPC** (*Kiếm Thánh Hàn Lập, Huyền Nữ Nam Cung Uyển, Đạo Tôn Thạch Hạo*) để đua ngay offline; khi bấm **👻 Đua Ghost 2D**, Tàn Ảnh Ghost sẽ xuất hiện trực tiếp trên sàn đấu 2D kèm thanh tiến độ & đồng hồ dẫn trước/chậm hơn theo thời gian thực (`#a2dGhostBar`, `#a2dGhostTxt`); vượt mặt Ghost lần đầu thưởng Linh Thạch + 1 Đạo Dẫn bản mệnh (`PATH_MATS`).
 - **Âm Thanh Chiến Đấu Web Audio (`SFX_2D`) · Bảng Kỷ Lục Tháp & Nhật Ký Chiến Tích 2D · 2 Khung Avatar Độc Quyền (`v5.45` · `SFX_2D`, `BRK_FX`, `ARENA_2D`, `btl2dModal`, `vAdv`, `UD`, `ACI`, `migrate`, `vAdmin`, `A.ad_rec`):**
   - **Âm Thanh Chiến Đấu Web Audio 100% Offline (`SFX_2D`):** Tổng hợp 13 nhóm hiệu ứng âm thanh thực chiến không cần file mp3 (*kiếm khí, lướt gió Space, trúng đòn, bạo kích, dính đòn, né hoàn hảo, tuyệt kỹ theo Ngũ Hành, sấm sét Thiên Kiếp, vỡ Linh Trụ, tiếng chuông Trận Bàn, còi chuyển Pha Boss, khải hoàn / chiến bại*), đồng bộ mức âm lượng `s.uiCfg.vol` và có nút bật/tắt **`🔊/🔇 SFX`** riêng trong `btl2dModal`.
   - **Bảng Kỷ Lục Vạn Kiếp Tháp & Nhật Ký Chiến Tích 2D (`s.arenaRec`, `vAdv`):** Lưu và hiển thị đỉnh Vạn Kiếp Tháp, DPS kỷ lục, thời gian phá nhanh nhất + DPS cao nhất cho từng Cổ Thần 3 Pha, tổng lần né/ngắt chiêu, số trận **Vô Thương Hoàn Hảo**, nhãn `🏅 KỶ LỤC MỚI!` khi thắng trận và bảng 12 trận 2D gần nhất.
