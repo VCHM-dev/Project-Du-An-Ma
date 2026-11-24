@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.50 (`index.html`)  
+> **Phiên bản hiện tại:** v5.51 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **9 Ảnh Minh Họa Nền Địa Hình 16-bit Pixel Art Trực Tiếp Trên Sàn Đấu Trường 2D (`v5.51` · `ARENA_BG_IMG`, `ARENA_BG_CACHE`, `getArenaBgImg`, `ARENA_2D`):**
+  - **4 Ảnh Nền Thánh Địa Cổ Thần 16-bit Độc Bản (`560×310` WebP, phóng sắc nét `2×` trên sàn `1120×620`):** *Thanh Khâu hoa đào & đèn linh hỏa* (`wb0`), *Cực Bắc băng nguyên cực quang & băng nứt* (`wb1`), *Vạn Cốt Ma Đàn huyết nham* (`wb2`), và *Vực Ngoại Tiên Đàn tinh hà Bát Quái* (`wb3`).
+  - **5 Ảnh Nền Địa Hình Ngũ Hành Cho Lịch Luyện Dã Ngoại & Vạn Kiếp Tháp:** *Thanh Trúc Lâm* (`moc`), *Bích Thủy Đầm hoa sen* (`thuy`), *Xích Diễm Cốc dung nham* (`hoa`), *Hoàng Sa Cổ Trận* (`tho`) và *Cửu Kiếm Cổ Đàn* (`kim`) — nhúng 100% offline (`294 KB` WebP tổng cho 9 bản đồ), đi kèm lớp làm dịu tương phản tâm sân để vùng cảnh báo đỏ, đạn đạo, Linh Trụ và nhân vật luôn nổi bật rõ nét.
 - **Đại Tu Sức Mạnh Boss & Yêu Thú Toàn Chế Độ · 3 Cấp Độ Khiêu Chiến (`v5.50` · `ADV_DIFFS`, `advDiffOf`, `foeOf`, `towerFoeOf`, `wbFoeOf`, `WORLD_BOSSES`, `adventureService`, `ARENA_2D`, `vAdv`, `migrate`, `A.adv_diff`):**
   - **Nâng Mạnh Chỉ Số Gốc Quái / Boss Toàn Chế Độ:** Đẩy đường cong sức mạnh Lịch Luyện Dã Ngoại (`2.34^i`, `20×L` HP, `3.15×L` Công, `2.55×L` Thủ), Vạn Kiếp Tháp (`1.285^(f-1)`, Boss tầng 5 `×2.15` HP), 4 Cổ Thần Thế Giới (`hpMul 3.4–7.5`, `lucMul 1.45–1.95`) và Cuồng Chiến Đột Kích Boss Rush (`+18% HP / +14% Công Thủ` mỗi ải kế tiếp).
   - **3 Cấp Độ Khiêu Chiến (`ADV_DIFFS`, `s.advDiff`, `vAdv`):** **⚔ Chuẩn** (mặc định đã nâng mạnh), **🔥 Ác Mộng** (`×2.2 HP`, `×1.65 Công`, `×1.5 Thủ`, ra chiêu nhanh `+20%`, thưởng `+50%`), và **💀 Hỗn Độn Tuyệt Địa** (`×4.5 HP`, `×2.4 Công`, **tự đồng bộ chiến lực Boss tối thiểu ngang người chơi** để nhân vật cực mạnh vẫn phải né đòn & phối hợp Trận Bàn, thưởng `×2.1` & nhân đôi cơ hội rơi hiếm).
