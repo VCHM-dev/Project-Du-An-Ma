@@ -1,12 +1,14 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.61 (`index.html`)  
+> **Phiên bản hiện tại:** v5.62 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Sửa Lỗi Click Trong Popup Chọn Trang Bị Bách Nghệ (`v5.62` · `crPickModal`, `NO_TS`):**
+  - Thay `onclick="event.stopPropagation()"` bằng `data-a="noop"` chuẩn của hệ thống điều phối sự kiện toàn cục, giúp toàn bộ nút lọc, thẻ chọn trang bị và nút Đóng bên trong popup `crPickModal` bấm hoạt động tức thì; đồng thời thêm các lệnh `cr_pick_*` vào `NO_TS`.
 - **Bộ Chọn Trang Bị Trực Quan & Chọn Nhanh Đồ Đang Mặc Trong Bách Nghệ (`v5.61` · `sortCraftEq`, `crEqMeta`, `craftPickUI`, `crPickModal`, `vCraft`, `A.cr_pick_*`):**
   - **Thay thế `<select>` kéo dài ở Nâng Phẩm (`kq`), Tinh Luyện (`rf`) và Bản Mệnh (`bm`):** Hiển thị 1 thẻ xem trước đầy đủ icon Pixel Art, phẩm chất, nhãn (`Đang mặc`, `⚔ Bản Mệnh`, `★ Cực phẩm`, `[Linh/Bảo/Thần Khí]`, `+rf`, `🔒`) và chỉ số gốc.
   - **Thanh Chọn Nhanh 1-Click Đồ Đang Mặc:** Ngay trên thẻ xem trước có sẵn các chip chọn nhanh cho từng trang bị đang mặc hợp lệ.
