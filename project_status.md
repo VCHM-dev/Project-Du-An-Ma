@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.46 (`index.html`)  
-> **Cập nhật lần cuối:** 2026-11-23  
+> **Phiên bản hiện tại:** v5.47 (`index.html`)  
+> **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Mở Rộng Không Gian Đấu Trường 2D (`1120×620`) & 4 Ảnh Banner 16-bit Cổ Thần Thế Giới (`WB_IMG`, `wbBanner`, `v5.47`):**
+  - **Mở Rộng Sân Đấu Trường 2D Gần Gấp Đôi (`ARENA_2D`, `btl2dModal`, `.a2d-modal`):** Nâng kích thước logic từ `800×450` lên **`1120×620` (+93% diện tích chiến đấu)**, mở rộng khung modal lên `min(1140px, 98vw)` kèm nút **`⛶ Phóng Rộng / 🗗 Thu Gọn`** (`#a2dWideBtn`, lên tới `1440px`), đồng bộ lại vị trí 4 Linh Trụ (`[320/800, 175/445]`), Vòng Linh Khí, vòng Bát Quái, Trận Bàn (`rad=178`, kết giới `b4` `r=124`), tốc độ di chuyển và tầm thả diều Auto AI / Ghost.
+  - **4 Ảnh Banner 16-bit Pixel Art Độc Quyền Cho 4 Cổ Thần Thế Giới (`WB_IMG`, `wbBanner`, `vAdv`, `ARENA_2D`):** Thiết kế & nhúng 4 ảnh banner WebP 16-bit (`31.0 KB` tổng cộng) cho **Cửu Vĩ Yêu Hoàng (`wb0`)**, **Bắc Minh Huyền Long (`wb1`)**, **Tu La Huyết Ma Tôn (`wb2`)** và **Hỗn Độn Thái Cổ Đế (`wb3`)** hiển thị trên thẻ khiêu chiến trong `vAdv()` (cùng badge vị trí, ngũ hành, số lần trảm) và dùng làm ảnh chân dung dự phòng trong `ARENA_2D`.
 - **Nhạc Nền Cổ Phong Động Theo Trận Chiến (`BG_SCENES`, `bgOverride`, `bgDrum`) & Thi Đấu Ghost Liên Server 2D (`GHOST_2D`, `v5.46`):**
   - **Nhạc Nền Cổ Phong Tổng Hợp Web Audio 100% Offline (`BG_SCENES`, `bgOverride`, `bgDrum`, `mediaHTML`, `bgmHTML`, `btl2dModal`):** Bổ sung 3 bản nhạc nền chiến đấu/Thiên Kiếp cổ phong tổng hợp bằng Web Audio không file ngoài (*⚔ Kiếm Khí Trường Ca* cho Đấu Trường 2D, *🐉 Cổ Thần Chiến Cổ* cho Boss 3 Pha/Tháp Boss, *⚡ Cửu Tiêu Lôi Kiếp* cho Đột Phá Thiên Kiếp); tự động crossfade mượt khi vào `ARENA_2D` / `BRK_FX` và khôi phục nhạc gốc khi đóng, kèm nút `🎵/🔇 BGM` ngay trên thanh điều khiển trận đấu 2D và tùy chọn bật/tắt `Tự chuyển nhạc chiến đấu` (`s.uiCfg.dynBgm`) + nghe thử trong Cài đặt.
   - **Thi Đấu Liên Server · Đua Ghost & Chia Sẻ Mã Chiến Tích 2D (`GHOST_2D`, `ARENA_2D`, `btl2dModal`, `vAdv`, `migrate`, `A`):** Xuất/nhập mã chiến tích `DM2D-...` gọn nhẹ kèm mã kiểm tra toàn vẹn FNV-1a chống sửa đổi; tích hợp sẵn **3 Cao Thủ NPC** (*Kiếm Thánh Hàn Lập, Huyền Nữ Nam Cung Uyển, Đạo Tôn Thạch Hạo*) để đua ngay offline; khi bấm **👻 Đua Ghost 2D**, Tàn Ảnh Ghost sẽ xuất hiện trực tiếp trên sàn đấu 2D kèm thanh tiến độ & đồng hồ dẫn trước/chậm hơn theo thời gian thực (`#a2dGhostBar`, `#a2dGhostTxt`); vượt mặt Ghost lần đầu thưởng Linh Thạch + 1 Đạo Dẫn bản mệnh (`PATH_MATS`).

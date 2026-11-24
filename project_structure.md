@@ -2,7 +2,7 @@
 
 ## 1. Cấu trúc thư mục & File
 Dự án tuân thủ kiến trúc **Single-File Web Application** (chạy trực tiếp không cần server/build tool):
-- `index.html` — File mã nguồn duy nhất chứa toàn bộ HTML, CSS và JavaScript (phiên bản `v5.46` — tích hợp Nhạc Nền Cổ Phong Động `BG_SCENES`/`bgOverride`, Thi Đấu Ghost Liên Server 2D `GHOST_2D`, Âm Thanh Chiến Đấu Web Audio `SFX_2D`, Bảng Kỷ Lục & Nhật Ký Chiến Tích 2D `s.arenaRec`, 2 Khung Avatar độc quyền, 31 Sprite 16-bit tách nền `ACTOR_ART`, Đấu Trường 2D `ARENA_2D` với Linh Trụ/Vòng Linh Khí/Trận Bàn, Vạn Kiếp Tháp & 4 Cổ Thần 3 Pha `WORLD_BOSSES`, 18 bộ Sprite Sheet Pixel Art `SPRITE_FX`, Thiên Cơ AI, Kho Save 1 chạm và 213 ảnh Pixel Art WebP nhúng offline).
+- `index.html` — File mã nguồn duy nhất chứa toàn bộ HTML, CSS và JavaScript (phiên bản `v5.47` — Đấu Trường 2D mở rộng `1120×620` + chế độ `⛶ Phóng Rộng`, 4 ảnh banner 16-bit Cổ Thần Thế Giới `WB_IMG`/`wbBanner`, Nhạc Nền Cổ Phong Động `BG_SCENES`/`bgOverride`, Thi Đấu Ghost Liên Server 2D `GHOST_2D`, Âm Thanh Chiến Đấu Web Audio `SFX_2D`, Bảng Kỷ Lục `s.arenaRec`, 2 Khung Avatar độc quyền, 31 Sprite 16-bit tách nền `ACTOR_ART`, Vạn Kiếp Tháp & 4 Cổ Thần 3 Pha `WORLD_BOSSES`, 18 bộ Sprite Sheet Pixel Art `SPRITE_FX`, Thiên Cơ AI, Kho Save 1 chạm và 217 ảnh Pixel Art WebP nhúng offline).
 - `project_status.md` — Nhật ký tiến độ (Đã làm / Đang làm / Sắp làm). Cập nhật sau mỗi lần sửa code.
 - `project_structure.md` — Bản đồ mã nguồn (file này) giúp AI định vị chính xác vị trí các hàm/dữ liệu.
 - `project_rules.md` — Bộ quy tắc kỹ thuật, tầm nhìn game và cách xử lý tình huống mập mờ.
