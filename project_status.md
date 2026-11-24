@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.43 (`index.html`)  
+> **Phiên bản hiện tại:** v5.44 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-23  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **31 Sprite Toàn Thân 16-bit Pixel Art Tách Nền Khớp 100% Ảnh Gốc Cho Đấu Trường 2D (`v5.44` · `ACTOR_ART`, `getActorArt`, `playerArtKey`, `bossArtKey`, `ARENA_2D`):**
+  - **Thay thế hoàn toàn sprite ô vuông `fillRect` bằng 31 Sprite 16-bit WebP tách nền trong suốt (`126.3 KB` WebP / `174 KB` JSON):** Gồm **9/9 Avatar Tu Sĩ toàn thân** (`nam0–3`, `nu0–4` tự động khớp đúng ảnh chân dung `s.uiCfg.av` đã chọn), **14/14 Boss Lịch Luyện** (`b0–b13`), **4 Cổ Thần Thế Giới 3 Pha** (`wb0–wb3`) và **4/4 Linh Thú** (`pet_huyengiac`, `pet_xichdiem`, `pet_thanhloan`, `pet_bachtho`).
+  - **Diễn Hoạt 2D Mượt Mà (`drawCutout` trong `ARENA_2D`):** Nhịp thở co giãn (`squash & stretch`), nhún bước & nghiêng người khi di chuyển, lao tới khi xuất chiêu, tàn ảnh toàn thân khi Lướt (`Space`), chớp sáng khi trúng đòn, bóng đổ & vòng hào quang Đạo Lộ/Cuồng Nộ, và Ma Ảnh Minions đồng bộ theo hình thái Boss.
 - **Sprite Hoạt Ảnh Pixel Art 2D, Vạn Kiếp Tháp & Boss Đa Pha, Địa Hình Cộng Hưởng Trận Bàn (`v5.43` · `ACTOR_SPRITES`, `WORLD_BOSSES`, `TOWER_THEMES`, `towerFoeOf`, `wbFoeOf`, `ARENA_2D`, `btl2dModal`, `adventureService`, `vAdv`, `vAdmin`, `migrate`, `ACH`, `A`):**
   - **Sprite Hoạt Ảnh 16-bit Pixel Art 4–6 Khung Hình (`ACTOR_SPRITES`, 751 khung hình cache không giật):** Nhân vật Tu Sĩ biến hóa đạo bào/vũ khí/dải lụa theo **9 Đạo Lộ × 2 Giới tính × Ngũ Hành**, **5 hình thái Boss** (`wolf`, `tortoise`, `dragon`, `demon`, `celestial`) đổi màu theo Hệ & Cuồng Nộ, **4 Linh Thú** và **Ma Ảnh Minions** đều có hoạt ảnh `idle` (4f), `move` (6f), `cast` (5f), `hit` (2f) kèm lật hướng & tàn ảnh khi Lướt (hỗ trợ nút chuyển nhanh `🎨 Sprite Động / 🖼 Chân Dung` ngay trong `btl2dModal`).
   - **Vạn Kiếp Tháp Thí Luyện & 4 Cổ Thần Thế Giới 3 Pha (`WORLD_BOSSES`, `adventureService.fightTower`/`fightWorldBoss`, `vAdv` sub-tab):** Chinh phục Vạn Kiếp Tháp leo tầng vô hạn (mỗi 5 tầng là Boss Thủ Tháp 3 Pha, thua không mất tuổi/ám thương, thưởng mốc Thủ Thông + Trận Bàn/Đạo Dẫn/Bí Tịch) và 4 Cổ Thần 3 Pha (*Cửu Vĩ Yêu Hoàng, Bắc Minh Huyền Long, Tu La Huyết Ma Tôn, Hỗn Độn Thái Cổ Đế*) với **Phase Gate 65%/30%** (không bị one-shot nhảy pha), triệu hồi 2 Hộ Pháp Ảnh, Xoáy Đạn Ma Hoàn và tia **Quét Ma Quang (Laser Sweep)** ở Pha 3.
