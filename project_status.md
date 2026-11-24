@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.52 (`index.html`)  
+> **Phiên bản hiện tại:** v5.53 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Cơ Chế Né Hoàn Hảo (Perfect Dodge) Trên Đấu Trường 2D (`v5.53` · `SFX_2D.pdodge`, `ARENA_2D`, `btl2dModal`):**
+  - **2 Điều Kiện Kích Hoạt Mượt Mà (`triggerPerfectDodge`, `inTimedDanger`):** Nhấn `Space` lướt xuyên đòn/đạn Boss trong khung bất tử `0.28s` HOẶC lướt thoát khỏi Vùng Cảnh Báo Đỏ đúng nhịp (tụ lực `≥ 48%` hoặc đang Quét Ma Quang).
+  - **Hiệu Ứng Thời Không & Phần Thưởng Thực Chiến:** Kích hoạt **làm chậm thời gian `0.35s`** (`0.22×` tốc độ mô phỏng kèm sóng chấn động lam-tím & viền thời không), phát âm thanh Web Audio `pdodge`, **hồi ngay `+15% MP`**, và kích hoạt bùa **`⚡ Phản Công +40%`** (`st.p.pdBuff`, hiển thị trên thanh MP & vòng hào quang xanh lam) cộng `+40%` sát thương cho đòn đánh/tuyệt kỹ kế tiếp trúng Boss.
 - **Sửa Lỗi Đứng Hình Đấu Trường 2D Khi Boss 3 Pha Chuyển Pha (`v5.52` · `ARENA_2D`):**
   - **Khắc Phục Lỗi `TypeError` Khi `triggerPhase` Rút Ngắn Mảng Đạn Giữa Vòng Lặp:** Chuyển `triggerPhase` sang đánh dấu hết hạn `pr.life = 0` thay vì thay mảng `st.projs = st.projs.filter(...)` giữa vòng lặp `for (let i = st.projs.length - 1; i >= 0; i--)` (trước đây khi đạn/kiếm quang người chơi hạ Boss qua mốc `65%`/`30%` lúc đang có đạn Boss trên sân, `i` vượt độ dài mảng mới làm `pr === undefined` và dừng hẳn `requestAnimationFrame`).
   - **Gia Cố Toàn Bộ Vòng Lặp 60fps:** Thêm `try/catch` bảo vệ trong `loop(ts)`, kiểm tra `this.st !== st` cho `setTimeout` Xoáy Đạn Ma Hoàn, và giới hạn trần hạt hiệu ứng (`fxAnims ≤ 48`, `floats ≤ 36`).
