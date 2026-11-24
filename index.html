@@ -344,7 +344,7 @@ button.ab-sm{padding:4px 8px;font-size:11.5px}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.64';
+const APP_VERSION='5.65';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Ngưỡng Giảm Dần mượt mà.'},
@@ -360,6 +360,12 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Lưu Trữ để tải tệp .msns và tạo Liên Kết Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.65',date:'2026-11-24',title:'Sửa Lỗi Đài Diễn Toán Cân Bằng Bị Kẹt 6.000 Bước Ở Chế Độ Trường Sinh Đạo',
+      highlights:[
+        {icon:'🧪',title:'Hỗ Trợ Giả Lập Chuẩn Chế Độ Trường Sinh Đạo (Thời Gian Thực)',desc:'Khắc phục triệt để lỗi Đài Diễn Toán Cân Bằng chạm trần lượt Thổ Nạp/ngày rồi quay vòng 6.000 bước không lên cảnh giới: nay tự tính chính xác thời gian hấp thụ Linh Khí Động Phủ, vượt Bình Cảnh Trệ Khí, tự chữa Ám Thương/Tâm Ma & luyện Công Pháp, hiển thị rõ Tổng Thời Gian Thực và biểu đồ từng Đại Cảnh!',tab:'char'}
+      ]
+    },
     {
       version:'5.64',date:'2026-11-24',title:'Thiết Kế Lại Toàn Diện Thiên Đạo Quản Trị Đài (5 Tab Con · Triệu Hồi Trực Quan · Chỉnh Sâu Toàn Hệ Thống)',
       highlights:[
@@ -7227,43 +7233,104 @@ function vAdmin(){
 /* ===== ĐÀI DIỄN TOÁN CÂN BẰNG (giả lập trên bản sao) ===== */
 function runLab(){
   const bak=s,um=ui.msg,rows=[];s=JSON.parse(JSON.stringify(bak));s.log=[];
+  const isRT=s.mode==='realtime';
+  if(isRT&&typeof rtService!=='undefined')rtService.ensure(s);
   const prep=()=>{
     EQT.forEach(t=>{
-      const cands=s.inv.filter(i=>ID[i.id].t===t).sort((a,b)=>(ID[b.id].r*10+(b.ql||0))-(ID[a.id].r*10+(a.ql||0)));
+      const cands=s.inv.filter(i=>ID[i.id]&&ID[i.id].t===t).sort((a,b)=>(ID[b.id].r*10+(b.ql||0)+(b.rf||0))-(ID[a.id].r*10+(a.ql||0)+(a.rf||0)));
       if(cands[0]&&s.eq[t]!==cands[0].u)s.eq[t]=cands[0].u;
     });
-    const useIf=(id,cond)=>{if(!cond)return;const it=s.inv.find(i=>i.id===id&&i.q>0);if(it)inventoryService.use(s,it.u,1)};
-    useIf('d3',s.tm);useIf('d11',s.toxin>=70);
+    const useIf=(id,cond)=>{if(!cond)return false;const it=s.inv.find(i=>i.id===id&&i.q>0);if(!it)return false;inventoryService.use(s,it.u,1);return true};
+    if(s.tm){
+      if(!useIf('d3',true)&&!useIf('d13',true)){
+        const cost=ID.d3?PR[ID.d3.r]:120;
+        if(s.stones>=cost){s.stones-=cost;s.tm=false;s.toxin=Math.max(0,(s.toxin||0)-15)}
+      }
+    }
+    if(s.wounds>0){
+      useIf('d17',true);
+      if(s.wounds>0&&(s.wounds>=3||s.layer===8)&&s.stones>=40*(s.realm+1))cultivationService.healWound(s);
+    }
+    useIf('d11',s.toxin>=70);
     useIf('d13',s.age>cultivationService.life(s)*.85);useIf('d6',s.age>cultivationService.life(s)*.85);
     if(s.xp<cultivationService.need(s)&&s.toxin<60){useIf('d12',true);useIf('d1',true)}
+    if(isRT&&s.realm>=1){
+      const owned=Object.keys(s.tech||{}).filter(id=>QD[id]).sort((a,b)=>(techniqueService.lv(s,b)*10+QD[b].r)-(techniqueService.lv(s,a)*10+QD[a].r));
+      let eqN=owned.filter(id=>s.tech[id].eq).length;
+      for(const id of owned){if(eqN>=3)break;if(!s.tech[id].eq){s.tech[id].eq=true;eqN++}}
+      const reqLv=Math.min(9,2+s.realm);
+      for(let k=0;k<6;k++){
+        const curLv=owned.filter(id=>s.tech[id].eq).reduce((a,id)=>a+(techniqueService.lv(s,id)+1),0);
+        if(curLv>=reqLv)break;
+        const cand=owned.find(id=>s.tech[id].eq&&s.tech[id].m<250&&characterStatsService.compute(s).attr.ngo>=techniqueService.ngReq(QD[id])&&s.stones>=10*(QD[id].r+1)**2);
+        if(!cand)break;
+        techniqueService.practice(s,cand);
+      }
+    }
   };
-  let t0=s.age,f=0,it=0,farm=0,stop='Hoàn tất';ui._inLab=1;
+  let t0=s.age,rtTot=0,rtStage=0,f=0,it=0,farm=0,stop='Hoàn tất (Đạt Hỗn Nguyên)';ui._inLab=1;
   try{
     while(it++<6000&&s.realm<REALMS.length-1){
       if(s.age>=cultivationService.life(s)){stop='Hết thọ nguyên ở '+REALMS[s.realm];break}
+      if(isRT&&s.rt&&s.rt.brkCdUntil>Date.now()){
+        const cdSec=Math.ceil((s.rt.brkCdUntil-Date.now())/1000);
+        rtTot+=cdSec;rtStage+=cdSec;s.rt.brkCdUntil=0;
+      }
       prep();
+      const nd=cultivationService.need(s);
       const c=cultivationService.check(s);
-      if(c.every(k=>k[0])){const r0=s.realm;cultivationService.go(s);farm=0;if(s.realm>r0){rows.push([REALMS[s.realm],s.age-t0,f,s.stones]);t0=s.age;f=0}else if(s.layer===8)f++}
-      else if(s.xp<cultivationService.need(s))cultivationService.train(s);
-      else{if(++farm>300){stop='Kẹt ở '+REALMS[s.realm]+' tầng 9, thiếu: '+c.filter(k=>!k[0]).map(k=>k[1]).join('; ');break}adventureService.fight(s,Math.min(s.realm,ADV.length-1),true)}
+      if(c.every(k=>k[0])){
+        const r0=s.realm;
+        cultivationService.go(s);
+        farm=0;
+        if(s.realm>r0){
+          rows.push([REALMS[s.realm],s.age-t0,f,s.stones,rtStage]);
+          t0=s.age;f=0;rtStage=0;
+        }else if(s.layer===8)f++;
+      }else if(s.xp<nd){
+        if(isRT){
+          const xps=Math.max(.2,rtService.xpPerSec(s));
+          const dt=Math.max(60,Math.ceil((nd-s.xp)/xps));
+          const g=Math.max(1,Math.floor(xps*dt));
+          s.xp+=g;s.total+=g;rtTot+=dt;rtStage+=dt;
+          const toxDrop=Math.floor(dt/600)*(s.activeArray==='duoc'?3:1);
+          if(toxDrop>0&&s.toxin>0)s.toxin=Math.max(0,s.toxin-toxDrop);
+          if(dt>=86400&&s.rt)rtService.resetDaily(s);
+        }else{
+          const px=s.xp,pa=s.age;
+          cultivationService.train(s);
+          if(s.xp===px&&s.age===pa){stop='Không thể tiếp tục tu luyện ở '+REALMS[s.realm]+' Tầng '+(s.layer+1);break}
+        }
+      }else{
+        const missing=c.filter(k=>!k[0]).map(k=>k[1]);
+        if(++farm>250){stop='Kẹt ở '+REALMS[s.realm]+' Tầng '+(s.layer+1)+', thiếu: '+missing.join('; ');break}
+        if(s.wounds>=3&&s.stones>=40*(s.realm+1)){cultivationService.healWound(s);continue}
+        const beforeS=s.stones,beforeW=(s.advWins||{})[Math.min(s.realm,ADV.length-1)]||0;
+        const res=adventureService.fight(s,Math.min(s.realm,ADV.length-1),true);
+        if(res&&res.stop){stop='Dừng ở '+REALMS[s.realm]+': hết thọ nguyên';break}
+        if(s.stones===beforeS&&((s.advWins||{})[Math.min(s.realm,ADV.length-1)]||0)===beforeW&&farm>=40){
+          stop='Kẹt ở '+REALMS[s.realm]+' Tầng '+(s.layer+1)+', thiếu: '+missing.join('; ');break;
+        }
+      }
     }
-    if(it>=6000)stop='Dừng sau 6000 bước';
+    if(it>=6000)stop='Dừng sau 6.000 bước (tới '+REALMS[s.realm]+' Tầng '+(s.layer+1)+')';
   }catch(e){stop='Lỗi giả lập: '+e.message}finally{ui._inLab=0;s=bak;ui.msg=um}
-  ui.lab={rows,stop};
+  ui.lab={rows,stop,isRT,rtTot};
 }
 function labUI(){
   const L=ui.lab;
-  const totYrs=L?L.rows.reduce((a,r)=>a+r[1],0):0,totFail=L?L.rows.reduce((a,r)=>a+r[2],0):0,maxY=L?Math.max(1,...L.rows.map(r=>r[1])):1;
+  const totYrs=L?L.rows.reduce((a,r)=>a+r[1],0):0,totFail=L?L.rows.reduce((a,r)=>a+r[2],0):0;
+  const maxBar=L?Math.max(1,...L.rows.map(r=>L.isRT?(r[4]||0):r[1])):1;
   return `<div class='pn adm-sec'><h4>🧪 Đài Diễn Toán Cân Bằng (Giả Lập Bản Sao · Không Đổi Dữ Liệu)</h4>
-    <div class='mu' style='margin-bottom:8px'>Hệ thống tự bế quan, đột phá và Lịch Luyện trên bản sao từ trạng thái hiện tại để kiểm tra nhịp độ tăng tiến cảnh giới và điểm nghẽn tài nguyên.</div>
+    <div class='mu' style='margin-bottom:8px'>Hệ thống tự bế quan${s.mode==='realtime'?' (tính đúng tốc độ Linh Khí Động Phủ thời gian thực)':''}, chữa Ám Thương/Tâm Ma, tu công pháp, đột phá và Lịch Luyện trên bản sao từ trạng thái hiện tại để đo nhịp độ cảnh giới &amp; phát hiện điểm nghẽn.</div>
     <div class='bt'>${admBtn('lab_run','','▶ Chạy Diễn Toán Cân Bằng','ab-gold')}${L?admBtn('lab_clr','','✕ Xóa Kết Quả','ab-rose'):''}</div>
     ${L?`<div class='adm-kpis' style='margin:10px 0'>
-      <div class='adm-kpi'><span class='mu'>Cảnh Giới Đạt Được</span><b style='color:var(--gold)'>${L.rows.length?L.rows[L.rows.length-1][0]:REALMS[s.realm]}</b></div>
-      <div class='adm-kpi'><span class='mu'>Tổng Tuổi Đã Tốn</span><b style='color:var(--jade)'>${totYrs.toLocaleString('vi-VN')} năm</b></div>
+      <div class='adm-kpi'><span class='mu'>Cảnh Giới Đạt Được</span><b style='color:var(--gold)'>${L.rows.length?L.rows[L.rows.length-1][0]:REALMS[s.realm]}</b><small class='mu'>${L.rows.length} đại cảnh vượt qua</small></div>
+      <div class='adm-kpi'><span class='mu'>${L.isRT?'Tổng Thời Gian Thực':'Tổng Tuổi Đã Tốn'}</span><b style='color:var(--jade)'>${L.isRT?rtService.fmtDur(L.rtTot||0):totYrs.toLocaleString('vi-VN')+' năm'}</b>${L.isRT?`<small class='mu'>Tuổi tiêu hao: ${totYrs} năm</small>`:''}</div>
       <div class='adm-kpi'><span class='mu'>Số Lần Đột Phá Hỏng</span><b style='color:#fb7185'>${totFail} lần</b></div>
       <div class='adm-kpi'><span class='mu'>Kết Quả Dừng</span><b style='font-size:12px'>${esc(L.stop)}</b></div>
     </div>
-    <div style='overflow-x:auto'><table style='width:100%;font-size:12.5px;border-collapse:collapse;text-align:left'><tr class='mu' style='border-bottom:1px solid var(--ln)'><th style='padding:5px 6px'>Đạt Cảnh Giới</th><th>Số Năm</th><th style='width:38%'>Biểu Đồ Thời Gian</th><th>Thất Bại</th><th>Linh Thạch</th></tr>${L.rows.map(r=>`<tr style='border-bottom:1px solid rgba(255,255,255,.05)'><td style='padding:5px 6px;font-weight:700;color:var(--gold)'>${r[0]}</td><td>${r[1]} năm</td><td><div class='bar' style='margin:0;height:8px'><i style='width:${Math.max(4,Math.round(r[1]/maxY*100))}%'></i></div></td><td class='${r[2]?'bad':'ok'}'>${r[2]}</td><td>${r[3].toLocaleString('vi-VN')}💎</td></tr>`).join('')}</table></div>`:''}
+    ${L.rows.length?`<div style='overflow-x:auto'><table style='width:100%;font-size:12.5px;border-collapse:collapse;text-align:left'><tr class='mu' style='border-bottom:1px solid var(--ln)'><th style='padding:5px 6px'>Đạt Cảnh Giới</th><th>${L.isRT?'Thời Gian Thực':'Số Năm'}</th><th style='width:36%'>Biểu Đồ Thời Gian</th><th>Thất Bại</th><th>Linh Thạch</th></tr>${L.rows.map(r=>{const v=L.isRT?(r[4]||0):r[1];return`<tr style='border-bottom:1px solid rgba(255,255,255,.05)'><td style='padding:5px 6px;font-weight:700;color:var(--gold)'>${r[0]}</td><td>${L.isRT?rtService.fmtDur(r[4]||0):r[1]+' năm'}</td><td><div class='bar' style='margin:0;height:8px'><i style='width:${Math.max(4,Math.round(v/maxBar*100))}%'></i></div></td><td class='${r[2]?'bad':'ok'}'>${r[2]}</td><td>${r[3].toLocaleString('vi-VN')}💎</td></tr>`}).join('')}</table></div>`:`<div class='ainr' style='margin-top:6px'>⚠ Chưa vượt thêm Đại Cảnh nào từ trạng thái hiện tại. Lý do: <b>${esc(L.stop)}</b></div>`}`:''}
   </div>`;
 }
 function bulkSell(maxR){const eqU=Object.values(s.eq);let n=0,g=0;s.inv=s.inv.filter(i=>{const d=ID[i.id];if(!EQT.includes(d.t)||d.r>maxR||i.lk||i.ex||eqU.includes(i.u)||(s.bmWeapon&&s.bmWeapon.u===i.u))return true;g+=Math.floor(PR[d.r]*.4)*(i.q||1);n++;return false});s.stones+=g;say(n?`Đã bán ${n} món trang bị, nhận ${g.toLocaleString('vi-VN')} linh thạch`:'Không có món nào đủ điều kiện bán hàng loạt')}

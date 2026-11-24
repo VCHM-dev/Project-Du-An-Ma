@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.64 (`index.html`)  
+> **Phiên bản hiện tại:** v5.65 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Sửa Lỗi Đài Diễn Toán Cân Bằng Kẹt 6.000 Bước Ở Chế Độ Trường Sinh Đạo (`v5.65` · `runLab`, `labUI`):**
+  - Khắc phục nguyên nhân gốc: ở chế độ **Trường Sinh Đạo (`realtime`)**, `cultivationService.train()` gọi `rtService.breath()` bị giới hạn 3–5 lượt/ngày nên sau khi hết lượt vòng lặp quay 6.000 lần không tăng Tu Vi và không qua Bình Cảnh Trệ Khí (`brkCdUntil`).
+  - `runLab()` nay tự tính chính xác thời gian hấp thụ Linh Khí Động Phủ (`rtService.xpPerSec`), vượt Bình Cảnh Trệ Khí, tự chữa Ám Thương/Tâm Ma và tu luyện Công Pháp trang bị đủ yêu cầu, có chốt chống kẹt báo rõ điều kiện thiếu; `labUI()` hiển thị rõ **Tổng Thời Gian Thực** (`rtService.fmtDur`) cùng biểu đồ từng Đại Cảnh cho cả Trường Sinh Đạo và Tiêu Dao Nhanh.
 - **Thiết Kế Lại Toàn Diện Thiên Đạo Quản Trị Đài — Gói 1+2+3+4 (`v5.64` · `.adm-*`, `admCatalogHTML`, `vAdmin`, `labUI`, `A.ad_*`, `NO_TS`, `TABS`):**
   - **Giao Diện Thủy Mặc + 6 Thẻ KPI & 5 Tab Con (`vAdmin`):** Nâng cấp header `☯ Thiên Đạo Quản Trị Đài` kèm 6 thẻ KPI trực tiếp (Cảnh Giới · Chiến Lực · Linh Thạch · Tu Vi · Thọ Nguyên/Trạng Thái · Kỷ Lục Thực Chiến), chia 5 tab con (`⚡ Tài Nguyên & Đạo Thể`, `🎒 Triệu Hồi & Trang Bị`, `⚔ Thực Chiến & Đồng Hành`, `🧪 Diễn Toán Cân Bằng`, `📜 Dữ Liệu & Thiên Cơ AI`) với màu nút phân cấp (`ab-gold`, `ab-jade`, `ab-sky`, `ab-rose`).
   - **Kho Triệu Hồi Trực Quan Pixel Art & Bộ Cấp Nhanh 1 Chạm (`admCatalogHTML`, `A.ad_summon`, `A.ad_kit_*`):** Thay `<select>` dài bằng lưới thẻ có icon Pixel Art, tìm kiếm tức thì theo tên (`data-chg="ad_q"` cập nhật in-place không mất focus), lọc loại & phẩm chất, chọn nhanh số lượng (`×1/×5/×20/×99`), kèm gói cấp nhanh: *Bộ Thần Trang Cảnh Giới (+10 · Thần Khí · Cực Phẩm)*, *Lĩnh Ngộ Full Công Pháp (Viên Mãn)*, *Mở Full Đồ Giám Diễn Hóa (8/8)*, *Đỉnh Cấp Cả 3 Nghề Bách Nghệ*.
