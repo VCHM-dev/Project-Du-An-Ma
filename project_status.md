@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.54 (`index.html`)  
+> **Phiên bản hiện tại:** v5.55 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Bảng Thuộc Tính Nhân Vật Tinh Gọn Chuẩn ARPG + Tooltip Phân Tích Chi Tiết (`v5.55` · `.st`, `.st-c`, `.st-cols`, `.st-row`, `vChar`, `buildDet`):**
+  - **Thu Gọn Hơn Nửa Chiều Cao Chiếm Chỗ (`vChar`, `.st`):** Chuyển 6 ô Cốt Cách lớn thành 1 hàng 6 thẻ mini khung mảnh gọn gàng (tự chuyển 3×2 trên màn hẹp), giữ viền vàng `★` cho thuộc tính Bản mệnh Đạo lộ / `☆` cho Kiêm Tu, và sửa lỗi hiển thị dấu `+-` khi chỉ số cộng thêm âm (`-7.5` màu đỏ, `+45.5` màu xanh).
+  - **Danh Sách Chỉ Số 2 Cột Phân Nhóm Gọn Mắt (`.st-cols`, `.st-hd`, `.st-row`):** Thay 8 hộp lớn bằng 4 nhóm dòng kẻ ngang xen kẽ nền tối (*Tấn Công · Phòng Thủ · Tu Hành · Căn Cơ & Bổ Trợ*, cân đối 7 dòng mỗi cột), dễ quét số liệu `tabular-nums` trong nháy mắt.
+  - **Tooltip Phân Tích Trực Tiếp Khi Rê Chuột (`buildDet('stat', id)`):** Rê chuột vào bất kỳ ô Cốt Cách hay dòng chỉ số Thực Chiến/Tu Hành/Căn Cơ nào (20 tooltip đầy đủ) sẽ hiện ngay bảng giải thích vai trò, công thức, phân tách gốc/cộng thêm và ngưỡng Soft Cap.
 - **Kỷ Lục, Thành Tựu & Ghost Replay Cho Cơ Chế Né Hoàn Hảo (`v5.54` · `ACH`, `ACI`, `migrate`, `GHOST_2D`, `adventureService.fightBossRush`, `ARENA_2D`, `btl2dModal`, `vAdv`):**
   - **Tổng Kết Sau Trận & Kỷ Lục 2D (`s.arenaRec`, `ARENA_2D.finish`, `vAdv`):** Lưu và migrate tương thích ngược `totalPerfectDodges` (tổng tích lũy) và `bestPerfectDodge` (đỉnh cao mỗi trận, bao gồm chuỗi 4 ải Boss Rush `rush.totalPd`); hiển thị dòng **`⚡ Né Hoàn Hảo`** + huy hiệu **`⚡ THỜI KHÔNG TĨNH LẶNG ×N`** trên bảng tổng kết sau trận, thẻ KPI kỷ lục mới + cột **`⚡ Né HH`** trong bảng 12 trận gần nhất của `vAdv`.
   - **2 Thành Tựu Mới (`ACH`, `ACI`):** Thêm **`⚡ pd1` — Thời Không Tĩnh Lặng** (đạt `≥ 3` lần Né Hoàn Hảo trong 1 trận 2D) và **`🌌 pd2` — Thân Pháp Nhập Vi** (tích lũy `25` lần Né Hoàn Hảo trên Đấu Trường 2D), hiển thị tiến độ ngay trên bảng kỷ lục và huy hiệu trong `profileCard()`.

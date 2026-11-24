@@ -2,7 +2,7 @@
 
 ## 1. Cấu trúc thư mục & File
 Dự án tuân thủ kiến trúc **Single-File Web Application** (chạy trực tiếp không cần server/build tool):
-- `index.html` — File mã nguồn duy nhất chứa toàn bộ HTML, CSS và JavaScript (phiên bản `v5.54` — Cơ chế Né Hoàn Hảo Perfect Dodge làm chậm thời gian `0.35s` +15% MP +40% phản công kèm Kỷ lục/2 Thành tựu `pd1/pd2` & Ghost Replay `pd`, 9 ảnh minh họa nền địa hình 16-bit Pixel Art trực tiếp trên sàn Đấu Trường 2D `ARENA_BG_IMG`, Đại tu sức mạnh Boss/Quái + 3 cấp độ khó `ADV_DIFFS` Chuẩn/Ác Mộng/Hỗn Độn đồng bộ chiến lực, Thanh Hotbar ô vuông Pixel-Art chuẩn ARPG `.a2d-hb-dock`/`.a2d-slot`, Boss Rush 2D 4 Cổ Thần `fightBossRush`, Đấu Trường 2D `1120×620`, 4 banner Cổ Thần `WB_IMG`, Nhạc Nền Cổ Phong Động `BG_SCENES`, Ghost Liên Server `GHOST_2D`, Web Audio `SFX_2D`, Bảng Kỷ Lục `s.arenaRec`, 2 Khung Avatar độc quyền, 31 Sprite 16-bit tách nền `ACTOR_ART`, 18 bộ `SPRITE_FX`, Thiên Cơ AI, Kho Save 1 chạm và 226 ảnh Pixel Art WebP nhúng offline).
+- `index.html` — File mã nguồn duy nhất chứa toàn bộ HTML, CSS và JavaScript (phiên bản `v5.55` — Bảng Thuộc Tính Nhân Vật tinh gọn chuẩn ARPG `.st`/`.st-cols`/`.st-row` + 20 tooltip phân tích `buildDet('stat',...)`, Cơ chế Né Hoàn Hảo Perfect Dodge làm chậm thời gian `0.35s` +15% MP +40% phản công kèm Kỷ lục/2 Thành tựu `pd1/pd2` & Ghost Replay `pd`, 9 ảnh minh họa nền địa hình 16-bit Pixel Art trực tiếp trên sàn Đấu Trường 2D `ARENA_BG_IMG`, Đại tu sức mạnh Boss/Quái + 3 cấp độ khó `ADV_DIFFS` Chuẩn/Ác Mộng/Hỗn Độn đồng bộ chiến lực, Thanh Hotbar ô vuông Pixel-Art chuẩn ARPG `.a2d-hb-dock`/`.a2d-slot`, Boss Rush 2D 4 Cổ Thần `fightBossRush`, Đấu Trường 2D `1120×620`, 4 banner Cổ Thần `WB_IMG`, Nhạc Nền Cổ Phong Động `BG_SCENES`, Ghost Liên Server `GHOST_2D`, Web Audio `SFX_2D`, Bảng Kỷ Lục `s.arenaRec`, 2 Khung Avatar độc quyền, 31 Sprite 16-bit tách nền `ACTOR_ART`, 18 bộ `SPRITE_FX`, Thiên Cơ AI, Kho Save 1 chạm và 226 ảnh Pixel Art WebP nhúng offline).
 - `project_status.md` — Nhật ký tiến độ (Đã làm / Đang làm / Sắp làm). Cập nhật sau mỗi lần sửa code.
 - `project_structure.md` — Bản đồ mã nguồn (file này) giúp AI định vị chính xác vị trí các hàm/dữ liệu.
 - `project_rules.md` — Bộ quy tắc kỹ thuật, tầm nhìn game và cách xử lý tình huống mập mờ.
@@ -14,7 +14,7 @@ Khi cần chỉnh sửa tính năng nào, AI hãy tìm đúng khu vực comment 
 
 | Khu vực / Biến chính | Chức năng & Vị trí cần sửa |
 | :--- | :--- |
-| `<style>` | Toàn bộ CSS, biến màu `:root`, hiệu ứng thẻ `.r4/.r5/.r6`, layout `.g3`, `.a2d-*` (Đấu Trường 2D, thanh địa hình `.a2d-tbar`, mốc pha `.a2d-ph-mark`), `.tw-hero`, `.brk-fx-*`, toast, modal. |
+| `<style>` | Toàn bộ CSS, biến màu `:root`, hiệu ứng thẻ `.r4/.r5/.r6`, layout `.g3`, bảng thuộc tính gọn `.st`/`.st-c`/`.st-cols`/`.st-row`, `.a2d-*` (Đấu Trường 2D, thanh địa hình `.a2d-tbar`, mốc pha `.a2d-ph-mark`), `.tw-hero`, `.brk-fx-*`, toast, modal. |
 | `/* ===== DỮ LIỆU TĨNH ===== */` | `APP_VERSION`, `GUIDE_DATA` (`onboardingSteps`, `patchNotes`, `codexTopics`) và mảng hằng số: `REALMS` (14 cảnh giới), `LIFE`, `BODIES`, `ROOTS`, `TAL` (43 thiên phú), `ITEMS`, `TECH` (19 công pháp), `TD/ID/QD`. |
 | `/* ===== TIỆN ÍCH ===== */` | `store` (`localStorage` key `msns_main_v1`), `say()`, `fx()`, `log()`, `hasT()`, `talMul()`, `eqMul()`. |
 | `/* ===== DỮ LIỆU BÁCH NGHỆ... ===== */` | Công thức chế tạo: `DR` (Luyện đan), `KR` (Luyện khí), `QU` (Nâng phẩm), `rfCost` (Tinh luyện trang bị `+1 → +10`), `AR` (7 Trận pháp), `TR` (4 Trận Bàn thực chiến), `PT` (Đan độc), `PE` (Hiệu ứng dùng đan). |
