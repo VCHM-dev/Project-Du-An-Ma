@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.49 (`index.html`)  
+> **Phiên bản hiện tại:** v5.50 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Tu Sức Mạnh Boss & Yêu Thú Toàn Chế Độ · 3 Cấp Độ Khiêu Chiến (`v5.50` · `ADV_DIFFS`, `advDiffOf`, `foeOf`, `towerFoeOf`, `wbFoeOf`, `WORLD_BOSSES`, `adventureService`, `ARENA_2D`, `vAdv`, `migrate`, `A.adv_diff`):**
+  - **Nâng Mạnh Chỉ Số Gốc Quái / Boss Toàn Chế Độ:** Đẩy đường cong sức mạnh Lịch Luyện Dã Ngoại (`2.34^i`, `20×L` HP, `3.15×L` Công, `2.55×L` Thủ), Vạn Kiếp Tháp (`1.285^(f-1)`, Boss tầng 5 `×2.15` HP), 4 Cổ Thần Thế Giới (`hpMul 3.4–7.5`, `lucMul 1.45–1.95`) và Cuồng Chiến Đột Kích Boss Rush (`+18% HP / +14% Công Thủ` mỗi ải kế tiếp).
+  - **3 Cấp Độ Khiêu Chiến (`ADV_DIFFS`, `s.advDiff`, `vAdv`):** **⚔ Chuẩn** (mặc định đã nâng mạnh), **🔥 Ác Mộng** (`×2.2 HP`, `×1.65 Công`, `×1.5 Thủ`, ra chiêu nhanh `+20%`, thưởng `+50%`), và **💀 Hỗn Độn Tuyệt Địa** (`×4.5 HP`, `×2.4 Công`, **tự đồng bộ chiến lực Boss tối thiểu ngang người chơi** để nhân vật cực mạnh vẫn phải né đòn & phối hợp Trận Bàn, thưởng `×2.1` & nhân đôi cơ hội rơi hiếm).
+  - **Cân Bằng Thực Chiến Đấu Trường 2D (`ARENA_2D`):** Bổ sung hệ số HP thực chiến 2D (`×1.65` Dã Ngoại / `×2.15` Cổ Thần & Boss Tháp), **Hộ Thuẫn Chuyển Pha Boss (`+12% fMaxHp`)**, giáp Boss thực chiến (`0.34`), **trần Hộ Thuẫn người chơi (`150% maxHp`)** chống cộng dồn bất tử, cùng đòn Tụ Lực/Quét Ma Quang nhanh hơn và xuyên giáp mạnh hơn.
 - **Thanh Kỹ Năng Ô Vuông Pixel-Art Chuẩn ARPG Nổi Trực Tiếp Trên Đấu Trường 2D (`v5.49` · `.a2d-hb-dock`, `.a2d-slot`, `btl2dModal`, `ARENA_2D`):**
   - **Thiết Kế Lại Toàn Bộ Dải Nút Thành Thanh Hotbar Ô Vuông 16-bit (`50×50px`, nổi cạnh dưới `.a2d-stage`, vừa gọn 1 màn hình không cần cuộn):** Gồm ô đổi **Tâm Pháp (`Tab`)**, 3 ô **Công Pháp (`Q/E/R`)** dùng ảnh 16-bit toàn phần kèm dấu Khắc/Hợp, ô **Lướt Né (`Spc`)**, **Hộ Thể (`G`)**, **Linh Thú (`F`)**, 4 ô **Trận Bàn (`Z/X/C/V`)**, 4 ô **Đan Dược (`1–4`)** và ô **Tự đánh Auto AI (`H`)** — có phím tắt góc trái, số lượng/trạng thái góc phải, làm mờ khi hết MP/hết đồ, đồng hồ hồi chiêu rõ nét và tooltip chi tiết khi rê chuột (`data-htip`).
   - **Tối Ưu Khung Canvas 1 Màn Hình & Phím Tắt Đầy Đủ:** Giới hạn `#a2dCanvas` bằng `max-height: calc(100vh - 165px)` giữ đúng tỷ lệ `1120/620` (tọa độ cảm ứng/joystick chính xác 100%) để toàn bộ HUD + Sân Đấu + Thanh Hotbar hiển thị gọn không cần cuộn; bổ sung phím `Tab`, `Z/X/C/V` và `H` trong `ARENA_2D._kd`.
