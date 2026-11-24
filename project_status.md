@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.47 (`index.html`)  
+> **Phiên bản hiện tại:** v5.48 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Chế Độ Đột Kích Liên Hoàn (Boss Rush 2D) & 9 Nền Địa Hình Ngũ Hành / Thánh Địa Trên Sàn Đấu 2D (`v5.48` · `adventureService.fightBossRush`, `getArenaFloor`, `ARENA_FLOOR_CACHE`, `GHOST_2D`, `ARENA_2D`, `btl2dModal`, `vAdv`, `ACH.rush1`, `ACI.rush1`, `A.rush_go`/`rush_next`):**
+  - **Đột Kích Liên Hoàn (Boss Rush 2D · 4 Cổ Thần 3 Pha Liên Tiếp):** Chiến đấu sinh tồn xuyên suốt cả 4 Cổ Thần (`wb0 → wb1 → wb2 → wb3`) trong 1 chuỗi liên hoàn (giữa mỗi ải tự hồi `+35% HP / +50% MP / +1 lượt đan`, thua không mất thọ nguyên/ám thương); phá đảo `4/4` lưu kỷ lục `s.arenaRec.rushBest`, thưởng đại lễ (`+1.500×(Cảnh giới+1)💎`, `+2 Đạo Dẫn Địa`, `+1 Kỳ Vật Thiên`, `+1 Trận Bàn b4`), mở khóa thành tựu `🔥 rush1` và hỗ trợ xuất/đua **Mã Ghost Boss Rush** (`type:'rush'`, kèm NPC **Thiên Đế · Diệp Phàm** `68.0s`).
+  - **9 Nền Địa Hình Minh Họa & Hạt Môi Trường Động (`getArenaFloor`, `ARENA_FLOOR_CACHE`, `ARENA_2D`):** Vẽ minh họa trực tiếp 4 Thánh Địa Cổ Thần (*Thanh Khâu Yêu Vực* hoa đào & đèn linh hỏa, *Cực Bắc Băng Uyên* cực quang & vết nứt pha lê, *Vạn Cốt Ma Đàn* dung nham & hỏa đài, *Vực Ngoại Tiên Đàn* tinh hà chòm sao) cùng 5 địa hình Ngũ Hành (*Thanh Trúc Lâm, Bích Thủy Đầm, Xích Diễm Cốc, Hoàng Sa Cổ Trận, Cửu Kiếm Cổ Đàn*) được cache lên offscreen canvas giữ vững 60fps kèm hạt thời tiết/môi trường động theo bản đồ.
 - **Mở Rộng Không Gian Đấu Trường 2D (`1120×620`) & 4 Ảnh Banner 16-bit Cổ Thần Thế Giới (`WB_IMG`, `wbBanner`, `v5.47`):**
   - **Mở Rộng Sân Đấu Trường 2D Gần Gấp Đôi (`ARENA_2D`, `btl2dModal`, `.a2d-modal`):** Nâng kích thước logic từ `800×450` lên **`1120×620` (+93% diện tích chiến đấu)**, mở rộng khung modal lên `min(1140px, 98vw)` kèm nút **`⛶ Phóng Rộng / 🗗 Thu Gọn`** (`#a2dWideBtn`, lên tới `1440px`), đồng bộ lại vị trí 4 Linh Trụ (`[320/800, 175/445]`), Vòng Linh Khí, vòng Bát Quái, Trận Bàn (`rad=178`, kết giới `b4` `r=124`), tốc độ di chuyển và tầm thả diều Auto AI / Ghost.
   - **4 Ảnh Banner 16-bit Pixel Art Độc Quyền Cho 4 Cổ Thần Thế Giới (`WB_IMG`, `wbBanner`, `vAdv`, `ARENA_2D`):** Thiết kế & nhúng 4 ảnh banner WebP 16-bit (`31.0 KB` tổng cộng) cho **Cửu Vĩ Yêu Hoàng (`wb0`)**, **Bắc Minh Huyền Long (`wb1`)**, **Tu La Huyết Ma Tôn (`wb2`)** và **Hỗn Độn Thái Cổ Đế (`wb3`)** hiển thị trên thẻ khiêu chiến trong `vAdv()` (cùng badge vị trí, ngũ hành, số lần trảm) và dùng làm ảnh chân dung dự phòng trong `ARENA_2D`.
