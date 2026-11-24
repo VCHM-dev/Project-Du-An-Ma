@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.51 (`index.html`)  
+> **Phiên bản hiện tại:** v5.52 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Sửa Lỗi Đứng Hình Đấu Trường 2D Khi Boss 3 Pha Chuyển Pha (`v5.52` · `ARENA_2D`):**
+  - **Khắc Phục Lỗi `TypeError` Khi `triggerPhase` Rút Ngắn Mảng Đạn Giữa Vòng Lặp:** Chuyển `triggerPhase` sang đánh dấu hết hạn `pr.life = 0` thay vì thay mảng `st.projs = st.projs.filter(...)` giữa vòng lặp `for (let i = st.projs.length - 1; i >= 0; i--)` (trước đây khi đạn/kiếm quang người chơi hạ Boss qua mốc `65%`/`30%` lúc đang có đạn Boss trên sân, `i` vượt độ dài mảng mới làm `pr === undefined` và dừng hẳn `requestAnimationFrame`).
+  - **Gia Cố Toàn Bộ Vòng Lặp 60fps:** Thêm `try/catch` bảo vệ trong `loop(ts)`, kiểm tra `this.st !== st` cho `setTimeout` Xoáy Đạn Ma Hoàn, và giới hạn trần hạt hiệu ứng (`fxAnims ≤ 48`, `floats ≤ 36`).
 - **9 Ảnh Minh Họa Nền Địa Hình 16-bit Pixel Art Trực Tiếp Trên Sàn Đấu Trường 2D (`v5.51` · `ARENA_BG_IMG`, `ARENA_BG_CACHE`, `getArenaBgImg`, `ARENA_2D`):**
   - **4 Ảnh Nền Thánh Địa Cổ Thần 16-bit Độc Bản (`560×310` WebP, phóng sắc nét `2×` trên sàn `1120×620`):** *Thanh Khâu hoa đào & đèn linh hỏa* (`wb0`), *Cực Bắc băng nguyên cực quang & băng nứt* (`wb1`), *Vạn Cốt Ma Đàn huyết nham* (`wb2`), và *Vực Ngoại Tiên Đàn tinh hà Bát Quái* (`wb3`).
   - **5 Ảnh Nền Địa Hình Ngũ Hành Cho Lịch Luyện Dã Ngoại & Vạn Kiếp Tháp:** *Thanh Trúc Lâm* (`moc`), *Bích Thủy Đầm hoa sen* (`thuy`), *Xích Diễm Cốc dung nham* (`hoa`), *Hoàng Sa Cổ Trận* (`tho`) và *Cửu Kiếm Cổ Đàn* (`kim`) — nhúng 100% offline (`294 KB` WebP tổng cho 9 bản đồ), đi kèm lớp làm dịu tương phản tâm sân để vùng cảnh báo đỏ, đạn đạo, Linh Trụ và nhân vật luôn nổi bật rõ nét.

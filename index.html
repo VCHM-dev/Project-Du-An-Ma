@@ -283,7 +283,7 @@ h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.51';
+const APP_VERSION='5.52';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -299,6 +299,12 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.52',date:'2026-11-24',title:'Sửa Lỗi Đứng Hình Khi Boss 3 Pha Chuyển Pha Trên Đấu Trường 2D',
+      highlights:[
+        {icon:'🛠',title:'Khắc Phục Triệt Để Lỗi Đứng Hình Đấu Trường 2D Khi Chuyển Pha 2/3',desc:'Sửa lỗi mảng đạn đạo bị rút ngắn giữa vòng lặp khi kiếm quang/đạn của người chơi đánh Boss vượt mốc chuyển Pha 65%/30% lúc trên sân đang có đạn Boss, đồng thời thêm cơ chế tự bảo vệ vòng lặp 60fps và giới hạn hạt hiệu ứng giúp chiến đấu luôn mượt mà!',tab:'adv'}
+      ]
+    },
     {
       version:'5.51',date:'2026-11-24',title:'9 Ảnh Minh Họa Nền Địa Hình 16-bit Pixel Art Trên Sàn Đấu Trường 2D (4 Thánh Địa Cổ Thần & Ngũ Hành)',
       highlights:[
@@ -4597,10 +4603,12 @@ const ARENA_2D={
   spawnFx(name,x,y,opts={}){
     const d=SPRITE_FX[name];if(!d||!this.st)return;
     getFxImg(name);
+    if(this.st.fxAnims.length>48)this.st.fxAnims.shift();
     this.st.fxAnims.push({name,d,x,y,follow:opts.follow||null,offY:opts.offY||0,scale:opts.scale||2.1,rot:opts.rot||0,fps:opts.fps||d.fps||30,frame:0,acc:0,loop:!!opts.loop,maxTime:opts.maxTime||0,elapsed:0,layer:opts.layer||'top'});
   },
   addFloat(x,y,text,color='#fff',big=false){
     if(!this.st)return;
+    if(this.st.floats.length>36)this.st.floats.shift();
     this.st.floats.push({x:x+(Math.random()-.5)*24,y:y+(Math.random()-.5)*12,text,color,life:.88,maxLife:.88,big});
   },
   mount(b){
@@ -4685,7 +4693,7 @@ const ARENA_2D={
     const triggerPhase=np=>{
       const bo=st.boss;
       bo.phase=np;bo.invuln=.9;bo.casting=null;bo.aiCd=1.3;
-      st.projs=st.projs.filter(pr=>pr.from==='p');
+      st.projs.forEach(pr=>{if(pr&&pr.from!=='p')pr.life=0});
       st.shake=Math.max(st.shake,12);st.flash=.32;st.flashCol=np===3?'#fbbf24':st.elCol;
       const nm=(b.phases&&b.phases[np-1])||`Pha ${np}`;
       st.phaseBanner={title:`⚡ PHA ${np}/${b.phases.length} · ${nm.toUpperCase()} ⚡`,sub:np===2?'Triệu hồi Hộ Pháp Ảnh & Xoáy Đạn Ma Hoàn!':'Cảnh báo: Quét Ma Quang — Nấp sau Linh Trụ hoặc Lướt né!',t:3.2,maxT:3.2,col:np===3?'#fbbf24':'#fb7185'};
@@ -5020,7 +5028,7 @@ const ARENA_2D={
         const arms=bo.phase>=3?14:10;
         for(let w=0;w<2;w++){
           setTimeout(()=>{
-            if(!this.active||b.done)return;
+            if(!this.active||b.done||this.st!==st)return;
             for(let i=0;i<arms;i++){
               const a=ang+w*.26+(i/arms)*Math.PI*2;
               st.projs.push({from:'b',x:bo.x,y:bo.y,vx:Math.cos(a)*pVel,vy:Math.sin(a)*pVel,r:8,col:st.elCol,dmg:b.f.luc*.88,life:3.4,shape:'orb',trail:[]});
@@ -5441,7 +5449,7 @@ const ARENA_2D={
 
       // Projectiles (Linh Trụ blocks enemy projectiles!)
       for(let i=st.projs.length-1;i>=0;i--){
-        const pr=st.projs[i];
+        const pr=st.projs[i];if(!pr)continue;
         pr.trail.push({x:pr.x,y:pr.y});if(pr.trail.length>6)pr.trail.shift();
         pr.x+=pr.vx*dt;pr.y+=pr.vy*dt;pr.life-=dt;
         if(pr.life<=0||pr.x<-20||pr.x>W+20||pr.y<-20||pr.y>H+20){st.projs.splice(i,1);continue}
@@ -5449,7 +5457,7 @@ const ARENA_2D={
         else if(pr.from==='p'){
           let hitM=false;
           for(let mi=st.minions.length-1;mi>=0;mi--){
-            const mn=st.minions[mi];
+            const mn=st.minions[mi];if(!mn)continue;
             if(Math.hypot(pr.x-mn.x,pr.y-mn.y)<=pr.r+mn.r){
               mn.hp-=pr.dmg;mn.hitFlash=.14;hitM=true;
               this.spawnFx('fx_hit_spark',mn.x,mn.y,{scale:1.4});
@@ -5457,11 +5465,19 @@ const ARENA_2D={
               st.projs.splice(i,1);break;
             }
           }
-          if(!hitM&&Math.hypot(pr.x-bo.x,pr.y-bo.y)<=pr.r+bo.r){dealBoss(pr.dmg,pr.el,false,'',false);st.projs.splice(i,1)}
+          if(!hitM&&Math.hypot(pr.x-bo.x,pr.y-bo.y)<=pr.r+bo.r){
+            st.projs.splice(i,1);
+            dealBoss(pr.dmg,pr.el,false,'',false);
+            if(i>st.projs.length)i=st.projs.length;
+          }
         }else{
           const blk=st.pillars.find(pl=>pl.hp>0&&Math.hypot(pr.x-pl.x,pr.y-pl.y)<=pr.r+pl.r);
           if(blk){damagePillar(blk,pr.dmg*.45);this.spawnFx('fx_hit_spark',pr.x,pr.y,{scale:1.2});st.projs.splice(i,1);continue}
-          if(Math.hypot(pr.x-p.x,pr.y-p.y)<=pr.r+p.r*.82){dealPlayer(pr.dmg);st.projs.splice(i,1)}
+          if(Math.hypot(pr.x-p.x,pr.y-p.y)<=pr.r+p.r*.82){
+            st.projs.splice(i,1);
+            dealPlayer(pr.dmg);
+            if(i>st.projs.length)i=st.projs.length;
+          }
         }
       }
 
@@ -5781,8 +5797,8 @@ const ARENA_2D={
     const loop=ts=>{
       if(!this.active||!$('a2dCanvas')){this.stop();return}
       const rawDt=Math.min(.05,(ts-st.lt)/1000||.016);st.lt=ts;
-      update(rawDt*this.spdMul);draw();syncHUD();
-      this.raf=requestAnimationFrame(loop);
+      try{update(rawDt*this.spdMul);draw();syncHUD()}catch(err){if(typeof console!=='undefined')console.error('ARENA_2D:',err)}
+      if(this.active)this.raf=requestAnimationFrame(loop);
     };
 
     // Controls
