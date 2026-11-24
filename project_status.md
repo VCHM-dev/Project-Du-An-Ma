@@ -1,12 +1,14 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.58 (`index.html`)  
+> **Phiên bản hiện tại:** v5.59 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Khôi Phục Kéo Chuột Trái Trên PC Cho Đấu Trường 2D (`v5.59` · `ARENA_2D`):**
+  - Cho phép giữ và kéo chuột trái (`e.button === 0`) trên sàn Đấu Trường 2D để di chuyển song song với `WASD` / phím mũi tên trên PC (vẫn giữ chống kẹt phím `blur`/`visibilitychange` và chặn lặp phím `e.repeat`).
 - **Cân Bằng Sát Thương Boss Chế Độ Hỗn Độn (Chống One-Shot) & Bảo Vệ Tọa Độ 2D (`v5.58` · `adventureService`, `ARENA_2D`):**
   - **Sửa Công Thức Đồng Bộ Công Boss (`df.sync` trong `initBattle` & `initSpecialBattle`):** Chuyển từ đồng bộ theo `baseLuc` (`0.72–0.92×`, gây one-shot ngay lập tức với các nhánh sát thương cao như Kiếm Tu có `Lực >> HP`) sang đồng bộ theo khả năng chịu đòn thực tế (`baseThu * 0.28 + maxHp * 0.22–0.26`).
   - **Trần Sát Thương Chống One-Shot (`ARENA_2D` · `dealPlayer`) & Khóa Tọa Độ:** Giới hạn sát thương tối đa mỗi đòn trên Đấu Trường 2D ở `45% maxHp` (đòn thường) và `75% maxHp` (đại chiêu vùng đỏ), đồng thời tự khôi phục tọa độ `(195, H/2)` nếu `p.x`/`p.y` rơi vào trạng thái không hữu hạn.

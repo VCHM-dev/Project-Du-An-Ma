@@ -6011,7 +6011,7 @@ const ARENA_2D={
     document.addEventListener('visibilitychange',this._vis);
 
     const pos=e=>{const r=cv.getBoundingClientRect();return{x:((e.clientX-r.left)/r.width)*W,y:((e.clientY-r.top)/r.height)*H}};
-    cv.onpointerdown=e=>{if(e.pointerType==='mouse')return;const pt=pos(e);if(pt.x<W*.65){this.joy.on=true;this.joy.id=e.pointerId;this.joy.sx=pt.x;this.joy.sy=pt.y;this.joy.cx=pt.x;this.joy.cy=pt.y;this.joy.dx=0;this.joy.dy=0;try{cv.setPointerCapture(e.pointerId)}catch(_){}}};
+    cv.onpointerdown=e=>{if(e.pointerType==='mouse'&&e.button!==0)return;const pt=pos(e);if(pt.x<W*.65){this.joy.on=true;this.joy.id=e.pointerId;this.joy.sx=pt.x;this.joy.sy=pt.y;this.joy.cx=pt.x;this.joy.cy=pt.y;this.joy.dx=0;this.joy.dy=0;try{cv.setPointerCapture(e.pointerId)}catch(_){}}};
     cv.onpointermove=e=>{if(!this.joy.on||e.pointerId!==this.joy.id)return;const pt=pos(e),dx=pt.x-this.joy.sx,dy=pt.y-this.joy.sy,ln=Math.hypot(dx,dy),mr=42;if(ln>mr){this.joy.cx=this.joy.sx+(dx/ln)*mr;this.joy.cy=this.joy.sy+(dy/ln)*mr}else{this.joy.cx=pt.x;this.joy.cy=pt.y}this.joy.dx=ln>6?dx/Math.max(ln,mr):0;this.joy.dy=ln>6?dy/Math.max(ln,mr):0};
     const endJ=e=>{if(this.joy.on&&e.pointerId===this.joy.id){this.joy.on=false;this.joy.dx=0;this.joy.dy=0}};
     cv.onpointerup=endJ;cv.onpointercancel=endJ;
@@ -7042,6 +7042,17 @@ if(typeof window.addEventListener==='function'){
 }
 if(s&&s.uiCfg.cn)idb('get',0,(b,er)=>{if(!b&&!er&&s){s.uiCfg.cn='';if(s.uiCfg.trk===3)s.uiCfg.trk=0;store.save(s);render()}});
 setInterval(()=>{
+  if(!s||ui.btl||ui.sv||ui.gdModal||ui.gdTour||ui.admAuth||ui.det||ui.ap||ui.pe||ui.brkInfo)return;
+  const r=rtService.tick(s,false);
+  if(s.mode==='realtime'&&(r||(s.rt&&s.rt.furnace)||(s.rt&&s.rt.garden&&s.rt.garden.some(Boolean)))){
+    store.save(s,true);
+    if(ui.tab==='cul'||ui.tab==='craft'){
+      const sb=$('sb');if(sb)sb.innerHTML=sbar();
+      const app=$('app');if(app)app.innerHTML=ui.tab==='cul'?vCul():vCraft();
+    }
+  }
+},5000);
+</script></body></html>/body></html>Interval(()=>{
   if(!s||ui.btl||ui.sv||ui.gdModal||ui.gdTour||ui.admAuth||ui.det||ui.ap||ui.pe||ui.brkInfo)return;
   const r=rtService.tick(s,false);
   if(s.mode==='realtime'&&(r||(s.rt&&s.rt.furnace)||(s.rt&&s.rt.garden&&s.rt.garden.some(Boolean)))){
