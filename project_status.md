@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.44 (`index.html`)  
+> **Phiên bản hiện tại:** v5.45 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-23  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Âm Thanh Chiến Đấu Web Audio (`SFX_2D`) · Bảng Kỷ Lục Tháp & Nhật Ký Chiến Tích 2D · 2 Khung Avatar Độc Quyền (`v5.45` · `SFX_2D`, `BRK_FX`, `ARENA_2D`, `btl2dModal`, `vAdv`, `UD`, `ACI`, `migrate`, `vAdmin`, `A.ad_rec`):**
+  - **Âm Thanh Chiến Đấu Web Audio 100% Offline (`SFX_2D`):** Tổng hợp 13 nhóm hiệu ứng âm thanh thực chiến không cần file mp3 (*kiếm khí, lướt gió Space, trúng đòn, bạo kích, dính đòn, né hoàn hảo, tuyệt kỹ theo Ngũ Hành, sấm sét Thiên Kiếp, vỡ Linh Trụ, tiếng chuông Trận Bàn, còi chuyển Pha Boss, khải hoàn / chiến bại*), đồng bộ mức âm lượng `s.uiCfg.vol` và có nút bật/tắt **`🔊/🔇 SFX`** riêng trong `btl2dModal`.
+  - **Bảng Kỷ Lục Vạn Kiếp Tháp & Nhật Ký Chiến Tích 2D (`s.arenaRec`, `vAdv`):** Lưu và hiển thị đỉnh Vạn Kiếp Tháp, DPS kỷ lục, thời gian phá nhanh nhất + DPS cao nhất cho từng Cổ Thần 3 Pha, tổng lần né/ngắt chiêu, số trận **Vô Thương Hoàn Hảo**, nhãn `🏅 KỶ LỤC MỚI!` khi thắng trận và bảng 12 trận 2D gần nhất.
+  - **2 Khung Viền Avatar Độc Quyền (`UD[6]`, `UD[7]`, `ACI`):** Mở khóa khung **🏯 Vạn Kiếp Tháp Chủ** (vượt Tầng 10 Tháp) và **🐉 Trảm Cổ Thần Tôn** (hạ ≥ 2 Cổ Thần 3 Pha hoặc đạt 1 trận Vô Thương Hoàn Hảo), kèm biểu tượng huy hiệu `tw10`/`wb1` và nút test nhanh `ad_rec` trong `vAdmin`.
 - **31 Sprite Toàn Thân 16-bit Pixel Art Tách Nền Khớp 100% Ảnh Gốc Cho Đấu Trường 2D (`v5.44` · `ACTOR_ART`, `getActorArt`, `playerArtKey`, `bossArtKey`, `ARENA_2D`):**
   - **Thay thế hoàn toàn sprite ô vuông `fillRect` bằng 31 Sprite 16-bit WebP tách nền trong suốt (`126.3 KB` WebP / `174 KB` JSON):** Gồm **9/9 Avatar Tu Sĩ toàn thân** (`nam0–3`, `nu0–4` tự động khớp đúng ảnh chân dung `s.uiCfg.av` đã chọn), **14/14 Boss Lịch Luyện** (`b0–b13`), **4 Cổ Thần Thế Giới 3 Pha** (`wb0–wb3`) và **4/4 Linh Thú** (`pet_huyengiac`, `pet_xichdiem`, `pet_thanhloan`, `pet_bachtho`).
   - **Diễn Hoạt 2D Mượt Mà (`drawCutout` trong `ARENA_2D`):** Nhịp thở co giãn (`squash & stretch`), nhún bước & nghiêng người khi di chuyển, lao tới khi xuất chiêu, tàn ảnh toàn thân khi Lướt (`Space`), chớp sáng khi trúng đòn, bóng đổ & vòng hào quang Đạo Lộ/Cuồng Nộ, và Ma Ảnh Minions đồng bộ theo hình thái Boss.
