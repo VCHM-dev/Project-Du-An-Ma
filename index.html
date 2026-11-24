@@ -303,7 +303,7 @@ h1,.hero-title,.cul-realm{font-family:var(--ff-serif)}
 @media(prefers-reduced-motion:reduce){.cul-av-wrap,.cul-av-wrap::before,.cul-orbit,.cul-qi-flow i,.cr-av-ring::before,[data-a="create"]::after,[data-a="brk"]::after{animation:none!important}}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.55';
+const APP_VERSION='5.56';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Soft Cap mượt mà.'},
@@ -319,6 +319,13 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Save để tải file .msns và tạo Link Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.56',date:'2026-11-24',title:'Sửa Lỗi Tốc Độ NaN Kẹt Góc Sàn Khi Kiêm Tu & Chống One-Shot Ở Chế Độ Hỗn Độn',
+      highlights:[
+        {icon:'🛠',title:'Khắc Phục Triệt Để Lỗi Tốc NaN & Kẹt Nhân Vật Ở Góc Trên Trái Khi Kiêm Tu',desc:'Sửa công thức trộn trọng số thuộc tính giữa Chính Tu và Kiêm Tu (sumW) để hợp nhất đầy đủ khóa thuộc tính của cả 2 Đạo lộ (mặc định 0 khi khác hệ) và khóa bảo vệ tọa độ/tốc độ trên Đấu Trường 2D!',tab:'adv'},
+        {icon:'🛡',title:'Cân Bằng Sát Thương Quái & Boss Chế Độ Hỗn Độn (Chống One-Shot)',desc:'Đồng bộ Công quái/Boss theo Thủ & HP tối đa thay vì nhân theo Lực của các nhánh sát thương cao như Kiếm Tu, đồng thời thêm trần sát thương mỗi đòn trên Đấu Trường 2D (tối đa 45% HP đòn thường, 75% HP đại chiêu vùng đỏ).',tab:'adv'}
+      ]
+    },
     {
       version:'5.55',date:'2026-11-24',title:'Thiết Kế Lại Bảng Thuộc Tính Nhân Vật Tinh Gọn Chuẩn ARPG + Tooltip Phân Tích Trực Tiếp',
       highlights:[
@@ -2442,7 +2449,8 @@ const adventureService={
     b.fn=(df.id?`[${df.n}] `:'')+spec.n;b.loc=spec.loc;b.mut=null;b.risk=false;
     const sf={luc:spec.luc,thu:spec.thu,toc:spec.toc,hp:spec.hp,el:spec.el,mut:null};
     if(df.sync){
-      sf.luc=Math.max(sf.luc,Math.round(b.baseLuc*(spec.phases?.92:.78)));
+      const sLuc=Math.round(b.baseThu*.28+b.maxHp*(spec.phases?.26:.22));
+      sf.luc=Math.max(sf.luc,sLuc);
       sf.thu=Math.max(sf.thu,Math.round(b.baseThu*.82));
       sf.hp=Math.max(sf.hp,Math.round(Math.max(b.maxHp*(spec.phases?9:5.5),b.baseLuc*(spec.phases?24:15))));
     }
@@ -7021,6 +7029,10 @@ setInterval(()=>{
     if(ui.tab==='cul'||ui.tab==='craft'){
       const sb=$('sb');if(sb)sb.innerHTML=sbar();
       const app=$('app');if(app)app.innerHTML=ui.tab==='cul'?vCul():vCraft();
+    }
+  }
+},5000);
+</script></body></html>p.innerHTML=ui.tab==='cul'?vCul():vCraft();
     }
   }
 },5000);
