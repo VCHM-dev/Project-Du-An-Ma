@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.41 (`index.html`)  
-> **Cập nhật lần cuối:** 2026-11-22  
+> **Phiên bản hiện tại:** v5.42 (`index.html`)  
+> **Cập nhật lần cuối:** 2026-11-23  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đấu Trường Lịch Luyện 2D Top-Down Real-Time & 18 Bộ Hiệu Ứng Pixel Art Độc Bản (`v5.42` · `SPRITE_FX`, `SKILL_FX_MAP`, `FUSION_FX_PAIR`, `BRK_FX`, `ARENA_2D`, `btl2dModal`, `adventureService`, `brkModal`, `vAdv`, `render`, `A.btlmode`):**
+  - **Đấu Trường 2D Top-Down Real-Time (`ARENA_2D`, `btl2dModal`):** Chuyển mặc định giao chiến Lịch Luyện sang sân đấu Canvas 60fps với di chuyển tự do (`WASD`/Mũi tên trên PC + Joystick ảo trên cảm ứng), kỹ năng **Lướt Né (`Space`)** 0.28s bất tử né **Vùng Cảnh Báo Đỏ (Telegraph)** của Boss (vòng tròn, hình quạt, đạn đạo, lôi vực), ảnh Pixel Art thật của Avatar/Boss/Linh Thú, Phi Kiếm xoay hộ thân, Hit-stop, rung màn hình, đồng bộ toàn bộ 8 Đạo Lộ, 3 Tâm Pháp, 4 Biến Dị, Đan Dược (`1–4`), Trận Bàn (`b1–b4`), bật/tắt **🤖 Auto AI** tự né vùng đỏ và tốc độ **⚡ 1.5×**.
+  - **18 Bộ Sprite Sheet Pixel Art Độc Bản Từ `spritefx` (`SPRITE_FX`, ~105.1 KB WebP lossless, 18/18 đạt 0 lỗi audit):** Tự thiết kế hình khối đúng theo tên gọi (*Vạn Kiếm Quy Tông* 7 thanh kiếm lao xuống kiếm trận, *Thanh Mộc Trường Sinh* đài sen 8 cánh, *Tụ Linh Dẫn Khí* xoáy linh khí hút vào đan điền, *Thiên Cơ Đại Diễn* Thiên Nhãn mở mí + 8 tia Bát Quái, *Vạn Pháp Tiên Kinh* cột Tiên Quang giáng trời, *Độc Chướng Yêu Vụ*, *Liệt Hỏa Kiếm Trảm*, *Phi Vân Tàn Ảnh*, *Thôi Sơn Địa Chấn*, *Hàn Băng Chưởng*, *Bất Diệt Kim Thân*, *Huyết Hải Ma Kinh*, *Cửu Dương Phần Thiên*, *Thôn Thiên Hắc Động*, *Lôi Đình Phá Thiên*, *Ngũ Hành Trận Bàn*, *Cửu Tiêu Thiên Kiếp*, *Kiếm Khí Kích Trung*) phủ 100% 27 Công Pháp (kèm combo kép cho 8 *Thái Cổ Tuyệt Học*), Boss và Trận Bàn.
+  - **Cửu Tiêu Thiên Kiếp (`BRK_FX`, `brkModal`) & 3 Chế Độ Giao Chiến (`vAdv`, `A.btlmode`):** Hiển thị hoạt ảnh **Cửu Tiêu Thiên Kiếp** trên khung Đột Phá Đại Cảnh; bổ sung thanh chuyển nhanh 3 chế độ tại tab Lịch Luyện (`⚔ Đấu Trường 2D`, `📜 Theo Lượt`, `⚡ Đánh Nhanh`), giữ nguyên tương thích Save & vượt 13/13 Đại Cảnh giới trên `Balance Lab`.
 - **Đại Tu Hệ Sinh Thái Nguyên Liệu 4 Trụ Cột (`v5.41` · `stageMatProfile`, `pickStageMat`, `ADV_FOC`, `ui.advRisk`, `craftCat`, `ui.cr.fire`, `arrayFuel`, `rtService.fertilize`, `sectService.submitMat`, `compService.giftHerb`, `salvageYield`, `TR.b3/b4`):**
   - **Khóa Tầng Nguồn Cung & Phân Hóa Ngũ Hành 14 Ải:** Khóa rơi Kỳ Vật Thiên Phẩm (`bm_*_t`) từ Ải 4+ (chống farm Ải 1), phân hóa bảng rơi 14 ải theo Ngũ Hành (`EL_MAT_W`) + `+1` lượt rơi cho Ải 11–14; thêm **Trọng Tâm Săn (`×3`)** và chế độ **🔥 Hiểm Địa** (`+25% HP / +20% Công Thủ` đổi `+1 NL, ×1.5 Đạo Dẫn, ×1.4 Kỳ Vật, +30% LT`); khóa Cảnh Giới cho hạt Dược Viên (`g2–g6`) & `MAT_UPG` (`Trúc Cơ` / `Nguyên Anh`), cân bằng lại giá hạt giống (`0%` đến `-32%` ROI).
   - **Chiều Sâu Chế Tạo (🔥 Thiên Hỏa & Đan Độc & Phân Giải):** Bật **Thiên Hỏa** tốn 1 xúc tác (`m4/m5` cho Đan, `m10/m11` cho Khí, `-8%` thành công) để `+25%` Cực Phẩm (Đan Cực Phẩm **giảm 50% Đan Độc**) & khắc Ngũ Hành trang bị (`+10%` chỉ số khi hợp/tương sinh Linh Căn); sửa `salvageYield` hoàn trả 50% nguyên liệu công thức `KR` (kèm Yêu Đan) và sửa `takeM` hỗ trợ cả mảng lẫn object (khắc phục lỗi thu phục/tiến hóa Linh Thú).
