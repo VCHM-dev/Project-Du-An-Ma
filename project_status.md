@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.55 (`index.html`)  
+> **Phiên bản hiện tại:** v5.56 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-24  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Tối Ưu Điều Khiển Bàn Phím & Chuột PC Cho Đấu Trường 2D (`v5.56` · `ARENA_2D`):**
+  - **Chống Kẹt Phím Khi Mất Focus (`_blur`, `_vis`, `stop`):** Gắn listener `window.blur` và `document.visibilitychange` tự động xóa sạch `this.keys` & trạng thái `joy` khi người chơi `Alt+Tab` hoặc ẩn tab (và gỡ sạch trong `ARENA_2D.stop()`), loại bỏ hoàn toàn lỗi nhân vật tiếp tục tự chạy vào vùng đỏ Boss.
+  - **Chặn Lặp Phím Tắt (`e.repeat`):** Giữ `e.preventDefault()` cho `Space/Tab/Arrows`, nhưng bỏ qua sự kiện `e.repeat` trong `this._kd` để giữ lì phím `H` (Auto AI), `Tab` (Đổi thế), `Space`, `Q/E/R`, `1–4`... không bị kích hoạt lặp ngoài ý muốn.
+  - **Tách Chuột PC Khỏi Virtual Joystick (`cv.onpointerdown`):** Bỏ qua `e.pointerType === 'mouse'` khi khởi tạo joystick cảm ứng trên canvas, giúp click chuột trên PC không làm trượt nhân vật.
 - **Bảng Thuộc Tính Nhân Vật Tinh Gọn Chuẩn ARPG + Tooltip Phân Tích Chi Tiết (`v5.55` · `.st`, `.st-c`, `.st-cols`, `.st-row`, `vChar`, `buildDet`):**
   - **Thu Gọn Hơn Nửa Chiều Cao Chiếm Chỗ (`vChar`, `.st`):** Chuyển 6 ô Cốt Cách lớn thành 1 hàng 6 thẻ mini khung mảnh gọn gàng (tự chuyển 3×2 trên màn hẹp), giữ viền vàng `★` cho thuộc tính Bản mệnh Đạo lộ / `☆` cho Kiêm Tu, và sửa lỗi hiển thị dấu `+-` khi chỉ số cộng thêm âm (`-7.5` màu đỏ, `+45.5` màu xanh).
   - **Danh Sách Chỉ Số 2 Cột Phân Nhóm Gọn Mắt (`.st-cols`, `.st-hd`, `.st-row`):** Thay 8 hộp lớn bằng 4 nhóm dòng kẻ ngang xen kẽ nền tối (*Tấn Công · Phòng Thủ · Tu Hành · Căn Cơ & Bổ Trợ*, cân đối 7 dòng mỗi cột), dễ quét số liệu `tabular-nums` trong nháy mắt.
