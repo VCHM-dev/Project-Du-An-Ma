@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.66 (`index.html`)  
+> **Phiên bản hiện tại:** v5.67 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-26  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đa Đạo Lữ Tự Do (6 Đạo Lữ) & Phòng Đàm Đạo Thiên Cơ AI — Nhịp 1 (`v5.67` · `PARTNERS`, `PARTNER_IMG`, `compService`, `compAI`, `rtService`, `vComp`, `vAdmin`, `ACH`, `migrate`):**
+  - **2 Đạo Lữ Mới & Ảnh Pixel Art 16-bit (`PARTNERS`, `PARTNER_IMG`):** Bổ sung **Huyết Điệp Ma Cơ** (Song Tu chữa 1 tầng Ám Thương, thích Yêu Đan) và **Bạch Linh Hồ Cơ** (Song Tu +1 Khí Vận & Linh Thạch, thích Trận Kỳ/Linh Thảo), kèm gắn gu quà tặng riêng cho cả 6 vị.
+  - **Kết Duyên Tự Do Nhiều Đạo Lữ (`compService`):** Mở tự do cả 6/6 vị từ 100 Hảo Cảm (`s.partners[]` + Chính Đạo Lữ `s.partner`), Chính Đạo Lữ góp 100% và mỗi Đồng Đạo góp 35% gia trì + Hộ Pháp Thiên Kiếp (trần 38%), Song Tu đích danh từng vị, kích hoạt **✨ Đạo Tâm Hòa Hợp** (`+5%` Tu luyện) khi chăm đều hoặc **💢 Hờn Dỗi** khi bỏ bê `≥ 5` lượt.
+  - **Phòng Đàm Đạo Thiên Cơ AI (`compAI`, `vComp`):** Chat tự do hoặc gợi ý nhanh theo ngữ cảnh thực tế (Cảnh giới, Đạo lộ, Tông môn, Ám thương/Đan độc, các Đạo Lữ khác), cập nhật Tâm Trạng, Trí Nhớ dài hạn `s.pMem[id]` và Hảo Cảm (giới hạn 3 lượt cộng điểm/ngày thực hoặc năm), kèm chế độ Cổ Điển offline 100%, 2 thành tựu `pt_harem`/`pt_all` và nút test trong `vAdmin`.
 - **Bản Đồ Sơn Môn Isometric Trầm Huyền Bí & Đại Tu 4 Đại Tông Môn — Nhịp 1 (`v5.66` · `SECT_MAP_ART`, `SECT_MAP`, `SECT_EX_SHOP`, `SECT_EXAMS`, `sectService`, `adventureService.fightSectExam`, `vSect`, `vAdmin`, `migrate`):**
   - **Bản Đồ Sơn Môn Isometric 2.5D (`SECT_MAP`, `SECT_MAP_ART`, ~144.5 KB WebP offline):** Thiết kế bản đồ Tiên Sơn tông đêm huyền bí đồng bộ hoàn toàn giao diện game, 6 Điện Đường tách nền 16-bit (*Chính Điện · Ủy Thác Đường · Diễn Võ Đài · Bảo Khố · Linh Mạch Đàn · Đệ Tử Viện*), kéo/phóng `0.85×–1.8×`, đệ tử & Linh Thú đi tuần dọc đường đá, bong bóng tương tác 1 chạm (`📜`, `⚔ !`, `🎁`, `💎`, `👥`), hỗ trợ cả 4 Đại Tông Môn lẫn Sơn Môn Tự Lập và nút chuyển nhanh sang chế độ Danh Sách.
   - **Bảng Ủy Thác Động & Tự Cập Nhật Tiến Độ (`sectService.ensureBoard`, `doQuest`, `onAdvWin`):** Sinh ngẫu nhiên 3 ủy thác mỗi năm (`classic`, tối đa 2 lượt/năm) hoặc mỗi ngày (`realtime`, tối đa 3 lượt/ngày) gồm 5 dạng (*Tuần Sơn, Trừ Yêu Lệnh, Hiến Nạp, Luyện Cống, Diễn Pháp Thỉnh Giáo*) với 3 phẩm chất Phàm/Linh/Địa.
