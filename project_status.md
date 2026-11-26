@@ -1,12 +1,14 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.69 (`index.html`)  
+> **Phiên bản hiện tại:** v5.70 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-26  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Hiệu Ứng Hợp Kích 2D Độc Bản & Ảo Ảnh Toàn Thân Cho Cả 6 Đạo Lữ (`v5.70` · `PARTNER_SPR_MAP`, `SFX_2D`, `ARENA_2D`):**
+  - Khi thi triển Hợp Kích `[T]`, Chính Đạo Lữ hiện thân ảo ảnh toàn thân kề vai tác chiến bên cạnh người chơi kèm vòng triệu hồi phát sáng, khung xuất chiêu nâng cấp và **6 hiệu ứng Canvas 2D + âm thanh Web Audio riêng biệt** (*Song Kiếm Hợp Bích* 12 kiếm quang & trảm X, *Thanh Liên Tịnh Thế* đài sen 12 cánh, *Phá Thiên Chiến Ý* 5 tia sét giáng thế, *Thái Âm Nguyệt Hoa* vầng trăng & ấn lục giác, *Huyết Điệp Nhiếp Hồn* 22 huyết điệp & tia hút hồn, *Cửu Vĩ Huyễn Ảnh* 9 đuôi hồ & 9 hồ hỏa).
 - **Đạo Lữ Mạc Vân Dao & Đồng Bộ Sprite Toàn Thân Trên Sơn Môn (`v5.69` · `PARTNERS`, `PARTNER_IMG`, `ACTOR_ART.pt_lamnhu`, `compAI`, `SECT_MAP`):**
   - Đổi **Mạc Vân Tiêu** thành nữ kiếm tôn **Mạc Vân Dao** (*Lôi Đình Nữ Kiếm Tôn*, giữ nguyên ID `macvan` tương thích save cũ) với chân dung chiến giáp hoàng kim sấm sét & lời thoại Đàm Đạo mới.
   - Đồng bộ toàn bộ 6 Đạo Lữ dạo bước trên Bản Đồ Sơn Môn Isometric thành **Sprite toàn thân 16-bit đứng trên mặt đất** (`nu1`, `pt_lamnhu`, `nu3`, `nu2`, `nu0`, `nu4`) thay cho ảnh tròn, thống nhất hoàn toàn với Nhân vật chính & Đệ tử.
