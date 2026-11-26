@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.70 (`index.html`)  
+> **Phiên bản hiện tại:** v5.71 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-26  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Tu Hệ Thống Công Pháp — Kinh Mạch 5 Tầng, Chính/Nghịch Luyện & Bí Tịch Tàn Quyển (`v5.71` · `TECH_CHAPTERS`, `REV_SK_TAG`, `techniqueService`, `characterStatsService`, `skillOf`, `adventureService`, `ARENA_2D`, `vTec`, `buildDet`, `ACH.tec_rev`, `vAdmin`):**
+  - **Kinh Mạch 5 Tầng (`I. Nhập Môn → V. Áo Nghĩa`):** Thay thế thanh luyện đơn điệu bằng 5 tầng Kinh Mạch tương tác trực tiếp (`☯ Chính`, `🩸 Nghịch`, `📜 Tàn Khuyết`, `○ Chưa ngộ`), giữ tương thích 100% với save cũ (`m` tự quy đổi sang `ch/prog`) và Diễn Hóa Công Pháp.
+  - **Song Đạo Chính / Nghịch Luyện & Phản Phệ Tâm Cảnh (Strict Taiwu Mode):** Chính Luyện giảm MP thi triển & tăng hiệu lực ổn định; Nghịch Luyện ≥3 tầng **Dị Biến Tuyệt Kỹ** (Huyết Tế Cuồng Bạo, Ma Sát Tam Trảm 3-Hit, Phá Toái Kinh Mạch, Huyết Hải Thôn Phệ...) trên cả Đấu Trường 2D lẫn Lịch Luyện Turn-based, kèm đánh đổi `-Thủ` / `-Thiên Kiếp` và **Ám Thương + Tâm Ma** nếu vượt ngưỡng Tâm Cảnh; hỗ trợ **🌊 Tẩy Mạch** đổi chiều.
+  - **Bí Tịch Tàn Quyển & 3 Đường Bổ Khuyết:** Công pháp từ Linh Phẩm (`r≥2`) trở lên khi mới lĩnh ngộ có thể khuyết 1–2 tầng (`-1`), bổ khuyết qua **⚔ Dĩ Chiến Ngộ Đạo** (tự tích lũy khi thắng Dã Ngoại/Tháp/Cổ Thần), **💬 Luận Đạo Bổ Khuyết** (an toàn 100% cùng Tông Môn/Đạo Lữ) hoặc **⚡ Cưỡng Ép Suy Diễn** (liều Ám Thương).
 - **Hiệu Ứng Hợp Kích 2D Độc Bản & Ảo Ảnh Toàn Thân Cho Cả 6 Đạo Lữ (`v5.70` · `PARTNER_SPR_MAP`, `SFX_2D`, `ARENA_2D`):**
   - Khi thi triển Hợp Kích `[T]`, Chính Đạo Lữ hiện thân ảo ảnh toàn thân kề vai tác chiến bên cạnh người chơi kèm vòng triệu hồi phát sáng, khung xuất chiêu nâng cấp và **6 hiệu ứng Canvas 2D + âm thanh Web Audio riêng biệt** (*Song Kiếm Hợp Bích* 12 kiếm quang & trảm X, *Thanh Liên Tịnh Thế* đài sen 12 cánh, *Phá Thiên Chiến Ý* 5 tia sét giáng thế, *Thái Âm Nguyệt Hoa* vầng trăng & ấn lục giác, *Huyết Điệp Nhiếp Hồn* 22 huyết điệp & tia hút hồn, *Cửu Vĩ Huyễn Ảnh* 9 đuôi hồ & 9 hồ hỏa).
 - **Đạo Lữ Mạc Vân Dao & Đồng Bộ Sprite Toàn Thân Trên Sơn Môn (`v5.69` · `PARTNERS`, `PARTNER_IMG`, `ACTOR_ART.pt_lamnhu`, `compAI`, `SECT_MAP`):**
