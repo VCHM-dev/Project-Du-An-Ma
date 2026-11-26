@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.65 (`index.html`)  
-> **Cập nhật lần cuối:** 2026-11-24  
+> **Phiên bản hiện tại:** v5.66 (`index.html`)  
+> **Cập nhật lần cuối:** 2026-11-26  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Bản Đồ Sơn Môn Isometric Trầm Huyền Bí & Đại Tu 4 Đại Tông Môn — Nhịp 1 (`v5.66` · `SECT_MAP_ART`, `SECT_MAP`, `SECT_EX_SHOP`, `SECT_EXAMS`, `sectService`, `adventureService.fightSectExam`, `vSect`, `vAdmin`, `migrate`):**
+  - **Bản Đồ Sơn Môn Isometric 2.5D (`SECT_MAP`, `SECT_MAP_ART`, ~144.5 KB WebP offline):** Thiết kế bản đồ Tiên Sơn tông đêm huyền bí đồng bộ hoàn toàn giao diện game, 6 Điện Đường tách nền 16-bit (*Chính Điện · Ủy Thác Đường · Diễn Võ Đài · Bảo Khố · Linh Mạch Đàn · Đệ Tử Viện*), kéo/phóng `0.85×–1.8×`, đệ tử & Linh Thú đi tuần dọc đường đá, bong bóng tương tác 1 chạm (`📜`, `⚔ !`, `🎁`, `💎`, `👥`), hỗ trợ cả 4 Đại Tông Môn lẫn Sơn Môn Tự Lập và nút chuyển nhanh sang chế độ Danh Sách.
+  - **Bảng Ủy Thác Động & Tự Cập Nhật Tiến Độ (`sectService.ensureBoard`, `doQuest`, `onAdvWin`):** Sinh ngẫu nhiên 3 ủy thác mỗi năm (`classic`, tối đa 2 lượt/năm) hoặc mỗi ngày (`realtime`, tối đa 3 lượt/ngày) gồm 5 dạng (*Tuần Sơn, Trừ Yêu Lệnh, Hiến Nạp, Luyện Cống, Diễn Pháp Thỉnh Giáo*) với 3 phẩm chất Phàm/Linh/Địa.
+  - **Khảo Hạch Thăng Bậc Thực Chiến 2D & Bảo Khố Trấn Tông Độc Quyền (`SECT_EXAMS`, `SECT_EX_SHOP`, `fightSectExam`):** Đủ Cống Hiến cần tỷ thí Giám Khảo trên Đấu Trường 2D (bảo toàn thọ nguyên/ám thương) để thăng chức và mở khóa Bí Tịch/Pháp Bảo độc quyền từng phái, kèm thành tựu `🏯 sect_el` và nút test trong `vAdmin`.
 - **Sửa Lỗi Đài Diễn Toán Cân Bằng Kẹt 6.000 Bước Ở Chế Độ Trường Sinh Đạo (`v5.65` · `runLab`, `labUI`):**
   - Khắc phục nguyên nhân gốc: ở chế độ **Trường Sinh Đạo (`realtime`)**, `cultivationService.train()` gọi `rtService.breath()` bị giới hạn 3–5 lượt/ngày nên sau khi hết lượt vòng lặp quay 6.000 lần không tăng Tu Vi và không qua Bình Cảnh Trệ Khí (`brkCdUntil`).
   - `runLab()` nay tự tính chính xác thời gian hấp thụ Linh Khí Động Phủ (`rtService.xpPerSec`), vượt Bình Cảnh Trệ Khí, tự chữa Ám Thương/Tâm Ma và tu luyện Công Pháp trang bị đủ yêu cầu, có chốt chống kẹt báo rõ điều kiện thiếu; `labUI()` hiển thị rõ **Tổng Thời Gian Thực** (`rtService.fmtDur`) cùng biểu đồ từng Đại Cảnh cho cả Trường Sinh Đạo và Tiêu Dao Nhanh.
