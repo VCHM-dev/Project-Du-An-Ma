@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.67 (`index.html`)  
+> **Phiên bản hiện tại:** v5.68 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-26  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Hợp Kích Đạo Lữ 2D, Đạo Lữ Dạo Sơn Môn & Linh Thú Tầm Bảo — Nhịp 2 (`v5.68` · `PETS`, `PET_IMG`, `ACTOR_ART`, `PET_ZONES`, `PARTNER_SYNERGY`, `compService`, `adventureService`, `ARENA_2D`, `btl2dModal`, `SECT_MAP`, `vComp`, `vAdmin`, `ACH`, `migrate`):**
+  - **Tuyệt Kỹ Hợp Kích Đạo Lữ Trên Đấu Trường 2D (`PARTNER_SYNERGY`, `ARENA_2D`, `btl2dModal`):** Bổ sung ô Hợp Kích `[T]` riêng trên thanh hotbar 2D (2 lượt/trận, tăng lên 3 lượt khi đạt ✨ Đạo Tâm Hòa Hợp, hồi chiêu `22s`), với 6 tuyệt kỹ độc bản cho cả 6 Đạo Lữ kèm khung xuất chiêu chân dung ở góc trái và Tự Động sử dụng thông minh.
+  - **Đạo Lữ Dạo Bước Trên Bản Đồ Sơn Môn Isometric (`SECT_MAP`):** Các Đạo Lữ đã kết duyên (`compService.bondedList(s)`) dạo quanh đường đá Tiên Sơn với chân dung tròn viền màu & huy hiệu trạng thái (`👑` Chính / `💞` Đồng Đạo / `💢` Hờn Dỗi); bấm thẳng vào chân dung nàng để mở tab Đồng Hành & Phòng Đàm Đạo.
+  - **Linh Thú Thứ 5 Hệ Thủy & Phái Linh Thú Dự Bị Tầm Bảo (`PETS`, `PET_ZONES`, `compService`, `vComp`, `ACH.pet_all`):** Bổ sung **Huyền Minh Băng Giao** (`banglong`, `el:'thuy'`, `+8%` Tốc độ & Phòng ngự `+3%/cấp`, bắn Hàn Băng Tiễn làm chậm/đóng băng địch) kèm ảnh Pixel Art 16-bit (`PET_IMG.banglong` & `ACTOR_ART.pet_banglong`), thành tựu `pet_all` (5/5), và tính năng phái Linh Thú dự bị đi Tầm Bảo tại 3 khu vực (*Dược Cốc Linh Tuyền, Huyền Thiết Cổ Quật, Yêu Thú Sơn Mạch*) hỗ trợ cả Cổ Điển lẫn Trường Sinh Đạo, có nút Thu Hoạch Tất Cả & nút test `ad_pet_exp_done` trong `vAdmin`.
 - **Đa Đạo Lữ Tự Do (6 Đạo Lữ) & Phòng Đàm Đạo Thiên Cơ AI — Nhịp 1 (`v5.67` · `PARTNERS`, `PARTNER_IMG`, `compService`, `compAI`, `rtService`, `vComp`, `vAdmin`, `ACH`, `migrate`):**
   - **2 Đạo Lữ Mới & Ảnh Pixel Art 16-bit (`PARTNERS`, `PARTNER_IMG`):** Bổ sung **Huyết Điệp Ma Cơ** (Song Tu chữa 1 tầng Ám Thương, thích Yêu Đan) và **Bạch Linh Hồ Cơ** (Song Tu +1 Khí Vận & Linh Thạch, thích Trận Kỳ/Linh Thảo), kèm gắn gu quà tặng riêng cho cả 6 vị.
   - **Kết Duyên Tự Do Nhiều Đạo Lữ (`compService`):** Mở tự do cả 6/6 vị từ 100 Hảo Cảm (`s.partners[]` + Chính Đạo Lữ `s.partner`), Chính Đạo Lữ góp 100% và mỗi Đồng Đạo góp 35% gia trì + Hộ Pháp Thiên Kiếp (trần 38%), Song Tu đích danh từng vị, kích hoạt **✨ Đạo Tâm Hòa Hợp** (`+5%` Tu luyện) khi chăm đều hoặc **💢 Hờn Dỗi** khi bỏ bê `≥ 5` lượt.
