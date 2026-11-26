@@ -1,12 +1,15 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.68 (`index.html`)  
+> **Phiên bản hiện tại:** v5.69 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-26  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đạo Lữ Mạc Vân Dao & Đồng Bộ Sprite Toàn Thân Trên Sơn Môn (`v5.69` · `PARTNERS`, `PARTNER_IMG`, `ACTOR_ART.pt_lamnhu`, `compAI`, `SECT_MAP`):**
+  - Đổi **Mạc Vân Tiêu** thành nữ kiếm tôn **Mạc Vân Dao** (*Lôi Đình Nữ Kiếm Tôn*, giữ nguyên ID `macvan` tương thích save cũ) với chân dung chiến giáp hoàng kim sấm sét & lời thoại Đàm Đạo mới.
+  - Đồng bộ toàn bộ 6 Đạo Lữ dạo bước trên Bản Đồ Sơn Môn Isometric thành **Sprite toàn thân 16-bit đứng trên mặt đất** (`nu1`, `pt_lamnhu`, `nu3`, `nu2`, `nu0`, `nu4`) thay cho ảnh tròn, thống nhất hoàn toàn với Nhân vật chính & Đệ tử.
 - **Hợp Kích Đạo Lữ 2D, Đạo Lữ Dạo Sơn Môn & Linh Thú Tầm Bảo — Nhịp 2 (`v5.68` · `PETS`, `PET_IMG`, `ACTOR_ART`, `PET_ZONES`, `PARTNER_SYNERGY`, `compService`, `adventureService`, `ARENA_2D`, `btl2dModal`, `SECT_MAP`, `vComp`, `vAdmin`, `ACH`, `migrate`):**
   - **Tuyệt Kỹ Hợp Kích Đạo Lữ Trên Đấu Trường 2D (`PARTNER_SYNERGY`, `ARENA_2D`, `btl2dModal`):** Bổ sung ô Hợp Kích `[T]` riêng trên thanh hotbar 2D (2 lượt/trận, tăng lên 3 lượt khi đạt ✨ Đạo Tâm Hòa Hợp, hồi chiêu `22s`), với 6 tuyệt kỹ độc bản cho cả 6 Đạo Lữ kèm khung xuất chiêu chân dung ở góc trái và Tự Động sử dụng thông minh.
   - **Đạo Lữ Dạo Bước Trên Bản Đồ Sơn Môn Isometric (`SECT_MAP`):** Các Đạo Lữ đã kết duyên (`compService.bondedList(s)`) dạo quanh đường đá Tiên Sơn với chân dung tròn viền màu & huy hiệu trạng thái (`👑` Chính / `💞` Đồng Đạo / `💢` Hờn Dỗi); bấm thẳng vào chân dung nàng để mở tab Đồng Hành & Phòng Đàm Đạo.
