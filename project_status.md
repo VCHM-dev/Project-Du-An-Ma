@@ -1,12 +1,17 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.74 (`index.html`)  
+> **Phiên bản hiện tại:** v5.75 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Tu Tông Môn Tự Lập & Hệ Thống Đệ Tử Có Hồn — Nhịp 1 (`v5.75` · `OWN_TIERS`, `OWN_RULES`, `DISC_TRAITS`, `DISC_ROLES`, `OWN_SHOP`, `sectService`, `vSect`, `SECT_MAP`, `ACH.own_holy`, `vAdmin`):**
+  - **Chính Điện (Thanh Danh & 3 Tông Quy):** Bổ sung Thanh Danh Sơn Môn (`5` phẩm cấp *Bất Nhập Lưu → Tiên Đạo Thánh Địa*, thành tựu `own_holy`) và **3 Tông Quy** (*⚔ Thượng Võ Lệnh / 🌿 Bách Nghệ Lệnh / 📜 Tàng Kinh Lệnh*).
+  - **Ủy Thác Đường (Phái Đệ Tử Xuất Sơn):** Thay thế dòng chờ bằng bảng 3 sự vụ Sơn Môn (`ensureOwnBoard`, `dispatchMission`); chọn đệ tử hợp Ngũ Hành & Thiên Phú để thu thập Thanh Danh, Linh Thạch, Nguyên Liệu & Ngộ Đạo Sa.
+  - **Bảo Khố (Tàng Bảo Các Tự Lập):** Bổ sung `OWN_SHOP` (8 vật phẩm: Ngộ Đạo Sa, Tịnh Tâm Đan, Liệu Thương Đan, Yêu Đan Tam Giai, Đạo Dẫn Địa Phẩm, Bổ Thiên Đan, Trận Bàn, Kỳ Vật Thiên Phẩm) đổi bằng Thanh Danh + Linh Thạch.
+  - **Đệ Tử Có Hồn:** Tuyển chọn **3 Ứng Viên** (`cands`), mỗi đệ tử có Cảnh giới thật, Ngũ Hành, **8 Thiên Phú riêng**, Độ Trung Thành (`0–100`), **4 Chức Vụ Quản Lý** (*Đại Đệ Tử, Chấp Sự Linh Mạch / Bách Nghệ / Tàng Kinh*), **Truyền Thụ Công Pháp Viên Mãn** (`teachDisciple`), **Phá Cảnh** (`breakDisciple`) và **Trị Thương** (`healDisciple`).
 - **Đài Suy Diễn Tàn Quyển — Nối 3 Huyệt Cổ Văn, Tham Chiếu Đồng Nguyên, Thiên Cơ & Cải Lương Mạch (`v5.74` · `DED_CLUES`, `techniqueService`, `buildDet`, `ACH.tec_imp`, `ACI.tec_imp`, `A`):**
   - **Mini-Puzzle Nối 3 Huyệt Cổ Văn (`startDed`, `pickDed`):** Suy diễn Tàn Quyển mở Đài Suy Diễn giải 3 triệu chứng mạch khí bằng 3 Pháp Quyết (*💧 Điều Hòa / 🔥 Xung Phá / ☯ Trung Dung*); Ngộ Tính cao tự soi sáng trước 1 huyệt đúng.
   - **3 Cấp Kết Quả & Độ Bền Tàn Ý (`t.qual`, `t.dura`):** Đạt `3/3` có thể tiến hóa thành **🌟 Cải Lương Mạch** (`+3%` tổng hiệu lực công pháp mỗi tầng & `+6` Ngộ Ý khởi đầu khi Tham Ngộ Từ Điều, mở thành tựu `tec_imp`); `2/3` ra Nguyên Bản hoặc **⚠ Tạp Mạch** (Tinh Luyện bằng `1` Ngộ Đạo Sa); `≤1/3` thất bại trừ `1` Tàn Ý (`3/3`), +Ám Thương & Loạn Khí (hết `0/3` cần **Phục Chế** bằng `1` Ngộ Đạo Sa hoặc Dĩ Chiến Ngộ Đạo).
