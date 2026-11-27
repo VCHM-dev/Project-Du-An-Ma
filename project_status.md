@@ -1,12 +1,17 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.79 (`index.html`)  
+> **Phiên bản hiện tại:** v5.80 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **v5.80 — Nghi Thức Đột Phá Đại Cảnh Giới & Độ Kiếp 2D kiểu Bát Hoang Lục (Phương án A):**
+  - Sân khấu Độ Kiếp 2D 3 Hồi (`TRIB_2D`, `trib2dModal()`, `.trb-wrap`, `#trib2dCv` `960x540`): **Hồi 1 (`DỊ TƯỢNG CỬU CHÂU`)** tụ linh khí & rung chấn, **Hồi 2 (`TỨ CỬU THIÊN KIẾP`)** né vòng cảnh báo đỏ & tia sét 3 đợt cùng **Đạo Lữ Hộ Pháp** & **Linh Thú Hỗ Trợ** với hotbar `WASD/Click-Giữ`, `Né [Space]` (Né Hoàn Hảo), `Thuẫn [G]`, `Đan [1]` và **Độ Kiếp Tự Động** (`trb_auto`), **Hồi 3 (`PHÁ ĐAN · KẾT ANH`)** cột sáng Kim Quang từ Vòng Xoáy Thiên Kiếp xuống Đài Liên Hoa Bát Quái.
+  - 2 sprite 16-bit Pixel Art tách nền nhúng trực tiếp (`TRIB_VORTEX_IMG` `440×240`, `TRIB_LOTUS_IMG` `320×320`).
+  - Thưởng **Hoàn Mỹ Độ Kiếp** (`+2 KV`, `+2% Căn Cơ`, `+2 Ngộ Đạo Sa`, thành tựu `trib_perf`), danh hiệu phi thăng `REALM_ASC_TITLES`, chuyển đổi `🌩 Độ Kiếp 2D (Bát Hoang Lục)` / `📜 Độ Kiếp Nhanh` ở tab Tu Luyện (`ui.brkMode`), và nút test nhanh ở Admin (`ad_trib_test`).
+  - Kiểm chứng: `node --check` pass, `runLab(classic)` & `runLab(realtime)` đạt `13/13` (`Hoàn tất (Đạt Hỗn Nguyên)`), browser test 0 console errors trong toàn bộ luồng Độ Kiếp 2D & `brkModal()`.
 - **Đại Tu Phường Thị — Nhịp 2: Thạch Phường Đổ Thạch, Sạp Tán Tu & Quỷ Thị Đêm (`v5.79` · `STONE_YARD_IMG`, `BLACK_MKT_IMG`, `STONE_TIERS`, `shopService`, `vShop`, `ACH.shop_stone/shop_steal`):**
   - **🪨 Thạch Phường Đổ Thạch (`stoneScan`, `stoneBuy`, `stoneCut`, `stoneSellMid`, `stoneCutAll`):** 4 khối Nguyên Thạch Cổ (*Phế Thạch → Thái Sơ Thần Thạch*) kèm banner 16-bit Pixel Art, tính năng **👁 Soi Thạch cùng Tiểu Cơ** (miễn phí 1 lần/kỳ từ Thanh Đồng Lệnh Lv2), Đài Giải Thạch 3 nhát cắt hồi hộp, thương nhân hỏi mua lại giữa chừng (**💰 Chốt Lời Non**) và thành tựu `shop_stone` khi cắt trúng Thái Sơ Thần Nguyên.
   - **🏮 Sạp Tán Tu (`stallHaggle`, `stallBuy`):** 3 Cổ Vật Chưa Giám Định, mặc cả bằng Tâm Cảnh + Khí Vận (giảm 15–24%, hết kiên nhẫn sẽ dọn sạp) và tự Giám Định bằng Ngộ Tính để săn Đại Cơ Duyên (`shop_steal`).
