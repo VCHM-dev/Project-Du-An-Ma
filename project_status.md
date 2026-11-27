@@ -1,12 +1,17 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.76 (`index.html`)  
+> **Phiên bản hiện tại:** v5.77 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Tu Giao Diện Kim Thủ Chỉ (Thiên Cơ Tinh Đài) & Tiểu Tiên Nữ Tinh Linh Toàn Cục (`v5.77` · `SPIRIT_IMG`, `spiritService`, `vKt`, `aiPanel`, `runUI`, `rewardIntegrationService.next`, `ACH.sp_bond`):**
+  - **Thiên Cơ Tinh Đài (`vKt`, `.kt-stage`):** Thay thế 5 khung phẳng cũ bằng Đài Trung Tâm có vòng Bát Quái xoay kép, 4 KPI Đạo Quả (`+% chỉ số`, `-% Uy Áp`, `Số kiếp & Đỉnh cao`, `Thân Mật`), nút **⚡ Khởi Động Mô Phỏng** nổi bật, thanh `aiPanel` thu gọn và **📜 Sổ Nhân Quả** với huy hiệu hạng (`SSS/SS/S/A`).
+  - **Tiểu Tiên Nữ Tinh Linh (`SPIRIT_IMG`, `spiritService`):** Sprite 16-bit Pixel Art WebP nhúng offline tiến hóa theo cấp KT (`1→5`), bong bóng thoại động theo ngữ cảnh, nuôi dưỡng Linh Thạch / Ngộ Đạo Sa tăng Thân Mật Cấp `1→5` (mở thành tựu `sp_bond`), đổi tên, 3 Tính Cách (*Dịu Dàng / Cà Khịa / Nghiêm Túc*) & 4 Hào Quang, giữ nguyên qua Luân Hồi (`reborn`).
+  - **3 Thần Thông Mô Phỏng:** `👁 Thiên Cơ Chi Nhãn` (KT≥1 soi rủi ro/gợi ý lựa chọn trong `runUI`), `🔄 Nghịch Chuyển Thiên Mệnh` (KT≥3 đổi lại 6 Thiên Phú 1 lần/kiếp), `✨ Linh Châu Hộ Mệnh` (KT≥5 tự cứu 1 lần tử vong sớm/kiếp).
+  - **Tinh Linh Đồng Hành Toàn Cục (`#spirit-layer`, `renderFloat`):** Nút nổi gọn gàng góc dưới-phải (tự ẩn khi vào Đấu Trường 2D) với chấm báo việc ưu tiên, mở Bảng Trợ Lý 3 tab (`🧭 Đề Xuất` tự quét nhân vật + nút `Đi Tới →`, `📖 Tab Này` cho 12 tab, `💬 Hỏi Đáp` offline + Thiên Cơ AI).
 - **Diễn Võ Đài Sơn Môn 2D Thủ Thành, Đại Đệ Tử Chi Viện, Chỉ Điểm & Sự Kiện Sư Đồ — Nhịp 2 (`v5.76` · `OWN_WAVES`, `OWN_EVENTS`, `sectService`, `adventureService.fightOwnDefense`, `ARENA_2D`, `SECT_MAP`, `vSect`, `ACH.own_def5`, `vAdmin`):**
   - **Diễn Võ Đài Sơn Môn (`OWN_WAVES` Đợt 1 → 10, `fightOwnDefense`, `ARENA_2D`):** Chiến đấu trực tiếp bảo vệ Sơn Môn qua 10 đợt công phá (Đợt 5 & 10 là Boss Tam Biến) ngay trên Đấu Trường 2D; **👑 Đại Đệ Tử** xuất chiến trực tiếp bên cạnh Tông Chủ (bắn kiếm khí Ngũ Hành mỗi `2.4s` & tạo Thuẫn Hộ Sơn `6% MaxHP` mỗi `5s`). Mở thành tựu `🛡 own_def5` khi vượt Đợt 5.
   - **⚔ Chỉ Điểm Đệ Tử (`sparDisciple`):** Mỗi năm (Cổ Điển) / mỗi ngày (Real-Time) chỉ điểm 1 đệ tử nhận `+2` cấp, `+12` Trung thành, `+15` Thanh Danh, `+Tu Vi` & `+20%` Dĩ Chiến Ngộ Đạo.

@@ -411,9 +411,74 @@ button.ab-sm{padding:4px 8px;font-size:11.5px}
 .pt-msg.p{align-self:flex-start;background:var(--in);border:1px solid color-mix(in srgb,var(--pcol,var(--gold)) 42%,var(--ln))}
 .pt-in{display:flex;gap:6px;align-items:center}
 .pt-in input{flex:1;min-width:0}
-</style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
+/* Thiên Cơ Tinh Đài & Tinh Linh Toàn Cục (v5.77) */
+@keyframes spFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes ktSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes ktSpinR{from{transform:rotate(360deg)}to{transform:rotate(0deg)}}
+@keyframes spPulse{0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,.65)}70%{box-shadow:0 0 0 7px rgba(251,191,36,0)}}
+.kt-stage{position:relative;overflow:hidden;border-radius:14px;padding:14px 16px;margin-bottom:10px;border:1px solid color-mix(in srgb,var(--sp-c1,#38bdf8) 45%,var(--ln));background:radial-gradient(circle at 22% 35%,color-mix(in srgb,var(--sp-c1,#38bdf8) 18%,transparent),transparent 55%),radial-gradient(circle at 82% 20%,color-mix(in srgb,var(--sp-c2,#a78bfa) 16%,transparent),transparent 50%),linear-gradient(155deg,#080d1d,#0f172a 55%,#141029);box-shadow:0 14px 36px #000a,inset 0 0 32px color-mix(in srgb,var(--sp-c1,#38bdf8) 10%,transparent)}
+.kt-hero{display:grid;grid-template-columns:190px 1fr;gap:14px;align-items:center}
+@media(max-width:740px){.kt-hero{grid-template-columns:1fr;text-align:center}}
+.kt-orb-wrap{position:relative;width:176px;height:176px;margin:0 auto;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none}
+.kt-ring{position:absolute;inset:4px;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--sp-c1,#38bdf8) 65%,transparent);box-shadow:0 0 22px color-mix(in srgb,var(--sp-c1,#38bdf8) 28%,transparent);animation:ktSpin 24s linear infinite;pointer-events:none}
+.kt-ring2{position:absolute;inset:18px;border-radius:50%;border:1px solid color-mix(in srgb,var(--sp-c2,#a78bfa) 55%,transparent);animation:ktSpinR 16s linear infinite;pointer-events:none}
+.kt-bagua{position:absolute;inset:12px;opacity:.35;animation:ktSpin 38s linear infinite;pointer-events:none;color:var(--sp-c1,#38bdf8)}
+.kt-sprite{position:relative;z-index:2;width:136px;height:136px;object-fit:contain;filter:drop-shadow(0 6px 18px color-mix(in srgb,var(--sp-c1,#38bdf8) 55%,transparent));animation:spFloat 3.4s ease-in-out infinite;transition:transform .18s}
+.kt-orb-wrap:hover .kt-sprite{transform:scale(1.06)}
+.kt-stage-lv5 .kt-sprite{filter:drop-shadow(0 0 18px color-mix(in srgb,var(--sp-c1,#fbbf24) 75%,transparent)) drop-shadow(0 0 6px #fde68a)}
+.kt-stage-tag{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);z-index:3;font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:99px;background:rgba(6,10,24,.9);border:1px solid color-mix(in srgb,var(--sp-c1,#38bdf8) 65%,var(--ln));color:var(--sp-c1,#bae6fd);white-space:nowrap}
+.kt-hd{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.kt-hd h3{margin:0;font-size:16px;color:#fde68a;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.kt-bubble{margin:8px 0 10px;padding:8px 12px;border-radius:10px;background:rgba(8,14,32,.78);border:1px solid color-mix(in srgb,var(--sp-c1,#38bdf8) 38%,var(--ln));font-size:12.5px;line-height:1.48;color:var(--tx)}
+.kt-bubble b{color:var(--sp-c1,#7dd3fc)}
+.kt-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:7px;margin-bottom:9px}
+.kt-kpi{background:rgba(10,16,36,.72);border:1px solid var(--ln);border-radius:9px;padding:6px 9px;display:flex;flex-direction:column;gap:2px}
+.kt-kpi span{font-size:10.5px;color:var(--mu)}.kt-kpi b{font-size:13.5px;font-variant-numeric:tabular-nums}
+.kt-skills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+.kt-sk{font-size:11.5px;padding:4px 9px;border-radius:8px;background:rgba(15,23,42,.82);border:1px solid var(--ln);color:var(--mu);display:inline-flex;align-items:center;gap:5px}
+.kt-sk.on{border-color:color-mix(in srgb,var(--sp-c1,#38bdf8) 55%,var(--ln));color:var(--tx);background:color-mix(in srgb,var(--sp-c1,#38bdf8) 12%,rgba(15,23,42,.85))}
+.kt-care{margin-top:11px;padding-top:11px;border-top:1px dashed color-mix(in srgb,var(--sp-c1,#38bdf8) 35%,var(--ln));display:flex;flex-direction:column;gap:8px}
+.kt-ai-strip{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:8px 12px}
+.kt-cta-box{text-align:center;padding:18px 14px;background:radial-gradient(circle at 50% 0%,color-mix(in srgb,var(--gold) 14%,transparent),transparent 70%),var(--pn);border-color:color-mix(in srgb,var(--gold) 45%,var(--ln))}
+.kt-cta-btn{padding:11px 24px!important;font-size:14.5px!important;font-weight:700!important;border-radius:11px!important;border-color:#fbbf24!important;background:linear-gradient(135deg,rgba(245,158,11,.28),rgba(217,119,6,.16))!important;color:#fef08a!important;box-shadow:0 6px 24px rgba(245,158,11,.22),inset 0 1px 0 rgba(255,255,255,.2)!important}
+.kt-cta-btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 28px rgba(245,158,11,.35)!important}
+.kt-eye-bar{display:flex;align-items:center;gap:10px;padding:8px 11px;margin-bottom:9px;border-radius:10px;background:linear-gradient(90deg,color-mix(in srgb,var(--sp-c1,#38bdf8) 14%,rgba(10,16,36,.92)),rgba(15,23,42,.88));border:1px solid color-mix(in srgb,var(--sp-c1,#38bdf8) 45%,var(--ln));font-size:12.5px;line-height:1.42}
+.kt-eye-bar img{width:34px;height:34px;object-fit:contain;flex-shrink:0}
+.kt-hist-list{display:flex;flex-direction:column;gap:7px;margin-top:8px}
+.kt-hist-item{display:flex;align-items:center;gap:10px;padding:8px 11px;border-radius:10px;background:var(--in);border:1px solid var(--ln);flex-wrap:wrap}
+.kt-grade{min-width:44px;text-align:center;font-weight:800;font-size:13px;padding:4px 7px;border-radius:8px;border:1px solid var(--ln);background:rgba(255,255,255,.04)}
+.kt-grade.g-sss{color:#fef08a;border-color:#fbbf24;background:rgba(245,158,11,.18);box-shadow:0 0 12px rgba(251,191,36,.28)}
+.kt-grade.g-ss{color:#e9d5ff;border-color:#a855f7;background:rgba(168,85,247,.18)}
+.kt-grade.g-s{color:#bae6fd;border-color:#38bdf8;background:rgba(56,189,248,.16)}
+.kt-grade.g-a{color:#a7f3d0;border-color:#34d399;background:rgba(52,211,153,.14)}
+/* Floating Tinh Linh Global */
+.sp-float{position:fixed;right:16px;bottom:16px;z-index:48;display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:none}
+.sp-float>*{pointer-events:auto}
+.sp-fab{position:relative;display:flex;align-items:center;gap:8px;padding:5px 12px 5px 6px;border-radius:99px;background:rgba(8,14,32,.92);border:1.5px solid color-mix(in srgb,var(--sp-c1,#38bdf8) 60%,var(--ln));color:var(--tx);box-shadow:0 8px 26px #000b,0 0 18px color-mix(in srgb,var(--sp-c1,#38bdf8) 25%,transparent);cursor:pointer;backdrop-filter:blur(8px);transition:transform .16s}
+.sp-fab:hover{transform:translateY(-2px);border-color:var(--sp-c1,#38bdf8)}
+.sp-fab img{width:40px;height:40px;object-fit:contain;animation:spFloat 3.4s ease-in-out infinite}
+.sp-fab-meta{display:flex;flex-direction:column;text-align:left;line-height:1.2}
+.sp-fab-meta b{font-size:12px;color:#fde68a}.sp-fab-meta span{font-size:10.5px;color:var(--mu)}
+.sp-fab-mini{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:rgba(8,14,32,.92);border:1px solid color-mix(in srgb,var(--sp-c1,#38bdf8) 55%,var(--ln));color:var(--tx);font-size:12px;font-weight:600;box-shadow:0 6px 18px #000a;cursor:pointer}
+.sp-dot{min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:#f59e0b;color:#111827;font-size:10.5px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;animation:spPulse 2s infinite}
+.sp-pop{width:min(365px,calc(100vw - 24px));max-height:74vh;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:rgba(9,14,30,.96);border:1px solid color-mix(in srgb,var(--sp-c1,#38bdf8) 52%,var(--ln));box-shadow:0 18px 48px #000d,0 0 28px color-mix(in srgb,var(--sp-c1,#38bdf8) 18%,transparent);backdrop-filter:blur(10px)}
+.sp-pop-hd{display:flex;align-items:center;gap:9px;padding:10px 12px;background:linear-gradient(90deg,color-mix(in srgb,var(--sp-c1,#38bdf8) 18%,rgba(12,18,38,.95)),rgba(15,23,42,.92));border-bottom:1px solid var(--ln)}
+.sp-pop-hd img{width:38px;height:38px;object-fit:contain;flex-shrink:0}
+.sp-pop-tabs{display:flex;gap:4px;padding:7px 10px;border-bottom:1px solid var(--ln);background:rgba(255,255,255,.02)}
+.sp-pop-tabs button{flex:1;padding:5px 6px;font-size:11.5px;border-radius:7px}
+.sp-pop-tabs button.on{border-color:var(--sp-c1,#38bdf8);color:#fde68a;background:color-mix(in srgb,var(--sp-c1,#38bdf8) 16%,var(--in))}
+.sp-pop-bd{padding:10px 12px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.sp-rec{padding:8px 10px;border-radius:10px;background:var(--in);border:1px solid var(--ln);display:flex;flex-direction:column;gap:5px}
+.sp-rec.urg{border-color:color-mix(in srgb,var(--gold) 55%,var(--ln));background:color-mix(in srgb,var(--gold) 8%,var(--in))}
+.sp-chat{display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto;padding:2px}
+.sp-cmsg{padding:7px 10px;border-radius:10px;font-size:12px;line-height:1.45;max-width:90%}
+.sp-cmsg.u{align-self:flex-end;background:color-mix(in srgb,var(--jade) 18%,var(--in));border:1px solid color-mix(in srgb,var(--jade) 42%,var(--ln))}
+.sp-cmsg.p{align-self:flex-start;background:var(--in);border:1px solid color-mix(in srgb,var(--sp-c1,#38bdf8) 42%,var(--ln))}
+.nofx .kt-ring,.nofx .kt-ring2,.nofx .kt-bagua,.nofx .kt-sprite,.nofx .sp-fab img,.nofx .sp-dot{animation:none!important}
+@media(prefers-reduced-motion:reduce){.kt-ring,.kt-ring2,.kt-bagua,.kt-sprite,.sp-fab img,.sp-dot{animation:none!important}}
+</style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div><div id="spirit-layer"></div>
 <script>
-const APP_VERSION='5.76';
+const APP_VERSION='5.77';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Ngưỡng Giảm Dần mượt mà.'},
@@ -429,6 +494,13 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Lưu Trữ để tải tệp .msns và tạo Liên Kết Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.77',date:'2026-11-27',title:'Đại Tu Kim Thủ Chỉ (Thiên Cơ Tinh Đài) & Tiểu Tiên Nữ Tinh Linh Toàn Cục',
+      highlights:[
+        {icon:'✨',title:'Thiên Cơ Tinh Đài & Tiểu Tiên Nữ Tinh Linh (3 Thần Thông Mô Phỏng)',desc:'Nâng cấp toàn diện tab Kim Thủ Chỉ với Thiên Cơ Tinh Đài xoay vòng Bát Quái, 4 KPI Đạo Quả, Sổ Nhân Quả và Tiểu Tiên Nữ Tinh Linh 16-bit Pixel Art tiến hóa theo cấp KT (1→5), mở khóa 3 Thần Thông: Thiên Cơ Chi Nhãn, Nghịch Chuyển Thiên Mệnh & Linh Châu Hộ Mệnh!',tab:'kt'},
+        {icon:'🧭',title:'Tinh Linh Đồng Hành Toàn Cục, Nuôi Dưỡng Thân Mật & Hỏi Đáp Thông Minh',desc:'Tinh Linh nay bay lơ lửng gọn gàng ở mọi tab (tự ẩn khi vào Đấu Trường 2D), tự quét trạng thái nhân vật để Đề Xuất Việc Nên Làm + nút Đi Tới, giảng giải Cẩm Nang từng tab, Hỏi Đáp (hỗ trợ Thiên Cơ AI) và nuôi dưỡng tăng Thân Mật mở khóa 3 Tính Cách & 4 Hào Quang!',tab:'kt'}
+      ]
+    },
     {
       version:'5.76',date:'2026-11-27',title:'Diễn Võ Đài Sơn Môn 2D Thủ Thành, Đại Đệ Tử Chi Viện, Chỉ Điểm & Sự Kiện Sư Đồ (Nhịp 2)',
       highlights:[
@@ -1213,7 +1285,7 @@ const PR=[20,50,120,300,800,2000,6000];
 /* ===== TIỆN ÍCH ===== */
 const $=i=>document.getElementById(i),clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),pick=a=>a[Math.random()*a.length|0],uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let s=null,ui={tab:'char',f:-1,sort:'r',cf:'all',rs:false,msg:'',adm:false,admAuth:false,admMsg:'',sv:false,svSlim:true,svSlots:[],svPreview:null,svLegacy:false,gdModal:null,gdTab:'tour',gdTour:null,crPath:'linh'};
+let s=null,ui={tab:'char',f:-1,sort:'r',cf:'all',rs:false,msg:'',adm:false,admAuth:false,admMsg:'',sv:false,svSlim:true,svSlots:[],svPreview:null,svLegacy:false,gdModal:null,gdTab:'tour',gdTour:null,crPath:'linh',spOpen:false,spTab:'adv',spCare:false,spLine:'',spChatIn:'',spBusy:false};
 const say=t=>{ui.msg=t;ui.mc=(ui.mc||0)+1};
 const KEY='msns_main_v1',store={load(){try{const j=localStorage.getItem(KEY);return j?JSON.parse(j):null}catch(e){return null}},save(x,keepTs){try{if(x&&!keepTs){x.updatedAt=Date.now();x.rev=(x.rev||0)+1}localStorage.setItem(KEY,JSON.stringify(x))}catch(e){toast('Bộ nhớ trình duyệt đã đầy, chưa lưu được. Hãy dùng ảnh nhỏ hơn hoặc xóa bớt ảnh tùy chỉnh.','wn')}},clear(){try{localStorage.removeItem(KEY)}catch(e){}}};
 const addm=(o,m,f=1)=>{for(const k in m)o[k]=(o[k]||0)+m[k]*f};
@@ -1253,7 +1325,7 @@ function advanceTime(x,yrs=1){for(let y=0;y<yrs;y++){x.age++;const r=Math.random
 
 /* ===== SERVICES HỢP NHẤT ===== */
 const characterService={
-  create(n,g,root,path='linh',mode='classic'){const now=Date.now(),pt=PD[path]?path:'linh',md=mode==='realtime'?'realtime':'classic';return{v:1,saveId:uid(),rev:1,created:now,updatedAt:now,name:n||'Vô Danh',gender:g,age:16,body:0,root,path:pt,subPath:'',pathRes:0,mode:md,rt:typeof rtService!=='undefined'?rtService.init(now):{lastTick:now,dayKey:'',pillsToday:0,breathsToday:0,brkCdUntil:0,garden:[null,null,null,null],furnace:null},realm:0,layer:0,xp:0,total:0,lifeB:0,stones:100,ngoSand:0,qiDev:0,van:0,nq:0,ng:0,tm:false,pb:0,kt:1,ach:{},best:-1,tal:[],eq:{},tech:{q1:{m:0,eq:true}},sim:null,hist:[],claimed:{},log:[],toxin:0,wounds:0,pillXp:0,qiState:1,advStreak:{i:-1,n:0},crafts:{dan:{lv:0,xp:0},khi:{lv:0,xp:0},tran:{lv:0,xp:0}},bmWeapon:null,activeArray:null,arrayFuel:0,arrays:{},px:{ngo:0,tam:0,the:0,linh:0,than:0},gfBuff:0,gfSup:0,gfRuns:0,advWins:{},sect:null,ownSect:null,auc:null,aucNext:26,aucRob:null,pets:{},pet:null,partner:null,pAff:{},reborn:0,ascended:0,profile:Object.assign({},UP),theme:Object.assign({},UT,thG),uiCfg:Object.assign({},UC),inv:[{u:uid(),id:'w1',q:1},{u:uid(),id:'a1',q:1},{u:uid(),id:'d1',q:3},{u:uid(),id:'d3',q:1}]}},
+  create(n,g,root,path='linh',mode='classic'){const now=Date.now(),pt=PD[path]?path:'linh',md=mode==='realtime'?'realtime':'classic';return{v:1,saveId:uid(),rev:1,created:now,updatedAt:now,name:n||'Vô Danh',gender:g,age:16,body:0,root,path:pt,subPath:'',pathRes:0,mode:md,rt:typeof rtService!=='undefined'?rtService.init(now):{lastTick:now,dayKey:'',pillsToday:0,breathsToday:0,brkCdUntil:0,garden:[null,null,null,null],furnace:null},realm:0,layer:0,xp:0,total:0,lifeB:0,stones:100,ngoSand:0,qiDev:0,van:0,nq:0,ng:0,tm:false,pb:0,kt:1,ach:{},best:-1,tal:[],eq:{},tech:{q1:{m:0,eq:true}},sim:null,hist:[],claimed:{},log:[],toxin:0,wounds:0,pillXp:0,qiState:1,advStreak:{i:-1,n:0},crafts:{dan:{lv:0,xp:0},khi:{lv:0,xp:0},tran:{lv:0,xp:0}},bmWeapon:null,activeArray:null,arrayFuel:0,arrays:{},px:{ngo:0,tam:0,the:0,linh:0,than:0},gfBuff:0,gfSup:0,gfRuns:0,advWins:{},sect:null,ownSect:null,auc:null,aucNext:26,aucRob:null,pets:{},pet:null,partner:null,pAff:{},spirit:{name:'Tiểu Cơ',mood:'gentle',aura:'star',aff:0,showFloat:true,mini:false,chat:[]},reborn:0,ascended:0,profile:Object.assign({},UP),theme:Object.assign({},UT,thG),uiCfg:Object.assign({},UC),inv:[{u:uid(),id:'w1',q:1},{u:uid(),id:'a1',q:1},{u:uid(),id:'d1',q:3},{u:uid(),id:'d3',q:1}]}},
   title:x=>TITLES[x.best+1<0?0:x.best+1]||TITLES[0],
   identity:x=>IDN[x.realm]||IDN[IDN.length-1]
 };
@@ -4426,6 +4498,7 @@ const rewardIntegrationService={
   go(x){const m=x.sim;if(m.pick.length!==3)return;m.a0=x.age;m.age=x.age;m.used=[];m.hid=0;m.br=0;m.dead=0;m.cal=Object.assign({},pick(CAL),{age:x.age+12+(Math.random()*14|0),done:0,th:22+9*x.realm});m.phase='run';initSim(x,1)},
   next(x,aa){
     const m=x.sim;
+    if(typeof spiritService!=='undefined')spiritService.trySaveLife(x,m);
     if(m.dead||m.age>=m.life){if(!m.dead)m.log.push(TG(m)+': Thọ nguyên cạn kiệt, ngươi an nhiên nhắm mắt.');return this.finish(x)}
     if(!m.cal.done&&m.age>=m.cal.age){const v=m.evil>=8?CE:m.bag.length>=4?CL:m.cal,c=m.cal=Object.assign({},v,{age:m.cal.age,done:0,th:m.cal.th});m.cur={k:1,t:'⚠ 【Kiếp Nạn Định Mệnh】 '+c.n+'. '+c.d,o:c.o,f:0,pre:'Một cỗ bất an dâng lên trong lòng, vận mệnh sắp rẽ lối...'};m.sub='cal';return}
     if(aa){
@@ -4572,8 +4645,283 @@ const rewardIntegrationService={
   upgradeKT(x){const c=200*x.kt;if(x.kt>=5)return say('Kim Thủ Chỉ đã tối đa');if(x.stones<c)return say('Cần '+c+' linh thạch');x.stones-=c;x.kt++;say('Kim Thủ Chỉ lên cấp '+x.kt)}
 };
 
+/* ===== TINH LINH KIM THỦ CHỈ & TRỢ LÝ TOÀN CỤC (v5.77) ===== */
+const SPIRIT_IMG='data:image/webp;base64,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';
+const SPIRIT_AFF_TH=[0,40,110,220,380];
+const SPIRIT_AFF_NAMES=['Sơ Nhận','Tương Tri','Tâm Ý Tương Thông','Linh Hồn Cộng Hưởng','Thiên Cơ Hợp Nhất'];
+const SPIRIT_MOODS=[
+  {id:'gentle',n:'🌸 Dịu Dàng',lv:1,d:'Ân cần, khích lệ, nhẹ nhàng nhắc nhở'},
+  {id:'sassy',n:'😏 Cà Khịa',lv:2,d:'Lém lỉnh, hay trêu chọc nhưng rất có tâm'},
+  {id:'strict',n:'⚔ Nghiêm Túc',lv:3,d:'Điềm tĩnh, ngắn gọn, chuẩn phong thái cổ linh'}
+];
+const SPIRIT_AURAS=[
+  {id:'star',n:'Tinh Hà Lam',lv:1,c1:'#38bdf8',c2:'#a78bfa'},
+  {id:'gold',n:'Thiên Đạo Kim',lv:2,c1:'#fbbf24',c2:'#f59e0b'},
+  {id:'moon',n:'Nguyệt Bạch Ngọc',lv:3,c1:'#e2e8f0',c2:'#2dd4bf'},
+  {id:'crimson',n:'Huyết Nguyệt',lv:4,c1:'#fb7185',c2:'#c084fc'}
+];
+const spiritService={
+  ensure(x){
+    if(!x)return null;
+    if(!x.spirit||typeof x.spirit!=='object')x.spirit={};
+    const sp=x.spirit;
+    if(typeof sp.name!=='string'||!sp.name.trim())sp.name='Tiểu Cơ';
+    sp.name=sp.name.trim().slice(0,18);
+    if(!SPIRIT_MOODS.some(m=>m.id===sp.mood))sp.mood='gentle';
+    if(!SPIRIT_AURAS.some(a=>a.id===sp.aura))sp.aura='star';
+    if(typeof sp.aff!=='number'||isNaN(sp.aff)||sp.aff<0)sp.aff=0;
+    sp.showFloat=sp.showFloat!==false;
+    sp.mini=!!sp.mini;
+    if(!Array.isArray(sp.chat))sp.chat=[];
+    return sp;
+  },
+  lv(x){
+    const aff=(this.ensure(x)||{aff:0}).aff;
+    let l=1;for(let i=0;i<SPIRIT_AFF_TH.length;i++)if(aff>=SPIRIT_AFF_TH[i])l=i+1;
+    return l;
+  },
+  lvName(x){return SPIRIT_AFF_NAMES[this.lv(x)-1]||SPIRIT_AFF_NAMES[0]},
+  stageTitle(x){const k=(x&&x.kt)||1;return k>=5?'Thiên Cơ Tiên Linh':k>=3?'Tinh Linh Nguyên Hình':'Linh Quang Sơ Khai'},
+  auraObj(x){const sp=this.ensure(x);return SPIRIT_AURAS.find(a=>a.id===sp.aura)||SPIRIT_AURAS[0]},
+  moodObj(x){const sp=this.ensure(x);return SPIRIT_MOODS.find(m=>m.id===sp.mood)||SPIRIT_MOODS[0]},
+  rename(x,raw){
+    const sp=this.ensure(x),nm=String(raw||'').replace(/[<>]/g,'').trim().slice(0,18);
+    if(!nm)return say('Tên Tinh Linh không được để trống');
+    sp.name=nm;ui.spLine=this.pickTone(x,'Đã đổi tên! Từ nay cứ gọi ta là «'+nm+'» nhé.','Hừm, «'+nm+'» nghe cũng oai đấy.','Đã khắc ấn danh hiệu «'+nm+'».');
+    say('✨ Đã đổi tên Tinh Linh thành '+nm);
+  },
+  setMood(x,id){
+    const sp=this.ensure(x),m=SPIRIT_MOODS.find(o=>o.id===id);if(!m)return;
+    if(this.lv(x)<m.lv)return say('Cần Thân Mật Cấp '+m.lv+' để mở khóa tính cách '+m.n);
+    sp.mood=id;ui.spLine=this.pickTone(x,'Từ giờ ta sẽ đồng hành cùng đạo hữu thật dịu dàng~','Á à, thích kiểu nói chuyện sắc sảo hơn rồi chứ gì?','Tuân lệnh. Mọi chỉ dẫn sẽ đi thẳng vào trọng tâm.');
+    say('Đã đổi tính cách Tinh Linh: '+m.n);
+  },
+  setAura(x,id){
+    const sp=this.ensure(x),a=SPIRIT_AURAS.find(o=>o.id===id);if(!a)return;
+    if(this.lv(x)<a.lv)return say('Cần Thân Mật Cấp '+a.lv+' để mở khóa hào quang '+a.n);
+    sp.aura=id;say('✨ Đã đổi Hào Quang Tinh Đài sang '+a.n);
+  },
+  feed(x,kind){
+    const sp=this.ensure(x),lv0=this.lv(x);
+    if(kind==='stones'){
+      const cost=Math.max(120,Math.round(simFee(x)*.5));
+      if(x.stones<cost)return say('Cần '+cost.toLocaleString('vi-VN')+' Linh Thạch để uẩn dưỡng Tinh Linh');
+      x.stones-=cost;sp.aff+=15;
+      ui.spLine=this.pickTone(x,'Linh khí trong lành quá, cảm ơn '+x.name+' nhiều! (+15 Thân Mật)','Chà, hôm nay chịu chi Linh Thạch cho ta rồi à? (+15 Thân Mật)','Đã hấp thụ Linh Thạch, thần hồn ổn định thêm phần. (+15 Thân Mật)');
+      say('💎 Đã tặng '+cost.toLocaleString('vi-VN')+' Linh Thạch (+15 Thân Mật)');
+    }else if(kind==='sand'){
+      if((x.ngoSand||0)<1)return say('Cần ít nhất 1 Ngộ Đạo Sa để uẩn dưỡng Tinh Linh');
+      x.ngoSand-=1;sp.aff+=35;
+      ui.spLine=this.pickTone(x,'Ngộ Đạo Sa thuần khiết quá! Đạo vận của ta sáng rực lên rồi! (+35 Thân Mật)','Ồ, Ngộ Đạo Sa quý thế mà cũng nỡ cho ta sao? Đáng khen! (+35 Thân Mật)','Đạo vận tinh thuần! Linh thức tăng tiến rõ rệt. (+35 Thân Mật)');
+      say('✨ Đã tặng 1 Ngộ Đạo Sa (+35 Thân Mật)');
+    }
+    const lv1=this.lv(x);
+    if(lv1>lv0)toast('🌟 Thân mật Tinh Linh đạt Cấp '+lv1+' ('+this.lvName(x)+')!','ach');
+  },
+  pickTone(x,g,sa,st){const sp=this.ensure(x);return sp.mood==='sassy'?sa:sp.mood==='strict'?st:g},
+  contextGreeting(x){
+    if(!x)return'';
+    const sp=this.ensure(x),m=x.sim,fee=simFee(x);
+    if(m&&m.phase==='legacy')return this.pickTone(x,'Kiếp mô phỏng đã viên mãn! Mau chọn Di Sản kẻo lỡ nhé.','Đạt hạng xong rồi còn đứng ngắm gì nữa? Nhận thưởng đi!','Kết quả mô phỏng đã định. Hãy chốt Di Sản.');
+    if(m&&m.phase==='run'&&m.spSaveMsg)return this.pickTone(x,'Vừa rồi suýt nguy hiểm quá, may ta kịp kích hoạt Linh Châu Hộ Mệnh cứu ngươi!','Này, vừa chết hụt một mạng đấy! Cẩn thận chút đi!','Linh Châu Hộ Mệnh đã tiêu hao để bảo toàn tính mạng. Hãy Bế Quan hồi phục.');
+    if(x.tm)return this.pickTone(x,'Đạo hữu đang có Tâm Ma quấy nhiễu, hãy dùng Tịnh Tâm Đan hoặc Đả Tọa Điều Tức nhé.','Tâm Ma nổi lên rồi kìa, định tẩu hỏa nhập ma luôn à?','Cảnh báo: Tâm Ma đang hiện hữu, tỷ lệ đột phá giảm mạnh.');
+    if((x.qiDev||0)>=45)return this.pickTone(x,'Mạch khí Nghịch Luyện hơi bất ổn rồi, ghé tab Công Pháp Đả Tọa chút nhé!','Nghịch Luyện cho lắm vào giờ Tẩu Hỏa đến nơi rồi kia kìa!','Tẩu Hỏa ở mức cao ('+x.qiDev+'%). Đề nghị Đả Tọa Điều Tức.');
+    if(x.hist&&x.hist[0]&&x.hist[0].g==='SSS')return this.pickTone(x,'Chúc mừng kiếp trước đạt hạng SSS tuyệt đỉnh! Khí vận đang rực rỡ lắm!','Hạng SSS cơ đấy, chắc chắn có một nửa công lao chỉ dẫn của ta!','Kiếp gần nhất đạt SSS. Căn cơ Đạo Quả ngày càng vững chắc.');
+    if(x.stones<fee)return this.pickTone(x,'Linh Thạch hơi thiếu rồi, đạo hữu thử thu hoạch Sơn Môn hoặc Lịch Luyện thêm nhé!','Túi rỗng tuếch rồi kìa, đi kiếm thêm Linh Thạch mới mở mô phỏng được chứ!','Không đủ '+fee.toLocaleString('vi-VN')+' Linh Thạch để mở Thiên Cơ Mô Phỏng.');
+    return this.pickTone(x,'Thiên Cơ Tinh Đài đã sẵn sàng! Muốn mở một kiếp mô phỏng hay xem ta có gợi ý gì không?','Lại định nghịch thiên cải mệnh à? Để xem hôm nay ngươi sống được mấy trăm tuổi!','Tinh Đài vận chuyển bình ổn. Mọi thần thông Kim Thủ Chỉ đều sẵn sàng.');
+  },
+  poke(x){
+    const recs=this.recommendations(x).list;
+    const pool=[
+      this.contextGreeting(x),
+      recs.length?('Nhắc nhẹ nè: '+recs[0].title+' — '+recs[0].desc):'Hiện tại căn cơ rất ổn, đạo hữu có thể thong dong bế quan hoặc mô phỏng!',
+      x.kt>=5?'Linh Châu Hộ Mệnh của ta luôn thủ sẵn một mạng cho ngươi trong kiếp mô phỏng!':'Nâng Kim Thủ Chỉ lên cấp cao hơn sẽ mở khóa thêm Thần Thông Nghịch Thiên đấy.',
+      thienCoAI.ready()?'Thiên Cơ AI đang kết nối! Ngươi có thể hỏi ta bất cứ điều gì ở ô Hỏi Đáp.':'Nếu kết nối Thiên Cơ AI ở trên, ta còn giải đáp linh hoạt hơn nữa!'
+    ];
+    ui.spLine=pool[(Math.random()*pool.length)|0];
+  },
+  simInsight(x,m){
+    if(!x||!m||x.kt<1||m.phase!=='run')return'';
+    const c=m.cur;
+    if(m.sub==='act'){
+      if(m.st==='hurt')return'Thể trạng đang Trọng Thương — ra ngoài dễ mất mạng! Nên chọn <b>Bế Quan Khổ Tu</b> để chữa thương ngay.';
+      if(!m.cal.done&&m.cal.age-m.age<=6)return'Đại Kiếp sắp giáng xuống trong vài năm tới! Hãy tranh thủ Bế Quan tích tu vi và giữ thể trạng Khỏe Mạnh.';
+      if(clue(m))return'Khí vận & manh mối đã đủ để <b>Thăm Dò Bí Cảnh</b> — phần thưởng tu vi và kỳ ngộ rất cao!';
+      return'Nếu cần lên cảnh giới mô phỏng nhanh và an toàn, ưu tiên <b>Bế Quan Khổ Tu</b>; muốn kiếm bảo vật hãy đi <b>Nhập Thế</b>.';
+    }
+    if(!c)return'';
+    if(c.ai&&Array.isArray(c.o)){
+      const best=c.o.reduce((a,b)=>(b.risk<a.risk?b:a),c.o[0]);
+      return'Nhánh an toàn nhất: «<b>'+esc(best.label)+'</b>» (rủi ro '+Math.round(best.risk*100)+'%). Cẩn thận nếu chọn hành động mạo hiểm khi đang bị thương!';
+    }
+    if(c.k){
+      const cal=m.cal,cn=m.pick.find(t=>cal.cn.includes(t)),st=characterStatsService.compute(x).attr[cal.st];
+      if(cn||st>=cal.th)return'<b>✨ Lựa chọn thứ 3 đã mở khóa!</b> Đây là phương án vượt Kiếp Nạn chắc chắn 100%, đừng bỏ lỡ!';
+      return'Kiếp Nạn hiểm ác! Phương án «<b>'+esc(c.o[cal.r][0])+'</b>» thuận với thiên cơ hơn (tỷ lệ vượt cao hơn hẳn).';
+    }
+    if(c.h&&hOk(c.h[0]))return'<b>✨ Phát hiện Lựa Chọn Ẩn!</b> Điều kiện đã thỏa mãn — chọn ngay phương án thứ 3 để thu đại cơ duyên.';
+    if(Array.isArray(c.o)&&c.o.length>=2){
+      const r0=c.o[0][4]||0,r1=c.o[1][4]||0;
+      const safer=r0<=r1?c.o[0][0]:c.o[1][0],risky=r0>r1?c.o[0][0]:c.o[1][0];
+      return'«<b>'+esc(safer)+'</b>» ít rủi ro hơn («'+esc(risky)+'» hiểm trở hơn'+(m.st==='hurt'?', đặc biệt nguy hiểm khi đang Trọng Thương':'')+').';
+    }
+    return'';
+  },
+  rerollSix(x){
+    const m=x&&x.sim;
+    if(!m||m.phase!=='pick')return say('Chỉ dùng được ở bước chọn 6 Thiên Phú khởi đầu');
+    if(x.kt<3)return say('Cần Kim Thủ Chỉ Cấp 3 mới mở khóa Nghịch Chuyển Thiên Mệnh');
+    if(m.spReroll)return say('Mỗi kiếp mô phỏng chỉ Nghịch Chuyển Thiên Mệnh 1 lần');
+    const lv=this.lv(x),wMul=Math.max(.24,.38-(lv-1)*.03);
+    m.six=TAL.map(t=>[t.id,Math.random()*(1+t.r*wMul)]).sort((a,b)=>a[1]-b[1]).slice(0,6).map(a=>a[0]);
+    m.pick=[];m.spReroll=1;
+    ui.spLine=this.pickTone(x,'Thiên cơ đã xoay chuyển! Xem 6 Thiên Phú mới này có hợp ý ngươi không nhé!','Rồi rồi, xáo lại sáu quẻ khác cho ngươi rồi đấy, đừng kén nữa!','Nghịch Chuyển Thiên Mệnh hoàn tất.');
+    say('🔄 Đã đổi mới 6 Thiên Phú khởi đầu (tăng tỷ lệ phẩm hiếm)!');
+  },
+  trySaveLife(x,m){
+    if(!x||!m||x.kt<5||!m.dead||m.age>=m.life||m.spSaved)return false;
+    const why=m.dead;
+    m.dead=0;m.spSaved=1;m.st='hurt';m.spSaveMsg=why;
+    m.log.push(TG(m)+': ✨ [Linh Châu Hộ Mệnh] Tinh Linh '+(this.ensure(x).name)+' tế xuất Thế Thân Chi Quang cứu ngươi thoát khỏi kiếp nạn «'+why+'» (trạng thái: Trọng Thương)!');
+    return true;
+  },
+  recommendations(x){
+    if(!x)return{list:[],urgentCount:0};
+    const list=[];
+    if(x.sim&&x.sim.phase==='legacy')list.push({id:'sim_leg',pri:100,urgent:true,ico:'🎁',title:'Chốt Di Sản Mô Phỏng',desc:'Kiếp mô phỏng vừa kết thúc, hãy vào nhận Đạo Quả & Tu Vi ngay.',tab:'kt',btn:'Nhận Di Sản →'});
+    if(x.tm)list.push({id:'tm',pri:95,urgent:true,ico:'😈',title:'Hóa Giải Tâm Ma',desc:'Tâm Ma đang làm giảm tỷ lệ đột phá & tăng nguy cơ Tẩu Hỏa.',tab:'tec',btn:'Điều Tức / Dùng Đan →'});
+    if((x.qiDev||0)>=45)list.push({id:'qidev',pri:90,urgent:true,ico:'🩸',title:'Nghịch Mạch Tẩu Hỏa Cao ('+x.qiDev+'%)',desc:'Hãy Đả Tọa Điều Tức ở tab Công Pháp để bình ổn kinh mạch.',tab:'tec',btn:'Đả Tọa Điều Tức →'});
+    if(typeof cultivationService!=='undefined'&&x.xp>=cultivationService.need(x))list.push({id:'brk',pri:88,urgent:true,ico:'⚡',title:x.layer>=8?'Đột Phá Đại Cảnh Giới!':'Đột Phá Tầng Mới',desc:'Thanh Tu Vi đã đầy, có thể xung kích cảnh giới ngay.',tab:'cul',btn:'Tới Tu Luyện →'});
+    if(x.ownSect&&x.ownSect.evt)list.push({id:'own_evt',pri:86,urgent:true,ico:'📜',title:'Sự Kiện Sư Đồ Sơn Môn',desc:'Đệ Tử Viện đang có biến cố chờ Tông Chủ phán quyết.',tab:'sect',btn:'Xem Sơn Môn →'});
+    if(x.mode==='realtime'&&x.rt){
+      if(x.rt.furnace&&Date.now()>=x.rt.furnace.endAt)list.push({id:'furn',pri:82,urgent:true,ico:'🔥',title:'Lò Luyện Đan/Khí Đã Xong',desc:'Vào Bách Nghệ thu thành phẩm ngay.',tab:'craft',btn:'Thu Hoạch →'});
+      if(Array.isArray(x.rt.garden)&&x.rt.garden.some(g=>g&&typeof rtService!=='undefined'&&rtService.plotPct(g)>=100))list.push({id:'gard',pri:80,urgent:true,ico:'🌱',title:'Dược Viên Đã Chín',desc:'Có linh thảo đã trưởng thành 100%, mau thu hoạch.',tab:'craft',btn:'Tới Dược Viên →'});
+    }
+    if(typeof techniqueService!=='undefined'){
+      const keys=Object.keys(x.tech||{}),eqN=keys.filter(k=>x.tech[k].eq).length;
+      if(eqN<3&&keys.length>eqN)list.push({id:'tec_eq',pri:72,urgent:false,ico:'📘',title:'Còn Trống Ô Công Pháp ('+eqN+'/3)',desc:'Trang bị thêm Công Pháp để tăng chỉ số và mở Tuyệt Kỹ.',tab:'tec',btn:'Tới Công Pháp →'});
+      const miss=keys.find(k=>techniqueService.stanceInfo(x,k).miss>0);
+      if(miss)list.push({id:'tec_ded',pri:68,urgent:false,ico:'📜',title:'Tàn Quyển Chờ Suy Diễn',desc:QD[miss].n+' còn tầng khuyết, hãy mở Đài Suy Diễn nối huyệt.',tab:'tec',btn:'Suy Diễn →'});
+      const fullN=keys.filter(k=>techniqueService.lv(x,k)>=3).length;
+      if(fullN>=2)list.push({id:'tec_fus',pri:60,urgent:false,ico:'☯',title:'Đủ Điều Kiện Diễn Hóa Công Pháp',desc:'Có '+fullN+' bộ Viên Mãn có thể hợp nhất thành phẩm cấp cao hơn.',tab:'tec',btn:'Diễn Hóa →'});
+    }
+    if(x.kt<5&&x.stones>=200*x.kt)list.push({id:'kt_up',pri:65,urgent:false,ico:'✨',title:'Nâng Cấp Kim Thủ Chỉ ('+x.kt+'/5)',desc:'Đủ Linh Thạch nâng cấp để tăng thưởng & mở Thần Thông Tinh Linh.',tab:'kt',btn:'Nâng Cấp →'});
+    if(x.ownSect){
+      if((x.ownSect.vaultStones||0)>=5000)list.push({id:'own_v',pri:62,urgent:false,ico:'💰',title:'Quỹ Sơn Môn Dồi Dào',desc:'Đang tích lũy '+(x.ownSect.vaultStones||0).toLocaleString('vi-VN')+' Linh Thạch chờ thu hoạch.',tab:'sect',btn:'Thu Hoạch →'});
+      const brkD=(x.ownSect.disciples||[]).find(d=>d.xp>=100*(d.rlm+1)*(d.lv+1));
+      if(brkD)list.push({id:'own_d',pri:64,urgent:false,ico:'👥',title:'Đệ Tử Chờ Phá Cảnh',desc:brkD.n+' đã đủ tu vi để đột phá cảnh giới cao hơn.',tab:'sect',btn:'Đệ Tử Viện →'});
+    }else if(!x.sect&&x.realm>=1){
+      list.push({id:'sect_j',pri:55,urgent:false,ico:'🏔',title:'Gia Nhập Tông Môn',desc:'Vào Tông Môn nhận Bổng Lộc, Ủy Thác và Bảo Vật Trấn Tông.',tab:'sect',btn:'Chọn Tông Môn →'});
+    }
+    if(x.petExp&&Object.keys(x.petExp).some(id=>typeof compService!=='undefined'&&compService.expPct(x,id)>=100))list.push({id:'pet_c',pri:70,urgent:false,ico:'🐉',title:'Linh Thú Tầm Bảo Trở Về',desc:'Vào tab Đồng Hành để nhận chiến lợi phẩm tầm bảo.',tab:'comp',btn:'Nhận Thưởng →'});
+    if((!x.sim||x.sim.phase==='claimed')&&x.stones>=simFee(x))list.push({id:'sim_go',pri:45,urgent:false,ico:'🔮',title:'Mở Kiếp Mô Phỏng Mới',desc:'Không tốn Thọ Nguyên Bản Thể, tích lũy Đạo Quả vĩnh viễn.',tab:'kt',btn:'Vào Tinh Đài →'});
+    list.sort((a,b)=>b.pri-a.pri);
+    const top=list.slice(0,4);
+    return{list:top,urgentCount:top.filter(i=>i.urgent).length};
+  },
+  tabGuide(tab,x){
+    const guides={
+      char:{t:'Nhân Vật & Căn Cơ',p:['6 Thuộc Tính Gốc (Thể/Linh/Ngộ/Thần/Tâm/Vận) quyết định 8 chỉ số thực chiến có ngưỡng giảm dần hợp lý.','Gắn Phó Đạo Lộ (Kiêm Tu) từ Kết Đan để kết hợp sức mạnh 2 nhánh tu luyện.','Thường xuyên vào Kho Lưu Trữ (💾 Lưu) để sao lưu mốc an toàn hoặc chuyển thiết bị.']},
+      tal:{t:'Thiên Phú & Nâng Cấp',p:['Thiên Phú chia 7 phẩm chất (Bạch → Thất Thải) và nâng được từ Cấp 1 đến Cấp 5.','Tập trung kích hoạt các Thiên Phú hợp với Đạo Lộ hiện tại (Bế Quan, Chiến Đấu hoặc Luyện Đan).','Thiên Phú hiếm còn giúp vượt Kiếp Nạn trong Kim Thủ Chỉ và mở chỉ dẫn ẩn.']},
+      cul:{t:'Tu Luyện & Đột Phá',p:['Bế Quan tích lũy Tu Vi và tự động đột phá tầng nhỏ (1→9). Đạt tầng 9 có thể xung kích Đại Cảnh Giới.','Chú ý 3 phẩm chất Kết Đan/Đột Phá (Hạ/Trung/Thượng/Thiên Phẩm) — Thiên Phẩm tăng mạnh Căn Cơ Đạo Cơ và mở Đạo Ấn!','Khi gặp Thiên Kiếp, cần chuẩn bị Phòng Ngự, Trận Pháp, Đan Hộ Thân và Đạo Lữ hộ pháp.']},
+      inv:{t:'Kho Đồ & Quản Lý Trang Bị',p:['Lọc theo loại, khóa 🔒 món quý để tránh bán nhầm hoặc phân giải nhầm.','Đồ dư có thể Phân Giải (Rã) lấy nguyên liệu hoặc Bán lấy Linh Thạch.','Đan Dược hỗ trợ hồi phục, xóa Tâm Ma, giảm Đan Độc hoặc tăng tỷ lệ Phá Cảnh.']},
+      tec:{t:'Công Pháp, Kinh Mạch & Đài Suy Diễn',p:['Trang bị tối đa 3 Công Pháp: ghép đúng bộ Ngũ Hành Tương Sinh sẽ kích hoạt Đại Chu Thiên!','Mỗi bộ có 5 tầng Kinh Mạch: chọn Chính Luyện (an toàn) hoặc Nghịch Luyện (uy lực cao nhưng tăng Tẩu Hỏa).','Tàn Quyển có tầng khuyết phải đưa lên Đài Suy Diễn nối 3 huyệt cổ văn để phục hồi hoặc Cải Lương Mạch!','Khi có 2 bộ Viên Mãn có thể Diễn Hóa hợp nhất giữ Song Hiệu Ứng & mở Đồ Giám.']},
+      craft:{t:'Bách Nghệ: Đan · Khí · Trận & Dược Viên',p:['Luyện Đan chế đan thực chiến/phá cảnh; Luyện Khí rèn Thần Binh, Nâng Phẩm & Tinh Luyện (+1→+10).','Có thể chọn 1 Vũ Khí/Pháp Bảo làm Bản Mệnh Pháp Bảo để Ôn Dưỡng cộng hưởng theo cảnh giới.','Bố trí Trận Pháp và nạp Trận Nhãn để tăng tốc Bế Quan, Thủ Hộ hoặc Lực Chiến Lịch Luyện.']},
+      sect:{t:'Tông Môn & Khai Tông Lập Phái',p:['Dạo bước trên Bản Đồ Sơn Môn 2.5D, nhận Ủy Thác động và thi Khảo Hạch thăng bậc Tông Môn.','Từ Nguyên Anh có thể Khai Tông Lập Phái: nâng Linh Mạch, đặt Tông Quy, tuyển Đệ Tử 8 Thiên Phú.','Bổ nhiệm Đại Đệ Tử & 3 Chấp Sự, phái đi Ủy Thác, Truyền Công, Chỉ Điểm và thủ thành trên Diễn Võ Đài 2D!']},
+      comp:{t:'Đồng Hành: Linh Thú & Đạo Lữ',p:['Thu phục đủ 5 Linh Thú Ngũ Hành; Linh Thú dự bị có thể phái đi Tầm Bảo kiếm tài nguyên.','Kết duyên với các Đạo Lữ, tặng quà/trò chuyện tăng Hảo Cảm và Song Tu.','Chính Đạo Lữ sẽ cùng xuất chiến và tung Tuyệt Kỹ Hợp Kích [T] trong Đấu Trường 2D!']},
+      kt:{t:'Kim Thủ Chỉ & Thiên Cơ Tinh Đài',p:['Mô phỏng trong Kim Thủ Chỉ KHÔNG tốn Thọ Nguyên Bản Thể, còn tích lũy Đạo Quả (+% toàn chỉ số, -% Uy Áp).','Nâng Kim Thủ Chỉ lên Cấp 3 & 5 để mở Nghịch Chuyển Thiên Mệnh và Linh Châu Hộ Mệnh cứu mạng 1 lần/kiếp.','Có thể kết nối API ở Thiên Cơ AI để biến cố mô phỏng và ta trả lời tự do linh hoạt hơn.']},
+      adv:{t:'Lịch Luyện 2D, Vạn Kiếp Tháp & Cổ Thần',p:['Chiến đấu trên Đấu Trường Thực Chiến 2D: tận dụng Né Hoàn Hảo, Linh Trụ chắn đạn và Vòng Linh Khí hồi MP.','Chinh phục Vạn Kiếp Tháp, khiêu chiến Cổ Thần Tam Biến và Đột Kích Liên Hoàn để lấy Khung Chân Dung & Bảo Vật.','Có thể xuất/nhập Mã Chiến Tích (DM2D-...) để đua Tàn Ảnh Liên Giới!']},
+      shop:{t:'Phường Thị & Đấu Giá Vạn Bảo Lâu',p:['Phường Thị tự làm mới vật phẩm, bí tịch và nguyên liệu theo thời gian/lượt.','Mỗi 10 năm tuổi sẽ khai mạc Đấu Giá Hội Vạn Bảo Lâu tranh đoạt bảo vật hiếm phẩm chất cao.']},
+      admin:{t:'Thiên Đạo Đài (Debug / Sandbox)',p:['Công cụ thử nghiệm nhanh tài nguyên, cảnh giới, công pháp, Sơn Môn và chạy test cân bằng runLab().']}
+    };
+    return guides[tab]||guides.char;
+  },
+  quickQuestions(x){
+    const qs=['Hiện tại ta nên ưu tiên làm gì?','Cách dùng Công Pháp & Tàn Quyển hiệu quả?','Thần thông của ngươi giúp gì trong Mô Phỏng?'];
+    if(x&&x.ownSect)qs[1]='Làm sao phát triển Sơn Môn & Đệ Tử nhanh?';
+    else if(x&&x.realm>=3&&!x.ownSect)qs[1]='Khai Tông Lập Phái có gì hay?';
+    return qs;
+  },
+  offlineReply(x,raw){
+    const q=String(raw||'').toLowerCase(),recs=this.recommendations(x).list,sp=this.ensure(x);
+    const intro=this.pickTone(x,'Để '+sp.name+' xem giúp đạo hữu nhé: ','Nghe kỹ đây, ta chỉ nói một lần thôi đấy: ','Phân tích thiên cơ hiện tại: ');
+    if(/làm gì|ưu tiên|tiếp theo|gợi ý|nên/.test(q)){
+      if(!recs.length)return intro+'Hiện mọi thứ khá ổn định! Ngươi có thể Bế Quan tích tu vi, Lịch Luyện kiếm tài nguyên hoặc mở một kiếp Mô Phỏng để tích Đạo Quả.';
+      return intro+recs.slice(0,3).map((r,i)=>(i+1)+'. '+r.title+' ('+r.desc+')').join(' ');
+    }
+    if(/công pháp|kinh mạch|tàn quyển|suy diễn|nghịch|chu thiên|từ điều/.test(q)){
+      return intro+'Trang bị 3 Công Pháp cùng hệ hoặc Tương Sinh (Kim→Thủy→Mộc→Hỏa→Thổ) sẽ kích hoạt Đại Chu Thiên! Tàn Quyển còn tầng khuyết đưa lên Đài Suy Diễn nối 3 huyệt cổ văn để phục hồi hoặc lên 🌟 Cải Lương Mạch; Nghịch Luyện tăng uy lực nhưng nhớ Đả Tọa Điều Tức khi Tẩu Hỏa cao.';
+    }
+    if(/tông|sơn môn|đệ tử|diễn võ|ủy thác/.test(q)){
+      return intro+'Từ Nguyên Anh có thể Khai Tông Lập Phái: nâng Linh Mạch, chọn Tông Quy, bổ nhiệm Đại Đệ Tử & Chấp Sự để tối ưu Ủy Thác. Mỗi năm nhớ Chỉ Điểm Đệ Tử, giải Sự Kiện Sư Đồ và thủ thành Diễn Võ Đài 2D kiếm Thanh Danh!';
+    }
+    if(/kim thủ chỉ|mô phỏng|thần thông|đạo quả|tinh linh/.test(q)){
+      return intro+'Mô Phỏng không tốn Thọ Nguyên Bản Thể! Đạo Quả cộng thẳng toàn chỉ số & kháng Uy Áp. Ta có 3 Thần Thông: Cấp 1 mở Thiên Cơ Chi Nhãn soi rủi ro; Cấp 3 mở Nghịch Chuyển Thiên Mệnh đổi lại 6 Thiên Phú; Cấp 5 mở Linh Châu Hộ Mệnh cứu chết hụt 1 lần/kiếp!';
+    }
+    if(/đột phá|tu luyện|thiên kiếp|tâm ma|đan độc/.test(q)){
+      return intro+'Khi Tu Vi tầng 9 đầy, hãy xóa sạch Tâm Ma, giữ Đan Độc thấp và mang theo Trận Pháp/Đan Phá Cảnh để xung kích Thiên Phẩm (+Căn Cơ Đạo Cơ & mở Đạo Ấn).';
+    }
+    if(/đấu trường|lịch luyện|tháp|cổ thần|2d/.test(q)){
+      return intro+'Trên Đấu Trường 2D, hãy canh Né Hoàn Hảo khi Boss tích chiêu đỏ để hồi nhịp & phản công, nhặt Vòng Linh Khí hồi MP và kích hoạt Hợp Kích [T] cùng Chính Đạo Lữ!';
+    }
+    const cur=this.tabGuide(ui.tab,x);
+    return intro+'Ở mục «'+cur.t+'», điểm cốt lõi là: '+cur.p[0]+(recs[0]?' Ngoài ra, việc nên ưu tiên lúc này là: '+recs[0].title+'.':'');
+  },
+  ask(x,raw){
+    const text=aiS(raw,180);if(!x||!text||ui.spBusy)return;
+    const sp=this.ensure(x);
+    sp.chat.push({r:'u',t:text});if(sp.chat.length>12)sp.chat=sp.chat.slice(-12);
+    ui.spChatIn='';
+    const finish=(ans,viaAI)=>{
+      sp.chat.push({r:'p',t:aiS(ans,420),ai:viaAI?1:0});
+      if(sp.chat.length>12)sp.chat=sp.chat.slice(-12);
+      store.save(x,true);render();
+      const bx=$('spChatBox');if(bx)bx.scrollTop=bx.scrollHeight;
+    };
+    if(!thienCoAI.ready())return finish(this.offlineReply(x,text),false);
+    ui.spBusy=true;render();
+    const bx0=$('spChatBox');if(bx0)bx0.scrollTop=bx0.scrollHeight;
+    const recs=this.recommendations(x).list.map(r=>r.title+': '+r.desc);
+    const ctx={nguoiChoi:x.name,canhGioi:realmName(x)+' Tầng '+(x.layer+1),linhThach:x.stones,kt:x.kt,daoQuaBuff:Math.round((x.gfBuff||0)*100)+'%',tabHienTai:ui.tab,tamMa:!!x.tm,tauHoa:x.qiDev||0,tongMon:x.ownSect?x.ownSect.name:(x.sect?x.sect.id:'chưa có'),deXuatUuTien:recs};
+    const sys='Ngươi là «'+sp.name+'» — Tinh Linh Kim Thủ Chỉ trong game Tu Tiên Mô Phỏng Nhân Sinh, tính cách: '+this.moodObj(x).n+'. Trả lời người chơi ngắn gọn (2-4 câu), hữu ích, bám sát trạng thái nhân vật và cơ chế game thực tế. CHỈ trả về JSON hợp lệ {"reply":"..."}.';
+    const usr='TRẠNG THÁI: '+JSON.stringify(ctx)+'\nCÂU HỎI: «'+text+'»';
+    thienCoAI.call(sys,usr).then(o=>{
+      ui.spBusy=false;if(s!==x)return;
+      if(!o||!o.reply)throw new Error('Thiếu reply');
+      finish(o.reply,true);
+    }).catch(()=>{
+      ui.spBusy=false;if(s!==x)return;
+      finish(this.offlineReply(x,text),false);
+    });
+  },
+  renderFloat(){
+    if(!s||ui.btl||ui.gdTour||ui.gdModal||ui.admAuth)return'';
+    const sp=this.ensure(s);if(!sp.showFloat)return'';
+    const au=this.auraObj(s),rec=this.recommendations(s),lv=this.lv(s);
+    const sty=`--sp-c1:${au.c1};--sp-c2:${au.c2}`;
+    if(!ui.spOpen){
+      const badge=rec.urgentCount?`<span class="sp-dot" title="${rec.urgentCount} việc quan trọng">${rec.urgentCount}</span>`:'';
+      if(ui.tab==='kt'||sp.mini)return`<div class="sp-float" style="${sty}"><button class="sp-fab-mini" data-a="sp_toggle" title="Mở Trợ Lý Tinh Linh">✨ ${esc(sp.name)} · Đề Xuất ${badge}</button></div>`;
+      return`<div class="sp-float" style="${sty}"><button class="sp-fab" data-a="sp_toggle" title="Bấm để mở Trợ Lý & Hướng Dẫn của ${esc(sp.name)}"><img src="${SPIRIT_IMG}" alt="${esc(sp.name)}"><span class="sp-fab-meta"><b>${esc(sp.name)}</b><span>${rec.list.length?esc(rec.list[0].title):'Cẩm nang & Gợi ý'}</span></span>${badge}</button></div>`;
+    }
+    let bd='';
+    if(ui.spTab==='adv'){
+      bd=rec.list.length?rec.list.map(r=>`<div class="sp-rec ${r.urgent?'urg':''}"><div class="row" style="gap:6px"><b>${r.ico} ${esc(r.title)}</b>${r.urgent?'<span class="c-bdg on">Ưu tiên</span>':''}</div><div class="mu">${esc(r.desc)}</div><div><button class="c-act" data-a="sp_jump" data-x="${r.tab}">${esc(r.btn)}</button></div></div>`).join(''):`<div class="sp-rec"><b>✨ Mọi việc đều thuận lợi!</b><div class="mu">Đạo hữu có thể thong dong Bế Quan, Lịch Luyện hoặc mở một kiếp Mô Phỏng tích Đạo Quả.</div><div><button class="c-act" data-a="sp_jump" data-x="kt">Tới Kim Thủ Chỉ →</button></div></div>`;
+    }else if(ui.spTab==='guide'){
+      const g=this.tabGuide(ui.tab,s);
+      bd=`<div class="sp-rec"><b>📖 ${esc(g.t)}</b><ul style="margin:4px 0 0 16px;padding:0;display:flex;flex-direction:column;gap:5px">${g.p.map(p=>`<li class="mu">${esc(p)}</li>`).join('')}</ul></div><div class="bt"><button class="c-act" data-a="sp_jump" data-x="kt">✨ Về Thiên Cơ Tinh Đài</button></div>`;
+    }else{
+      const qs=this.quickQuestions(s);
+      const msgs=(sp.chat&&sp.chat.length)?sp.chat:[{r:'p',t:this.contextGreeting(s)}];
+      bd=`<div class="sp-chat" id="spChatBox">${msgs.map(m=>`<div class="sp-cmsg ${m.r}">${esc(m.t)}${m.ai?' <span class="mu" style="font-size:10px">🔮</span>':''}</div>`).join('')}${ui.spBusy?'<div class="sp-cmsg p mu"><i>Tinh linh đang bấm đốt ngón tay suy diễn...</i></div>':''}</div><div class="bt">${qs.map((q,i)=>`<button class="chip" data-a="sp_chat_q" data-x="${i}"${ui.spBusy?' disabled':''}>${esc(q)}</button>`).join('')}</div><div class="pt-in"><input id="sp_chat_in" data-chg="sp_chat_in" maxlength="180" autocomplete="off" placeholder="Hỏi ${esc(sp.name)} về lối chơi..." value="${esc(ui.spChatIn||'')}"${ui.spBusy?' disabled':''}>${btn('sp_chat_send','','Gửi',ui.spBusy)}${sp.chat&&sp.chat.length?btn('sp_chat_clr','','🧹'):''}</div>`;
+    }
+    return`<div class="sp-float" style="${sty}"><div class="sp-pop" role="dialog" aria-label="Trợ Lý Tinh Linh"><div class="sp-pop-hd"><img src="${SPIRIT_IMG}" alt="${esc(sp.name)}"><div style="flex:1;min-width:0"><div style="font-weight:700;color:#fde68a;font-size:13px">${esc(sp.name)} <span class="mu" style="font-weight:400;font-size:11px">· Thân Mật Cấp ${lv}</span></div><div class="mu" style="font-size:11px">${this.moodObj(s).n} · KT ${s.kt}/5</div></div><div class="bt" style="margin:0;gap:4px">${btn('sp_mini','',sp.mini?'Hiện Ảnh':'Thu Gọn')}${btn('sp_hide','','Ẩn')}${btn('sp_toggle','','✕')}</div></div><div class="sp-pop-tabs"><button class="${ui.spTab==='adv'?'on':''}" data-a="sp_tab" data-x="adv">🧭 Đề Xuất${rec.list.length?' ('+rec.list.length+')':''}</button><button class="${ui.spTab==='guide'?'on':''}" data-a="sp_tab" data-x="guide">📖 Tab Này</button><button class="${ui.spTab==='chat'?'on':''}" data-a="sp_tab" data-x="chat">💬 Hỏi Đáp</button></div><div class="sp-pop-bd">${bd}</div></div></div>`;
+  }
+};
+
+
 /* ===== THÀNH TỰU, SAO LƯU & MIGRATE HỢP NHẤT ===== */
-const ACH=[['kd','Đạt Kim Đan',x=>x.realm>=2],['na','Đạt Nguyên Anh',x=>x.realm>=3],['ht','Đạt Hóa Thần',x=>x.realm>=4],['th','Sống trên 1000 tuổi',x=>x.age>=1000],['tt','Sở hữu thiên phú Thất Thải',x=>x.tal.some(t=>TD[t.id].r===6)],['sss','Đạt hạng SSS mô phỏng',x=>x.best===8],['sm','Hoàn thành 5 lần mô phỏng',x=>x.hist.length>=5],['lw','Thắng 10 trận Lịch Luyện',x=>(x.wins||0)>=10],['gd','Sở hữu 5.000 Linh Thạch',x=>x.stones>=5000],['tw10','Chinh phục Tầng 10 Vạn Kiếp Tháp',x=>(x.towerFloor||0)>=10],['wb1','Trảm sát Cổ Thần Tam Biến',x=>Object.values(x.wbWins||{}).some(v=>v>0)],['rush1','Phá đảo Đột Kích Liên Hoàn (4 Cổ Thần)',x=>!!(x.arenaRec&&x.arenaRec.rushBest&&x.arenaRec.rushBest.clears>=1)],['pd1','Thời Không Tĩnh Lặng (≥ 3 Né Hoàn Hảo trong 1 trận)',x=>!!(x.arenaRec&&(x.arenaRec.bestPerfectDodge||0)>=3)],['pd2','Thân Pháp Nhập Vi (Tích lũy 25 Né Hoàn Hảo)',x=>!!(x.arenaRec&&(x.arenaRec.totalPerfectDodges||0)>=25)],['sect_el','Trưởng Lão Tông Môn (hoặc Khai Tông Lập Phái)',x=>!!x.ownSect||!!(x.sect&&sectService.curRank(x)>=3)],['pt_harem','Hồng Nhan Tri Kỷ (Kết duyên ≥ 3 Đạo Lữ)',x=>compService.bondedList(x).length>=3],['pt_all','Vạn Hoa Tùng Trung (Kết duyên đủ 6 Đạo Lữ)',x=>compService.bondedList(x).length>=6],['pet_all','Vạn Thú Quy Tâm (Thu phục đủ 5 Linh Thú Ngũ Hành)',x=>PETS.every(p=>x.pets&&x.pets[p.id]>0)],['tec_rev','Nghịch Thiên Tu Đạo (Nghịch Luyện ≥3 tầng 1 Công Pháp)',x=>Object.keys(x.tech||{}).some(id=>techniqueService.stanceInfo(x,id).isRev)],['tec_cycle','Đại Chu Thiên (Kích hoạt Đại Chu Thiên Luân Chuyển với 3 Công Pháp Tương Sinh)',x=>techniqueService.cycleInfo(x).kind==='grand'],['tec_aff','Bí Pháp Đại Thành (Sở hữu Từ Điều Thiên Phẩm trên Công Pháp)',x=>Object.values(x.tech||{}).some(t=>Array.isArray(t.aff)&&t.aff.some(a=>a.r===2))],['tec_imp','Thanh Xuất Vu Lam (Suy diễn thành công Cải Lương Mạch vượt nguyên bản)',x=>Object.values(x.tech||{}).some(t=>Array.isArray(t.qual)&&t.qual.includes(1))],['own_holy','Tiên Đạo Thánh Địa (Sơn Môn tự lập đạt Thanh Danh ≥ 1.200)',x=>!!(x.ownSect&&(x.ownSect.fame||0)>=1200)],['own_def5','Hộ Sơn Chi Chủ (Vượt qua Đợt 5 Thủ Hộ Sơn Môn)',x=>!!(x.ownSect&&(x.ownSect.defWave||0)>=5)]];
+const ACH=[['kd','Đạt Kim Đan',x=>x.realm>=2],['na','Đạt Nguyên Anh',x=>x.realm>=3],['ht','Đạt Hóa Thần',x=>x.realm>=4],['th','Sống trên 1000 tuổi',x=>x.age>=1000],['tt','Sở hữu thiên phú Thất Thải',x=>x.tal.some(t=>TD[t.id].r===6)],['sss','Đạt hạng SSS mô phỏng',x=>x.best===8],['sm','Hoàn thành 5 lần mô phỏng',x=>x.hist.length>=5],['lw','Thắng 10 trận Lịch Luyện',x=>(x.wins||0)>=10],['gd','Sở hữu 5.000 Linh Thạch',x=>x.stones>=5000],['tw10','Chinh phục Tầng 10 Vạn Kiếp Tháp',x=>(x.towerFloor||0)>=10],['wb1','Trảm sát Cổ Thần Tam Biến',x=>Object.values(x.wbWins||{}).some(v=>v>0)],['rush1','Phá đảo Đột Kích Liên Hoàn (4 Cổ Thần)',x=>!!(x.arenaRec&&x.arenaRec.rushBest&&x.arenaRec.rushBest.clears>=1)],['pd1','Thời Không Tĩnh Lặng (≥ 3 Né Hoàn Hảo trong 1 trận)',x=>!!(x.arenaRec&&(x.arenaRec.bestPerfectDodge||0)>=3)],['pd2','Thân Pháp Nhập Vi (Tích lũy 25 Né Hoàn Hảo)',x=>!!(x.arenaRec&&(x.arenaRec.totalPerfectDodges||0)>=25)],['sect_el','Trưởng Lão Tông Môn (hoặc Khai Tông Lập Phái)',x=>!!x.ownSect||!!(x.sect&&sectService.curRank(x)>=3)],['pt_harem','Hồng Nhan Tri Kỷ (Kết duyên ≥ 3 Đạo Lữ)',x=>compService.bondedList(x).length>=3],['pt_all','Vạn Hoa Tùng Trung (Kết duyên đủ 6 Đạo Lữ)',x=>compService.bondedList(x).length>=6],['pet_all','Vạn Thú Quy Tâm (Thu phục đủ 5 Linh Thú Ngũ Hành)',x=>PETS.every(p=>x.pets&&x.pets[p.id]>0)],['tec_rev','Nghịch Thiên Tu Đạo (Nghịch Luyện ≥3 tầng 1 Công Pháp)',x=>Object.keys(x.tech||{}).some(id=>techniqueService.stanceInfo(x,id).isRev)],['tec_cycle','Đại Chu Thiên (Kích hoạt Đại Chu Thiên Luân Chuyển với 3 Công Pháp Tương Sinh)',x=>techniqueService.cycleInfo(x).kind==='grand'],['tec_aff','Bí Pháp Đại Thành (Sở hữu Từ Điều Thiên Phẩm trên Công Pháp)',x=>Object.values(x.tech||{}).some(t=>Array.isArray(t.aff)&&t.aff.some(a=>a.r===2))],['tec_imp','Thanh Xuất Vu Lam (Suy diễn thành công Cải Lương Mạch vượt nguyên bản)',x=>Object.values(x.tech||{}).some(t=>Array.isArray(t.qual)&&t.qual.includes(1))],['own_holy','Tiên Đạo Thánh Địa (Sơn Môn tự lập đạt Thanh Danh ≥ 1.200)',x=>!!(x.ownSect&&(x.ownSect.fame||0)>=1200)],['own_def5','Hộ Sơn Chi Chủ (Vượt qua Đợt 5 Thủ Hộ Sơn Môn)',x=>!!(x.ownSect&&(x.ownSect.defWave||0)>=5)],['sp_bond','Linh Hồn Cộng Hưởng (Độ Thân Mật Tinh Linh đạt Cấp 4)',x=>!!(x.spirit&&(x.spirit.aff||0)>=220)]];
 const achievementService={check(x){ACH.forEach(a=>{if(!x.ach[a[0]]&&a[2](x)){x.ach[a[0]]=true;toast('🏆 Thành tựu: '+a[1],'ach')}})}};
 
 const TK='msns_theme_v1',UT={preset:0,bg:'#10131f',ac:'#f59e0b',font:0,size:1,dens:0,glow:true,blur:true},UP={banner:0,decor:0,status:'',emo:'🧘'},UC={av:'',bn:'',wp:'',wo:70,wb:4,vol:60,trk:0,auto:true,on:false,cn:'',dynBgm:true};
@@ -4582,6 +4930,7 @@ let thG=(()=>{try{return Object.assign({},UT,JSON.parse(localStorage.getItem(TK)
 function migrate(){
   if(!s)return;
   if(typeof s.realm!=='number'||!Array.isArray(s.tal)||!Array.isArray(s.inv)){s=null;store.clear();return}
+  s.xp=s.xp||0;s.total=s.total||0;s.lifeB=s.lifeB||0;s.stones=s.stones||0;s.van=s.van||0;s.layer=s.layer||0;s.kt=s.kt||1;
   s.path=s.path&&PD[s.path]?s.path:'linh';
   s.subPath=s.subPath&&PD[s.subPath]&&s.subPath!==s.path?s.subPath:'';
   s.pathRes=typeof s.pathRes==='number'?s.pathRes:0;
@@ -4610,6 +4959,7 @@ function migrate(){
   }
   s.ownSect=s.ownSect&&typeof s.ownSect==='object'?Object.assign({name:(s.name||'Vô Danh')+' Tiên Tông',style:0,veinLv:1,disciples:[],vaultStones:0,vaultXp:0,years:0},s.ownSect):null;
   if(s.ownSect)sectService.ensureOwn(s);
+  if(typeof spiritService!=='undefined')spiritService.ensure(s);
   s.auc=s.auc&&Array.isArray(s.auc.lots)?s.auc:null;
   if(typeof s.aucNext!=='number')s.aucNext=(s.age||16)+10;
   s.aucRob=s.aucRob&&s.aucRob.f?s.aucRob:null;
@@ -5429,18 +5779,61 @@ function vTec(){
 }
 
 function vKt(){
-  const m=s.sim,fee=simFee(s);let b='';
-  if(!m||m.phase==='claimed')b=`${m?'<div class="pn ok">Đã nhận thưởng mô phỏng gần nhất.</div>':''}<div class="pn">${btn('sim','','Bắt Đầu Mô Phỏng ('+fee.toLocaleString('vi-VN')+' Linh Thạch)',s.stones<fee)}<div class="mu" style="margin-top:4px">Mô phỏng trong Kim Thủ Chỉ không tiêu hao thọ nguyên của Bản thể.</div></div>`;
-  else if(m.phase==='pick')b=`<div class="pn"><h3>Chọn 3 trong 6 thiên phú khởi đầu (${m.pick.length}/3)</h3><div class="grid">${m.six.map(id=>{const d=TD[id];return card(d.r,talIconHtml(d.id,'sm')+d.n,fx(d.e)+(d.d?'<br>'+d.d:'')+(m.pick.includes(id)?'<br><span class="ok">Đã chọn</span>':''),btn('sp',id,m.pick.includes(id)?'Bỏ chọn':'Chọn'))}).join('')}</div><div class="bt">${btn('sgo','','Bước Vào Mô Phỏng',m.pick.length<3)}</div></div>`;
+  const m=s.sim,fee=simFee(s),sp=spiritService.ensure(s),au=spiritService.auraObj(s),lv=spiritService.lv(s);
+  const nxTh=SPIRIT_AFF_TH[lv]||SPIRIT_AFF_TH[SPIRIT_AFF_TH.length-1],pvTh=SPIRIT_AFF_TH[lv-1]||0;
+  const affPct=lv>=5?100:clamp(((sp.aff-pvTh)/Math.max(1,nxTh-pvTh))*100,0,100);
+  const feedCost=Math.max(120,Math.round(fee*.5));
+  const bestG=s.best>=0&&GR[s.best]?GR[s.best]:'—';
+  const bubbleTxt=ui.spLine||spiritService.contextGreeting(s);
+  const baguaSvg=`<svg class="kt-bagua" viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="54" stroke="currentColor" stroke-width="1.2" stroke-dasharray="6 4"/><polygon points="60,8 105,34 105,86 60,112 15,86 15,34" stroke="currentColor" stroke-width="1" opacity=".6"/><circle cx="60" cy="60" r="34" stroke="currentColor" stroke-width="1" opacity=".75"/></svg>`;
+  const careDrawer=ui.spCare?`<div class="kt-care">
+    <div class="row" style="gap:8px;flex-wrap:wrap"><b>💞 Nuôi Dưỡng &amp; Tùy Biến Tinh Linh</b><span class="mu">Thân Mật: <b class="ok">Cấp ${lv}/5 · ${spiritService.lvName(s)}</b> (${sp.aff}${lv<5?' / '+nxTh:' · Tối đa'})</span></div>
+    <div class="bar"><i style="width:${affPct}%"></i></div>
+    <div class="bt">${btn('sp_feed','stones',`💎 Tặng ${feedCost.toLocaleString('vi-VN')} LT (+15 Thân Mật)`,s.stones<feedCost)}${btn('sp_feed','sand',`✨ Tặng 1 Ngộ Đạo Sa (+35 Thân Mật · có ${s.ngoSand||0})`,(s.ngoSand||0)<1)}<input id="sp_nm" maxlength="18" value="${esc(sp.name)}" placeholder="Đặt tên Tinh Linh" style="max-width:165px">${btn('sp_rename','','Đổi Tên')}</div>
+    <div class="bt"><span class="mu">Tính cách:</span>${SPIRIT_MOODS.map(o=>{const lk=lv<o.lv;return`<button class="chip ${sp.mood===o.id?'on':''}" data-a="sp_mood" data-x="${o.id}" title="${esc(o.d)}${lk?' (Mở ở Cấp '+o.lv+')':''}">${o.n}${lk?' 🔒Lv'+o.lv:''}</button>`}).join('')}</div>
+    <div class="bt"><span class="mu">Hào Quang:</span>${SPIRIT_AURAS.map(o=>{const lk=lv<o.lv;return`<button class="chip ${sp.aura===o.id?'on':''}" data-a="sp_aura" data-x="${o.id}" style="border-color:${o.c1}" title="${lk?'Mở ở Thân Mật Cấp '+o.lv:'Áp dụng hào quang '+o.n}">${o.n}${lk?' 🔒Lv'+o.lv:''}</button>`}).join('')}<button class="chip ${sp.showFloat?'on':''}" data-a="sp_float_tgl">${sp.showFloat?'👁 Hiện Tinh Linh Toàn Cục':'🙈 Đang Ẩn Ở Tab Khác'}</button></div>
+  </div>`:'';
+  const stage=`<div class="kt-stage ${s.kt>=5?'kt-stage-lv5':''}" style="--sp-c1:${au.c1};--sp-c2:${au.c2}">
+    <div class="kt-hero">
+      <div class="kt-orb-wrap" data-a="sp_poke" title="Bấm để trò chuyện cùng ${esc(sp.name)}">
+        <div class="kt-ring"></div><div class="kt-ring2"></div>${baguaSvg}
+        <img class="kt-sprite" src="${SPIRIT_IMG}" alt="${esc(sp.name)}">
+        <span class="kt-stage-tag">${spiritService.stageTitle(s)}</span>
+      </div>
+      <div>
+        <div class="kt-hd">
+          <h3>✨ Thiên Cơ Tinh Đài · ${esc(sp.name)} <span class="c-bdg on">KT Cấp ${s.kt}/5</span></h3>
+          <div class="bt" style="margin:0">${s.kt<5?btn('ukt','','⬆ Nâng Cấp ('+(200*s.kt).toLocaleString('vi-VN')+' LT)',s.stones<200*s.kt):'<span class="c-bdg on">👑 Đỉnh Cấp</span>'}${btn('sp_care','',ui.spCare?'Thu gọn Nuôi Dưỡng':'✨ Nuôi Dưỡng &amp; Tùy Biến')}</div>
+        </div>
+        <div class="kt-bubble"><b>${esc(sp.name)}:</b> «${esc(bubbleTxt)}»</div>
+        <div class="kt-kpis">
+          <div class="kt-kpi"><span>Đạo Quả Toàn Chỉ Số</span><b class="ok">+${Math.round((s.gfBuff||0)*100)}%</b></div>
+          <div class="kt-kpi"><span>Kháng Uy Áp Cảnh Giới</span><b class="ok">-${Math.round((s.gfSup||0)*100)}%</b></div>
+          <div class="kt-kpi"><span>Số Kiếp &amp; Đỉnh Cao</span><b>${s.gfRuns||0} kiếp · ${bestG}</b></div>
+          <div class="kt-kpi"><span>Thân Mật Tinh Linh</span><b>Cấp ${lv}/5 (${spiritService.lvName(s)})</b></div>
+        </div>
+        <div class="kt-skills">
+          <span class="kt-sk ${s.kt>=1?'on':''}" title="Soi gợi ý & mức rủi ro trong biến cố mô phỏng">👁 Thiên Cơ Chi Nhãn ${s.kt>=1?'(Hoạt động)':'(KT 1)'}</span>
+          <span class="kt-sk ${s.kt>=3?'on':''}" title="Mỗi kiếp được đổi mới 6 Thiên Phú khởi đầu 1 lần + Chọn 2 Di Sản">🔄 Nghịch Chuyển Thiên Mệnh ${s.kt>=3?'(Mở)':'🔒 KT 3'}</span>
+          <span class="kt-sk ${s.kt>=5?'on':''}" title="Tự động cứu sống 1 lần nếu tử vong sớm trong mô phỏng">✨ Linh Châu Hộ Mệnh ${s.kt>=5?'(Sẵn sàng)':'🔒 KT 5'}</span>
+        </div>
+      </div>
+    </div>
+    ${careDrawer}
+  </div>`;
+  let b='';
+  if(!m||m.phase==='claimed')b=`<div class="pn kt-cta-box">${m?'<div style="margin-bottom:8px"><span class="c-bdg on">✔ Đã nhận thưởng mô phỏng gần nhất</span></div>':''}<button class="kt-cta-btn" data-a="sim"${s.stones<fee?' disabled':''}>⚡ Khởi Động Mô Phỏng (${fee.toLocaleString('vi-VN')} Linh Thạch)</button><div class="mu" style="margin-top:8px">Mô phỏng trong Kim Thủ Chỉ <b>không tiêu hao thọ nguyên</b> của Bản thể · Đạt hạng S+ được chọn 2 Di Sản.</div></div>`;
+  else if(m.phase==='pick')b=`<div class="pn"><div class="row" style="align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px"><h3 style="margin:0">Chọn 3 trong 6 thiên phú khởi đầu (${m.pick.length}/3)</h3><div class="bt" style="margin:0">${s.kt>=3?btn('sp_reroll','',m.spReroll?'🔄 Đã Nghịch Chuyển':'🔄 Nghịch Chuyển Thiên Mệnh (Đổi 6 Quẻ)',!!m.spReroll):'<span class="mu">🔒 KT Cấp 3 mở Đổi 6 Thiên Phú</span>'}</div></div><div class="grid">${m.six.map(id=>{const d=TD[id];return card(d.r,talIconHtml(d.id,'sm')+d.n,fx(d.e)+(d.d?'<br>'+d.d:'')+(m.pick.includes(id)?'<br><span class="ok">Đã chọn</span>':''),btn('sp',id,m.pick.includes(id)?'Bỏ chọn':'Chọn'))}).join('')}</div><div class="bt">${btn('sgo','','Bước Vào Mô Phỏng',m.pick.length<3)}</div></div>`;
   else if(m.phase==='run')b=runUI(m);
-  else{const r=m.res;b=`<div class="pn"><h3>${m.dead?'Tử vong ('+m.dead+')':m.age>=m.life?'Thọ tận ở '+m.age+' tuổi':''} · Bình Định Nhân Sinh: hạng ${GR[r.gi]} (điểm ${r.score})${m.br?' · Nhánh Vận Mệnh Mới':''}</h3><div class="mu">Nhiệm vụ đạt: ${r.q.join('; ')||'không'}</div><div>Giữ lại thiên phú: ${r.kept.map(t=>TD[t].n).join(', ')||'không có'}</div><div class="mu">Thiên phú bị mất do chưa đủ hạng: ${m.pick.filter(t=>!r.kept.includes(t)).map(t=>TD[t].n).join(', ')||'không'}</div><div>Di sản khả dụng: ${r.xp.toLocaleString('vi-VN')} tu vi, ${r.stones.toLocaleString('vi-VN')} linh thạch, ${r.items.map(i=>ID[i].n).join(', ')}${r.tech?', công pháp '+QD[r.tech].n:''}</div><div class="bt">${legacyUI(m)}</div></div>`}
-  return `<div class="pn"><h3>Kim Thủ Chỉ cấp ${s.kt}/5 · Bàn Tay Vàng</h3><div class="mu">Mỗi cấp tăng 10% tu vi &amp; linh thạch thưởng; cấp 3 (hoặc mô phỏng đạt hạng S trở lên) được chọn 2 di sản. Đạo Quả tích lũy (${s.gfRuns||0} kiếp): <b class="ok">+${Math.round((s.gfBuff||0)*100)}% toàn chỉ số</b> · <b class="ok">-${Math.round((s.gfSup||0)*100)}% Uy Áp</b>.</div>${btn('ukt','','Nâng Cấp ('+200*s.kt+' Linh Thạch)',s.kt>=5)}</div>${aiPanel()}${b}<div class="pn"><h3>Lịch sử mô phỏng</h3>${s.hist.map(h=>`<div class="mu">${new Date(h.t).toLocaleString('vi-VN')} · hạng <b>${h.g}</b> · điểm ${h.score} · +${h.xp.toLocaleString('vi-VN')} tu vi · ${esc(h.tal.join(', ')||'không giữ thiên phú')}${h.ai?' · 🔮 '+h.ai+' biến cố Thiên Cơ':''}</div>`).join('')||'<span class="mu">Chưa có</span>'}</div>`;
+  else{const r=m.res,gd=GR[r.gi],gc=gd==='SSS'?'g-sss':gd==='SS'?'g-ss':gd==='S'?'g-s':gd==='A'?'g-a':'';b=`<div class="pn"><div class="row" style="align-items:center;gap:10px;flex-wrap:wrap"><div><h3 style="margin:0">${m.dead?'Tử vong ('+m.dead+')':m.age>=m.life?'Thọ tận ở '+m.age+' tuổi':''}${m.br?' · Nhánh Vận Mệnh Mới':''}</h3><div class="mu">Điểm tổng kết: <b>${r.score}</b> · Nhiệm vụ đạt: ${r.q.join('; ')||'không'}</div></div><span class="kt-grade ${gc}">Hạng ${gd}</span></div><div style="margin-top:6px">Giữ lại thiên phú: ${r.kept.map(t=>'<span class="chip">'+esc(TD[t].n)+'</span>').join(' ')||'<span class="mu">không có</span>'}</div><div class="mu">Thiên phú bị mất do chưa đủ hạng: ${m.pick.filter(t=>!r.kept.includes(t)).map(t=>TD[t].n).join(', ')||'không'}</div><div style="margin-top:4px">Di sản khả dụng: <b>${r.xp.toLocaleString('vi-VN')}</b> tu vi, <b>${r.stones.toLocaleString('vi-VN')}</b> linh thạch, ${r.items.map(i=>ID[i].n).join(', ')}${r.tech?', công pháp '+QD[r.tech].n:''}</div><div class="bt">${legacyUI(m)}</div></div>`}
+  const histH=s.hist.length?`<div class="kt-hist-list">${s.hist.map(h=>{const gc=h.g==='SSS'?'g-sss':h.g==='SS'?'g-ss':h.g==='S'?'g-s':h.g==='A'?'g-a':'';return`<div class="kt-hist-item"><span class="kt-grade ${gc}">${esc(h.g)}</span><div style="flex:1;min-width:190px"><div><b>Điểm ${h.score}</b> · +${h.xp.toLocaleString('vi-VN')} tu vi${h.ai?' · 🔮 '+h.ai+' Thiên Cơ':''}</div><div class="mu" style="font-size:11.5px">${new Date(h.t).toLocaleString('vi-VN')}</div></div><div class="bt" style="margin:0">${(h.tal&&h.tal.length)?h.tal.map(t=>`<span class="chip">${esc(t)}</span>`).join(''):'<span class="mu">không giữ thiên phú</span>'}</div></div>`}).join('')}</div>`:'<span class="mu">Chưa có kiếp mô phỏng nào.</span>';
+  return stage+aiPanel()+b+`<div class="pn"><h3>📜 Sổ Nhân Quả (Lịch Sử Mô Phỏng)</h3>${histH}</div>`;
 }
 
 function aiPanel(){
   const c=thienCoAI.cfg,rd=thienCoAI.ready(),op=ui.aiOpen;
-  const h=`<div class="pn aicfg"><div class="row" style="align-items:center;flex-wrap:wrap;gap:6px"><h3>🔮 Thiên Cơ AI · ${rd?'<span class="ok">Chế Độ Thiên Cơ AI (Diễn Biến Động)</span>':'<span class="mu">Chế Độ Cổ Điển (Ngoại Tuyến)</span>'}</h3>${btn('aiopen','',op?'Thu gọn':'⚙ Thiết Lập API')}</div>`;
-  if(!op)return h+`<div class="mu">${rd?'Biến cố, lựa chọn và hệ quả do AI sinh động theo nhân quả riêng của đời mô phỏng · model '+esc(thienCoAI.model())+' · tần suất '+Math.round(c.fq*100)+'%':c.on?(navigator.onLine===false?'Đang mất mạng — tự động dùng kịch bản tĩnh.':'Chưa có API Key — đang dùng kịch bản tĩnh có sẵn.'):'Đang dùng kịch bản tĩnh có sẵn. Mở Thiết lập để kết nối Gemini / OpenAI-compatible.'}</div></div>`;
+  if(!op)return`<div class="pn aicfg kt-ai-strip"><div><b>🔮 Thiên Cơ AI</b> · ${rd?'<span class="ok">Đang hoạt động ('+esc(thienCoAI.model())+' · '+Math.round(c.fq*100)+'%)</span>':'<span class="mu">Chế Độ Cổ Điển (Ngoại Tuyến)</span>'}</div>${btn('aiopen','','⚙ Thiết Lập API')}</div>`;
+  const h=`<div class="pn aicfg"><div class="row" style="align-items:center;flex-wrap:wrap;gap:6px"><h3>🔮 Thiên Cơ AI · ${rd?'<span class="ok">Chế Độ Thiên Cơ AI (Diễn Biến Động)</span>':'<span class="mu">Chế Độ Cổ Điển (Ngoại Tuyến)</span>'}</h3>${btn('aiopen','','Thu gọn')}</div>`;
   return h+`<div class="mu">API Key chỉ lưu trên trình duyệt này (localStorage <b>msns_ai_cfg</b>), tách hoàn toàn khỏi dữ liệu nhân vật — không bao giờ có trong «Xuất dữ liệu». Yêu cầu gửi thẳng từ trình duyệt tới nhà cung cấp bạn chọn. Nếu thiếu khóa, mất mạng hoặc API lỗi, game tự quay về kịch bản Cổ Điển.</div>
 <div class="bt"><button class="chip ${c.on?'on':''}" data-a="aimode" data-x="1">🔮 Thiên Cơ AI</button><button class="chip ${c.on?'':'on'}" data-a="aimode" data-x="0">📜 Cổ Điển (Ngoại Tuyến)</button></div>
 <div class="bt"><label>Nhà cung cấp<select data-chg="ai_prov"><option value="gemini"${c.prov==='gemini'?' selected':''}>Google Gemini</option><option value="openai"${c.prov==='openai'?' selected':''}>OpenAI-compatible (OpenAI, OpenRouter, Groq, LM Studio...)</option></select></label><label>Model (để trống = ${AIM[c.prov]})<input data-chg="ai_model" value="${esc(c.model)}" placeholder="${AIM[c.prov]}" autocomplete="off"></label></div>
@@ -5453,7 +5846,10 @@ ${c.prov==='openai'?`<div class="bt"><label>Endpoint (Base URL)<input data-chg="
 
 function runUI(m){
   const nx=m.rl<8?TH[m.rl+1]:m.xp,aiE=m.cur&&m.cur.ai,e=m.sub==='act'||m.sub==='aiwait'||aiE?null:simView(m),ch=(x,l,d,dis)=>`<div class="card r0" style="--rc:#555"><b>${l}</b><div class="mu">${d}</div><div class="bt">${btn('sa',x,'Chọn',dis||ui.aiBusy)}</div></div>`;
-  let h=`<div class="pn"><h3>Bảng trạng thái đời mô phỏng · tuổi ${m.age}/${m.life}${thienCoAI.on(m)?' · <span class="ok">🔮 Thiên Cơ AI</span>':''}</h3><div class="row"><span>Cảnh giới mô phỏng</span><b>${REALMS[m.rl]}</b></div><div class="bar"><i style="width:${clamp((m.xp-TH[m.rl])/Math.max(1,nx-TH[m.rl])*100,0,100)}%"></i></div><div class="row mu"><span>Tu vi ${m.xp}${m.rl<8?' / '+nx:''}</span><span>Thiện ${m.good} · Ác ${m.evil}</span></div><div class="row"><span>Thể trạng</span><b class="${m.st==='ok'?'ok':'bad'}">${SL[m.st]}</b></div>${m.st==='hurt'?'<div class="mu bad">Trọng thương làm tăng mạnh nguy cơ tử vong khi ra ngoài. Hãy Bế Quan để chữa trị.</div>':''}${!m.cal.done&&m.cal.age-m.age<=6?'<div class="warn">⚠ Linh cảm có đại kiếp sắp ập đến...</div>':''}<div class="mu">Dấu ấn nhân quả: ${Object.keys(m.flags).map(f=>`<span class="chip">${esc(FL[f]||f)}</span>`).join(' ')||'chưa có'}</div>${m.aiSummary?`<div class="mu">🧠 Trí nhớ Thiên Cơ: <i>${esc(m.aiSummary)}</i></div>`:''}<div class="mu">Túi Càn Khôn (${m.bag.length}/8): ${m.bag.map(bn).join(', ')||'trống'}</div><div class="mu">Hảo cảm: ${NP.filter(n=>m.bond[n.id]).map(n=>n.n+' '+m.bond[n.id]).join(' · ')||'chưa quen ai'}</div></div>`;
+  const sp=spiritService.ensure(s),au=spiritService.auraObj(s),ins=spiritService.simInsight(s,m);
+  const eyeHtml=ins?`<div class="kt-eye-bar" style="--sp-c1:${au.c1}"><img src="${SPIRIT_IMG}" alt="${esc(sp.name)}"><div><b style="color:${au.c1}">👁 Thiên Cơ Chi Nhãn (${esc(sp.name)}):</b> ${ins}</div></div>`:'';
+  const guardBadge=s.kt>=5?`<span class="c-bdg ${m.spSaved?'':'on'}">${m.spSaved?'✨ Linh Châu Hộ Mệnh: Đã dùng':'✨ Linh Châu Hộ Mệnh: Sẵn sàng'}</span>`:'';
+  let h=`<div class="pn"><div class="row" style="flex-wrap:wrap;gap:6px;margin-bottom:4px"><h3 style="margin:0">Bảng trạng thái đời mô phỏng · tuổi ${m.age}/${m.life}${thienCoAI.on(m)?' · <span class="ok">🔮 Thiên Cơ AI</span>':''}</h3>${guardBadge}</div>${m.spSaveMsg?`<div class="ok" style="margin-bottom:6px">✨ <b>${esc(sp.name)}</b> đã kích hoạt <b>Linh Châu Hộ Mệnh</b> cứu ngươi khỏi tử kiếp «${esc(m.spSaveMsg)}»!</div>`:''}<div class="row"><span>Cảnh giới mô phỏng</span><b>${REALMS[m.rl]}</b></div><div class="bar"><i style="width:${clamp((m.xp-TH[m.rl])/Math.max(1,nx-TH[m.rl])*100,0,100)}%"></i></div><div class="row mu"><span>Tu vi ${m.xp}${m.rl<8?' / '+nx:''}</span><span>Thiện ${m.good} · Ác ${m.evil}</span></div><div class="row"><span>Thể trạng</span><b class="${m.st==='ok'?'ok':'bad'}">${SL[m.st]}</b></div>${m.st==='hurt'?'<div class="mu bad">Trọng thương làm tăng mạnh nguy cơ tử vong khi ra ngoài. Hãy Bế Quan để chữa trị.</div>':''}${!m.cal.done&&m.cal.age-m.age<=6?'<div class="warn">⚠ Linh cảm có đại kiếp sắp ập đến...</div>':''}<div class="mu">Dấu ấn nhân quả: ${Object.keys(m.flags).map(f=>`<span class="chip">${esc(FL[f]||f)}</span>`).join(' ')||'chưa có'}</div>${m.aiSummary?`<div class="mu">🧠 Trí nhớ Thiên Cơ: <i>${esc(m.aiSummary)}</i></div>`:''}<div class="mu">Túi Càn Khôn (${m.bag.length}/8): ${m.bag.map(bn).join(', ')||'trống'}</div><div class="mu">Hảo cảm: ${NP.filter(n=>m.bond[n.id]).map(n=>n.n+' '+m.bond[n.id]).join(' · ')||'chưa quen ai'}</div></div>${eyeHtml}`;
   if(m.aiLast){const L=m.aiLast;h+=`<div class="pn"><h3>📜 Diễn biến · ${esc(L.t)}</h3><div class="mu">Ngươi ${L.c?'tự quyết':'chọn'}: «${esc(L.l)}» → <b class="${L.ok?'ok':'bad'}">${L.ok?'thành công':'thất bại'}</b> (${L.g>=0?'+':''}${L.g} tu vi)</div><div class="ainr${L.ok?'':' bad'}">${esc(L.n)}</div>${L.tags&&L.tags.length?`<div class="bt">${L.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join('')}</div>`:''}</div>`}
   if(m.sub==='aiwait')h+=`<div class="pn"><h3>Biến cố</h3><div class="aiw" role="status" aria-live="polite"><i></i><span>Đang diễn toán thiên cơ... Thiên Đạo đang dệt sợi nhân quả cho năm ${m.age} tuổi</span></div></div>`;
   else if(aiE){const c=m.cur,RS=r=>r<.2?'<span class="ok">an toàn</span>':r<.45?'<span class="mu">rủi ro vừa</span>':'<span class="bad">hiểm cảnh</span>',NPn=c.npc?NP.find(n=>n.id===c.npc):null;
@@ -9512,7 +9908,7 @@ function vAdmin(){
         <div class="bt">${admBtn('ad_xp',10000,'+10.000 Tu Vi','ab-jade')}${admBtn('ad_xpfull','','Đầy Thanh Tu Vi','ab-jade')}${admBtn('ad_brk_now','','⚡ Đột Phá Ngay (Thiên Phẩm)','ab-gold',s.realm>=REALMS.length-1)}</div>
         <div class="adm-row-lbl">Nhịp Độ &amp; Thọ Nguyên</div>
         <div class="bt">${admBtn('ad_mode','',s.mode==='realtime'?'⚡ Sang Tiêu Dao Nhanh':'⏳ Sang Trường Sinh Đạo','ab-sky')}${admBtn('ad_skip',3600,'⏩ +1 giờ','ab-sky')}${admBtn('ad_skip',86400,'⏩ +1 ngày','ab-sky')}${admBtn('ad_skip',604800,'⏩ +7 ngày','ab-sky')}</div>
-        <div class="bt">${admBtn('ad_life','','+500 Thọ Nguyên','ab-jade')}${admBtn('ad_age',-50,'Trẻ Hóa (-50 tuổi)','ab-jade')}${admBtn('ad_kt','','Kim Thủ Chỉ Cấp 5','ab-gold')}</div>
+        <div class="bt">${admBtn('ad_life','','+500 Thọ Nguyên','ab-jade')}${admBtn('ad_age',-50,'Trẻ Hóa (-50 tuổi)','ab-jade')}${admBtn('ad_kt','','Kim Thủ Chỉ Cấp 5','ab-gold')}${admBtn('ad_sp_max','','✨ Max Tinh Linh','ab-sky')}</div>
       </div>
       <div class="pn adm-sec"><h4>☯ Cảnh Giới, Thể Chất, Linh Căn &amp; Đạo Lộ</h4>
         <div class="adm-form-grid">
@@ -9796,7 +10192,8 @@ function render(){
   if(au&&!keep2d)au.innerHTML=admAuthHTML();
   hideHoverTip();
   document.body.classList.toggle('no-nav',!s);
-  if(!s){if(typeof ARENA_2D!=='undefined')ARENA_2D.stop();if(typeof BRK_FX!=='undefined')BRK_FX.stop();if(typeof SECT_MAP!=='undefined')SECT_MAP.stop();nv.innerHTML='';if(sy)sy.innerHTML='';$('sb').innerHTML='';$('bgm').innerHTML='';bgStop();$('ap').className=$('apo').className='';if(gl)gl.innerHTML='';if(dm)dm.innerHTML='';$('app').innerHTML=vCreate();return}
+  const spL=$('spirit-layer');
+  if(!s){if(typeof ARENA_2D!=='undefined')ARENA_2D.stop();if(typeof BRK_FX!=='undefined')BRK_FX.stop();if(typeof SECT_MAP!=='undefined')SECT_MAP.stop();nv.innerHTML='';if(sy)sy.innerHTML='';$('sb').innerHTML='';$('bgm').innerHTML='';bgStop();$('ap').className=$('apo').className='';if(gl)gl.innerHTML='';if(dm)dm.innerHTML='';if(spL)spL.innerHTML='';$('app').innerHTML=vCreate();return}
   nv.innerHTML=TABS.filter(t=>t[0]!=='admin'||ui.adm).map(t=>`<button class="${ui.tab===t[0]?'on':''}" data-a="tab" data-x="${t[0]}">${t[1]}</button>`).join('');
   if(sy)sy.innerHTML=`<button data-a="qsave" title="Lưu nhanh 1 chạm vào Kho Lưu Trữ">💾 Lưu</button><button data-a="sv_open" class="${ui.sv?'on':''}">📂 Kho Lưu Trữ</button><button data-a="gd_open" class="${ui.gdModal==='codex'?'on':''}" title="Cẩm nang tân thủ & Cập nhật">📖 Cẩm Nang</button><button data-a="ui" class="${ui.ap?'on':''}" aria-haspopup="dialog">🎨 Giao Diện</button><button data-a="reset">${ui.rs?'Bấm lần nữa để xóa hết':'Làm Mới Dữ Liệu'}</button>`;
   $('sb').innerHTML=sbar();$('bgm').innerHTML=bgmHTML();syncVol();
@@ -9809,6 +10206,7 @@ function render(){
   $('ap').innerHTML=apHTML();$('ap').className=$('apo').className=ui.ap?'open':'';
   if(dm)dm.innerHTML=detModalHTML()||crPickModal();
   if(gl){gl.innerHTML=guideService.renderLayer();if(ui.gdTour&&typeof requestAnimationFrame==='function')requestAnimationFrame(()=>guideService.positionTour())}
+  if(spL&&typeof spiritService!=='undefined')spL.innerHTML=spiritService.renderFloat();
   const mb1=document.querySelector('#adm-auth .modal-box');if(mb1&&ms0)mb1.scrollTop=ms0;
   if(typeof window!=='undefined'&&typeof window.scrollTo==='function'&&ui._tab===ui.tab)window.scrollTo(0,sy0);
   ui._tab=ui.tab;
@@ -9847,10 +10245,10 @@ const A={
     const keepBm=s.bmWeapon?s.inv.find(i=>i.u===s.bmWeapon.u):null;
     const bmLvKeep=s.bmWeapon?s.bmWeapon.lv:0;
     const rb=(s.reborn||0)+1,vanBonus=s.realm>=8?15:4+s.realm*2,pxBonus=s.realm>=8?0:2+s.realm;
-    const vanKeep=(s.van||0)+vanBonus,achKeep=s.ach,histKeep=s.hist,bestKeep=s.best,ktKeep=s.kt,profKeep=s.profile,thKeep=s.theme,uiKeep=s.uiCfg,pathKeep=s.path||'linh',modeKeep=s.mode||'classic';
+    const vanKeep=(s.van||0)+vanBonus,achKeep=s.ach,histKeep=s.hist,bestKeep=s.best,ktKeep=s.kt,spKeep=s.spirit,profKeep=s.profile,thKeep=s.theme,uiKeep=s.uiCfg,pathKeep=s.path||'linh',modeKeep=s.mode||'classic';
     const oldPx=s.px||{};
     s=characterService.create(s.name,s.gender,s.root,pathKeep,modeKeep);
-    s.reborn=rb;s.van=vanKeep;s.ach=achKeep;s.hist=histKeep;s.best=bestKeep;s.kt=ktKeep;s.profile=profKeep;s.theme=thKeep;s.uiCfg=uiKeep;
+    s.reborn=rb;s.van=vanKeep;s.ach=achKeep;s.hist=histKeep;s.best=bestKeep;s.kt=ktKeep;s.spirit=spKeep;s.profile=profKeep;s.theme=thKeep;s.uiCfg=uiKeep;
     if(pxBonus>0)ATTR.slice(0,5).forEach(k=>{s.px[k]=(oldPx[k]||0)+pxBonus});
     if(keepTal)s.tal=[Object.assign({},keepTal,{on:false,src:'Luân Hồi Kiếp Trước'})];
     if(keepBm){s.inv.push(Object.assign({},keepBm));s.bmWeapon={u:keepBm.u,lv:bmLvKeep}}
@@ -9863,6 +10261,7 @@ const A={
   sim:()=>rewardIntegrationService.start(s),sp:x=>rewardIntegrationService.tpick(s,x),sgo:()=>rewardIntegrationService.go(s),
   sa:x=>rewardIntegrationService.act(s,+x),sc:x=>rewardIntegrationService.choose(s,+x),
   claim:()=>rewardIntegrationService.claim(s),ukt:()=>rewardIntegrationService.upgradeKT(s),
+  sp_poke:()=>spiritService.poke(s),sp_care:()=>{ui.spCare=!ui.spCare},sp_feed:x=>spiritService.feed(s,x),sp_rename:()=>{const el=$('sp_nm');spiritService.rename(s,el?el.value:'')},sp_mood:x=>spiritService.setMood(s,x),sp_aura:x=>spiritService.setAura(s,x),sp_float_tgl:()=>{const sp=spiritService.ensure(s);sp.showFloat=!sp.showFloat;say(sp.showFloat?'Đã bật Tinh Linh Toàn Cục':'Đã ẩn Tinh Linh ở các tab khác')},sp_reroll:()=>spiritService.rerollSix(s),sp_toggle:()=>{ui.spOpen=!ui.spOpen},sp_mini:()=>{const sp=spiritService.ensure(s);sp.mini=!sp.mini},sp_tab:x=>{ui.spTab=x||'adv'},sp_jump:x=>{ui.tab=x||'char';ui.spOpen=false;ui.msg=''},sp_hide:()=>{const sp=spiritService.ensure(s);sp.showFloat=false;ui.spOpen=false;say('Đã ẩn Tinh Linh ở các tab khác (bật lại trong Kim Thủ Chỉ)')},sp_chat_q:x=>{const qs=spiritService.quickQuestions(s);if(qs[+x])spiritService.ask(s,qs[+x])},sp_chat_send:()=>{const el=$('sp_chat_in'),v=el?el.value:(ui.spChatIn||'');spiritService.ask(s,v)},sp_chat_clr:()=>{const sp=spiritService.ensure(s);sp.chat=[];say('Đã làm mới trò chuyện Tinh Linh')},
   aiopen:()=>{ui.aiOpen=!ui.aiOpen},
   aimode:x=>{thienCoAI.cfg.on=x==='1';thienCoAI.save();if(s.sim)s.sim.aiFail=0;say(x==='1'?(thienCoAI.ready()?'Đã bật Chế Độ Thiên Cơ AI':'Hãy nhập API Key để kích hoạt Thiên Cơ AI'):'Đã chuyển về Chế Độ Cổ Điển (Ngoại Tuyến)')},
   aimod:x=>{thienCoAI.set('model',x);ui.aiPing=''},
@@ -10005,6 +10404,7 @@ const A={
   ad_da_all:()=>{s.daoAn=Object.keys(DAO_AN_MAP);say('🌟 Đã kích hoạt toàn bộ 24 Đạo Ấn!')},
   ad_da_clr:()=>{s.daoAn=[];say('Đã xóa toàn bộ Đạo Ấn')},
   ad_kt:()=>{s.kt=5;say('Kim Thủ Chỉ đạt Đỉnh Cấp (Cấp 5)')},
+  ad_sp_max:()=>{s.kt=5;const sp=spiritService.ensure(s);sp.aff=380;sp.showFloat=true;say('✨ Kim Thủ Chỉ Cấp 5 & Thân Mật Tinh Linh Đỉnh Cấp (Cấp 5)!')},
   ad_sect:()=>{if(!s.sect)return say('Cần gia nhập 1 Tông Môn trước');s.sect.contrib+=500;s.sect.total+=500;say('+500 Cống Hiến Tông Môn')},
   ad_sect_max:()=>{if(!s.sect)return say('Cần gia nhập 1 Tông Môn trước');s.sect.contrib+=5000;s.sect.total+=5000;say('+5.000 Cống Hiến Tông Môn')},
   ad_sect_exam:()=>{if(!s.sect)return say('Cần gia nhập 1 Tông Môn trước');const ex=sectService.canExam(s);if(!ex.exam)return say('Đã đạt Thái Thượng Trưởng Lão');if(!ex.ok){s.sect.total=Math.max(s.sect.total||0,ex.need);s.sect.contrib=Math.max(s.sect.contrib||0,ex.need)}if(typeof ARENA_2D!=='undefined')ARENA_2D.stop();adventureService.fightSectExam(s)},
@@ -10123,7 +10523,7 @@ const A={
 };
 
 /* ===== SỰ KIỆN TOÀN CỤC ===== */
-const NO_TS={tab:1,flt:1,cflt:1,crm:1,crav:1,gd_seed:1,ui:1,uic:1,aiopen:1,qsave:1,sv_open:1,sv_close:1,sv_slim:1,sv_dl:1,sv_link:1,sv_link_clr:1,sv_share:1,sv_load:1,sv_del:1,sv_leg:1,sv_imp_txt:1,sv_confirm:1,sv_cancel:1,gd_open:1,gd_tab:1,gd_close:1,gd_start_onboard:1,gd_skip_onboard:1,gd_start_wn:1,gd_next:1,gd_prev:1,gd_tour_end:1,gd_jump:1,adm_cls:1,det_open:1,det_cls:1,cr_pick_open:1,cr_pick_sel:1,cr_pick_flt:1,cr_pick_cls:1,ad_tab:1,ad_cat:1,ad_rar:1,ad_qset:1,sect_panel:1,sect_view:1,sect_wide:1,sect_zoom:1,pt_sel:1,pt_chat_clr:1,noop:1};
+const NO_TS={tab:1,flt:1,cflt:1,crm:1,crav:1,gd_seed:1,ui:1,uic:1,aiopen:1,sp_poke:1,sp_care:1,sp_toggle:1,sp_mini:1,sp_tab:1,sp_jump:1,sp_hide:1,sp_chat_clr:1,qsave:1,sv_open:1,sv_close:1,sv_slim:1,sv_dl:1,sv_link:1,sv_link_clr:1,sv_share:1,sv_load:1,sv_del:1,sv_leg:1,sv_imp_txt:1,sv_confirm:1,sv_cancel:1,gd_open:1,gd_tab:1,gd_close:1,gd_start_onboard:1,gd_skip_onboard:1,gd_start_wn:1,gd_next:1,gd_prev:1,gd_tour_end:1,gd_jump:1,adm_cls:1,det_open:1,det_cls:1,cr_pick_open:1,cr_pick_sel:1,cr_pick_flt:1,cr_pick_cls:1,ad_tab:1,ad_cat:1,ad_rar:1,ad_qset:1,sect_panel:1,sect_view:1,sect_wide:1,sect_zoom:1,pt_sel:1,pt_chat_clr:1,noop:1};
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-a]');if(!t||t.disabled)return;
   const a=t.dataset.a;if(a==='noop')return;if(a==='adm_ok'){verifyAdminPwd();return}
@@ -10159,6 +10559,7 @@ document.addEventListener('input',e=>{
   if(k==='ad_q'){ui.ad.q=e.target.value;const el=$('admCatalog');if(el)el.innerHTML=admCatalogHTML();return}
   if(k==='ad_twFl'){ui.ad.twFl=e.target.value;return}
   if(k==='pt_chat_in'){ui.ptChatIn=aiS(e.target.value,180);return}
+  if(k==='sp_chat_in'){ui.spChatIn=aiS(e.target.value,180);return}
   if(k.slice(0,3)==='ai_'){const n=k.slice(3),v=e.target.value;if(n==='in'){ui.aiIn=aiS(v,160);return}if(n==='model'||n==='url'||n==='key')thienCoAI.set(n,v);return}
   if(!s)return;
   if(k==='th_bg'||k==='th_ac'){setT(k==='th_bg'?'bg':'ac',e.target.value);applyTheme();store.save(s);return}
@@ -10173,6 +10574,8 @@ document.addEventListener('input',e=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&e.target&&e.target.id==='ai_in'){e.preventDefault();const b=document.querySelector('[data-a="aiact"]');if(b&&!b.disabled)b.click();return}
   if(e.key==='Enter'&&e.target&&e.target.id==='pt_chat_in'){e.preventDefault();const b=document.querySelector('[data-a="pt_chat_send"]');if(b&&!b.disabled)b.click();return}
+  if(e.key==='Enter'&&e.target&&e.target.id==='sp_chat_in'){e.preventDefault();const b=document.querySelector('[data-a="sp_chat_send"]');if(b&&!b.disabled)b.click();return}
+  if(e.key==='Enter'&&e.target&&e.target.id==='sp_nm'){e.preventDefault();const b=document.querySelector('[data-a="sp_rename"]');if(b&&!b.disabled)b.click();return}
   if(e.key==='Escape'){
     if(ui.crPick){ui.crPick=null;render();return}
     if(ui.det){ui.det=null;render();return}
@@ -10181,6 +10584,7 @@ document.addEventListener('keydown',e=>{
     if(ui.svPreview){ui.svPreview=null;render();return}
     if(ui.btl&&ui.btl.done){ui.btl=null;render();return}
     if(ui.admAuth){ui.admAuth=false;ui.admMsg='';render();return}
+    if(ui.spOpen){ui.spOpen=false;render();return}
     if(ui.ap){ui.ap=0;render();return}
     if(ui.sv){ui.sv=false;render();return}
   }
