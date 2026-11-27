@@ -1,4 +1,4 @@
-# Mô Phỏng Nhân Sinh: Nhân Vật Chính (`v5.75`)
+# Mô Phỏng Nhân Sinh: Nhân Vật Chính (`v5.76`)
 
 Tựa game **Tu Tiên Mô Phỏng Nhân Sinh (Text-Based Roguelike RPG)** đậm chất tiểu thuyết convert trên *SangTacViet*, chạy thuần trên trình duyệt (client-side, offline-first 100%) không cần cài đặt hay backend.
 

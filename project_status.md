@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.75 (`index.html`)  
+> **Phiên bản hiện tại:** v5.76 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Diễn Võ Đài Sơn Môn 2D Thủ Thành, Đại Đệ Tử Chi Viện, Chỉ Điểm & Sự Kiện Sư Đồ — Nhịp 2 (`v5.76` · `OWN_WAVES`, `OWN_EVENTS`, `sectService`, `adventureService.fightOwnDefense`, `ARENA_2D`, `SECT_MAP`, `vSect`, `ACH.own_def5`, `vAdmin`):**
+  - **Diễn Võ Đài Sơn Môn (`OWN_WAVES` Đợt 1 → 10, `fightOwnDefense`, `ARENA_2D`):** Chiến đấu trực tiếp bảo vệ Sơn Môn qua 10 đợt công phá (Đợt 5 & 10 là Boss Tam Biến) ngay trên Đấu Trường 2D; **👑 Đại Đệ Tử** xuất chiến trực tiếp bên cạnh Tông Chủ (bắn kiếm khí Ngũ Hành mỗi `2.4s` & tạo Thuẫn Hộ Sơn `6% MaxHP` mỗi `5s`). Mở thành tựu `🛡 own_def5` khi vượt Đợt 5.
+  - **⚔ Chỉ Điểm Đệ Tử (`sparDisciple`):** Mỗi năm (Cổ Điển) / mỗi ngày (Real-Time) chỉ điểm 1 đệ tử nhận `+2` cấp, `+12` Trung thành, `+15` Thanh Danh, `+Tu Vi` & `+20%` Dĩ Chiến Ngộ Đạo.
+  - **📜 Sự Kiện Sư Đồ & Bản Đồ Sơn Môn Isometric (`OWN_EVENTS`, `rollOwnEvent`, `SECT_MAP`):** Bổ sung 6 sự kiện sư đồ tương tác tại Đệ Tử Viện, huy hiệu `👑`/`💠`/`🔥`/`📜` cho đệ tử đi tuần và bong bóng `🛡 !` / `💬 !` trên Bản Đồ Sơn Môn Isometric.
 - **Đại Tu Tông Môn Tự Lập & Hệ Thống Đệ Tử Có Hồn — Nhịp 1 (`v5.75` · `OWN_TIERS`, `OWN_RULES`, `DISC_TRAITS`, `DISC_ROLES`, `OWN_SHOP`, `sectService`, `vSect`, `SECT_MAP`, `ACH.own_holy`, `vAdmin`):**
   - **Chính Điện (Thanh Danh & 3 Tông Quy):** Bổ sung Thanh Danh Sơn Môn (`5` phẩm cấp *Bất Nhập Lưu → Tiên Đạo Thánh Địa*, thành tựu `own_holy`) và **3 Tông Quy** (*⚔ Thượng Võ Lệnh / 🌿 Bách Nghệ Lệnh / 📜 Tàng Kinh Lệnh*).
   - **Ủy Thác Đường (Phái Đệ Tử Xuất Sơn):** Thay thế dòng chờ bằng bảng 3 sự vụ Sơn Môn (`ensureOwnBoard`, `dispatchMission`); chọn đệ tử hợp Ngũ Hành & Thiên Phú để thu thập Thanh Danh, Linh Thạch, Nguyên Liệu & Ngộ Đạo Sa.
