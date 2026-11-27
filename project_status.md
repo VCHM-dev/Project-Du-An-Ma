@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.72 (`index.html`)  
+> **Phiên bản hiện tại:** v5.73 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Hover Công Pháp Gọn Nhẹ, Nghịch Luyện Khắc Nghiệt, Ngộ Đạo Sa & Mini-Game Tham Ngộ 3 Nhịp (`v5.73` · `showHoverTip`, `buildDet`, `techniqueService`, `adventureService`, `ARENA_2D`, `vTec`, `vAdmin`):**
+  - **Tách Rời Hover vs. Modal (`showHoverTip`, `buildDet('tec', id, true)`):** Rê chuột vào thẻ Công Pháp chỉ hiện tóm tắt gọn (Hiệu lực, Tuyệt kỹ, 5 chấm Kinh Mạch và tên Từ Điều), loại bỏ toàn bộ khung 5 tầng và nút bấm khỏi tooltip hover.
+  - **Độ Khó Nghịch Luyện & Chân Khí Loạn Lưu (`s.qiDev`, `revCap`, `washChapter`):** Xung Kích Nghịch Mạch tiêu hao Yêu Đan phù hợp (`m4/m5/m6`) và phải qua **Mini-Game 3 Nhịp** (có tỷ lệ thất bại gây Vỡ Mạch/Ám Thương); Tẩy Mạch đổi chiều tiêu hao `1 Tịnh Tâm Đan` + chi phí Linh Thạch tăng lũy tiến `×1.6`; vượt ngưỡng Loạn Khí khi ra chiêu trong trận có nguy cơ bị phản phệ `10% HP`.
+  - **Ngộ Đạo Sa, Tham Ngộ 3 Nhịp & Giữ Cũ / Nhận Mới (`s.ngoSand`, `startMini`, `stepMini`, `applyRoll`):** Tẩy Từ Điều tiêu hao **Ngộ Đạo Sa** (nhặt từ Vạn Kiếp Tháp, Cổ Thần, Yêu Vương biến dị & Bí Tịch trùng) + Linh Thạch lũy tiến, tỷ lệ Thiên Phẩm hiếm (`3%` gốc + bảo hiểm `8` lượt), chọn giữa **3 Tâm Quyết** (*Ổn Mạch / Thôi Diễn / Cưỡng Phá*) và so sánh **Giữ Cũ / Nhận Mới**.
 - **Đại Chu Thiên Ngũ Hành, Từ Điều Bí Pháp & Đả Tọa Điều Tức — Nhịp 2 (`v5.72` · `SHENG`, `TECH_AFFIXES`, `techniqueService`, `characterStatsService`, `skillOf`, `adventureService`, `ARENA_2D`, `vTec`, `buildDet`, `ACH.tec_cycle/tec_aff`, `vAdmin`):**
   - **Sơ Đồ Linh Mạch Đại Chu Thiên Ngũ Hành (`cycleInfo`):** 3 Công Pháp đang trang bị tự động liên kết thành *☯ Đại Chu Thiên Luân Chuyển* (3 hệ Tương Sinh: `+22%` Hiệu lực, `+15%` Hồi MP, `-12%` MP, `+12%` ST Tuyệt kỹ, `-10%` Hồi chiêu), *Thuần Nguyên Chí Cực* (3 công pháp cùng 1 hệ: `+18%` Hiệu lực, `+12%` Lực, `+6%` Bạo), *Tiểu Chu Thiên*, *⚡ Xung Đột Kinh Mạch* (Tương Khắc chưa có cầu nối), hoặc *🔥 Hỗn Nguyên Bạo Liệt* (dùng `≥3` tầng Nghịch Mạch ép xung đột thành `+22%` ST Bạo, `+12` Xuyên giáp, `+16%` ST Tuyệt kỹ).
   - **12 Từ Điều Bí Pháp & Tẩy Luyện Ngộ Tính (`TECH_AFFIXES`, `rerollAffix`):** Đạt `3/5` tầng mở ô Từ Điều 1 và `5/5` Viên Mãn mở ô 2 (3 phẩm chất *Linh / Địa / Thiên*) tác động trực tiếp vào Hồi chiêu, MP, Uy lực, Hộ Thuẫn, Hút máu, Sát thương Yêu Vương/Tháp/Cổ Thần, Giảm Tâm Cảnh Nghịch Mạch và Tốc độ Tu Luyện; Ngộ Tính cao tăng tỷ lệ ra Thiên Phẩm khi Tẩy Luyện.
