@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.71 (`index.html`)  
-> **Cập nhật lần cuối:** 2026-11-26  
+> **Phiên bản hiện tại:** v5.72 (`index.html`)  
+> **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Chu Thiên Ngũ Hành, Từ Điều Bí Pháp & Đả Tọa Điều Tức — Nhịp 2 (`v5.72` · `SHENG`, `TECH_AFFIXES`, `techniqueService`, `characterStatsService`, `skillOf`, `adventureService`, `ARENA_2D`, `vTec`, `buildDet`, `ACH.tec_cycle/tec_aff`, `vAdmin`):**
+  - **Sơ Đồ Linh Mạch Đại Chu Thiên Ngũ Hành (`cycleInfo`):** 3 Công Pháp đang trang bị tự động liên kết thành *☯ Đại Chu Thiên Luân Chuyển* (3 hệ Tương Sinh: `+22%` Hiệu lực, `+15%` Hồi MP, `-12%` MP, `+12%` ST Tuyệt kỹ, `-10%` Hồi chiêu), *Thuần Nguyên Chí Cực* (3 công pháp cùng 1 hệ: `+18%` Hiệu lực, `+12%` Lực, `+6%` Bạo), *Tiểu Chu Thiên*, *⚡ Xung Đột Kinh Mạch* (Tương Khắc chưa có cầu nối), hoặc *🔥 Hỗn Nguyên Bạo Liệt* (dùng `≥3` tầng Nghịch Mạch ép xung đột thành `+22%` ST Bạo, `+12` Xuyên giáp, `+16%` ST Tuyệt kỹ).
+  - **12 Từ Điều Bí Pháp & Tẩy Luyện Ngộ Tính (`TECH_AFFIXES`, `rerollAffix`):** Đạt `3/5` tầng mở ô Từ Điều 1 và `5/5` Viên Mãn mở ô 2 (3 phẩm chất *Linh / Địa / Thiên*) tác động trực tiếp vào Hồi chiêu, MP, Uy lực, Hộ Thuẫn, Hút máu, Sát thương Yêu Vương/Tháp/Cổ Thần, Giảm Tâm Cảnh Nghịch Mạch và Tốc độ Tu Luyện; Ngộ Tính cao tăng tỷ lệ ra Thiên Phẩm khi Tẩy Luyện.
+  - **🪷 Đả Tọa Điều Tức (`meditateCalm`):** Xóa Tâm Ma và chữa 1 tầng Ám Thương ngay tại tab `Công Pháp` (kèm `+20%` Ngộ Đạo nếu có Tông Môn hoặc Đạo Lữ), bổ sung 2 thành tựu `tec_cycle` / `tec_aff` và 2 nút test trong `vAdmin`.
 - **Đại Tu Hệ Thống Công Pháp — Kinh Mạch 5 Tầng, Chính/Nghịch Luyện & Bí Tịch Tàn Quyển (`v5.71` · `TECH_CHAPTERS`, `REV_SK_TAG`, `techniqueService`, `characterStatsService`, `skillOf`, `adventureService`, `ARENA_2D`, `vTec`, `buildDet`, `ACH.tec_rev`, `vAdmin`):**
   - **Kinh Mạch 5 Tầng (`I. Nhập Môn → V. Áo Nghĩa`):** Thay thế thanh luyện đơn điệu bằng 5 tầng Kinh Mạch tương tác trực tiếp (`☯ Chính`, `🩸 Nghịch`, `📜 Tàn Khuyết`, `○ Chưa ngộ`), giữ tương thích 100% với save cũ (`m` tự quy đổi sang `ch/prog`) và Diễn Hóa Công Pháp.
   - **Song Đạo Chính / Nghịch Luyện & Phản Phệ Tâm Cảnh (Strict Taiwu Mode):** Chính Luyện giảm MP thi triển & tăng hiệu lực ổn định; Nghịch Luyện ≥3 tầng **Dị Biến Tuyệt Kỹ** (Huyết Tế Cuồng Bạo, Ma Sát Tam Trảm 3-Hit, Phá Toái Kinh Mạch, Huyết Hải Thôn Phệ...) trên cả Đấu Trường 2D lẫn Lịch Luyện Turn-based, kèm đánh đổi `-Thủ` / `-Thiên Kiếp` và **Ám Thương + Tâm Ma** nếu vượt ngưỡng Tâm Cảnh; hỗ trợ **🌊 Tẩy Mạch** đổi chiều.
