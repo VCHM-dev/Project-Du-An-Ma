@@ -1,12 +1,18 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.77 (`index.html`)  
+> **Phiên bản hiện tại:** v5.78 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Tu Phường Thị — Nhịp 1: Tiên Thị Phồn Hoa 4 Phân Khu, Sóng Giá, Khách Quý, Ký Gửi Đấu Giá & Cướp Bảo 2D (`v5.78` · `SHOP_BANNER_IMG`, `AUC_HALL_IMG`, `MARKET_WAVES`, `VIP_TIERS`, `shopService`, `vShop`, `adventureService.fightAucRob`, `ACH.shop_vip/shop_consign`):**
+  - **Giao Diện Tiên Thị Phồn Hoa (`vShop`, `SHOP_BANNER_IMG`, `AUC_HALL_IMG`):** Bố cục 4 phân khu (*Vạn Bảo Các, Vạn Bảo Lâu, Thạch Phường, Sạp Tán Tu*) kèm 2 banner 16-bit Pixel Art toàn cảnh, thanh tiến độ Lệnh Bài và 4 thẻ KPI.
+  - **6 Kịch Bản Sóng Giá Thị Trường (`MARKET_WAVES`, `waveMul`, `sellInfo`):** Biến động theo chu kỳ 5 năm (Bình Ổn / Thú Triều / Đại Hội Luyện Đan / Bí Cảnh / Ma Đạo / Đại Tế), tăng giá thu mua món khớp sóng tới `70%` ở **Quầy Thu Mua Đón Sóng**.
+  - **Lệnh Bài Khách Quý 5 Cấp (`VIP_TIERS`, `s.shopRep`):** Tích Uy Tín mở khóa giảm giá mua (`5%→20%`), tăng ô hàng (`6→8`), Làm Mới Miễn Phí (Lv2+), Quầy VIP Độc Quyền 2 ô (Ngộ Đạo Sa, Đạo Dẫn, Đan Cực Phẩm, Tàn Quyển ở Lv3+), giảm phí ký gửi (`15%→5%`) và mở thành tựu `shop_vip` (giữ nguyên qua Luân Hồi).
+  - **Vạn Bảo Lâu 4 Lô & Sàn Ký Gửi Đấu Giá 3 Hồi (`aucGen`, `consignStart/Hype/Next/Finish`):** Bổ sung lô thứ 4 **🌟 Áp Trục**; cho phép đưa Đan Cực Phẩm/Thần Binh Tinh Luyện/Kỳ Vật lên sàn 3 hồi tranh giá kèm **🔥 Thổi Phồng Danh Tiếng** (mở thành tựu `shop_consign`).
+  - **Phục Kích Cướp Bảo Đấu Trường 2D & Uy Danh Dọa Lui (`fightAucRob`, `aucRobAct`):** Có thể đánh trực tiếp Kiếp Tu trên Đấu Trường 2D đoạt Ngộ Đạo Sa & Uy Tín, hoặc dùng Uy Danh Sơn Môn/Tông Môn/Tử Kim Lệnh dọa lui thu bồi lễ.
 - **Đại Tu Giao Diện Kim Thủ Chỉ (Thiên Cơ Tinh Đài) & Tiểu Tiên Nữ Tinh Linh Toàn Cục (`v5.77` · `SPIRIT_IMG`, `spiritService`, `vKt`, `aiPanel`, `runUI`, `rewardIntegrationService.next`, `ACH.sp_bond`):**
   - **Thiên Cơ Tinh Đài (`vKt`, `.kt-stage`):** Thay thế 5 khung phẳng cũ bằng Đài Trung Tâm có vòng Bát Quái xoay kép, 4 KPI Đạo Quả (`+% chỉ số`, `-% Uy Áp`, `Số kiếp & Đỉnh cao`, `Thân Mật`), nút **⚡ Khởi Động Mô Phỏng** nổi bật, thanh `aiPanel` thu gọn và **📜 Sổ Nhân Quả** với huy hiệu hạng (`SSS/SS/S/A`).
   - **Tiểu Tiên Nữ Tinh Linh (`SPIRIT_IMG`, `spiritService`):** Sprite 16-bit Pixel Art WebP nhúng offline tiến hóa theo cấp KT (`1→5`), bong bóng thoại động theo ngữ cảnh, nuôi dưỡng Linh Thạch / Ngộ Đạo Sa tăng Thân Mật Cấp `1→5` (mở thành tựu `sp_bond`), đổi tên, 3 Tính Cách (*Dịu Dàng / Cà Khịa / Nghiêm Túc*) & 4 Hào Quang, giữ nguyên qua Luân Hồi (`reborn`).
