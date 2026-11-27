@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.78 (`index.html`)  
+> **Phiên bản hiện tại:** v5.79 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đại Tu Phường Thị — Nhịp 2: Thạch Phường Đổ Thạch, Sạp Tán Tu & Quỷ Thị Đêm (`v5.79` · `STONE_YARD_IMG`, `BLACK_MKT_IMG`, `STONE_TIERS`, `shopService`, `vShop`, `ACH.shop_stone/shop_steal`):**
+  - **🪨 Thạch Phường Đổ Thạch (`stoneScan`, `stoneBuy`, `stoneCut`, `stoneSellMid`, `stoneCutAll`):** 4 khối Nguyên Thạch Cổ (*Phế Thạch → Thái Sơ Thần Thạch*) kèm banner 16-bit Pixel Art, tính năng **👁 Soi Thạch cùng Tiểu Cơ** (miễn phí 1 lần/kỳ từ Thanh Đồng Lệnh Lv2), Đài Giải Thạch 3 nhát cắt hồi hộp, thương nhân hỏi mua lại giữa chừng (**💰 Chốt Lời Non**) và thành tựu `shop_stone` khi cắt trúng Thái Sơ Thần Nguyên.
+  - **🏮 Sạp Tán Tu (`stallHaggle`, `stallBuy`):** 3 Cổ Vật Chưa Giám Định, mặc cả bằng Tâm Cảnh + Khí Vận (giảm 15–24%, hết kiên nhẫn sẽ dọn sạp) và tự Giám Định bằng Ngộ Tính để săn Đại Cơ Duyên (`shop_steal`).
+  - **🌑 Quỷ Thị Đêm (`blackEnter`, `blackBuy`):** Mở cửa tự do cho Thanh Đồng Lệnh Lv2+ / Tông Chủ Sơn Môn (hoặc Quỷ Diện Lệnh `150💎`), bán Ngộ Đạo Sa, Đan Cực Phẩm, Tàn Quyển và cơ chế **🔄 Vật Đổi Vật** bằng nguyên liệu dư.
 - **Đại Tu Phường Thị — Nhịp 1: Tiên Thị Phồn Hoa 4 Phân Khu, Sóng Giá, Khách Quý, Ký Gửi Đấu Giá & Cướp Bảo 2D (`v5.78` · `SHOP_BANNER_IMG`, `AUC_HALL_IMG`, `MARKET_WAVES`, `VIP_TIERS`, `shopService`, `vShop`, `adventureService.fightAucRob`, `ACH.shop_vip/shop_consign`):**
   - **Giao Diện Tiên Thị Phồn Hoa (`vShop`, `SHOP_BANNER_IMG`, `AUC_HALL_IMG`):** Bố cục 4 phân khu (*Vạn Bảo Các, Vạn Bảo Lâu, Thạch Phường, Sạp Tán Tu*) kèm 2 banner 16-bit Pixel Art toàn cảnh, thanh tiến độ Lệnh Bài và 4 thẻ KPI.
   - **6 Kịch Bản Sóng Giá Thị Trường (`MARKET_WAVES`, `waveMul`, `sellInfo`):** Biến động theo chu kỳ 5 năm (Bình Ổn / Thú Triều / Đại Hội Luyện Đan / Bí Cảnh / Ma Đạo / Đại Tế), tăng giá thu mua món khớp sóng tới `70%` ở **Quầy Thu Mua Đón Sóng**.
