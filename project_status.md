@@ -1,12 +1,16 @@
 # PROJECT STATUS — MÔ PHỎNG NHÂN SINH: NHÂN VẬT CHÍNH
 
-> **Phiên bản hiện tại:** v5.73 (`index.html`)  
+> **Phiên bản hiện tại:** v5.74 (`index.html`)  
 > **Cập nhật lần cuối:** 2026-11-27  
 > **File chạy chính:** `index.html`  
 
 ---
 
 ## 1. ĐÃ HOÀN THÀNH (DONE)
+- **Đài Suy Diễn Tàn Quyển — Nối 3 Huyệt Cổ Văn, Tham Chiếu Đồng Nguyên, Thiên Cơ & Cải Lương Mạch (`v5.74` · `DED_CLUES`, `techniqueService`, `buildDet`, `ACH.tec_imp`, `ACI.tec_imp`, `A`):**
+  - **Mini-Puzzle Nối 3 Huyệt Cổ Văn (`startDed`, `pickDed`):** Suy diễn Tàn Quyển mở Đài Suy Diễn giải 3 triệu chứng mạch khí bằng 3 Pháp Quyết (*💧 Điều Hòa / 🔥 Xung Phá / ☯ Trung Dung*); Ngộ Tính cao tự soi sáng trước 1 huyệt đúng.
+  - **3 Cấp Kết Quả & Độ Bền Tàn Ý (`t.qual`, `t.dura`):** Đạt `3/3` có thể tiến hóa thành **🌟 Cải Lương Mạch** (`+3%` tổng hiệu lực công pháp mỗi tầng & `+6` Ngộ Ý khởi đầu khi Tham Ngộ Từ Điều, mở thành tựu `tec_imp`); `2/3` ra Nguyên Bản hoặc **⚠ Tạp Mạch** (Tinh Luyện bằng `1` Ngộ Đạo Sa); `≤1/3` thất bại trừ `1` Tàn Ý (`3/3`), +Ám Thương & Loạn Khí (hết `0/3` cần **Phục Chế** bằng `1` Ngộ Đạo Sa hoặc Dĩ Chiến Ngộ Đạo).
+  - **Tham Chiếu Đồng Nguyên, Luận Đạo & Thiên Cơ Thôi Diễn:** Chọn 1 Công Pháp khác đã Đại Thành cùng hệ/Tương Sinh (`refCandidates`, `setDedRef`) hoặc **💬 Luận Đạo** (`+40%` & mở gợi ý Cổ Văn) để soi sáng thêm huyệt đúng; Kim Thủ Chỉ `≥ 2` có thể dùng `1` Ngộ Đạo Sa kích hoạt **🔮 Thiên Cơ Thôi Diễn** (`heavenDed`).
 - **Hover Công Pháp Gọn Nhẹ, Nghịch Luyện Khắc Nghiệt, Ngộ Đạo Sa & Mini-Game Tham Ngộ 3 Nhịp (`v5.73` · `showHoverTip`, `buildDet`, `techniqueService`, `adventureService`, `ARENA_2D`, `vTec`, `vAdmin`):**
   - **Tách Rời Hover vs. Modal (`showHoverTip`, `buildDet('tec', id, true)`):** Rê chuột vào thẻ Công Pháp chỉ hiện tóm tắt gọn (Hiệu lực, Tuyệt kỹ, 5 chấm Kinh Mạch và tên Từ Điều), loại bỏ toàn bộ khung 5 tầng và nút bấm khỏi tooltip hover.
   - **Độ Khó Nghịch Luyện & Chân Khí Loạn Lưu (`s.qiDev`, `revCap`, `washChapter`):** Xung Kích Nghịch Mạch tiêu hao Yêu Đan phù hợp (`m4/m5/m6`) và phải qua **Mini-Game 3 Nhịp** (có tỷ lệ thất bại gây Vỡ Mạch/Ám Thương); Tẩy Mạch đổi chiều tiêu hao `1 Tịnh Tâm Đan` + chi phí Linh Thạch tăng lũy tiến `×1.6`; vượt ngưỡng Loạn Khí khi ra chiêu trong trận có nguy cơ bị phản phệ `10% HP`.

@@ -255,6 +255,10 @@ img.av{object-fit:cover;image-rendering:pixelated}.pe input[type=file]{padding:3
 .tec-roll-cmp{margin-top:8px;padding:9px 10px;border-radius:9px;background:linear-gradient(135deg,#38bdf814,#fbbf2414,var(--in));border:1px solid #38bdf877}
 .tec-qi-bar{margin-top:6px;height:6px;border-radius:4px;background:#0f172a;border:1px solid #334155;overflow:hidden}
 .tec-qi-bar i{display:block;height:100%;background:linear-gradient(90deg,#f59e0b,#ef4444)}
+.tec-ded{margin-top:8px;padding:9px 10px;border-radius:9px;background:linear-gradient(135deg,#0ea5e918,#f59e0b16,var(--in));border:1px solid #38bdf877}
+.tec-ded-node{padding:7px 9px;border-radius:7px;background:#0b1120cc;border:1px solid var(--ln);margin:6px 0;font-size:12px}
+.tec-qual-imp{color:#fbbf24;font-weight:700;font-size:11px;margin-left:5px}
+.tec-qual-flaw{color:#fb7185;font-weight:700;font-size:11px;margin-left:5px}
 .det-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .det-title{font-size:calc(var(--fs)*1.12);font-weight:800;color:var(--rc,var(--gold))}
 .det-acts{display:flex;gap:6px;flex-wrap:wrap;padding-top:7px;border-top:1px solid var(--ln)}
@@ -405,7 +409,7 @@ button.ab-sm{padding:4px 8px;font-size:11.5px}
 .pt-in input{flex:1;min-width:0}
 </style></head><body><div id="bg-scene" aria-hidden="true"></div><div id="wp"></div><div id="ptc" aria-hidden="true"></div><header><div class="hr"><div class="htl"><h1>☯ MÔ PHỎNG NHÂN SINH</h1><div id="bgm"></div></div><div id="sys"></div></div><div id="sb"></div></header><nav id="nav" aria-label="Điều hướng chính"></nav><main><div id="app"></div></main><div id="apo" data-a="uic"></div><aside id="ap" role="dialog" aria-label="Thiết lập giao diện"></aside><div id="ts" aria-live="polite"></div><div id="adm-auth"></div><div id="guide-layer"></div><div id="hover-tip" class="hover-tip"></div><div id="det-modal"></div>
 <script>
-const APP_VERSION='5.73';
+const APP_VERSION='5.74';
 const GUIDE_DATA={
   onboardingSteps:[
     {tab:'char',selector:'.st',title:'1. Nhân Vật & Chỉ Số Thực Chiến',desc:'Gồm 6 thuộc tính gốc phân tách vai trò (Thể: HP/Thủ, Linh: Lực/Tốc/MP, Ngộ: Xuyên giáp, Thần: ST Bạo kích, Tâm: Thủ/Đột phá, Vận: Bạo kích/Né tránh) và 8 chỉ số thực chiến có Ngưỡng Giảm Dần mượt mà.'},
@@ -421,6 +425,13 @@ const GUIDE_DATA={
     {selector:'[data-a="qsave"]',title:'11. Lưu Trữ An Toàn 1 Chạm',desc:'Game tự lưu liên tục, nhưng bạn nên bấm 💾 Lưu để chụp mốc an toàn vào trình duyệt, hoặc mở 📂 Kho Lưu Trữ để tải tệp .msns và tạo Liên Kết Chuyển Máy (#s=...) sang thiết bị khác.'}
   ],
   patchNotes:[
+    {
+      version:'5.74',date:'2026-11-27',title:'Đài Suy Diễn Tàn Quyển — Nối 3 Huyệt Cổ Văn, Tham Chiếu Đồng Nguyên & Cải Lương Mạch',
+      highlights:[
+        {icon:'📜',title:'Mini-Puzzle Nối 3 Huyệt Cổ Văn & 3 Cấp Kết Quả',desc:'Suy diễn Tàn Quyển nay mở Đài Suy Diễn giải 3 triệu chứng mạch khí (💧 Điều Hòa / 🔥 Xung Phá / ☯ Trung Dung). Giải chuẩn 3/3 có thể tiến hóa thành 🌟 Cải Lương Mạch (+15% hiệu lực tầng, +Ngộ Ý Tham Ngộ), sai sót tạo ⚠ Tạp Mạch hoặc làm mờ Tàn Ý (3/3).',tab:'tec'},
+        {icon:'📚',title:'Tham Chiếu Đồng Nguyên, Luận Đạo & Thiên Cơ Thôi Diễn',desc:'Chọn 1 Công Pháp đã Đại Thành cùng hệ/Tương Sinh làm Pháp Bản đối chiếu hoặc nhờ Luận Đạo để soi sáng trước huyệt đúng; Kim Thủ Chỉ ≥2 có thể dùng 1 Ngộ Đạo Sa kích hoạt 🔮 Thiên Cơ Thôi Diễn!',tab:'tec'}
+      ]
+    },
     {
       version:'5.73',date:'2026-11-27',title:'Hover Gọn Nhẹ, Độ Khó Nghịch Luyện, Ngộ Đạo Sa & Mini-Game Tham Ngộ 3 Nhịp',
       highlights:[
@@ -1245,6 +1256,20 @@ const TECH_AFFIXES=[
   {id:'dodge_cast',n:'Huyền Bộ Lăng Ba',tiers:[[3,5],[6,8],[9,12]],fmt:v=>`Né tránh +${v}%`}
 ];
 const TECH_AFF_MAP=Object.fromEntries(TECH_AFFIXES.map(a=>[a.id,a]));
+const DED_CLUES=[
+  {t:'Đan điền Hỏa khí ứ trệ, kinh mạch khô nứt nóng rát',a:'cool'},
+  {t:'Dương khí sục sôi xung thẳng lên Thức Hải dễ sinh táo hỏa',a:'cool'},
+  {t:'Tâm hỏa trực trào, chân khí bạo liệt khó kìm',a:'cool'},
+  {t:'Huyết mạch nóng bỏng như dung nham bít lối',a:'cool'},
+  {t:'Hàn khí đóng băng tại Khí Hải, chân khí đình trệ',a:'heat'},
+  {t:'Âm hàn kết khối chặn ngang Đan Điền trầm nặng',a:'heat'},
+  {t:'Kinh mạch lạnh lẽo tắc nghẽn, linh lực không thông',a:'heat'},
+  {t:'Thổ khí ngưng tụ thành tảng bít kín huyệt đạo',a:'heat'},
+  {t:'Linh khí tán loạn tứ phía, không tụ được Chu Thiên',a:'bal'},
+  {t:'Âm Dương nghịch lưu va chạm, mạch văn hư nhược',a:'bal'},
+  {t:'Ngũ hành tạp loạn mất trục, chân khí thất thoát liên tục',a:'bal'},
+  {t:'Hư mạch đứt quãng, linh lực lọt ra ngoài khi vận công',a:'bal'}
+];
 const REV_SK_TAG={heal:'Huyết Tế Cuồng Bạo (+45% ST, Hút 28% HP)',break:'Phá Toái Kinh Mạch (Xuyên Thấu, +55% ST)',stun:'Nhiếp Hồn Nghịch Chấn (Choáng 2.5s, Phản Phệ)',exec:'Ma Sát Tam Trảm (3 Hit Chí Mạng, Hút 15%)',burn:'Huyết Diễm Phần Tâm (Thiêu +45%, Đốt 2×)',drain:'Huyết Hải Thôn Phệ (Hút 50% HP, +40% ST)'};
 const techniqueService={
   rollAffix(x,d,excludeIds=[],forcedTier=null){
@@ -1271,6 +1296,9 @@ const techniqueService={
     if(typeof t.washCnt!=='number')t.washCnt=0;
     if(typeof t.affRolls!=='number')t.affRolls=0;
     if(typeof t.affPity!=='number')t.affPity=0;
+    if(!Array.isArray(t.qual)||t.qual.length!==5)t.qual=[0,0,0,0,0];
+    if(!Array.isArray(t.dura)||t.dura.length!==5)t.dura=[3,3,3,3,3];
+    if(!Array.isArray(t.clueHint)||t.clueHint.length!==5)t.clueHint=[0,0,0,0,0];
     const done=t.ch.filter(c=>c>0).length,slots=done>=5?2:(done>=3?1:0);
     while(t.aff.length<slots)t.aff.push(this.rollAffix(x,QD[id],t.aff.map(a=>a.id)));
     return t;
@@ -1341,9 +1369,10 @@ const techniqueService={
       if((x.ngoSand||0)<rc.sand)return say(`Cần ${rc.sand} Ngộ Đạo Sa (hiện ${x.ngoSand||0})`);
       if(x.stones<rc.stones)return say(`Cần ${rc.stones} linh thạch`);
       x.ngoSand-=rc.sand;x.stones-=rc.stones;t.affRolls=(t.affRolls||0)+1;
+      const impCnt=(t.qual||[]).filter(q=>q===1).length;
       const stab=clamp(60+Math.min(25,Math.floor(st.attr.ngo/8))-Math.min(18,t.affRolls*2),30,88);
       ui.tecRoll=null;
-      ui.tecMini={kind:'aff',id,idx,turn:1,maxTurn:3,stab,ins:10,log:['✨ Khởi động Tham Ngộ Từ Điều — đẩy Ngộ Ý ≥65 (Địa) / ≥105 (Thiên)!']};
+      ui.tecMini={kind:'aff',id,idx,turn:1,maxTurn:3,stab,ins:10+impCnt*6,log:[`✨ Khởi động Tham Ngộ Từ Điều${impCnt?` (+${impCnt*6} Ngộ Ý từ Cải Lương Mạch)`:''} — đẩy Ngộ Ý ≥65 (Địa) / ≥105 (Thiên)!`]};
     }
   },
   stepMini(x,choice){
@@ -1494,8 +1523,9 @@ const techniqueService={
   tamReq:(d,newRev,totRev,x)=>{const calm=x?Math.min(18,techniqueService.affixTotals(x).rev_calm||0):0;return Math.max(8,12+d.r*5+newRev*6+Math.max(0,totRev-3)*3-calm)},
   power(x,id){
     const d=QD[id],b=x.body>=(d.mb||0)?1:.6,r=ROOTS[x.root],c=d.el==='*'?1:r.el===d.el?1.3:!r.el?1.15:.8,cx=1+.02*((x.fuCodex&&x.fuCodex.length)||0);
+    const t=this.ensure(x,id),qm=1+(t&&Array.isArray(t.qual)?t.qual.reduce((a,q)=>a+(q===1?.03:q===-1?-.02:0),0):0);
     const st=this.stanceInfo(x,id),sm=1+st.pos*.02+st.rev*.05,cm=(x.tech[id]&&x.tech[id].eq)?this.cycleInfo(x).powMul:1;
-    return b*c*MF[this.lv(x,id)]*cx*sm*cm;
+    return b*c*MF[this.lv(x,id)]*cx*sm*cm*Math.max(.85,qm);
   },
   lv(x,id){const t=this.ensure(x,id);const m=t?t.m:0;return MT.reduce((a,th,i)=>m>=th?i:a,0)},
   ngReq:d=>10+d.r*8,
@@ -1562,6 +1592,94 @@ const techniqueService={
     this.syncM(t);
     say(`💥 Suy diễn phản phệ! Tiến độ bổ khuyết +35% (${t.prog[idx]}%) nhưng chịu +1 Ám Thương / Tâm Ma.`,'warn');
   },
+  refCandidates(x,id){
+    const d=QD[id];if(!d)return[];
+    return Object.keys(x.tech||{}).filter(oid=>{
+      if(oid===id||!QD[oid])return false;
+      if(this.stanceInfo(x,oid).done<3)return false;
+      const oe=QD[oid].el||'*',de=d.el||'*';
+      return oe==='*'||de==='*'||oe===de||SHENG[oe]===de||SHENG[de]===oe;
+    });
+  },
+  startDed(x,id,idx){
+    const d=QD[id],t=this.ensure(x,id);if(!d||!t||t.ch[idx]!==-1)return;
+    if((t.dura[idx]||0)<=0)return say('🪨 Cổ văn đã mờ hết Tàn Ý (0/3)! Hãy Phục Chế bằng 1 Ngộ Đạo Sa hoặc Dĩ Chiến Ngộ Đạo.');
+    const c=Math.round(this.chCost(d,idx)*1.1);
+    if(x.stones<c)return say('Cần '+c+' linh thạch để mở Đài Suy Diễn');
+    x.stones-=c;
+    const st=characterStatsService.compute(x);
+    const pool=DED_CLUES.slice().sort(()=>Math.random()-.5),clues=[];
+    ['cool','heat','bal'].forEach(ans=>{const f=pool.find(cl=>cl.a===ans&&!clues.includes(cl));if(f)clues.push(f)});
+    while(clues.length<3){const f=pool.find(cl=>!clues.includes(cl));if(f)clues.push(f);else break}
+    clues.sort(()=>Math.random()-.5);
+    const rev=[false,false,false];
+    if(st.attr.ngo>=this.ngReq(d)+35)rev[0]=true;
+    if(t.clueHint[idx]){const ni=rev.indexOf(false);if(ni>=0)rev[ni]=true}
+    ui.tecMini=null;ui.tecRoll=null;
+    ui.tecDed={id,idx,step:0,refId:'',clues,revealed:rev,refRev:-1,picks:[],hits:0};
+  },
+  setDedRef(x,refId){
+    const ded=ui.tecDed;if(!ded||ded.step>0)return;
+    if(ded.refRev>=0){ded.revealed[ded.refRev]=false;ded.refRev=-1}
+    const cands=this.refCandidates(x,ded.id);
+    if(!refId||!cands.includes(refId)){ded.refId='';return}
+    ded.refId=refId;
+    const ni=ded.revealed.indexOf(false);
+    if(ni>=0){ded.revealed[ni]=true;ded.refRev=ni}
+  },
+  pickDed(x,ans){
+    const ded=ui.tecDed;if(!ded)return;
+    const d=QD[ded.id],t=this.ensure(x,ded.id);if(!d||!t)return;
+    const cur=ded.clues[ded.step];if(!cur)return;
+    const ok=ans===cur.a;
+    ded.picks.push(ans);if(ok)ded.hits++;
+    ded.step++;
+    if(ded.step<3)return;
+    const idx=ded.idx,hits=ded.hits,st=characterStatsService.compute(x);
+    ui.tecDed=null;
+    if(hits===3){
+      const imp=!!ded.refId||st.attr.ngo>=this.ngReq(d)+50||Math.random()<.45;
+      t.ch[idx]=0;t.prog[idx]=0;t.qual[idx]=imp?1:0;this.syncM(t);
+      return say(imp?`🌟 Suy diễn viên mãn (3/3)! ${d.n} [${TECH_CHAPTERS[idx]}] tiến hóa thành Cải Lương Mạch (+15% uy lực)!`:`📜 Suy diễn hoàn mỹ (3/3)! Đã khôi phục nguyên bản ${d.n} [${TECH_CHAPTERS[idx]}].`,imp?'ach':'ok');
+    }
+    if(hits===2){
+      const flaw=Math.random()<.35;
+      t.ch[idx]=0;t.prog[idx]=0;t.qual[idx]=flaw?-1:0;
+      if(flaw)x.qiDev=clamp((x.qiDev||0)+5,0,100);
+      this.syncM(t);
+      return say(flaw?`⚠ Chắp vá thành công (2/3) nhưng sinh Tạp Mạch (-10% hiệu lực, +5 Loạn Khí). Có thể Tinh Luyện bằng 1 Ngộ Đạo Sa.`:`📜 Bổ khuyết thành công (2/3)! Đã khôi phục ${d.n} [${TECH_CHAPTERS[idx]}].`,flaw?'warn':'ok');
+    }
+    t.dura[idx]=Math.max(0,(t.dura[idx]||3)-1);
+    t.prog[idx]=Math.min(99,(t.prog[idx]||0)+30);
+    x.wounds=Math.min(3,(x.wounds||0)+1);
+    x.qiDev=clamp((x.qiDev||0)+10,0,100);
+    this.syncM(t);
+    say(`💥 Suy diễn thất bại (${hits}/3)! +30% tiến độ nhưng chịu +1 Ám Thương, +10 Loạn Khí (Tàn Ý còn ${t.dura[idx]}/3).`,'warn');
+  },
+  heavenDed(x,id,idx){
+    const d=QD[id],t=this.ensure(x,id);if(!d||!t||t.ch[idx]!==-1)return;
+    if((x.kt||1)<2)return say('Cần Kim Thủ Chỉ cấp ≥ 2 để kích hoạt Thiên Cơ Thôi Diễn.');
+    if((x.ngoSand||0)<1)return say('Cần 1 Ngộ Đạo Sa để kích hoạt Thiên Cơ Thôi Diễn.');
+    x.ngoSand-=1;
+    const impCh=clamp(.5+.1*((x.kt||2)-2),.5,.8),imp=Math.random()<impCh;
+    t.ch[idx]=0;t.prog[idx]=0;t.qual[idx]=imp?1:0;this.syncM(t);
+    if(ui.tecDed&&ui.tecDed.id===id&&ui.tecDed.idx===idx)ui.tecDed=null;
+    say(imp?`🔮🌟 Thiên Cơ Thôi Diễn đại thành! ${d.n} [${TECH_CHAPTERS[idx]}] đạt Cải Lương Mạch!`:`🔮 Thiên Cơ Thôi Diễn thành công! Đã khôi phục nguyên bản ${d.n} [${TECH_CHAPTERS[idx]}].`,imp?'ach':'ok');
+  },
+  restoreDura(x,id,idx){
+    const d=QD[id],t=this.ensure(x,id);if(!d||!t||t.ch[idx]!==-1)return;
+    if((x.ngoSand||0)<1)return say('Cần 1 Ngộ Đạo Sa để Phục Chế Tàn Ý.');
+    x.ngoSand-=1;t.dura[idx]=3;
+    say(`✨ Đã phục chế 3/3 Tàn Ý Cổ Văn cho ${d.n} [${TECH_CHAPTERS[idx]}]!`,'ok');
+  },
+  refineFlaw(x,id,idx){
+    const d=QD[id],t=this.ensure(x,id);if(!d||!t||t.qual[idx]!==-1)return;
+    const c=this.chCost(d,idx);
+    if((x.ngoSand||0)<1)return say('Cần 1 Ngộ Đạo Sa để Tinh Luyện Tạp Mạch.');
+    if(x.stones<c)return say('Cần '+c+' linh thạch để Tinh Luyện Tạp Mạch.');
+    x.ngoSand-=1;x.stones-=c;t.qual[idx]=0;this.syncM(t);
+    say(`✨ Đã tinh luyện sạch Tạp Mạch cho ${d.n} [${TECH_CHAPTERS[idx]}] về Nguyên Bản!`,'ok');
+  },
   debateRepair(x,id,idx){
     const d=QD[id],t=this.ensure(x,id);if(!d||!t||t.ch[idx]!==-1)return;
     const hasPeer=!!(x.sect||x.ownSect||(typeof compService!=='undefined'&&compService.bondedList(x).length>0));
@@ -1573,8 +1691,13 @@ const techniqueService={
       if(x.tecDebAge===x.age)return say('Năm nay đã Luận Đạo Bổ Khuyết rồi (mỗi năm 1 lần).');
       x.tecDebAge=x.age;
     }
-    t.ch[idx]=0;t.prog[idx]=0;this.syncM(t);
-    say(`💬 Luận Đạo Bổ Khuyết thành công! ${d.n} [${TECH_CHAPTERS[idx]}] đã hoàn chỉnh (100% an toàn).`,'ok');
+    t.prog[idx]=(t.prog[idx]||0)+40;t.clueHint[idx]=1;
+    if(t.prog[idx]>=100){
+      t.ch[idx]=0;t.prog[idx]=0;t.qual[idx]=0;this.syncM(t);
+      return say(`💬 Luận Đạo Bổ Khuyết viên mãn! ${d.n} [${TECH_CHAPTERS[idx]}] đã hoàn chỉnh (100% an toàn).`,'ok');
+    }
+    this.syncM(t);
+    say(`💬 Luận Đạo trợ giúp ${d.n} [${TECH_CHAPTERS[idx]}]: +40% tiến độ (${t.prog[idx]}%) & mở 1 gợi ý Cổ Văn!`,'ok');
   },
   onBattleWin(x,gain=25){
     const msgs=[];
@@ -4094,7 +4217,7 @@ const rewardIntegrationService={
 };
 
 /* ===== THÀNH TỰU, SAO LƯU & MIGRATE HỢP NHẤT ===== */
-const ACH=[['kd','Đạt Kim Đan',x=>x.realm>=2],['na','Đạt Nguyên Anh',x=>x.realm>=3],['ht','Đạt Hóa Thần',x=>x.realm>=4],['th','Sống trên 1000 tuổi',x=>x.age>=1000],['tt','Sở hữu thiên phú Thất Thải',x=>x.tal.some(t=>TD[t.id].r===6)],['sss','Đạt hạng SSS mô phỏng',x=>x.best===8],['sm','Hoàn thành 5 lần mô phỏng',x=>x.hist.length>=5],['lw','Thắng 10 trận Lịch Luyện',x=>(x.wins||0)>=10],['gd','Sở hữu 5.000 Linh Thạch',x=>x.stones>=5000],['tw10','Chinh phục Tầng 10 Vạn Kiếp Tháp',x=>(x.towerFloor||0)>=10],['wb1','Trảm sát Cổ Thần Tam Biến',x=>Object.values(x.wbWins||{}).some(v=>v>0)],['rush1','Phá đảo Đột Kích Liên Hoàn (4 Cổ Thần)',x=>!!(x.arenaRec&&x.arenaRec.rushBest&&x.arenaRec.rushBest.clears>=1)],['pd1','Thời Không Tĩnh Lặng (≥ 3 Né Hoàn Hảo trong 1 trận)',x=>!!(x.arenaRec&&(x.arenaRec.bestPerfectDodge||0)>=3)],['pd2','Thân Pháp Nhập Vi (Tích lũy 25 Né Hoàn Hảo)',x=>!!(x.arenaRec&&(x.arenaRec.totalPerfectDodges||0)>=25)],['sect_el','Trưởng Lão Tông Môn (hoặc Khai Tông Lập Phái)',x=>!!x.ownSect||!!(x.sect&&sectService.curRank(x)>=3)],['pt_harem','Hồng Nhan Tri Kỷ (Kết duyên ≥ 3 Đạo Lữ)',x=>compService.bondedList(x).length>=3],['pt_all','Vạn Hoa Tùng Trung (Kết duyên đủ 6 Đạo Lữ)',x=>compService.bondedList(x).length>=6],['pet_all','Vạn Thú Quy Tâm (Thu phục đủ 5 Linh Thú Ngũ Hành)',x=>PETS.every(p=>x.pets&&x.pets[p.id]>0)],['tec_rev','Nghịch Thiên Tu Đạo (Nghịch Luyện ≥3 tầng 1 Công Pháp)',x=>Object.keys(x.tech||{}).some(id=>techniqueService.stanceInfo(x,id).isRev)],['tec_cycle','Đại Chu Thiên (Kích hoạt Đại Chu Thiên Luân Chuyển với 3 Công Pháp Tương Sinh)',x=>techniqueService.cycleInfo(x).kind==='grand'],['tec_aff','Bí Pháp Đại Thành (Sở hữu Từ Điều Thiên Phẩm trên Công Pháp)',x=>Object.values(x.tech||{}).some(t=>Array.isArray(t.aff)&&t.aff.some(a=>a.r===2))]];
+const ACH=[['kd','Đạt Kim Đan',x=>x.realm>=2],['na','Đạt Nguyên Anh',x=>x.realm>=3],['ht','Đạt Hóa Thần',x=>x.realm>=4],['th','Sống trên 1000 tuổi',x=>x.age>=1000],['tt','Sở hữu thiên phú Thất Thải',x=>x.tal.some(t=>TD[t.id].r===6)],['sss','Đạt hạng SSS mô phỏng',x=>x.best===8],['sm','Hoàn thành 5 lần mô phỏng',x=>x.hist.length>=5],['lw','Thắng 10 trận Lịch Luyện',x=>(x.wins||0)>=10],['gd','Sở hữu 5.000 Linh Thạch',x=>x.stones>=5000],['tw10','Chinh phục Tầng 10 Vạn Kiếp Tháp',x=>(x.towerFloor||0)>=10],['wb1','Trảm sát Cổ Thần Tam Biến',x=>Object.values(x.wbWins||{}).some(v=>v>0)],['rush1','Phá đảo Đột Kích Liên Hoàn (4 Cổ Thần)',x=>!!(x.arenaRec&&x.arenaRec.rushBest&&x.arenaRec.rushBest.clears>=1)],['pd1','Thời Không Tĩnh Lặng (≥ 3 Né Hoàn Hảo trong 1 trận)',x=>!!(x.arenaRec&&(x.arenaRec.bestPerfectDodge||0)>=3)],['pd2','Thân Pháp Nhập Vi (Tích lũy 25 Né Hoàn Hảo)',x=>!!(x.arenaRec&&(x.arenaRec.totalPerfectDodges||0)>=25)],['sect_el','Trưởng Lão Tông Môn (hoặc Khai Tông Lập Phái)',x=>!!x.ownSect||!!(x.sect&&sectService.curRank(x)>=3)],['pt_harem','Hồng Nhan Tri Kỷ (Kết duyên ≥ 3 Đạo Lữ)',x=>compService.bondedList(x).length>=3],['pt_all','Vạn Hoa Tùng Trung (Kết duyên đủ 6 Đạo Lữ)',x=>compService.bondedList(x).length>=6],['pet_all','Vạn Thú Quy Tâm (Thu phục đủ 5 Linh Thú Ngũ Hành)',x=>PETS.every(p=>x.pets&&x.pets[p.id]>0)],['tec_rev','Nghịch Thiên Tu Đạo (Nghịch Luyện ≥3 tầng 1 Công Pháp)',x=>Object.keys(x.tech||{}).some(id=>techniqueService.stanceInfo(x,id).isRev)],['tec_cycle','Đại Chu Thiên (Kích hoạt Đại Chu Thiên Luân Chuyển với 3 Công Pháp Tương Sinh)',x=>techniqueService.cycleInfo(x).kind==='grand'],['tec_aff','Bí Pháp Đại Thành (Sở hữu Từ Điều Thiên Phẩm trên Công Pháp)',x=>Object.values(x.tech||{}).some(t=>Array.isArray(t.aff)&&t.aff.some(a=>a.r===2))],['tec_imp','Thanh Xuất Vu Lam (Suy diễn thành công Cải Lương Mạch vượt nguyên bản)',x=>Object.values(x.tech||{}).some(t=>Array.isArray(t.qual)&&t.qual.includes(1))]];
 const achievementService={check(x){ACH.forEach(a=>{if(!x.ach[a[0]]&&a[2](x)){x.ach[a[0]]=true;toast('🏆 Thành tựu: '+a[1],'ach')}})}};
 
 const TK='msns_theme_v1',UT={preset:0,bg:'#10131f',ac:'#f59e0b',font:0,size:1,dens:0,glow:true,blur:true},UP={banner:0,decor:0,status:'',emo:'🧘'},UC={av:'',bn:'',wp:'',wo:70,wb:4,vol:60,trk:0,auto:true,on:false,cn:'',dynBgm:true};
@@ -4718,18 +4841,28 @@ function buildDet(kind,id,isHover=false){
       return `<div class="tec-roll-cmp"><div class="row" style="margin-bottom:4px"><b>⚖ Chọn Từ Điều Ô #${roll.idx+1}</b></div><div style="font-size:12px">• Cũ: ${fA(roll.oldAff)}</div><div style="font-size:12px;margin-top:2px">• Mới: ${fA(roll.newAff)}</div><div class="bt" style="margin-top:6px">${btn('tec_r_ok','','✅ Nhận Mới')}${btn('tec_r_no','','↩ Giữ Cũ')}</div></div>`;
     })():'';
     const reqP=techniqueService.revPillId(d),hasYao=techniqueService.hasYaoDan(s,reqP),hasD3=mq(s,'d3')>=1;
+    const ded=ui.tecDed&&ui.tecDed.id===d.id?ui.tecDed:null;
+    const dedHtml=ded?(()=>{
+      const cands=techniqueService.refCandidates(s,d.id),cur=ded.clues[ded.step];
+      const ansNm={cool:'💧 Điều Hòa (Dẫn Thủy)',heat:'🔥 Xung Phá (Tụ Hỏa)',bal:'☯ Trung Dung (Tuần Hoàn)'};
+      const refBar=ded.step===0&&cands.length?`<div class="bt" style="margin:4px 0;align-items:center"><span class="mu" style="font-size:11px">📚 Tham Chiếu Đồng Nguyên:</span>${cands.map(oid=>`<button class="chip ${ded.refId===oid?'on':''}" data-a="tec_ded_ref" data-x="${ded.refId===oid?'':oid}">${QD[oid].n}</button>`).join('')}</div>`:'';
+      const hintLine=ded.revealed[ded.step]?`<div class="ok" style="font-size:11.5px;margin-top:4px">💡 Gợi ý Cổ Văn: <b>${ansNm[cur.a]}</b></div>`:'';
+      return `<div class="tec-ded"><div class="row"><b>📜 Đài Suy Diễn · ${TECH_CHAPTERS[ded.idx]} (Huyệt ${Math.min(3,ded.step+1)}/3)</b><span class="mu">Đúng: ${ded.hits}/${ded.step}</span></div>${refBar}<div class="tec-ded-node"><div>“${esc(cur?cur.t:'')}”</div>${hintLine}</div><div class="bt" style="margin:0">${btn('tec_ded_cool','','💧 Điều Hòa')}${btn('tec_ded_heat','','🔥 Xung Phá')}${btn('tec_ded_bal','','☯ Trung Dung')}${btn('tec_ded_cls','','✕')}</div></div>`;
+    })():'';
+    const busy=!!mini||!!ded;
     const chHtml=TECH_CHAPTERS.map((nm,idx)=>{
-      const c=t.ch[idx],pr=t.prog[idx]||0,cost=techniqueService.chCost(d,idx);
+      const c=t.ch[idx],pr=t.prog[idx]||0,cost=techniqueService.chCost(d,idx),q=(t.qual&&t.qual[idx])||0,dura=(t.dura&&t.dura[idx]!=null)?t.dura[idx]:3;
+      const qTag=q===1?'<span class="tec-qual-imp">🌟 Cải Lương</span>':q===-1?'<span class="tec-qual-flaw">⚠ Tạp Mạch</span>':'';
       if(c===-1){
-        const dedC=Math.round(cost*1.1);
-        return `<div class="tec-ch-row miss"><div class="row"><span>📜 <b>${nm}</b> · <span style="color:#fbbf24">Tàn Khuyết (${pr}%)</span></span><span class="mu">Đánh quái để ngộ</span></div><div class="tec-bar"><i style="width:${pr}%;background:#f59e0b"></i></div><div class="bt" style="margin:0">${btn('tec_deb',d.id+'|'+idx,'💬 Luận Đạo (An toàn)',!hasPeer||debUsed||!!mini)}${btn('tec_ded',d.id+'|'+idx,`⚡ Suy Diễn (${dedC}💎)`,s.stones<dedC||!!mini)}</div></div>`;
+        const dedC=Math.round(cost*1.1),hasH=!!(t.clueHint&&t.clueHint[idx]);
+        return `<div class="tec-ch-row miss"><div class="row"><span>📜 <b>${nm}</b> · <span style="color:#fbbf24">Tàn Khuyết (${pr}%)</span>${hasH?' <span class="ok" style="font-size:11px">💡Gợi ý</span>':''}</span><span class="mu">Tàn Ý: ${dura}/3</span></div><div class="tec-bar"><i style="width:${pr}%;background:#f59e0b"></i></div><div class="bt" style="margin:0">${btn('tec_deb',d.id+'|'+idx,'💬 Luận Đạo (+40%)',!hasPeer||debUsed||busy)}${dura>0?btn('tec_ded_go',d.id+'|'+idx,`⚡ Đài Suy Diễn (${dedC}💎)`,s.stones<dedC||busy):btn('tec_ded_res',d.id+'|'+idx,'✨ Phục Chế (1✨)',(s.ngoSand||0)<1||busy)}${(s.kt||1)>=2?btn('tec_ded_kt',d.id+'|'+idx,'🔮 Thiên Cơ (1✨)',(s.ngoSand||0)<1||busy):''}</div></div>`;
       }
       if(c===0){
         const revC=Math.round(cost*1.5),reqT=techniqueService.tamReq(d,st.rev+1,totRev+(t.eq?1:0),s),risky=(st.rev+1>3||totRev+(t.eq?1:0)>5)&&cst.attr.tam<reqT;
-        return `<div class="tec-ch-row un"><div class="row"><span>○ <b>${nm}</b> · <span class="mu">Chưa lĩnh ngộ (${pr}%)</span></span><span class="mu">${cost}💎 · Ngộ≥${rq}</span></div>${pr>0?`<div class="tec-bar"><i style="width:${pr}%"></i></div>`:''}<div class="bt" style="margin:0">${btn('tec_pos',d.id+'|'+idx,'☯ Chính Luyện',ng<rq||s.stones<cost||!!mini)}${btn('tec_rev_go',d.id+'|'+idx,`🩸 Xung Kích Nghịch (${revC}💎 + 1 ${ID[reqP].n})${risky?' ⚠Tâm<'+reqT:''}`,ng<rq||s.stones<revC||!hasYao||!!mini)}</div></div>`;
+        return `<div class="tec-ch-row un"><div class="row"><span>○ <b>${nm}</b> · <span class="mu">Chưa lĩnh ngộ (${pr}%)</span>${qTag}</span><span class="mu">${cost}💎 · Ngộ≥${rq}</span></div>${pr>0?`<div class="tec-bar"><i style="width:${pr}%"></i></div>`:''}<div class="bt" style="margin:0">${btn('tec_pos',d.id+'|'+idx,'☯ Chính Luyện',ng<rq||s.stones<cost||busy)}${btn('tec_rev_go',d.id+'|'+idx,`🩸 Xung Kích Nghịch (${revC}💎 + 1 ${ID[reqP].n})${risky?' ⚠Tâm<'+reqT:''}`,ng<rq||s.stones<revC||!hasYao||busy)}${q===-1?btn('tec_ref_flaw',d.id+'|'+idx,`✨ Tinh Luyện (1✨+${cost}💎)`,(s.ngoSand||0)<1||s.stones<cost||busy):''}</div></div>`;
       }
       const isR=c===2,wc=techniqueService.washCost(d,idx,t.washCnt);
-      return `<div class="tec-ch-row ${isR?'rev':'pos'}"><div class="row"><span>${isR?'🩸':'☯'} <b>${nm}</b> · <span style="color:${isR?'#fb7185':'#34d399'}">${isR?'Nghịch Mạch':'Chính Mạch'}</span></span>${btn('tec_wash',d.id+'|'+idx,`🌊 Tẩy Mạch (${wc}💎 + 1 Tịnh Tâm Đan)`,s.stones<wc||!hasD3||!!mini)}</div></div>`;
+      return `<div class="tec-ch-row ${isR?'rev':'pos'}"><div class="row"><span>${isR?'🩸':'☯'} <b>${nm}</b> · <span style="color:${isR?'#fb7185':'#34d399'}">${isR?'Nghịch Mạch':'Chính Mạch'}</span>${qTag}</span><div class="bt" style="margin:0">${q===-1?btn('tec_ref_flaw',d.id+'|'+idx,`✨ Tinh Luyện (1✨+${cost}💎)`,(s.ngoSand||0)<1||s.stones<cost||busy):''}${btn('tec_wash',d.id+'|'+idx,`🌊 Tẩy Mạch (${wc}💎 + 1 Tịnh Tâm Đan)`,s.stones<wc||!hasD3||busy)}</div></div></div>`;
     }).join('');
     const rc=techniqueService.affRerollCost(d,t.affRolls),affRows=(t.aff||[]).map((a,ai)=>{
       const ad=TECH_AFF_MAP[a.id];if(!ad)return'';
@@ -4741,7 +4874,7 @@ function buildDet(kind,id,isHover=false){
     return {
       r:d.r,title:d.n,ico:techIconHtml(d,'lg'),
       sub:`[${TIER[d.r]}] ${d.ty} · ${t.eq?'<span class="ok">Đang trang bị</span>':'Chưa trang bị'}${stanceTag}`,
-      stat:`<b>${fx(d.e,p)}</b> <span class="ok">(${Math.round(p*100)}% hiệu lực)</span>${sk?`<div style="margin-top:4px;font-size:12px">⚡ Tuyệt kỹ: <b style="color:${sk.revMode?'#fb7185':'var(--gold)'}">${sk.tag}</b> (×${sk.mul}${sk.hpCost?`, -${Math.round(sk.hpCost*100)}% HP`:''})</div>`:''}${d.d?'<div class="mu" style="margin-top:4px">'+d.d+'</div>':''}${miniHtml}${rollHtml}<div class="tec-ch-list">${chHtml}</div>${affHtml}`,
+      stat:`<b>${fx(d.e,p)}</b> <span class="ok">(${Math.round(p*100)}% hiệu lực)</span>${sk?`<div style="margin-top:4px;font-size:12px">⚡ Tuyệt kỹ: <b style="color:${sk.revMode?'#fb7185':'var(--gold)'}">${sk.tag}</b> (×${sk.mul}${sk.hpCost?`, -${Math.round(sk.hpCost*100)}% HP`:''})</div>`:''}${d.d?'<div class="mu" style="margin-top:4px">'+d.d+'</div>':''}${miniHtml}${rollHtml}${dedHtml}<div class="tec-ch-list">${chHtml}</div>${affHtml}`,
       meta:`Kinh Mạch: ${st.done}/5 tầng (${MAST[l]}) · hệ ${d.el==='*'?'vạn năng':ELN[d.el]||d.el}${d.mb?', cần '+BODIES[d.mb].n:''}${totRev?` · Nghịch Mạch: ${totRev}/${capRev} (-${Math.min(45,totRev*4)}% Thủ)`:''}`,
       acts:btn('ttg',d.id,t.eq?'Tháo':'Trang bị')
     };
@@ -8675,7 +8808,7 @@ const UD=[{id:0,n:'Không khung',rq:'',ok:()=>true,h:''},
 {id:5,n:'Thất Thải Thần Quang',rq:'thành tựu Thiên phú Thất Thải, hoặc hạng SSS mô phỏng',ok:x=>!!(x.ach.tt||x.ach.sss),h:'<div class="dc rb7"></div>'},
 {id:6,n:'🏯 Vạn Kiếp Tháp Chủ',rq:'chinh phục Vạn Kiếp Tháp Tầng 10',ok:x=>(x.towerFloor||0)>=10,h:`<svg class="dc sp" viewBox="0 0 180 180"><circle cx="90" cy="90" r="85" fill="none" stroke="#f59e0b" stroke-width="2.6" stroke-dasharray="10 5"/><circle cx="90" cy="90" r="78" fill="none" stroke="#38bdf8" stroke-width="1.4" opacity=".75"/>${rg(6,a=>`<text x="90" y="18" transform="rotate(${a} 90 90)" text-anchor="middle" fill="#fde047" font-size="14">❖</text>`)}</svg>`},
 {id:7,n:'🐉 Trảm Cổ Thần Tôn',rq:'hạ 2 Cổ Thần Tam Biến hoặc 1 trận Thực Chiến Vô Thương Hoàn Hảo',ok:x=>Object.values(x.wbWins||{}).filter(v=>v>0).length>=2||!!(x.arenaRec&&x.arenaRec.perfectWins>=1),h:`<svg class="dc sq" viewBox="0 0 180 180"><circle cx="90" cy="90" r="85" fill="none" stroke="#f43f5e" stroke-width="3" stroke-dasharray="12 4"/><circle cx="90" cy="90" r="79" fill="none" stroke="#fbbf24" stroke-width="1.6"/>${rg(4,a=>`<text x="90" y="20" transform="rotate(${a} 90 90)" text-anchor="middle" font-size="17">🐉</text>`)}</svg>`}];
-const ACI={kd:'💊',na:'👶',ht:'🌀',th:'⏳',tt:'🌈',sss:'👑',sm:'🎭',lw:'⚔',gd:'💎',tw10:'🏯',wb1:'🐉',rush1:'🔥',pd1:'⚡',pd2:'🌌',sect_el:'🏯',pt_harem:'💞',pt_all:'🌸',pet_all:'🐾',tec_rev:'🩸',tec_cycle:'☯',tec_aff:'✨'},UE=['🧘','⚔','🔥','🍵','🌙','📜','☯','💤'],UQ=[['🧘','Đang bế quan xung kích Kim Đan'],['⚔','Tìm đối thủ luận kiếm'],['🔥','Luyện đan xin đừng làm phiền']];
+const ACI={kd:'💊',na:'👶',ht:'🌀',th:'⏳',tt:'🌈',sss:'👑',sm:'🎭',lw:'⚔',gd:'💎',tw10:'🏯',wb1:'🐉',rush1:'🔥',pd1:'⚡',pd2:'🌌',sect_el:'🏯',pt_harem:'💞',pt_all:'🌸',pet_all:'🐾',tec_rev:'🩸',tec_cycle:'☯',tec_aff:'✨',tec_imp:'🌟'},UE=['🧘','⚔','🔥','🍵','🌙','📜','☯','💤'],UQ=[['🧘','Đang bế quan xung kích Kim Đan'],['⚔','Tìm đối thủ luận kiếm'],['🔥','Luyện đan xin đừng làm phiền']];
 function profileCard(){const p=s.profile,d=UD[p.decor],bd=ACH.filter(a=>s.ach[a[0]]);
 return `<div class="pn pc"><div class="bn" style="background:${s.uiCfg.bn?"center/cover no-repeat url('"+s.uiCfg.bn+"')":UB[p.banner][1]}" title="${UB[p.banner][0]}"></div><div class="avw">${avatar(s)}${d&&d.ok(s)?d.h:''}</div><div class="pb"><input id="nm" value="${esc(s.name)}" data-chg="name" aria-label="Tên nhân vật" style="width:100%;text-align:center;color:var(--gold);font-weight:bold"><div style="text-align:center"><span class="stt">${p.status?esc(p.emo)+' '+esc(p.status):'<span class="mu">Chưa đặt đạo hiệu</span>'}</span></div><div class="bdg">${bd.map(a=>`<span class="bg1" tabindex="0" data-t="${a[1]}" aria-label="${a[1]}">${ACI[a[0]]||'🏆'}</span>`).join('')||'<span class="mu">Chưa có huy hiệu</span>'}</div><div class="row"><span>Giới tính</span><span>${esc(s.gender)}</span></div><div class="row"><span>Tuổi</span><span>${s.age}</span></div><div class="row"><span>Thân phận</span><span>${characterService.identity(s)}</span></div><div class="row"><span>Danh hiệu</span><span>${characterService.title(s)}${s.reborn?' · Luân Hồi ×'+s.reborn:''}</span></div><div class="row"><span>Ngày tạo</span><span>${new Date(s.created).toLocaleDateString('vi-VN')}</span></div><div class="bt">${btn('pe','',ui.pe?'Đóng chỉnh sửa':'✎ Chỉnh hồ sơ')}</div>${ui.pe?profileEdit():''}</div></div>`}
 function qpickAv(cur){const mk=(list,off)=>`<div class="qpick">${list.map((a,i)=>`<button class="qchip ${cur===safeU(a.u)?'on':''}" data-a="qav" data-x="${off+i}"><img src="${a.u}" referrerpolicy="no-referrer" alt="" onerror="this.style.display='none'">${a.n}</button>`).join('')}</div>`;return`<div class="mu" style="margin-top:4px">Nam Tu Tiên</div>${mk(QCBH_AVATARS.nam,0)}<div class="mu" style="margin-top:4px">Nữ Tu Tiên</div>${mk(QCBH_AVATARS.nu,QCBH_AVATARS.nam.length)}`}
@@ -9270,7 +9403,7 @@ const A={
   },
   eq:x=>equipmentService.equip(s,x),uneq:x=>equipmentService.unequip(s,x),
   use:x=>inventoryService.use(s,x,1),use5:x=>inventoryService.use(s,x,5),
-  ttg:x=>techniqueService.toggle(s,x),tpr:x=>techniqueService.practice(s,x),tec_pos:x=>{const[id,i]=x.split('|');techniqueService.cultivateChapter(s,id,+i,1)},tec_rev:x=>{const[id,i]=x.split('|');techniqueService.cultivateChapter(s,id,+i,2)},tec_wash:x=>{const[id,i]=x.split('|');techniqueService.washChapter(s,id,+i)},tec_ded:x=>{const[id,i]=x.split('|');techniqueService.deduceMissing(s,id,+i)},tec_deb:x=>{const[id,i]=x.split('|');techniqueService.debateRepair(s,id,+i)},tec_aff_rr:x=>{const[id,i]=x.split('|');techniqueService.rerollAffix(s,id,+i)},tec_rev_go:x=>{const[id,i]=x.split('|');techniqueService.startMini(s,'rev',id,+i)},tec_aff_go:x=>{const[id,i]=x.split('|');techniqueService.startMini(s,'aff',id,+i)},tec_m_calm:()=>techniqueService.stepMini(s,'calm'),tec_m_push:()=>techniqueService.stepMini(s,'push'),tec_m_force:()=>techniqueService.stepMini(s,'force'),tec_r_ok:()=>techniqueService.applyRoll(s,true),tec_r_no:()=>techniqueService.applyRoll(s,false),tec_calm:()=>techniqueService.meditateCalm(s),seek:()=>destinyService.seek(s),
+  ttg:x=>techniqueService.toggle(s,x),tpr:x=>techniqueService.practice(s,x),tec_pos:x=>{const[id,i]=x.split('|');techniqueService.cultivateChapter(s,id,+i,1)},tec_rev:x=>{const[id,i]=x.split('|');techniqueService.cultivateChapter(s,id,+i,2)},tec_wash:x=>{const[id,i]=x.split('|');techniqueService.washChapter(s,id,+i)},tec_ded:x=>{const[id,i]=x.split('|');techniqueService.deduceMissing(s,id,+i)},tec_deb:x=>{const[id,i]=x.split('|');techniqueService.debateRepair(s,id,+i)},tec_ded_go:x=>{const[id,i]=x.split('|');techniqueService.startDed(s,id,+i)},tec_ded_ref:x=>techniqueService.setDedRef(s,x),tec_ded_cool:()=>techniqueService.pickDed(s,'cool'),tec_ded_heat:()=>techniqueService.pickDed(s,'heat'),tec_ded_bal:()=>techniqueService.pickDed(s,'bal'),tec_ded_cls:()=>{ui.tecDed=null},tec_ded_kt:x=>{const[id,i]=x.split('|');techniqueService.heavenDed(s,id,+i)},tec_ded_res:x=>{const[id,i]=x.split('|');techniqueService.restoreDura(s,id,+i)},tec_ref_flaw:x=>{const[id,i]=x.split('|');techniqueService.refineFlaw(s,id,+i)},tec_aff_rr:x=>{const[id,i]=x.split('|');techniqueService.rerollAffix(s,id,+i)},tec_rev_go:x=>{const[id,i]=x.split('|');techniqueService.startMini(s,'rev',id,+i)},tec_aff_go:x=>{const[id,i]=x.split('|');techniqueService.startMini(s,'aff',id,+i)},tec_m_calm:()=>techniqueService.stepMini(s,'calm'),tec_m_push:()=>techniqueService.stepMini(s,'push'),tec_m_force:()=>techniqueService.stepMini(s,'force'),tec_r_ok:()=>techniqueService.applyRoll(s,true),tec_r_no:()=>techniqueService.applyRoll(s,false),tec_calm:()=>techniqueService.meditateCalm(s),seek:()=>destinyService.seek(s),
   sim:()=>rewardIntegrationService.start(s),sp:x=>rewardIntegrationService.tpick(s,x),sgo:()=>rewardIntegrationService.go(s),
   sa:x=>rewardIntegrationService.act(s,+x),sc:x=>rewardIntegrationService.choose(s,+x),
   claim:()=>rewardIntegrationService.claim(s),ukt:()=>rewardIntegrationService.upgradeKT(s),
